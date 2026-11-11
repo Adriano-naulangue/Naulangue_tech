@@ -52,13 +52,16 @@ input[type=file]{background:#1e293b;padding:10px}
 .admin-section{background:#1e293b;padding:15px;border-radius:14px;margin:12px 0;border:1px dashed #0ea5e9}
 .badge-pendente{background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:bold}
 .badge-aprovado{background:#22c55e;color:#fff;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:bold}
+.opt{display:block;width:100%;text-align:left;background:#1e293b;border:2px solid #334155;color:#fff;padding:14px;border-radius:12px;margin:8px 0;cursor:pointer;font-size:15px}
+.opt.sel{background:#0ea5e9;border-color:#fff;font-weight:bold}
+.aula-card{background:#0f172a;border:1px solid #334155;padding:18px;border-radius:14px;margin:10px 0}
 </style>
 </head>
 <body>
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 <div id="sidebar">
 <span class="fechar" onclick="fecharMenu()">×</span>
-<h3> MENU - 10 OPÇÕES</h3>
+<h3> MENU - 12 OPÇÕES</h3>
 <a class="menu-item" onclick="showPage('home')"> 1. Início<small>Voltar para capa</small></a>
 <a class="menu-item" onclick="showPage('p1')"> 2. O que é Packet Tracer?<small>O que é, para que serve</small></a>
 <a class="menu-item" onclick="showPage('p2')"> 3. O que vais aprender<small>Matérias do curso</small></a>
@@ -69,6 +72,8 @@ input[type=file]{background:#1e293b;padding:10px}
 <a class="menu-item" onclick="showPage('p7')"> 8. Fotos e Novidades<small>Publicações do Admin</small></a>
 <a class="menu-item" onclick="showPage('p8')"> 9. Depoimentos<small>O que dizem os alunos</small></a>
 <a class="menu-item" onclick="showPage('p9')"> 10. Contacto e Inscrição<small>Fala connosco, inscreve-te</small></a>
+<a class="menu-item" onclick="showPage('p10')"> 11. Área de Teste<small>40 perguntas, teste o teu nível</small></a>
+<a class="menu-item" onclick="showPage('p11')"> 12. Sala de Aula<small>Aulas em PDF ou escrita</small></a>
 <button class="btn" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('inscreverModal')">Inscrever-se </button>
 </div>
 <header id="headerBg">
@@ -84,9 +89,13 @@ input[type=file]{background:#1e293b;padding:10px}
 <h2>CURSO DE <b>PACKET<br>TRACER</b><br>DO BÁSICO AO<br>AVANÇADO</h2>
 <p>Redes, Roteamento, Switching, IP, ICMP, TCP/UDP, VLANs, Simulação e Testes. Aprenda na prática com laboratório real.</p>
 <button class="btn" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA </button>
+<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px">
+<button class="btn" style="background:#f59e0b" onclick="showPage('p10')"> Fazer Teste - 40 Perguntas</button>
+<button class="btn" style="background:#22c55e" onclick="showPage('p11')"> Sala de Aula</button>
+</div>
 <div id="msgAlunoAprovadoHero" style="display:none;background:#22c55e;padding:12px 18px;border-radius:20px;margin-top:12px;font-weight:bold"></div>
 </div>
-<div class="info-box"><h3> Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> no canto esquerdo para ver as 10 opções. Cada uma abre a sua página.</p></div>
+<div class="info-box"><h3> Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> para ver as 12 opções. Faz o teste e entra na Sala de Aula.</p></div>
 <h3 style="margin:10px 0"> Últimas Publicações do Admin</h3>
 <div id="postsHome"></div>
 </div>
@@ -99,6 +108,14 @@ input[type=file]{background:#1e293b;padding:10px}
 <div class="page" id="p7"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Fotos e Novidades</h3><div id="postsPage"></div></div>
 <div class="page" id="p8"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Depoimentos</h3><p>“Aprendi do zero e hoje já monto redes sozinho.” - Aluno<br>“O melhor curso de redes de Montepuez.” - Aluna</p></div></div>
 <div class="page" id="p9"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Contacto e Inscrição</h3><p> Montepuez - Cabo Delgado<br> NAULANGUE TECH - Packet Tracer</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se Agora </button></div></div>
+<div class="page" id="p10"><button class="btn back" onclick="showPage('home')"> Voltar</button>
+<div class="info-box"><h3> Área de Teste - 40 Perguntas</h3><p id="testeInfo">Carregando perguntas...</p><button class="btn" onclick="iniciarTeste()"> Começar Teste</button></div>
+<div id="testeArea" style="display:none">
+<div class="info-box"><h3 id="perguntaTitulo">Pergunta 1 de 40</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div>
+</div>
+<div id="resultadoArea" style="display:none"></div>
+</div>
+<div class="page" id="p11"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Sala de Aula</h3><p class="small">Aulas publicadas pelo Admin - PDF ou escrita.</p><div id="aulasLista"></div></div>
 <footer>© 2026 NAULANGUE TECH | Montepuez</footer>
 <div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>Admin Login</h2><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%" onclick="fazerLogin()">Entrar </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
@@ -107,170 +124,201 @@ input[type=file]{background:#1e293b;padding:10px}
 <p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase... Tudo na nuvem ☁️</p>
 <div class="admin-section">
 <h3> Mudar Foto do Topo</h3>
-<p class="small">Fica guardada na nuvem, nunca desaparece.</p>
-<label class="small"> Escolher foto:</label>
-<input type="file" id="bgFile" accept="image/*" onchange="previewBg(event)">
-<img id="previewBgImg" class="preview">
-<label class="small">Ou colar link:</label>
+<input type="file" id="bgFile" accept="image/*" onchange="previewBg(event)"><img id="previewBgImg" class="preview">
 <input type="text" id="bgLink" placeholder="https://...jpg">
 <button class="btn btn-orange" style="width:100%" onclick="mudarFundo()"> Aplicar no Topo</button>
-<button class="btn" style="width:100%;margin-top:8px;background:#334155" onclick="restaurarFundo()"> Voltar para foto original</button>
-<p class="small" id="msgBg" style="color:#4ade80"></p>
+<button class="btn" style="width:100%;margin-top:8px;background:#334155" onclick="restaurarFundo()"> Voltar para foto original</button><p class="small" id="msgBg" style="color:#4ade80"></p>
 </div>
 <div class="admin-section">
 <h3> + Publicar Foto e Escrever</h3>
-<input type="text" id="postTitulo" placeholder="Título ex: Aula de hoje - VLANs">
-<textarea id="postTexto" placeholder="Escreve aqui..."></textarea>
-<label class="small"> Escolher foto:</label>
-<input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)">
-<img id="previewImg" class="preview">
-<label class="small">Ou colar link:</label>
+<input type="text" id="postTitulo" placeholder="Título"><textarea id="postTexto" placeholder="Escreve aqui..."></textarea>
+<input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)"><img id="previewImg" class="preview">
 <input type="text" id="postFotoLink" placeholder="https://...jpg">
-<button class="btn btn-green" style="width:100%" onclick="publicarPost()"> Publicar Foto + Texto</button>
-<div id="listaPostsAdmin"></div>
+<button class="btn btn-green" style="width:100%" onclick="publicarPost()"> Publicar Foto + Texto</button><div id="listaPostsAdmin"></div>
+</div>
+<div class="admin-section" style="border-color:#f59e0b">
+<h3> ✏️ Criar Pergunta do Teste</h3>
+<p class="small">Cria 40 perguntas. Escolhe qual é a correta.</p>
+<textarea id="qPergunta" placeholder="Pergunta ex: O que significa IP?"></textarea>
+<input type="text" id="qA" placeholder="Opção A">
+<input type="text" id="qB" placeholder="Opção B">
+<input type="text" id="qC" placeholder="Opção C">
+<input type="text" id="qD" placeholder="Opção D">
+<label class="small">Qual é a correta?</label>
+<select id="qCorreta"><option value="0">A é correta</option><option value="1">B é correta</option><option value="2">C é correta</option><option value="3">D é correta</option></select>
+<button class="btn btn-orange" style="width:100%" onclick="adicionarPergunta()">Adicionar Pergunta</button>
+<p class="small" id="totalPerguntas">Total: 0 / 40 perguntas</p>
+<div id="listaPerguntas"></div>
+</div>
+<div class="admin-section" style="border-color:#22c55e">
+<h3> 📚 Publicar Aula - Sala de Aula</h3>
+<input type="text" id="aulaTitulo" placeholder="Título da aula ex: Aula 1 - O que é IP">
+<textarea id="aulaTexto" placeholder="Escreve a aula aqui... (podes deixar vazio se for só PDF)"></textarea>
+<label class="small">Link do PDF (Google Drive / link):</label>
+<input type="text" id="aulaPdf" placeholder="https://...pdf">
+<label class="small">Ou enviar PDF do telemóvel:</label>
+<input type="file" id="aulaPdfFile" accept="application/pdf">
+<button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button>
+<div id="listaAulasAdmin"></div>
 </div>
 <hr style="margin:18px 0;border-color:#334155">
 <h3> Adicionar Curso</h3>
-<input type="text" id="novoTitulo" placeholder="Nome do curso">
-<textarea id="novoDesc" placeholder="Descrição..."></textarea>
-<input type="number" id="novoPreco" placeholder="Preço MZN">
+<input type="text" id="novoTitulo" placeholder="Nome do curso"><textarea id="novoDesc" placeholder="Descrição..."></textarea><input type="number" id="novoPreco" placeholder="Preço MZN">
 <button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
 <h3 style="margin-top:18px"> Meus Cursos</h3><div id="listaAdmin"></div>
-<h3 style="margin-top:18px"> Alunos Firebase (<span id="totalAlunos">0</span>)</h3>
-<p class="small">Todos na nuvem. Carrega em Aprovar.</p>
-<div id="listaAlunos"></div>
+<h3 style="margin-top:18px"> Alunos Firebase (<span id="totalAlunos">0</span>)</h3><div id="listaAlunos"></div>
 <button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
 </div></div>
 <div class="modal" id="inscreverModal"><div class="box"><span class="close" onclick="closeModal('inscreverModal')">×</span><h2>Inscrever-se </h2>
-<input type="text" id="nomeAluno" placeholder="Nome completo">
-<input type="email" id="emailAluno" placeholder="Seu email ex: nome@gmail.com">
-<label class="small">Data de nascimento:</label>
-<input type="date" id="nascimentoAluno">
-<input type="tel" id="telAluno" placeholder="Seu número de telefone ex: 84 123 4567">
-<select id="cursoEscolhido"></select>
-<button class="btn" style="width:100%" onclick="inscrever()">Inscrever-se</button>
-<p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p>
-</div></div>
-
+<input type="text" id="nomeAluno" placeholder="Nome completo"><input type="email" id="emailAluno" placeholder="Seu email"><label class="small">Data de nascimento:</label><input type="date" id="nascimentoAluno"><input type="tel" id="telAluno" placeholder="Seu número"><select id="cursoEscolhido"></select><button class="btn" style="width:100%" onclick="inscrever()">Inscrever-se</button><p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p></div></div>
 <script type="importmap">
 {"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"}}
 </script>
 <script type="module">
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, query, orderBy } from "firebase/firestore";
-const firebaseConfig = {
-  apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",
-  authDomain: "naulangue-tech.firebaseapp.com",
-  projectId: "naulangue-tech",
-  storageBucket: "naulangue-tech.firebasestorage.app",
-  messagingSenderId: "249554572949",
-  appId: "1:249554572949:web:b7d7ef8f38b708806e6d9c"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const SENHA_ADMIN="naulangue";
-const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
-let fotoTemp=""; let bgTemp="";
-let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
-
+const firebaseConfig = { apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A", authDomain: "naulangue-tech.firebaseapp.com", projectId: "naulangue-tech", storageBucket: "naulangue-tech.firebasestorage.app", messagingSenderId: "249554572949", appId: "1:249554572949:web:b7d7ef8f38b708806e6d9c" };
+const app = initializeApp(firebaseConfig); const db = getFirestore(app);
+const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
+let fotoTemp=""; let bgTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
+let perguntas=[]; let aulas=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
 async function criarPadroesSeVazio(){
   try{
     const cSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"cursos"), s=>{un();res(s);}); });
-    if(cSnap.empty){
-      await addDoc(collection(db,"cursos"),{titulo:"Curso de Packet Tracer - Básico",desc:"IP, ICMP, TCP/UDP, Redes simples.",preco:1000,data:Date.now()});
-      await addDoc(collection(db,"cursos"),{titulo:"Curso de Packet Tracer - Avançado",desc:"Roteamento, Switching, VLANs.",preco:1800,data:Date.now()+1});
-      await addDoc(collection(db,"cursos"),{titulo:"Curso Completo + Certificado",desc:"Do básico ao avançado + certificado.",preco:2500,data:Date.now()+2});
-    }
+    if(cSnap.empty){ await addDoc(collection(db,"cursos"),{titulo:"Curso de Packet Tracer - Básico",desc:"IP, ICMP, TCP/UDP, Redes simples.",preco:1000,data:Date.now()}); await addDoc(collection(db,"cursos"),{titulo:"Curso de Packet Tracer - Avançado",desc:"Roteamento, Switching, VLANs.",preco:1800,data:Date.now()+1}); await addDoc(collection(db,"cursos"),{titulo:"Curso Completo + Certificado",desc:"Do básico ao avançado + certificado.",preco:2500,data:Date.now()+2}); }
     const pSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"posts"), s=>{un();res(s);}); });
-    if(pSnap.empty){
-      await addDoc(collection(db,"posts"),{titulo:"Bem-vindo à NAULANGUE TECH ",texto:"Aqui vais aprender Packet Tracer do básico ao avançado. Clica no menu e explora as 10 opções!",foto:FUNDO_PADRAO,data:Date.now()});
+    if(pSnap.empty){ await addDoc(collection(db,"posts"),{titulo:"Bem-vindo à NAULANGUE TECH ",texto:"Aqui vais aprender Packet Tracer do básico ao avançado.",foto:FUNDO_PADRAO,data:Date.now()}); }
+    const fSnap = await getDoc(doc(db,"config","fundo")); if(!fSnap.exists()){ await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO}); }
+    const qSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"perguntas"), s=>{un();res(s);}); });
+    if(qSnap.empty){
+      const exemplos=[
+        ["O que significa IP?","Internet Protocol","Internal Program","Internet Page","Input Process",0],
+        ["Qual comando testa ligação?","ping","print","open","start",0],
+        ["O que é VLAN?","Separar redes em grupos","Um cabo","Um vírus","Um site",0],
+        ["Qual é o IP do router normalmente?","192.168.1.1","999.999.999.999","1.1.1","0.0.0.0",0],
+        ["TCP é usado para?","Envio seguro com confirmação","Jogar offline","Imprimir","Desenhar",0]
+      ];
+      for(let e of exemplos){ await addDoc(collection(db,"perguntas"),{pergunta:e[0],opcoes:[e[1],e[2],e[3],e[4]],correta:e[5],data:Date.now()+Math.random()}); }
     }
-    const fSnap = await getDoc(doc(db,"config","fundo"));
-    if(!fSnap.exists()){ await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO}); }
-  }catch(e){console.log("padrao",e);}
+    const aSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"aulas"), s=>{un();res(s);}); });
+    if(aSnap.empty){ await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - O que é Packet Tracer",texto:"Packet Tracer é o programa da Cisco para simular redes. Aqui vais aprender a criar redes, ligar PCs, routers e switches.",pdf:"",data:Date.now()}); }
+  }catch(e){console.log(e);}
 }
 function aplicarFundo(){const h=document.getElementById("headerBg");if(h) h.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;}
 window.previewBg=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){bgTemp=ev.target.result;const im=document.getElementById("previewBgImg");im.src=bgTemp;im.style.display="block";};r.readAsDataURL(f);};
-window.mudarFundo=async function(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe uma foto ou cola um link primeiro!");try{await setDoc(doc(db,"config","fundo"),{url:novo});document.getElementById("msgBg").textContent=" Foto do topo mudada e guardada na nuvem!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";}catch(e){alert("Erro: "+e.message);}};
-window.restaurarFundo=async function(){await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO});document.getElementById("msgBg").textContent=" Voltou para a foto original.";};
+window.mudarFundo=async function(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe foto ou link!");await setDoc(doc(db,"config","fundo"),{url:novo});document.getElementById("msgBg").textContent=" Foto mudada na nuvem!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";};
+window.restaurarFundo=async function(){await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO});};
 window.abrirMenu=function(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");};
 window.fecharMenu=function(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");};
 window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll();};
 window.previewFoto=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);};
-window.publicarPost=async function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");try{await addDoc(collection(db,"posts"),{titulo:t||"Novidade ",texto:txt,foto,data:Date.now()});document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado e guardado na nuvem ");}catch(e){alert(e.message);}};
-window.removerPost=async function(id){if(confirm("Apagar publicação?")){await deleteDoc(doc(db,"posts",id));}};
+window.publicarPost=async function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");await addDoc(collection(db,"posts"),{titulo:t||"Novidade ",texto:txt,foto,data:Date.now()});document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado ");};
+window.removerPost=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"posts",id));}};
+window.adicionarPergunta=async function(){
+  const p=document.getElementById("qPergunta").value.trim();const a=document.getElementById("qA").value.trim();const b=document.getElementById("qB").value.trim();const c=document.getElementById("qC").value.trim();const d=document.getElementById("qD").value.trim();const correta=Number(document.getElementById("qCorreta").value);
+  if(!p||!a||!b||!c||!d) return alert("Preenche pergunta e as 4 opções!");
+  await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()});
+  document.getElementById("qPergunta").value="";document.getElementById("qA").value="";document.getElementById("qB").value="";document.getElementById("qC").value="";document.getElementById("qD").value="";alert("Pergunta adicionada! Total agora: "+(perguntas.length+1));
+};
+window.removerPergunta=async function(id){if(confirm("Apagar pergunta?")){await deleteDoc(doc(db,"perguntas",id));}};
+window.publicarAula=async function(){
+  const t=document.getElementById("aulaTitulo").value.trim();const txt=document.getElementById("aulaTexto").value.trim();const pdfLink=document.getElementById("aulaPdf").value.trim();
+  const file=document.getElementById("aulaPdfFile").files[0];
+  if(!t) return alert("Escreve o título da aula!");
+  if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete link / PDF!");
+  let pdfData=pdfLink;
+  if(file){ pdfData=await new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);}); }
+  await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,data:Date.now()});
+  document.getElementById("aulaTitulo").value="";document.getElementById("aulaTexto").value="";document.getElementById("aulaPdf").value="";document.getElementById("aulaPdfFile").value="";alert("Aula publicada na Sala de Aula!");
+};
+window.removerAula=async function(id){if(confirm("Apagar aula?")){await deleteDoc(doc(db,"aulas",id));}};
+window.iniciarTeste=function(){
+  if(perguntas.length===0) return alert("Ainda não há perguntas. Admin deve criar.");
+  indiceAtual=0; respostasAluno=[]; escolhaAtual=-1;
+  document.getElementById("resultadoArea").style.display="none";
+  document.getElementById("testeArea").style.display="block";
+  mostrarPergunta();
+};
+function mostrarPergunta(){
+  const q=perguntas[indiceAtual]; if(!q) return;
+  document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`;
+  document.getElementById("perguntaTexto").textContent=q.pergunta;
+  escolhaAtual=-1; document.getElementById("msgTeste").textContent="";
+  const letras=["A","B","C","D"];
+  document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" id="opt-${i}" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${op}</button>`).join("");
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.escolherOpcao=function(i){ escolhaAtual=i; document.querySelectorAll(".opt").forEach((b,idx)=>{b.classList.toggle("sel",idx===i);}); };
+window.seguirPergunta=function(){
+  if(escolhaAtual===-1) return document.getElementById("msgTeste").textContent=" Escolhe uma opção primeiro!";
+  respostasAluno[indiceAtual]=escolhaAtual;
+  if(indiceAtual < perguntas.length-1){ indiceAtual++; mostrarPergunta(); }
+  else{ mostrarResultado(); }
+};
+function mostrarResultado(){
+  document.getElementById("testeArea").style.display="none";
+  let certas=0; let falhasHtml="";
+  perguntas.forEach((q,i)=>{
+    const acertou=respostasAluno[i]===q.correta;
+    if(acertou) certas++;
+    else{
+      const letras=["A","B","C","D"];
+      falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${q.pergunta}</b><br><span style="color:#f87171">A tua resposta: ${letras[respostasAluno[i]]||"?"} - ${q.opcoes[respostasAluno[i]]||"Não respondeu"}</span><br><span style="color:#4ade80">✅ Resposta correta: ${letras[q.correta]} - ${q.opcoes[q.correta]}</span></div>`;
+    }
+  });
+  const total=perguntas.length; const perc=Math.round((certas/total)*100);
+  const cor=perc>=50?"#22c55e":"#ef4444";
+  document.getElementById("resultadoArea").style.display="block";
+  document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3 style="font-size:28px">Resultado: <span style="color:${cor}">${perc}%</span></h3><p style="font-size:18px">Acertaste <b>${certas}</b> de <b>${total}</b> perguntas</p><p>${perc>=50?"🎉 Parabéns! Passaste!":"📚 Continua a estudar na Sala de Aula e tenta de novo."}</p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div><h3 style="margin:12px 0">Perguntas que falhaste:</h3>${falhasHtml||"<p style='color:#4ade80'>🎉 Não falhaste nenhuma! Perfeito!</p>"}`;
+}
 function renderPosts(){
-  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p><p class="small">NAULANGUE TECH </p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
-  document.getElementById("postsHome").innerHTML=html;
-  document.getElementById("postsPage").innerHTML=html;
-  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b><br><span class="small">${(p.texto||"").substring(0,50)}</span></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
+  document.getElementById("postsHome").innerHTML=html; document.getElementById("postsPage").innerHTML=html;
+  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
-function getAlunoAprovado(){
-  const emailSalvo=localStorage.getItem("meu_email_aprovado");
-  if(!emailSalvo) return null;
-  return alunos.find(a=>a.email===emailSalvo && a.status==="aprovado")||null;
+function renderAulas(){
+  const html=aulas.map(a=>{
+    let pdfBtn="";
+    if(a.pdf){
+      if(a.pdf.startsWith("data:")){ pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`; }
+      else{ pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF</a>`; }
+    }
+    return `<div class="aula-card"><h3 style="color:#38bdf8">${a.titulo}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}</div>`;
+  }).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
+  document.getElementById("aulasLista").innerHTML=html;
+  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">${a.pdf?"📄 Tem PDF":"📝 Só escrita"}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
-function atualizarBotoesInscrever(){
-  const aprovado=getAlunoAprovado();
-  const topo=document.getElementById("msgAlunoAprovadoTopo");
-  const hero=document.getElementById("msgAlunoAprovadoHero");
-  const btnTopo=document.getElementById("btnTopoInscrever");
-  if(aprovado){
-    if(btnTopo) btnTopo.style.display="none";
-    if(topo){topo.style.display="block";topo.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}
-    if(hero){hero.style.display="block";hero.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}
-  } else {
-    if(btnTopo) btnTopo.style.display="";
-    if(topo) topo.style.display="none";
-    if(hero) hero.style.display="none";
-  }
-}
+function getAlunoAprovado(){const e=localStorage.getItem("meu_email_aprovado");if(!e) return null;return alunos.find(a=>a.email===e && a.status==="aprovado")||null;}
+function atualizarBotoesInscrever(){const aprovado=getAlunoAprovado();const topo=document.getElementById("msgAlunoAprovadoTopo");const hero=document.getElementById("msgAlunoAprovadoHero");const btnTopo=document.getElementById("btnTopoInscrever");if(aprovado){if(btnTopo)btnTopo.style.display="none";if(topo){topo.style.display="block";topo.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}if(hero){hero.style.display="block";hero.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}}else{if(btnTopo)btnTopo.style.display="";if(topo)topo.style.display="none";if(hero)hero.style.display="none";}}
 function renderCursos(){
-  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");
-  if(!grid)return;grid.innerHTML="";sel.innerHTML="";
+  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");if(!grid)return;grid.innerHTML="";sel.innerHTML="";
   cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao('${c.id}')">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
   document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
-  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{
-    const status=a.status||"pendente";
-    const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;
-    const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo || cursos[a.curso]?.titulo || "Curso";
-    const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";
-    const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";
-    return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • Nasc: ${a.nascimento||''} • Tel: ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;
-  }).join("")||"<p class='small'>Nenhum aluno ainda. Quando alguém se inscrever aparece aqui.</p>";
+  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
+  document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste. ${perguntas.length<40?"Faltam "+(40-perguntas.length)+" para chegar a 40. Admin adiciona no Painel.":"Teste completo com 40 perguntas!"}`;
+  document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 40 perguntas`;
+  document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${q.pergunta}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${q.opcoes[q.correta]}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
   atualizarBotoesInscrever();
 }
-function renderAll(){renderCursos();renderPosts();aplicarFundo();}
+function renderAll(){renderCursos();renderPosts();renderAulas();aplicarFundo();}
 window.openModal=function(id){document.getElementById(id).classList.add("active");};
 window.closeModal=function(id){document.getElementById(id).classList.remove("active");};
 window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){window.closeModal('loginModal');window.openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent=" Senha errada";}};
-window.sairAdmin=function(){window.closeModal('adminModal');alert("Saiu do Admin ");};
-window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");try{await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()});document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado e guardado na nuvem ");}catch(e){alert(e.message);}};
+window.sairAdmin=function(){window.closeModal('adminModal');};
+window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()});document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado ");};
 window.removerCurso=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"cursos",id));}};
 window.aprovarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"aprovado"});alert("Aluno aprovado!");};
-window.rejeitarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"pendente"});alert("Aluno voltou para pendente.");};
-window.removerAluno=async function(id){if(confirm("Apagar este aluno?")){await deleteDoc(doc(db,"alunos",id));}};
+window.rejeitarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"pendente"});};
+window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"alunos",id));}};
 window.abrirInscricao=function(id){document.getElementById("cursoEscolhido").value=id;window.openModal('inscreverModal');};
-window.inscrever=async function(){
-  const nome=document.getElementById("nomeAluno").value.trim();
-  const email=document.getElementById("emailAluno").value.trim().toLowerCase();
-  const nascimento=document.getElementById("nascimentoAluno").value;
-  const tel=document.getElementById("telAluno").value.trim();
-  const cursoId=document.getElementById("cursoEscolhido").value;
-  if(!nome||!email||!nascimento||!tel) return alert("Preencha nome completo, email, data de nascimento e telefone!");
-  if(!email.includes("@")) return alert("Escreva um email válido!");
-  try{
-    await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,cursoId,curso:0,status:"pendente",data:Date.now()});
-    localStorage.setItem("meu_email_aprovado",email);
-    document.getElementById("msgInscricao").textContent="Inscrição enviada! Aguarde aprovação do Administrador, "+nome;
-    document.getElementById("nomeAluno").value="";document.getElementById("emailAluno").value="";document.getElementById("nascimentoAluno").value="";document.getElementById("telAluno").value="";
-  }catch(e){alert("Erro ao enviar: "+e.message);}
-};
+window.inscrever=async function(){const nome=document.getElementById("nomeAluno").value.trim();const email=document.getElementById("emailAluno").value.trim().toLowerCase();const nascimento=document.getElementById("nascimentoAluno").value;const tel=document.getElementById("telAluno").value.trim();const cursoId=document.getElementById("cursoEscolhido").value;if(!nome||!email||!nascimento||!tel) return alert("Preencha tudo!");await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,cursoId,status:"pendente",data:Date.now()});localStorage.setItem("meu_email_aprovado",email);document.getElementById("msgInscricao").textContent="Inscrição enviada! Aguarde aprovação, "+nome;document.getElementById("nomeAluno").value="";document.getElementById("emailAluno").value="";document.getElementById("nascimentoAluno").value="";document.getElementById("telAluno").value="";};
 criarPadroesSeVazio();
 onSnapshot(query(collection(db,"alunos"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()}));document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" alunos.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
 onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
 onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{perguntas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{aulas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
 onSnapshot(doc(db,"config","fundo"),(snap)=>{if(snap.exists()){fundoAtual=snap.data().url||FUNDO_PADRAO;aplicarFundo();}});
 renderAll();
 </script>
