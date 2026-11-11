@@ -104,10 +104,10 @@ input[type=file]{background:#1e293b;padding:10px}
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
 <span class="close" onclick="closeModal('adminModal')">×</span>
 <h2> Painel Admin - NAULANGUE TECH</h2>
-<p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase...</p>
+<p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase... Tudo na nuvem ☁️</p>
 <div class="admin-section">
 <h3> Mudar Foto do Topo</h3>
-<p class="small">Só muda a foto lá em cima, onde está NAULANGUE TECH.</p>
+<p class="small">Fica guardada na nuvem, nunca desaparece.</p>
 <label class="small"> Escolher foto:</label>
 <input type="file" id="bgFile" accept="image/*" onchange="previewBg(event)">
 <img id="previewBgImg" class="preview">
@@ -137,7 +137,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
 <h3 style="margin-top:18px"> Meus Cursos</h3><div id="listaAdmin"></div>
 <h3 style="margin-top:18px"> Alunos Firebase (<span id="totalAlunos">0</span>)</h3>
-<p class="small">Estes alunos vêm de qualquer telemóvel. Carrega em Aprovar.</p>
+<p class="small">Todos na nuvem. Carrega em Aprovar.</p>
 <div id="listaAlunos"></div>
 <button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
 </div></div>
@@ -157,7 +157,7 @@ input[type=file]{background:#1e293b;padding:10px}
 </script>
 <script type="module">
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy } from "firebase/firestore";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, query, orderBy } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",
   authDomain: "naulangue-tech.firebaseapp.com",
@@ -171,30 +171,39 @@ const db = getFirestore(app);
 const SENHA_ADMIN="naulangue";
 const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
 let fotoTemp=""; let bgTemp="";
-let cursos=JSON.parse(localStorage.getItem("cursos_pt"))||[
-{titulo:"Curso de Packet Tracer - Básico",desc:"IP, ICMP, TCP/UDP, Redes simples.",preco:1000},
-{titulo:"Curso de Packet Tracer - Avançado",desc:"Roteamento, Switching, VLANs.",preco:1800},
-{titulo:"Curso Completo + Certificado",desc:"Do básico ao avançado + certificado.",preco:2500}];
-let alunos=[];
-let posts=JSON.parse(localStorage.getItem("posts_pt"))||[
-{titulo:"Bem-vindo à NAULANGUE TECH ",texto:"Aqui vais aprender Packet Tracer do básico ao avançado. Clica no menu e explora as 10 opções!",foto:FUNDO_PADRAO}];
-let fundoAtual=localStorage.getItem("fundo_pt")||FUNDO_PADRAO;
-function salvarLocal(){localStorage.setItem("cursos_pt",JSON.stringify(cursos));localStorage.setItem("posts_pt",JSON.stringify(posts));localStorage.setItem("fundo_pt",fundoAtual);}
+let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
+
+async function criarPadroesSeVazio(){
+  try{
+    const cSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"cursos"), s=>{un();res(s);}); });
+    if(cSnap.empty){
+      await addDoc(collection(db,"cursos"),{titulo:"Curso de Packet Tracer - Básico",desc:"IP, ICMP, TCP/UDP, Redes simples.",preco:1000,data:Date.now()});
+      await addDoc(collection(db,"cursos"),{titulo:"Curso de Packet Tracer - Avançado",desc:"Roteamento, Switching, VLANs.",preco:1800,data:Date.now()+1});
+      await addDoc(collection(db,"cursos"),{titulo:"Curso Completo + Certificado",desc:"Do básico ao avançado + certificado.",preco:2500,data:Date.now()+2});
+    }
+    const pSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"posts"), s=>{un();res(s);}); });
+    if(pSnap.empty){
+      await addDoc(collection(db,"posts"),{titulo:"Bem-vindo à NAULANGUE TECH ",texto:"Aqui vais aprender Packet Tracer do básico ao avançado. Clica no menu e explora as 10 opções!",foto:FUNDO_PADRAO,data:Date.now()});
+    }
+    const fSnap = await getDoc(doc(db,"config","fundo"));
+    if(!fSnap.exists()){ await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO}); }
+  }catch(e){console.log("padrao",e);}
+}
 function aplicarFundo(){const h=document.getElementById("headerBg");if(h) h.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;}
 window.previewBg=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){bgTemp=ev.target.result;const im=document.getElementById("previewBgImg");im.src=bgTemp;im.style.display="block";};r.readAsDataURL(f);};
-window.mudarFundo=function(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe uma foto ou cola um link primeiro!");fundoAtual=novo;salvarLocal();aplicarFundo();document.getElementById("msgBg").textContent=" Foto do topo mudada!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";};
-window.restaurarFundo=function(){fundoAtual=FUNDO_PADRAO;salvarLocal();aplicarFundo();document.getElementById("msgBg").textContent=" Voltou para a foto original.";};
+window.mudarFundo=async function(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe uma foto ou cola um link primeiro!");try{await setDoc(doc(db,"config","fundo"),{url:novo});document.getElementById("msgBg").textContent=" Foto do topo mudada e guardada na nuvem!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";}catch(e){alert("Erro: "+e.message);}};
+window.restaurarFundo=async function(){await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO});document.getElementById("msgBg").textContent=" Voltou para a foto original.";};
 window.abrirMenu=function(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");};
 window.fecharMenu=function(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");};
 window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll();};
 window.previewFoto=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);};
-window.publicarPost=function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");posts.unshift({titulo:t||"Novidade ",texto:txt,foto});salvarLocal();renderAll();document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado ");};
-window.removerPost=function(i){if(confirm("Apagar publicação?")){posts.splice(i,1);salvarLocal();renderAll();}};
+window.publicarPost=async function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");try{await addDoc(collection(db,"posts"),{titulo:t||"Novidade ",texto:txt,foto,data:Date.now()});document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado e guardado na nuvem ");}catch(e){alert(e.message);}};
+window.removerPost=async function(id){if(confirm("Apagar publicação?")){await deleteDoc(doc(db,"posts",id));}};
 function renderPosts(){
-  const html=posts.map((p,i)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p><p class="small">NAULANGUE TECH </p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
+  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p><p class="small">NAULANGUE TECH </p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
   document.getElementById("postsHome").innerHTML=html;
   document.getElementById("postsPage").innerHTML=html;
-  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p,i)=>`<div class="list-item"><div><b>${p.titulo}</b><br><span class="small">${p.texto.substring(0,50)}</span></div><button onclick="removerPost(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b><br><span class="small">${(p.texto||"").substring(0,50)}</span></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 function getAlunoAprovado(){
   const emailSalvo=localStorage.getItem("meu_email_aprovado");
@@ -203,15 +212,15 @@ function getAlunoAprovado(){
 }
 function atualizarBotoesInscrever(){
   const aprovado=getAlunoAprovado();
-  const botoes=document.querySelectorAll(".btn-inscrever, .btn-inscrever-menu, .btn-inscrever-hero, .btn-inscrever-p9, .btn-inscrever-curso");
   const topo=document.getElementById("msgAlunoAprovadoTopo");
   const hero=document.getElementById("msgAlunoAprovadoHero");
+  const btnTopo=document.getElementById("btnTopoInscrever");
   if(aprovado){
-    botoes.forEach(b=>b.style.display="none");
+    if(btnTopo) btnTopo.style.display="none";
     if(topo){topo.style.display="block";topo.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}
     if(hero){hero.style.display="block";hero.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}
   } else {
-    botoes.forEach(b=>b.style.display="");
+    if(btnTopo) btnTopo.style.display="";
     if(topo) topo.style.display="none";
     if(hero) hero.style.display="none";
   }
@@ -219,15 +228,16 @@ function atualizarBotoesInscrever(){
 function renderCursos(){
   const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");
   if(!grid)return;grid.innerHTML="";sel.innerHTML="";
-  cursos.forEach((c,i)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao(${i})">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${i}">${c.titulo} - ${c.preco} MZN</option>`;});
-  document.getElementById("listaAdmin").innerHTML=cursos.map((c,i)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso(${i})" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao('${c.id}')">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
+  document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
   document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{
     const status=a.status||"pendente";
     const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;
+    const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo || cursos[a.curso]?.titulo || "Curso";
     const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";
     const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";
-    return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • Nasc: ${a.nascimento||''} • Tel: ${a.tel||''} • ${cursos[a.curso]?.titulo||'Curso'}</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;
+    return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • Nasc: ${a.nascimento||''} • Tel: ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;
   }).join("")||"<p class='small'>Nenhum aluno ainda. Quando alguém se inscrever aparece aqui.</p>";
   atualizarBotoesInscrever();
 }
@@ -236,39 +246,32 @@ window.openModal=function(id){document.getElementById(id).classList.add("active"
 window.closeModal=function(id){document.getElementById(id).classList.remove("active");};
 window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){window.closeModal('loginModal');window.openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent=" Senha errada";}};
 window.sairAdmin=function(){window.closeModal('adminModal');alert("Saiu do Admin ");};
-window.adicionarCurso=function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");cursos.push({titulo:t,desc:d||"Curso",preco:Number(p)});salvarLocal();renderAll();document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado ");};
-window.removerCurso=function(i){if(confirm("Apagar?")){cursos.splice(i,1);salvarLocal();renderAll();}};
+window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");try{await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()});document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado e guardado na nuvem ");}catch(e){alert(e.message);}};
+window.removerCurso=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"cursos",id));}};
 window.aprovarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"aprovado"});alert("Aluno aprovado!");};
 window.rejeitarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"pendente"});alert("Aluno voltou para pendente.");};
 window.removerAluno=async function(id){if(confirm("Apagar este aluno?")){await deleteDoc(doc(db,"alunos",id));}};
-window.abrirInscricao=function(i){document.getElementById("cursoEscolhido").value=i;window.openModal('inscreverModal');};
+window.abrirInscricao=function(id){document.getElementById("cursoEscolhido").value=id;window.openModal('inscreverModal');};
 window.inscrever=async function(){
   const nome=document.getElementById("nomeAluno").value.trim();
   const email=document.getElementById("emailAluno").value.trim().toLowerCase();
   const nascimento=document.getElementById("nascimentoAluno").value;
   const tel=document.getElementById("telAluno").value.trim();
-  const curso=document.getElementById("cursoEscolhido").value;
+  const cursoId=document.getElementById("cursoEscolhido").value;
   if(!nome||!email||!nascimento||!tel) return alert("Preencha nome completo, email, data de nascimento e telefone!");
   if(!email.includes("@")) return alert("Escreva um email válido!");
   try{
-    await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,curso:Number(curso),status:"pendente",data:Date.now()});
+    await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,cursoId,curso:0,status:"pendente",data:Date.now()});
     localStorage.setItem("meu_email_aprovado",email);
     document.getElementById("msgInscricao").textContent="Inscrição enviada! Aguarde aprovação do Administrador, "+nome;
     document.getElementById("nomeAluno").value="";document.getElementById("emailAluno").value="";document.getElementById("nascimentoAluno").value="";document.getElementById("telAluno").value="";
   }catch(e){alert("Erro ao enviar: "+e.message);}
 };
-try{
-  const q=query(collection(db,"alunos"),orderBy("data","desc"));
-  onSnapshot(q,(snap)=>{
-    alunos=snap.docs.map(d=>({id:d.id,...d.data()}));
-    document.getElementById("statusFirebase").textContent="Firebase ligado! "+alunos.length+" alunos.";
-    document.getElementById("statusFirebase").style.color="#4ade80";
-    renderAll();
-  },(err)=>{
-    document.getElementById("statusFirebase").textContent="Erro Firebase: "+err.message;
-    document.getElementById("statusFirebase").style.color="#f87171";
-  });
-}catch(e){console.log(e);}
+criarPadroesSeVazio();
+onSnapshot(query(collection(db,"alunos"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()}));document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" alunos.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
+onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(doc(db,"config","fundo"),(snap)=>{if(snap.exists()){fundoAtual=snap.data().url||FUNDO_PADRAO;aplicarFundo();}});
 renderAll();
 </script>
 </body>
