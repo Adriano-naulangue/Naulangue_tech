@@ -13,7 +13,6 @@ header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https:
 .logo{font-size:22px;font-weight:900;line-height:1;text-shadow:0 2px 8px #000}
 .logo span{color:#38bdf8}
 .top-right{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-.btn-admin{background:rgba(0,0,0,.45);border:1.2px solid #fff;color:#fff;padding:3px 9px;border-radius:20px;cursor:pointer;font-size:10px}
 .btn-inscrever{background:#0ea5e9;border:none;color:#fff;padding:9px 15px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
 .btn{border:none;color:#fff;padding:12px 20px;border-radius:20px;cursor:pointer;font-weight:bold;background:#0ea5e9}
 .btn-red{background:#ef4444}.btn-green{background:#22c55e}.btn-orange{background:#f59e0b}
@@ -23,6 +22,9 @@ header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https:
 .fechar{float:right;cursor:pointer;font-size:26px}
 .menu-item{display:block;background:#1e293b;padding:13px;border-radius:12px;margin-bottom:9px;color:#fff;text-decoration:none;font-weight:bold;cursor:pointer;border-left:4px solid #0ea5e9}
 .menu-item small{display:block;color:#94a3b8;font-weight:normal;font-size:12px;margin-top:3px}
+.menu-item.locked{opacity:.55;border-left-color:#f59e0b}
+.btn-admin-menu{display:block;width:100%;background:#000;color:#facc15;border:2px solid #facc15;padding:14px;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;letter-spacing:.5px;margin-top:18px;text-align:center}
+.btn-admin-menu small{display:block;color:#a8a29e;font-weight:normal;font-size:11px;margin-top:4px;letter-spacing:0}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998}
 .overlay.show{display:block}
 .page{display:none;padding:18px}.page.active{display:block}
@@ -72,30 +74,28 @@ input[type=file]{background:#1e293b;padding:10px}
 <a class="menu-item" onclick="showPage('p7')"> 8. Fotos e Novidades<small>Publicações do Admin</small></a>
 <a class="menu-item" onclick="showPage('p8')"> 9. Depoimentos<small>O que dizem os alunos</small></a>
 <a class="menu-item" onclick="showPage('p9')"> 10. Contacto e Inscrição<small>Fala connosco, inscreve-te</small></a>
-<a class="menu-item" onclick="showPage('p10')"> 11. Área de Teste<small>40 perguntas, teste o teu nível</small></a>
-<a class="menu-item" onclick="showPage('p11')"> 12. Sala de Aula<small>Aulas em PDF ou escrita</small></a>
-<button class="btn" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('inscreverModal')">Inscrever-se </button>
+<a class="menu-item locked" id="menuTeste" onclick="tentarAbrirAprendizagem('p10')"> 11. Área de Teste 🔒<small>Só para alunos APROVADOS</small></a>
+<a class="menu-item locked" id="menuAula" onclick="tentarAbrirAprendizagem('p11')"> 12. Sala de Aula 🔒<small>Só para alunos APROVADOS</small></a>
+<button class="btn" id="btnMenuInscrever" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('inscreverModal')">Inscrever-se </button>
+<div id="msgMenuAluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold;font-size:13px;text-align:center"></div>
+<hr style="border-color:#facc15;margin:20px 0 12px;border-style:dashed">
+<button class="btn-admin-menu" onclick="fecharMenu();openModal('loginModal')">🔐 ÁREA ADMIN<small>Só para o dono - clica e mete a senha</small></button>
 </div>
 <header id="headerBg">
 <div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo">NAULANGUE<br><span>TECH</span></div></div>
 <div class="top-right">
-<button class="btn-admin" onclick="openModal('loginModal')">Admin </button>
 <button class="btn-inscrever" id="btnTopoInscrever" onclick="openModal('inscreverModal')">Inscrever-se</button>
 <div id="msgAlunoAprovadoTopo" style="display:none;background:#22c55e;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
+<div id="msgAlunoPendenteTopo" style="display:none;background:#f59e0b;color:#000;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
 </div>
 </header>
 <div class="page active" id="home">
 <div class="hero" id="heroBg">
 <h2>CURSO DE <b>PACKET<br>TRACER</b><br>DO BÁSICO AO<br>AVANÇADO</h2>
 <p>Redes, Roteamento, Switching, IP, ICMP, TCP/UDP, VLANs, Simulação e Testes. Aprenda na prática com laboratório real.</p>
-<button class="btn" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA </button>
-<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px">
-<button class="btn" style="background:#f59e0b" onclick="showPage('p10')"> Fazer Teste - 40 Perguntas</button>
-<button class="btn" style="background:#22c55e" onclick="showPage('p11')"> Sala de Aula</button>
+<button class="btn" id="btnHeroInscrever" onclick="openModal('inscreverModal')">QUERO APRENDER AGORA </button>
 </div>
-<div id="msgAlunoAprovadoHero" style="display:none;background:#22c55e;padding:12px 18px;border-radius:20px;margin-top:12px;font-weight:bold"></div>
-</div>
-<div class="info-box"><h3> Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> para ver as 12 opções. Faz o teste e entra na Sala de Aula.</p></div>
+<div class="info-box"><h3> Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> para ver as 12 opções. Teste e Sala de Aula só abrem depois de seres <b>APROVADO</b>.</p></div>
 <h3 style="margin:10px 0"> Últimas Publicações do Admin</h3>
 <div id="postsHome"></div>
 </div>
@@ -107,17 +107,23 @@ input[type=file]{background:#1e293b;padding:10px}
 <div class="page" id="p6"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
 <div class="page" id="p7"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Fotos e Novidades</h3><div id="postsPage"></div></div>
 <div class="page" id="p8"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Depoimentos</h3><p>“Aprendi do zero e hoje já monto redes sozinho.” - Aluno<br>“O melhor curso de redes de Montepuez.” - Aluna</p></div></div>
-<div class="page" id="p9"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Contacto e Inscrição</h3><p> Montepuez - Cabo Delgado<br> NAULANGUE TECH - Packet Tracer</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se Agora </button></div></div>
+<div class="page" id="p9"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Contacto e Inscrição</h3><p> Montepuez - Cabo Delgado<br> NAULANGUE TECH - Packet Tracer</p><button class="btn" id="btnP9Inscrever" onclick="openModal('inscreverModal')">Inscrever-se Agora </button><div id="msgP9Aluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold"></div></div></div>
 <div class="page" id="p10"><button class="btn back" onclick="showPage('home')"> Voltar</button>
+<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Área Bloqueada</h3><p id="textoBloqueioTeste">Só alunos APROVADOS podem fazer o teste.</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se</button></div>
+<div id="conteudoTeste" style="display:none">
 <div class="info-box"><h3> Área de Teste - 40 Perguntas</h3><p id="testeInfo">Carregando perguntas...</p><button class="btn" onclick="iniciarTeste()"> Começar Teste</button></div>
 <div id="testeArea" style="display:none">
 <div class="info-box"><h3 id="perguntaTitulo">Pergunta 1 de 40</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div>
 </div>
 <div id="resultadoArea" style="display:none"></div>
 </div>
-<div class="page" id="p11"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Sala de Aula</h3><p class="small">Aulas publicadas pelo Admin - PDF ou escrita.</p><div id="aulasLista"></div></div>
+</div>
+<div class="page" id="p11"><button class="btn back" onclick="showPage('home')"> Voltar</button>
+<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Sala Bloqueada</h3><p id="textoBloqueioAula">Só alunos APROVADOS podem ver as aulas.</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se</button></div>
+<div id="conteudoAula" style="display:none"><h3> Sala de Aula</h3><p class="small">Aulas publicadas pelo Admin - PDF ou escrita.</p><div id="aulasLista"></div></div>
+</div>
 <footer>© 2026 NAULANGUE TECH | Montepuez</footer>
-<div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>Admin Login</h2><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%" onclick="fazerLogin()">Entrar </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
+<div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><p class="small">Só o dono entra aqui.</p><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
 <span class="close" onclick="closeModal('adminModal')">×</span>
 <h2> Painel Admin - NAULANGUE TECH</h2>
@@ -170,7 +176,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
 </div></div>
 <div class="modal" id="inscreverModal"><div class="box"><span class="close" onclick="closeModal('inscreverModal')">×</span><h2>Inscrever-se </h2>
-<input type="text" id="nomeAluno" placeholder="Nome completo"><input type="email" id="emailAluno" placeholder="Seu email"><label class="small">Data de nascimento:</label><input type="date" id="nascimentoAluno"><input type="tel" id="telAluno" placeholder="Seu número"><select id="cursoEscolhido"></select><button class="btn" style="width:100%" onclick="inscrever()">Inscrever-se</button><p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p></div></div>
+<input type="text" id="nomeAluno" placeholder="Nome completo"><input type="email" id="emailAluno" placeholder="Seu email"><label class="small">Data de nascimento:</label><input type="date" id="nascimentoAluno"><input type="tel" id="telAluno" placeholder="Seu número"><select id="cursoEscolhido"></select><button class="btn" style="width:100%" id="btnEnviarInscricao" onclick="inscrever()">Inscrever-se</button><p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p></div></div>
 <script type="importmap">
 {"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"}}
 </script>
@@ -182,6 +188,17 @@ const app = initializeApp(firebaseConfig); const db = getFirestore(app);
 const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
 let fotoTemp=""; let bgTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
 let perguntas=[]; let aulas=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
+function meuAluno(){ const email=localStorage.getItem("meu_email_aprovado"); if(!email) return null; return alunos.find(a=>a.email===email)||null; }
+function estouAprovado(){ const a=meuAluno(); return a && a.status==="aprovado"; }
+function estouPendente(){ const a=meuAluno(); return a && a.status!=="aprovado"; }
+window.tentarAbrirAprendizagem=function(pagina){
+  window.fecharMenu();
+  if(estouAprovado()){ window.showPage(pagina); }
+  else{
+    window.showPage(pagina);
+    setTimeout(()=>{ if(estouPendente()){ alert("⏳ "+meuAluno().nome+", a tua inscrição está PENDENTE. Aguarda aprovação do Admin. Não podes aprender ainda."); } else { alert("🔒 Tens que te inscrever e ser APROVADO para aprender. Inscreve-te primeiro!"); } },150);
+  }
+};
 async function criarPadroesSeVazio(){
   try{
     const cSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"cursos"), s=>{un();res(s);}); });
@@ -191,13 +208,7 @@ async function criarPadroesSeVazio(){
     const fSnap = await getDoc(doc(db,"config","fundo")); if(!fSnap.exists()){ await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO}); }
     const qSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"perguntas"), s=>{un();res(s);}); });
     if(qSnap.empty){
-      const exemplos=[
-        ["O que significa IP?","Internet Protocol","Internal Program","Internet Page","Input Process",0],
-        ["Qual comando testa ligação?","ping","print","open","start",0],
-        ["O que é VLAN?","Separar redes em grupos","Um cabo","Um vírus","Um site",0],
-        ["Qual é o IP do router normalmente?","192.168.1.1","999.999.999.999","1.1.1","0.0.0.0",0],
-        ["TCP é usado para?","Envio seguro com confirmação","Jogar offline","Imprimir","Desenhar",0]
-      ];
+      const exemplos=[ ["O que significa IP?","Internet Protocol","Internal Program","Internet Page","Input Process",0], ["Qual comando testa ligação?","ping","print","open","start",0], ["O que é VLAN?","Separar redes em grupos","Um cabo","Um vírus","Um site",0], ["Qual é o IP do router normalmente?","192.168.1.1","999.999.999.999","1.1.1","0.0.0.0",0], ["TCP é usado para?","Envio seguro com confirmação","Jogar offline","Imprimir","Desenhar",0] ];
       for(let e of exemplos){ await addDoc(collection(db,"perguntas"),{pergunta:e[0],opcoes:[e[1],e[2],e[3],e[4]],correta:e[5],data:Date.now()+Math.random()}); }
     }
     const aSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"aulas"), s=>{un();res(s);}); });
@@ -214,105 +225,95 @@ window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.cla
 window.previewFoto=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);};
 window.publicarPost=async function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");await addDoc(collection(db,"posts"),{titulo:t||"Novidade ",texto:txt,foto,data:Date.now()});document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado ");};
 window.removerPost=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"posts",id));}};
-window.adicionarPergunta=async function(){
-  const p=document.getElementById("qPergunta").value.trim();const a=document.getElementById("qA").value.trim();const b=document.getElementById("qB").value.trim();const c=document.getElementById("qC").value.trim();const d=document.getElementById("qD").value.trim();const correta=Number(document.getElementById("qCorreta").value);
-  if(!p||!a||!b||!c||!d) return alert("Preenche pergunta e as 4 opções!");
-  await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()});
-  document.getElementById("qPergunta").value="";document.getElementById("qA").value="";document.getElementById("qB").value="";document.getElementById("qC").value="";document.getElementById("qD").value="";alert("Pergunta adicionada! Total agora: "+(perguntas.length+1));
-};
+window.adicionarPergunta=async function(){const p=document.getElementById("qPergunta").value.trim();const a=document.getElementById("qA").value.trim();const b=document.getElementById("qB").value.trim();const c=document.getElementById("qC").value.trim();const d=document.getElementById("qD").value.trim();const correta=Number(document.getElementById("qCorreta").value);if(!p||!a||!b||!c||!d) return alert("Preenche pergunta e as 4 opções!");await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()});document.getElementById("qPergunta").value="";document.getElementById("qA").value="";document.getElementById("qB").value="";document.getElementById("qC").value="";document.getElementById("qD").value="";alert("Pergunta adicionada!");};
 window.removerPergunta=async function(id){if(confirm("Apagar pergunta?")){await deleteDoc(doc(db,"perguntas",id));}};
-window.publicarAula=async function(){
-  const t=document.getElementById("aulaTitulo").value.trim();const txt=document.getElementById("aulaTexto").value.trim();const pdfLink=document.getElementById("aulaPdf").value.trim();
-  const file=document.getElementById("aulaPdfFile").files[0];
-  if(!t) return alert("Escreve o título da aula!");
-  if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete link / PDF!");
-  let pdfData=pdfLink;
-  if(file){ pdfData=await new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);}); }
-  await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,data:Date.now()});
-  document.getElementById("aulaTitulo").value="";document.getElementById("aulaTexto").value="";document.getElementById("aulaPdf").value="";document.getElementById("aulaPdfFile").value="";alert("Aula publicada na Sala de Aula!");
-};
+window.publicarAula=async function(){const t=document.getElementById("aulaTitulo").value.trim();const txt=document.getElementById("aulaTexto").value.trim();const pdfLink=document.getElementById("aulaPdf").value.trim();const file=document.getElementById("aulaPdfFile").files[0];if(!t) return alert("Escreve o título da aula!");if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete link / PDF!");let pdfData=pdfLink;if(file){ pdfData=await new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);}); }await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,data:Date.now()});document.getElementById("aulaTitulo").value="";document.getElementById("aulaTexto").value="";document.getElementById("aulaPdf").value="";document.getElementById("aulaPdfFile").value="";alert("Aula publicada!");};
 window.removerAula=async function(id){if(confirm("Apagar aula?")){await deleteDoc(doc(db,"aulas",id));}};
-window.iniciarTeste=function(){
-  if(perguntas.length===0) return alert("Ainda não há perguntas. Admin deve criar.");
-  indiceAtual=0; respostasAluno=[]; escolhaAtual=-1;
-  document.getElementById("resultadoArea").style.display="none";
-  document.getElementById("testeArea").style.display="block";
-  mostrarPergunta();
-};
-function mostrarPergunta(){
-  const q=perguntas[indiceAtual]; if(!q) return;
-  document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`;
-  document.getElementById("perguntaTexto").textContent=q.pergunta;
-  escolhaAtual=-1; document.getElementById("msgTeste").textContent="";
-  const letras=["A","B","C","D"];
-  document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" id="opt-${i}" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${op}</button>`).join("");
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+window.iniciarTeste=function(){ if(!estouAprovado()){ alert("🔒 Só alunos APROVADOS podem fazer o teste."); return; } if(perguntas.length===0) return alert("Ainda não há perguntas."); indiceAtual=0; respostasAluno=[]; escolhaAtual=-1; document.getElementById("resultadoArea").style.display="none"; document.getElementById("testeArea").style.display="block"; mostrarPergunta(); };
+function mostrarPergunta(){ const q=perguntas[indiceAtual]; if(!q) return; document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`; document.getElementById("perguntaTexto").textContent=q.pergunta; escolhaAtual=-1; document.getElementById("msgTeste").textContent=""; const letras=["A","B","C","D"]; document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${op}</button>`).join(""); window.scrollTo({top:0,behavior:'smooth'}); }
 window.escolherOpcao=function(i){ escolhaAtual=i; document.querySelectorAll(".opt").forEach((b,idx)=>{b.classList.toggle("sel",idx===i);}); };
-window.seguirPergunta=function(){
-  if(escolhaAtual===-1) return document.getElementById("msgTeste").textContent=" Escolhe uma opção primeiro!";
-  respostasAluno[indiceAtual]=escolhaAtual;
-  if(indiceAtual < perguntas.length-1){ indiceAtual++; mostrarPergunta(); }
-  else{ mostrarResultado(); }
-};
-function mostrarResultado(){
-  document.getElementById("testeArea").style.display="none";
-  let certas=0; let falhasHtml="";
-  perguntas.forEach((q,i)=>{
-    const acertou=respostasAluno[i]===q.correta;
-    if(acertou) certas++;
-    else{
-      const letras=["A","B","C","D"];
-      falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${q.pergunta}</b><br><span style="color:#f87171">A tua resposta: ${letras[respostasAluno[i]]||"?"} - ${q.opcoes[respostasAluno[i]]||"Não respondeu"}</span><br><span style="color:#4ade80">✅ Resposta correta: ${letras[q.correta]} - ${q.opcoes[q.correta]}</span></div>`;
-    }
-  });
-  const total=perguntas.length; const perc=Math.round((certas/total)*100);
-  const cor=perc>=50?"#22c55e":"#ef4444";
-  document.getElementById("resultadoArea").style.display="block";
-  document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3 style="font-size:28px">Resultado: <span style="color:${cor}">${perc}%</span></h3><p style="font-size:18px">Acertaste <b>${certas}</b> de <b>${total}</b> perguntas</p><p>${perc>=50?"🎉 Parabéns! Passaste!":"📚 Continua a estudar na Sala de Aula e tenta de novo."}</p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div><h3 style="margin:12px 0">Perguntas que falhaste:</h3>${falhasHtml||"<p style='color:#4ade80'>🎉 Não falhaste nenhuma! Perfeito!</p>"}`;
-}
-function renderPosts(){
-  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
-  document.getElementById("postsHome").innerHTML=html; document.getElementById("postsPage").innerHTML=html;
-  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
-}
+window.seguirPergunta=function(){ if(escolhaAtual===-1) return document.getElementById("msgTeste").textContent=" Escolhe uma opção primeiro!"; respostasAluno[indiceAtual]=escolhaAtual; if(indiceAtual < perguntas.length-1){ indiceAtual++; mostrarPergunta(); } else{ mostrarResultado(); } };
+function mostrarResultado(){ document.getElementById("testeArea").style.display="none"; let certas=0; let falhasHtml=""; perguntas.forEach((q,i)=>{ const acertou=respostasAluno[i]===q.correta; if(acertou) certas++; else{ const letras=["A","B","C","D"]; falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${q.pergunta}</b><br><span style="color:#f87171">A tua resposta: ${letras[respostasAluno[i]]||"?"} - ${q.opcoes[respostasAluno[i]]||"Não respondeu"}</span><br><span style="color:#4ade80">✅ Resposta correta: ${letras[q.correta]} - ${q.opcoes[q.correta]}</span></div>`; } }); const total=perguntas.length; const perc=Math.round((certas/total)*100); const cor=perc>=50?"#22c55e":"#ef4444"; document.getElementById("resultadoArea").style.display="block"; document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3 style="font-size:28px">Resultado: <span style="color:${cor}">${perc}%</span></h3><p style="font-size:18px">Acertaste <b>${certas}</b> de <b>${total}</b> perguntas</p><p>${perc>=50?"🎉 Parabéns! Passaste!":"📚 Continua a estudar na Sala de Aula e tenta de novo."}</p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div><h3 style="margin:12px 0">Perguntas que falhaste:</h3>${falhasHtml||"<p style='color:#4ade80'>🎉 Não falhaste nenhuma! Perfeito!</p>"}`; }
+function renderPosts(){ const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>"; document.getElementById("postsHome").innerHTML=html; document.getElementById("postsPage").innerHTML=html; document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join(""); }
 function renderAulas(){
-  const html=aulas.map(a=>{
-    let pdfBtn="";
-    if(a.pdf){
-      if(a.pdf.startsWith("data:")){ pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`; }
-      else{ pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF</a>`; }
-    }
-    return `<div class="aula-card"><h3 style="color:#38bdf8">${a.titulo}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}</div>`;
-  }).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
+  const aprovado=estouAprovado();
+  const bloqueioTeste=document.getElementById("bloqueioTeste"); const conteudoTeste=document.getElementById("conteudoTeste");
+  const bloqueioAula=document.getElementById("bloqueioAula"); const conteudoAula=document.getElementById("conteudoAula");
+  if(bloqueioTeste){
+    if(aprovado){ bloqueioTeste.style.display="none"; conteudoTeste.style.display="block"; } else { bloqueioTeste.style.display="block"; conteudoTeste.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioTeste").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação do Admin. Não podes fazer o teste ainda.` : "Tens que te inscrever e ser APROVADO para fazer o teste. Inscreve-te primeiro!"; }
+  }
+  if(bloqueioAula){
+    if(aprovado){ bloqueioAula.style.display="none"; conteudoAula.style.display="block"; } else { bloqueioAula.style.display="block"; conteudoAula.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioAula").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação do Admin. Não podes ver as aulas ainda.` : "Tens que te inscrever e ser APROVADO para ver as aulas. Inscreve-te primeiro!"; }
+  }
+  if(!aprovado) return;
+  const html=aulas.map(a=>{ let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){ pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`; } else{ pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF</a>`; } } return `<div class="aula-card"><h3 style="color:#38bdf8">${a.titulo}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}</div>`; }).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
   document.getElementById("aulasLista").innerHTML=html;
   document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">${a.pdf?"📄 Tem PDF":"📝 Só escrita"}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
-function getAlunoAprovado(){const e=localStorage.getItem("meu_email_aprovado");if(!e) return null;return alunos.find(a=>a.email===e && a.status==="aprovado")||null;}
-function atualizarBotoesInscrever(){const aprovado=getAlunoAprovado();const topo=document.getElementById("msgAlunoAprovadoTopo");const hero=document.getElementById("msgAlunoAprovadoHero");const btnTopo=document.getElementById("btnTopoInscrever");if(aprovado){if(btnTopo)btnTopo.style.display="none";if(topo){topo.style.display="block";topo.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}if(hero){hero.style.display="block";hero.textContent="Bem-vindo, "+aprovado.nome+"! Você está aprovado.";}}else{if(btnTopo)btnTopo.style.display="";if(topo)topo.style.display="none";if(hero)hero.style.display="none";}}
+function atualizarBotoesInscrever(){
+  const a=meuAluno(); const aprovado=estouAprovado(); const pendente=estouPendente();
+  const jaSeInscreveu=!!a;
+  const btnTopo=document.getElementById("btnTopoInscrever"); const btnMenu=document.getElementById("btnMenuInscrever"); const btnHero=document.getElementById("btnHeroInscrever"); const btnP9=document.getElementById("btnP9Inscrever");
+  [btnTopo,btnMenu,btnHero,btnP9].forEach(b=>{ if(b) b.style.display = jaSeInscreveu ? "none" : ""; });
+  const topoA=document.getElementById("msgAlunoAprovadoTopo"); const topoP=document.getElementById("msgAlunoPendenteTopo");
+  const menuMsg=document.getElementById("msgMenuAluno"); const p9Msg=document.getElementById("msgP9Aluno");
+  if(aprovado){
+    if(topoA){topoA.style.display="block";topoA.textContent="Bem-vindo, "+a.nome+"! Você está aprovado.";} if(topoP) topoP.style.display="none";
+    if(menuMsg){menuMsg.style.display="block";menuMsg.style.background="#22c55e";menuMsg.style.color="#fff";menuMsg.textContent="✅ "+a.nome+" - APROVADO";}
+    if(p9Msg){p9Msg.style.display="block";p9Msg.style.background="#22c55e";p9Msg.textContent="✅ "+a.nome+" - Já estás aprovado, podes aprender!";}
+  } else if(pendente){
+    if(topoA) topoA.style.display="none"; if(topoP){topoP.style.display="block";topoP.textContent="⏳ "+a.nome+", aguardando aprovação...";}
+    if(menuMsg){menuMsg.style.display="block";menuMsg.style.background="#f59e0b";menuMsg.style.color="#000";menuMsg.textContent="⏳ "+a.nome+" - PENDENTE";}
+    if(p9Msg){p9Msg.style.display="block";p9Msg.style.background="#f59e0b";p9Msg.style.color="#000";p9Msg.textContent="⏳ "+a.nome+" - Aguardando aprovação...";}
+  } else {
+    if(topoA) topoA.style.display="none"; if(topoP) topoP.style.display="none"; if(menuMsg) menuMsg.style.display="none"; if(p9Msg) p9Msg.style.display="none";
+  }
+  const mT=document.getElementById("menuTeste"); const mA=document.getElementById("menuAula");
+  if(mT) mT.style.opacity = aprovado ? "1" : ".55";
+  if(mA) mA.style.opacity = aprovado ? "1" : ".55";
+}
 function renderCursos(){
   const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");if(!grid)return;grid.innerHTML="";sel.innerHTML="";
   cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao('${c.id}')">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
   document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
   document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
-  document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste. ${perguntas.length<40?"Faltam "+(40-perguntas.length)+" para chegar a 40. Admin adiciona no Painel.":"Teste completo com 40 perguntas!"}`;
+  document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste.`;
   document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 40 perguntas`;
   document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${q.pergunta}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${q.opcoes[q.correta]}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
   atualizarBotoesInscrever();
 }
 function renderAll(){renderCursos();renderPosts();renderAulas();aplicarFundo();}
-window.openModal=function(id){document.getElementById(id).classList.add("active");};
+window.openModal=function(id){
+  if(id==='inscreverModal' && meuAluno()){
+    const a=meuAluno();
+    if(a.status==="aprovado") alert("✅ "+a.nome+", já estás aprovado! Não precisas inscrever-te de novo.");
+    else alert("⏳ "+a.nome+", já te inscreveste. Aguarda aprovação do Admin.");
+    return;
+  }
+  document.getElementById(id).classList.add("active");
+};
 window.closeModal=function(id){document.getElementById(id).classList.remove("active");};
 window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){window.closeModal('loginModal');window.openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent=" Senha errada";}};
 window.sairAdmin=function(){window.closeModal('adminModal');};
 window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()});document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado ");};
 window.removerCurso=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"cursos",id));}};
-window.aprovarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"aprovado"});alert("Aluno aprovado!");};
+window.aprovarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"aprovado"});alert("Aluno aprovado! Agora ele já pode aprender.");};
 window.rejeitarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"pendente"});};
 window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"alunos",id));}};
-window.abrirInscricao=function(id){document.getElementById("cursoEscolhido").value=id;window.openModal('inscreverModal');};
-window.inscrever=async function(){const nome=document.getElementById("nomeAluno").value.trim();const email=document.getElementById("emailAluno").value.trim().toLowerCase();const nascimento=document.getElementById("nascimentoAluno").value;const tel=document.getElementById("telAluno").value.trim();const cursoId=document.getElementById("cursoEscolhido").value;if(!nome||!email||!nascimento||!tel) return alert("Preencha tudo!");await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,cursoId,status:"pendente",data:Date.now()});localStorage.setItem("meu_email_aprovado",email);document.getElementById("msgInscricao").textContent="Inscrição enviada! Aguarde aprovação, "+nome;document.getElementById("nomeAluno").value="";document.getElementById("emailAluno").value="";document.getElementById("nascimentoAluno").value="";document.getElementById("telAluno").value="";};
+window.abrirInscricao=function(id){ if(meuAluno()){ alert("Já te inscreveste! Aguarda aprovação."); return; } document.getElementById("cursoEscolhido").value=id;window.openModal('inscreverModal');};
+window.inscrever=async function(){
+  const nome=document.getElementById("nomeAluno").value.trim();const email=document.getElementById("emailAluno").value.trim().toLowerCase();const nascimento=document.getElementById("nascimentoAluno").value;const tel=document.getElementById("telAluno").value.trim();const cursoId=document.getElementById("cursoEscolhido").value;
+  if(!nome||!email||!nascimento||!tel) return alert("Preencha tudo!");
+  const btn=document.getElementById("btnEnviarInscricao"); btn.disabled=true; btn.textContent="A enviar...";
+  try{
+    await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,cursoId,status:"pendente",data:Date.now()});
+    localStorage.setItem("meu_email_aprovado",email);
+    document.getElementById("msgInscricao").textContent="Inscrição enviada! Aguarde aprovação, "+nome;
+    document.getElementById("nomeAluno").value="";document.getElementById("emailAluno").value="";document.getElementById("nascimentoAluno").value="";document.getElementById("telAluno").value="";
+    setTimeout(()=>{ window.closeModal('inscreverModal'); document.getElementById("msgInscricao").textContent=""; btn.disabled=false; btn.textContent="Inscrever-se"; alert("✅ Inscrição enviada, "+nome+"! Agora sai e aguarda aprovação. Não podes aprender antes de seres aprovado."); renderAll(); },900);
+  }catch(e){ btn.disabled=false; btn.textContent="Inscrever-se"; alert("Erro: "+e.message); }
+};
 criarPadroesSeVazio();
 onSnapshot(query(collection(db,"alunos"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()}));document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" alunos.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
 onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
