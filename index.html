@@ -10,7 +10,7 @@ body{background:#020617;color:#fff;overflow-x:hidden}
 header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg') center/cover no-repeat;padding:14px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;min-height:78px;border-bottom:3px solid #0ea5e9}
 .left-top{display:flex;align-items:center;gap:12px}
 .hamburger{font-size:26px;cursor:pointer;background:rgba(0,0,0,.45);padding:6px 11px;border-radius:10px;border:1px solid #fff}
-.logo{font-size:22px;font-weight:900;line-height:1;text-shadow:0 2px 8px #000}
+.logo{font-size:22px;font-weight:900;line-height:1;text-shadow:0 2px 8px #000;cursor:pointer;user-select:none}
 .logo span{color:#38bdf8}
 .top-right{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
 .btn-inscrever{background:#0ea5e9;border:none;color:#fff;padding:9px 15px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
@@ -28,9 +28,10 @@ header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https:
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998}
 .overlay.show{display:block}
 .page{display:none;padding:18px}.page.active{display:block}
-.hero{min-height:460px;background:linear-gradient(180deg,#0b2a4a,#020617);padding:50px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0 0 20px 20px;border-bottom:2px solid #0ea5e9}
-.hero h2{font-size:38px;line-height:1.05;text-transform:uppercase}.hero h2 b{color:#38bdf8}
-.hero p{margin:15px auto;max-width:600px;color:#e2e8f0;line-height:1.5}
+.hero{min-height:220px;padding:28px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0 0 16px 16px;border-bottom:2px solid #0ea5e9}
+.hero h2{font-size:28px;line-height:1.05;text-transform:uppercase}.hero h2 b{color:#38bdf8}
+.hero p{margin:10px auto;max-width:600px;color:#e2e8f0;line-height:1.4;font-size:14px}
+.hero .btn{padding:10px 18px;font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:15px 0}
 .card{background:#0f172a;border:1px solid #1e293b;padding:20px;border-radius:16px}
 .card h3{color:#38bdf8;margin-bottom:8px}.card p{color:#cbd5e1;font-size:14px;line-height:1.5}
@@ -57,13 +58,16 @@ input[type=file]{background:#1e293b;padding:10px}
 .opt{display:block;width:100%;text-align:left;background:#1e293b;border:2px solid #334155;color:#fff;padding:14px;border-radius:12px;margin:8px 0;cursor:pointer;font-size:15px}
 .opt.sel{background:#0ea5e9;border-color:#fff;font-weight:bold}
 .aula-card{background:#0f172a;border:1px solid #334155;padding:18px;border-radius:14px;margin:10px 0}
+.admin-tab-btn{border:none;color:#fff;padding:13px 10px;border-radius:12px;cursor:pointer;font-weight:bold;background:#1e293b;border:2px solid #334155;font-size:13px}
+.admin-tab-btn.active{background:#0ea5e9;border-color:#fff}
+.perfil-card{background:linear-gradient(135deg,#0ea5e9,#1e40af);padding:20px;border-radius:16px;text-align:center;margin-bottom:12px}
 </style>
 </head>
 <body>
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 <div id="sidebar">
 <span class="fechar" onclick="fecharMenu()">×</span>
-<h3> MENU - 12 OPÇÕES</h3>
+<h3> MENU</h3>
 <a class="menu-item" onclick="showPage('home')"> 1. Início<small>Voltar para capa</small></a>
 <a class="menu-item" onclick="showPage('p1')"> 2. O que é Inglês?<small>O que é, para que serve</small></a>
 <a class="menu-item" onclick="showPage('p2')"> 3. O que vais aprender<small>Matérias do curso</small></a>
@@ -73,18 +77,20 @@ input[type=file]{background:#1e293b;padding:10px}
 <a class="menu-item" onclick="showPage('p6')"> 7. Preços e Pacotes<small>Ver cursos e preços</small></a>
 <a class="menu-item" onclick="showPage('p7')"> 8. Fotos e Novidades<small>Publicações do Admin</small></a>
 <a class="menu-item" onclick="showPage('p8')"> 9. Depoimentos<small>O que dizem os alunos</small></a>
-<a class="menu-item" onclick="showPage('p9')"> 10. Contacto e Inscrição<small>Fala connosco, inscreve-te</small></a>
+<a class="menu-item" onclick="showPage('p9')"> 10. Contacto<small>Fala connosco</small></a>
 <a class="menu-item locked" id="menuTeste" onclick="tentarAbrirAprendizagem('p10')"> 11. Área de Teste 🔒<small>Só para alunos APROVADOS</small></a>
 <a class="menu-item locked" id="menuAula" onclick="tentarAbrirAprendizagem('p11')"> 12. Sala de Aula 🔒<small>Só para alunos APROVADOS</small></a>
-<button class="btn" id="btnMenuInscrever" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('inscreverModal')">Inscrever-se </button>
+<a class="menu-item" style="border-left-color:#facc15" onclick="abrirPerfil()"> 👤 Meu Perfil<small>Histórico e Favoritos</small></a>
+<button class="btn" id="btnMenuInscrever" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('loginAlunoModal')">🔑 Login / Criar Conta</button>
+<button class="btn btn-red" id="btnMenuSair" style="width:100%;margin-top:8px;display:none" onclick="sairAluno()">Sair da Conta</button>
 <div id="msgMenuAluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold;font-size:13px;text-align:center"></div>
 <hr style="border-color:#facc15;margin:20px 0 12px;border-style:dashed">
-<button class="btn-admin-menu" onclick="fecharMenu();openModal('loginModal')">🔐 ÁREA ADMIN<small>Só para o dono - clica e mete a senha</small></button>
+<button class="btn-admin-menu" id="btnAdminSecreto" style="display:none" onclick="fecharMenu();openModal('loginModal')">🔐 ÁREA ADMIN<small>Só para o dono</small></button>
 </div>
 <header id="headerBg">
-<div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo">NAULANGUE<br><span>TECH</span></div></div>
+<div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo" id="logoSecreto" onclick="cliqueLogoSecreto()">NAULANGUE<br><span>TECH</span></div></div>
 <div class="top-right">
-<button class="btn-inscrever" id="btnTopoInscrever" onclick="openModal('inscreverModal')">Inscrever-se</button>
+<button class="btn-inscrever" id="btnTopoInscrever" onclick="openModal('loginAlunoModal')">Login</button>
 <div id="msgAlunoAprovadoTopo" style="display:none;background:#22c55e;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
 <div id="msgAlunoPendenteTopo" style="display:none;background:#f59e0b;color:#000;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
 </div>
@@ -93,139 +99,190 @@ input[type=file]{background:#1e293b;padding:10px}
 <div class="hero" id="heroBg">
 <h2>CURSO DE <b>INGLÊS</b><br>DO BÁSICO AO<br>AVANÇADO</h2>
 <p>Speaking, Listening, Reading, Writing, Grammar e Vocabulário. Aprenda a falar inglês de verdade, na prática, sem medo de errar.</p>
-<button class="btn" id="btnHeroInscrever" onclick="openModal('inscreverModal')">QUERO FALAR INGLÊS AGORA </button>
+<button class="btn" id="btnHeroInscrever" onclick="openModal('loginAlunoModal')">🔑 LOGIN / CRIAR CONTA</button>
 </div>
-<div class="info-box"><h3> Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> para ver as 12 opções. Teste e Sala de Aula só abrem depois de seres <b>APROVADO</b>.</p></div>
+<div class="info-box"><h3> Bem-vindo à NAULANGUE TECH</h3><p>Clica nas <b>3 barrinhas ☰</b> para ver as opções. Cria tua conta, faz login e começa a aprender. Teste e Sala de Aula só abrem depois de seres <b>APROVADO</b>.</p></div>
 <h3 style="margin:10px 0"> Últimas Publicações do Admin</h3>
 <div id="postsHome"></div>
 </div>
 <div class="page" id="p1"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que é Inglês?</h3><p>Inglês é a língua mais falada no mundo para trabalho, estudos, negócios e internet. Saber inglês abre portas para empregos, bolsas, viagens e ganhar dinheiro online.</p></div></div>
 <div class="page" id="p2"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que vais aprender</h3><p> 🇬🇧 Alfabeto e Pronúncia<br> 🗣️ Speaking - Conversação<br> 👂 Listening - Ouvir e entender<br> 📖 Reading - Leitura<br> ✍️ Writing - Escrita<br> 📚 Grammar - Verb To Be, Tenses, Phrasal Verbs<br> 💬 Vocabulário do dia a dia</p></div></div>
 <div class="page" id="p3"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que vais ser depois</h3><p> Tradutor / Intérprete<br> Professor de Inglês<br> Atendimento em Call Center<br> Trabalhar em ONG / Turismo / Hotel<br> Freelancer Online - Ganhar em Dólar<br> Trabalhar em Empresas Internacionais</p></div></div>
-<div class="page" id="p4"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Como funciona</h3><p> Aulas práticas de conversação<br> Exercícios de Listening e Speaking<br> Certificado no fim de cada nível<br> Montepuez / Online<br> Suporte no WhatsApp</p></div></div>
-<div class="page" id="p5"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Gramática e Conversação</h3><p><b>Verb To Be:</b> I am, You are, He is...<br><b>Present Simple:</b> I speak English every day.<br><b>Past Simple:</b> I studied yesterday.<br><b>Future:</b> I will speak fluently.<br><b>Speaking:</b> Como te apresentar, fazer perguntas e responder.</p></div></div>
+<div class="page" id="p4"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Como funciona</h3><p> 1. Cria conta com Email + Password<br> 2. Faz Login<br> 3. Aguarda aprovação do Admin<br> 4. Estuda, marca como lida e favorita aulas<br> Montepuez / Online - Suporte no WhatsApp</p></div></div>
+<div class="page" id="p5"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Gramática e Conversação</h3><p><b>Verb To Be:</b> I am, You are, He is...<br><b>Present Simple:</b> I speak English every day.<br><b>Past Simple:</b> I studied yesterday.<br><b>Future:</b> I will speak fluently.</p></div></div>
 <div class="page" id="p6"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
 <div class="page" id="p7"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Fotos e Novidades</h3><div id="postsPage"></div></div>
 <div class="page" id="p8"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Depoimentos</h3><p>“Não sabia nada e hoje já falo inglês com confiança.” - Aluno<br>“O melhor curso de inglês de Montepuez.” - Aluna</p></div></div>
-<div class="page" id="p9"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Contacto e Inscrição</h3><p> Montepuez - Cabo Delgado<br> NAULANGUE TECH - Curso de Inglês</p><button class="btn" id="btnP9Inscrever" onclick="openModal('inscreverModal')">Inscrever-se Agora </button><div id="msgP9Aluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold"></div></div></div>
+<div class="page" id="p9"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Contacto</h3><p> Montepuez - Cabo Delgado<br> NAULANGUE TECH - Curso de Inglês</p><button class="btn" id="btnP9Inscrever" onclick="openModal('loginAlunoModal')">🔑 Login / Criar Conta</button><div id="msgP9Aluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold"></div></div></div>
 <div class="page" id="p10"><button class="btn back" onclick="showPage('home')"> Voltar</button>
-<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Área Bloqueada</h3><p id="textoBloqueioTeste">Só alunos APROVADOS podem fazer o teste.</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se</button></div>
+<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Área Bloqueada</h3><p id="textoBloqueioTeste">Só alunos APROVADOS podem fazer o teste.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
 <div id="conteudoTeste" style="display:none">
-<div class="info-box"><h3> Área de Teste - 40 Perguntas</h3><p id="testeInfo">Carregando perguntas...</p><button class="btn" onclick="iniciarTeste()"> Começar Teste</button></div>
+<div class="info-box"><h3> Área de Teste - 20 Perguntas</h3><p id="testeInfo">Carregando perguntas...</p><button class="btn" onclick="iniciarTeste()"> Começar Teste</button></div>
 <div id="testeArea" style="display:none">
-<div class="info-box"><h3 id="perguntaTitulo">Pergunta 1 de 40</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div>
+<div class="info-box"><h3 id="perguntaTitulo">Pergunta 1</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div>
 </div>
 <div id="resultadoArea" style="display:none"></div>
 </div>
 </div>
 <div class="page" id="p11"><button class="btn back" onclick="showPage('home')"> Voltar</button>
-<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Sala Bloqueada</h3><p id="textoBloqueioAula">Só alunos APROVADOS podem ver as aulas.</p><button class="btn" onclick="openModal('inscreverModal')">Inscrever-se</button></div>
-<div id="conteudoAula" style="display:none"><h3> Sala de Aula</h3><p class="small">Aulas publicadas pelo Admin - PDF ou escrita.</p><div id="aulasLista"></div></div>
+<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Sala Bloqueada</h3><p id="textoBloqueioAula">Só alunos APROVADOS podem ver as aulas.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
+<div id="conteudoAula" style="display:none"><h3> Sala de Aula</h3><p class="small">Clica numa aula para marcar como lida. Usa ❤️ para favoritar.</p><div id="aulasLista"></div></div>
 </div>
+<div class="page" id="pPerfil"><button class="btn back" onclick="showPage('home')"> Voltar</button><div id="perfilConteudo"></div></div>
 <footer>© 2026 NAULANGUE TECH | Montepuez - Curso de Inglês</footer>
+<div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Entra com tua conta para aprender.</p>
+<input type="email" id="loginEmail" placeholder="Seu email">
+<input type="password" id="loginSenha" placeholder="Sua password">
+<button class="btn" style="width:100%" onclick="fazerLoginAluno()">Entrar</button>
+<p class="small" id="msgLoginAluno" style="color:#f87171;margin-top:8px"></p>
+<hr style="border-color:#334155;margin:16px 0">
+<p style="text-align:center">Ainda não tens conta?</p>
+<button class="btn btn-green" style="width:100%;margin-top:8px" onclick="closeModal('loginAlunoModal');openModal('criarContaModal')">➕ Criar Conta Grátis</button>
+</div></div>
+<div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Cria tua conta dentro do site.</p>
+<input type="text" id="cadNome" placeholder="Nome completo">
+<input type="email" id="cadEmail" placeholder="Seu email">
+<input type="password" id="cadSenha" placeholder="Cria uma password">
+<label class="small">Data de nascimento:</label><input type="date" id="cadNasc">
+<input type="tel" id="cadTel" placeholder="Seu número">
+<label class="small">Escolhe o curso:</label><select id="cursoEscolhido"></select>
+<button class="btn btn-green" style="width:100%" onclick="criarConta()">Criar Minha Conta</button>
+<p class="small" id="msgCriarConta" style="color:#4ade80;margin-top:8px"></p>
+<p style="text-align:center;margin-top:10px"><a href="#" onclick="closeModal('criarContaModal');openModal('loginAlunoModal');return false" style="color:#38bdf8">Já tenho conta - Fazer Login</a></p>
+</div></div>
 <div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><p class="small">Só o dono entra aqui.</p><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
 <span class="close" onclick="closeModal('adminModal')">×</span>
 <h2> Painel Admin - NAULANGUE TECH</h2>
-<p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase... Tudo na nuvem ☁️</p>
-<div class="admin-section">
-<h3> Mudar Foto do Topo</h3>
-<input type="file" id="bgFile" accept="image/*" onchange="previewBg(event)"><img id="previewBgImg" class="preview">
-<input type="text" id="bgLink" placeholder="https://...jpg">
-<button class="btn btn-orange" style="width:100%" onclick="mudarFundo()"> Aplicar no Topo</button>
-<button class="btn" style="width:100%;margin-top:8px;background:#334155" onclick="restaurarFundo()"> Voltar para foto original</button><p class="small" id="msgBg" style="color:#4ade80"></p>
+<p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase...</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0">
+<button class="admin-tab-btn active" onclick="showAdminTab('tabCursos',this)">📚 Cursos</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabAlunos',this)">🧑‍🎓 Alunos</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabPosts',this)">📸 Publicar</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabPerguntas',this)">✏️ Perguntas</button>
+<button class="admin-tab-btn" style="grid-column:span 2" onclick="showAdminTab('tabAulas',this)">📚 Aulas</button>
 </div>
-<div class="admin-section">
-<h3> + Publicar Foto e Escrever</h3>
+<div id="tabCursos" class="admin-tab"><div class="admin-section"><h3> Adicionar Curso</h3>
+<input type="text" id="novoTitulo" placeholder="Nome do curso"><textarea id="novoDesc" placeholder="Descrição..."></textarea><input type="number" id="novoPreco" placeholder="Preço MZN">
+<button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button><h3 style="margin-top:18px"> Meus Cursos</h3><div id="listaAdmin"></div></div></div>
+<div id="tabAlunos" class="admin-tab" style="display:none"><div class="admin-section"><h3> Alunos / Contas (<span id="totalAlunos">0</span>)</h3><div id="listaAlunos"></div></div></div>
+<div id="tabPosts" class="admin-tab" style="display:none"><div class="admin-section"><h3> + Publicar Foto e Escrever</h3>
 <input type="text" id="postTitulo" placeholder="Título"><textarea id="postTexto" placeholder="Escreve aqui..."></textarea>
 <input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)"><img id="previewImg" class="preview">
 <input type="text" id="postFotoLink" placeholder="https://...jpg">
-<button class="btn btn-green" style="width:100%" onclick="publicarPost()"> Publicar Foto + Texto</button><div id="listaPostsAdmin"></div>
-</div>
-<div class="admin-section" style="border-color:#f59e0b">
-<h3> ✏️ Criar Pergunta do Teste</h3>
-<p class="small">Cria 40 perguntas. Escolhe qual é a correta.</p>
+<button class="btn btn-green" style="width:100%" onclick="publicarPost()"> Publicar Foto + Texto</button><div id="listaPostsAdmin"></div></div></div>
+<div id="tabPerguntas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3> ✏️ Criar Pergunta do Teste - Máx 20</h3>
+<p class="small">Cria 20 perguntas. Escolhe qual é a correta.</p>
 <textarea id="qPergunta" placeholder="Pergunta ex: How do you say 'Obrigado' in English?"></textarea>
-<input type="text" id="qA" placeholder="Opção A">
-<input type="text" id="qB" placeholder="Opção B">
-<input type="text" id="qC" placeholder="Opção C">
-<input type="text" id="qD" placeholder="Opção D">
+<input type="text" id="qA" placeholder="Opção A"><input type="text" id="qB" placeholder="Opção B"><input type="text" id="qC" placeholder="Opção C"><input type="text" id="qD" placeholder="Opção D">
 <label class="small">Qual é a correta?</label>
 <select id="qCorreta"><option value="0">A é correta</option><option value="1">B é correta</option><option value="2">C é correta</option><option value="3">D é correta</option></select>
 <button class="btn btn-orange" style="width:100%" onclick="adicionarPergunta()">Adicionar Pergunta</button>
-<p class="small" id="totalPerguntas">Total: 0 / 40 perguntas</p>
-<div id="listaPerguntas"></div>
-</div>
-<div class="admin-section" style="border-color:#22c55e">
-<h3> 📚 Publicar Aula - Sala de Aula</h3>
+<p class="small" id="totalPerguntas">Total: 0 / 20 perguntas</p><div id="listaPerguntas"></div></div></div>
+<div id="tabAulas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3> 📚 Publicar Aula</h3>
 <input type="text" id="aulaTitulo" placeholder="Título da aula ex: Aula 1 - Verb To Be">
-<textarea id="aulaTexto" placeholder="Escreve a aula aqui... (podes deixar vazio se for só PDF)"></textarea>
-<label class="small">Link do PDF (Google Drive / link):</label>
-<input type="text" id="aulaPdf" placeholder="https://...pdf">
-<label class="small">Ou enviar PDF do telemóvel:</label>
-<input type="file" id="aulaPdfFile" accept="application/pdf">
-<button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button>
-<div id="listaAulasAdmin"></div>
-</div>
-<hr style="margin:18px 0;border-color:#334155">
-<h3> Adicionar Curso</h3>
-<input type="text" id="novoTitulo" placeholder="Nome do curso"><textarea id="novoDesc" placeholder="Descrição..."></textarea><input type="number" id="novoPreco" placeholder="Preço MZN">
-<button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button>
-<h3 style="margin-top:18px"> Meus Cursos</h3><div id="listaAdmin"></div>
-<h3 style="margin-top:18px"> Alunos Firebase (<span id="totalAlunos">0</span>)</h3><div id="listaAlunos"></div>
+<textarea id="aulaTexto" placeholder="Escreve a aula aqui..."></textarea>
+<label class="small">Link do PDF:</label><input type="text" id="aulaPdf" placeholder="https://...pdf">
+<label class="small">Ou enviar PDF:</label><input type="file" id="aulaPdfFile" accept="application/pdf">
+<button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button><div id="listaAulasAdmin"></div></div></div>
 <button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
 </div></div>
-<div class="modal" id="inscreverModal"><div class="box"><span class="close" onclick="closeModal('inscreverModal')">×</span><h2>Inscrever-se </h2>
-<input type="text" id="nomeAluno" placeholder="Nome completo"><input type="email" id="emailAluno" placeholder="Seu email"><label class="small">Data de nascimento:</label><input type="date" id="nascimentoAluno"><input type="tel" id="telAluno" placeholder="Seu número"><select id="cursoEscolhido"></select><button class="btn" style="width:100%" id="btnEnviarInscricao" onclick="inscrever()">Inscrever-se</button><p class="small" id="msgInscricao" style="color:#4ade80;margin-top:8px"></p></div></div>
 <script type="importmap">
 {"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"}}
 </script>
 <script type="module">
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, query, orderBy } from "firebase/firestore";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, getDocs, query, orderBy, where } from "firebase/firestore";
 const firebaseConfig = { apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A", authDomain: "naulangue-tech.firebaseapp.com", projectId: "naulangue-tech", storageBucket: "naulangue-tech.firebasestorage.app", messagingSenderId: "249554572949", appId: "1:249554572949:web:b7d7ef8f38b708806e6d9c" };
 const app = initializeApp(firebaseConfig); const db = getFirestore(app);
 const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
-let fotoTemp=""; let bgTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
+const MAX_PERGUNTAS=20;
+let fotoTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
 let perguntas=[]; let aulas=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
-function meuAluno(){ const email=localStorage.getItem("meu_email_aprovado"); if(!email) return null; return alunos.find(a=>a.email===email)||null; }
-function estouAprovado(){ const a=meuAluno(); return a && a.status==="aprovado"; }
-function estouPendente(){ const a=meuAluno(); return a && a.status!=="aprovado"; }
+let contaAtual=null; let cliquesLogo=0; let tempoLogo=0;
+window.cliqueLogoSecreto=function(){ const agora=Date.now(); if(agora-tempoLogo>2000) cliquesLogo=0; tempoLogo=agora; cliquesLogo++; if(cliquesLogo>=5){ cliquesLogo=0; const b=document.getElementById("btnAdminSecreto"); if(b.style.display==="none"){ b.style.display="block"; alert("🔐 Modo Admin desbloqueado! Abre o menu ☰"); } else { b.style.display="none"; } } };
+function meuAluno(){ return contaAtual; }
+function estouAprovado(){ return contaAtual && contaAtual.status==="aprovado"; }
+function estouPendente(){ return contaAtual && contaAtual.status!=="aprovado"; }
+window.criarConta=async function(){
+  const nome=document.getElementById("cadNome").value.trim(); const email=document.getElementById("cadEmail").value.trim().toLowerCase(); const senha=document.getElementById("cadSenha").value; const nasc=document.getElementById("cadNasc").value; const tel=document.getElementById("cadTel").value.trim(); const cursoId=document.getElementById("cursoEscolhido").value;
+  if(!nome||!email||!senha||!nasc||!tel) return alert("Preenche tudo!");
+  if(senha.length<4) return alert("Password tem que ter no mínimo 4 caracteres!");
+  const existe = await getDocs(query(collection(db,"contas"), where("email","==",email)));
+  if(!existe.empty) return alert("Esse email já tem conta! Faz Login.");
+  const ref = await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[],data:Date.now()});
+  contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[]};
+  localStorage.setItem("meu_email_aprovado",email); localStorage.setItem("minha_senha",senha);
+  document.getElementById("msgCriarConta").textContent="Conta criada! Aguarda aprovação.";
+  setTimeout(()=>{ closeModal('criarContaModal'); renderAll(); alert("✅ Conta criada, "+nome+"! Agora faz Login e aguarda aprovação do Admin."); },800);
+};
+window.fazerLoginAluno=async function(){
+  const email=document.getElementById("loginEmail").value.trim().toLowerCase(); const senha=document.getElementById("loginSenha").value;
+  if(!email||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!";
+  const snap = await getDocs(query(collection(db,"contas"), where("email","==",email)));
+  if(snap.empty) return document.getElementById("msgLoginAluno").textContent="Conta não encontrada. Cria conta primeiro!";
+  const d=snap.docs[0]; const c={id:d.id,...d.data()};
+  if(c.senha!==senha) return document.getElementById("msgLoginAluno").textContent="Password errada!";
+  contaAtual=c; localStorage.setItem("meu_email_aprovado",email); localStorage.setItem("minha_senha",senha);
+  closeModal('loginAlunoModal'); renderAll(); alert("Bem-vindo, "+c.nome+"!");
+};
+window.sairAluno=function(){ contaAtual=null; localStorage.removeItem("meu_email_aprovado"); localStorage.removeItem("minha_senha"); renderAll(); showPage('home'); alert("Saíste da conta."); };
+async function tentarAutoLogin(){
+  const email=localStorage.getItem("meu_email_aprovado"); const senha=localStorage.getItem("minha_senha");
+  if(!email||!senha) return;
+  const snap=await getDocs(query(collection(db,"contas"), where("email","==",email)));
+  if(!snap.empty){ const d=snap.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha) contaAtual=c; }
+  renderAll();
+}
+window.abrirPerfil=function(){ fecharMenu(); if(!contaAtual){ alert("Faz Login primeiro para ver teu perfil!"); openModal('loginAlunoModal'); return; } showPage('pPerfil'); renderPerfil(); };
+function renderPerfil(){
+  if(!contaAtual) return;
+  const c=contaAtual; const favs=(c.favoritos||[]); const hist=(c.historico||[]);
+  const favAulas=aulas.filter(a=>favs.includes(a.id)); const histAulas=aulas.filter(a=>hist.includes(a.id));
+  document.getElementById("perfilConteudo").innerHTML=`
+  <div class="perfil-card"><h2 style="font-size:30px">👤 ${c.nome}</h2><p>${c.email}</p><p>${c.status==="aprovado"?"✅ APROVADO":"⏳ PENDENTE - Aguarda aprovação"}</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="info-box" style="text-align:center"><h3>${hist.length}</h3><p>Aulas Lidas</p></div><div class="info-box" style="text-align:center"><h3>❤️ ${favs.length}</h3><p>Favoritas</p></div></div>
+  <div class="info-box"><h3>📖 Histórico - Aulas que já leste</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${a.titulo}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula. Vai para Sala de Aula!</p>"}</div>
+  <div class="info-box"><h3>❤️ Favoritos - Aulas que gostaste</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${a.titulo}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
+  <button class="btn btn-red" style="width:100%" onclick="sairAluno()">Sair da Conta</button>`;
+}
+window.marcarLida=async function(aulaId){
+  if(!contaAtual) return alert("Faz Login primeiro!");
+  let hist=contaAtual.historico||[]; if(!hist.includes(aulaId)) hist.push(aulaId);
+  contaAtual.historico=hist; await updateDoc(doc(db,"contas",contaAtual.id),{historico:hist}); renderAll(); alert("✅ Marcada como lida!");
+};
+window.toggleFavorito=async function(aulaId){
+  if(!contaAtual) return alert("Faz Login primeiro!");
+  let favs=contaAtual.favoritos||[]; if(favs.includes(aulaId)) favs=favs.filter(x=>x!==aulaId); else favs.push(aulaId);
+  contaAtual.favoritos=favs; await updateDoc(doc(db,"contas",contaAtual.id),{favoritos:favs}); renderAll();
+};
+window.showAdminTab=function(id,btn){ document.querySelectorAll('.admin-tab').forEach(t=>t.style.display='none'); document.getElementById(id).style.display='block'; document.querySelectorAll('.admin-tab-btn').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); };
 window.tentarAbrirAprendizagem=function(pagina){
   window.fecharMenu();
   if(estouAprovado()){ window.showPage(pagina); }
-  else{
-    window.showPage(pagina);
-    setTimeout(()=>{ if(estouPendente()){ alert("⏳ "+meuAluno().nome+", a tua inscrição está PENDENTE. Aguarda aprovação do Admin. Não podes aprender ainda."); } else { alert("🔒 Tens que te inscrever e ser APROVADO para aprender. Inscreve-te primeiro!"); } },150);
-  }
+  else{ window.showPage(pagina); setTimeout(()=>{ if(estouPendente()){ alert("⏳ "+meuAluno().nome+", a tua inscrição está PENDENTE. Aguarda aprovação."); } else { alert("🔒 Tens que criar conta, fazer Login e ser APROVADO."); openModal('loginAlunoModal'); } },150); }
 };
 async function criarPadroesSeVazio(){
   try{
     const cSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"cursos"), s=>{un();res(s);}); });
-    if(cSnap.empty){ await addDoc(collection(db,"cursos"),{titulo:"Inglês - Básico",desc:"Alfabeto, saudações, verb to be, vocabulário do dia a dia, frases simples. Para quem está a começar do zero.",preco:10,data:Date.now()}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Intermediário",desc:"Tempos verbais, conversação, listening, leitura e escrita. Já consegues falar e entender melhor.",preco:20,data:Date.now()+1}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Médio",desc:"Gramática avançada, phrasal verbs, conversação fluente, entrevistas e textos longos.",preco:30,data:Date.now()+2}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Avançado",desc:"Fluência total, debates, negócios, inglês profissional, preparação para trabalho e bolsas.",preco:50,data:Date.now()+3}); }
+    if(cSnap.empty){ await addDoc(collection(db,"cursos"),{titulo:"Inglês - Básico",desc:"Alfabeto, saudações, verb to be, vocabulário do dia a dia.",preco:10,data:Date.now()}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Intermediário",desc:"Tempos verbais, conversação, listening, leitura e escrita.",preco:20,data:Date.now()+1}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Médio",desc:"Gramática avançada, phrasal verbs, conversação fluente.",preco:30,data:Date.now()+2}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Avançado",desc:"Fluência total, debates, negócios, inglês profissional.",preco:50,data:Date.now()+3}); }
     const pSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"posts"), s=>{un();res(s);}); });
-    if(pSnap.empty){ await addDoc(collection(db,"posts"),{titulo:"Bem-vindo à NAULANGUE TECH 🇬🇧",texto:"Aqui vais aprender Inglês do básico ao avançado. Fala inglês de verdade!",foto:FUNDO_PADRAO,data:Date.now()}); }
+    if(pSnap.empty){ await addDoc(collection(db,"posts"),{titulo:"Bem-vindo à NAULANGUE TECH 🇬🇧",texto:"Aqui vais aprender Inglês do básico ao avançado!",foto:FUNDO_PADRAO,data:Date.now()}); }
     const fSnap = await getDoc(doc(db,"config","fundo")); if(!fSnap.exists()){ await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO}); }
     const qSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"perguntas"), s=>{un();res(s);}); });
-    if(qSnap.empty){
-      const exemplos=[ ["How do you say 'Obrigado' in English?","Thank you","Please","Hello","Goodbye",0], ["What is 'I am' in Portuguese?","Eu sou / Eu estou","Eu vou","Eu tenho","Eu quero",0], ["Complete: She ___ a teacher.","is","are","am","be",0], ["What is the opposite of 'Good'?","Bad","Big","Fast","Happy",0], ["How do you say 'Bom dia' in English?","Good morning","Good night","Good bye","Good luck",0] ];
-      for(let e of exemplos){ await addDoc(collection(db,"perguntas"),{pergunta:e[0],opcoes:[e[1],e[2],e[3],e[4]],correta:e[5],data:Date.now()+Math.random()}); }
-    }
+    if(qSnap.empty){ const exemplos=[ ["How do you say 'Obrigado' in English?","Thank you","Please","Hello","Goodbye",0], ["What is 'I am' in Portuguese?","Eu sou / Eu estou","Eu vou","Eu tenho","Eu quero",0], ["Complete: She ___ a teacher.","is","are","am","be",0], ["What is the opposite of 'Good'?","Bad","Big","Fast","Happy",0], ["How do you say 'Bom dia' in English?","Good morning","Good night","Good bye","Good luck",0] ]; for(let e of exemplos){ await addDoc(collection(db,"perguntas"),{pergunta:e[0],opcoes:[e[1],e[2],e[3],e[4]],correta:e[5],data:Date.now()+Math.random()}); } }
     const aSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"aulas"), s=>{un();res(s);}); });
-    if(aSnap.empty){ await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"Verb To Be: I am, You are, He is, She is, It is, We are, They are. Exemplo: I am a student. She is my teacher.",pdf:"",data:Date.now()}); }
+    if(aSnap.empty){ await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"Verb To Be: I am, You are, He is, She is, It is, We are, They are. Exemplo: I am a student.",pdf:"",data:Date.now()}); }
   }catch(e){console.log(e);}
 }
 function aplicarFundo(){const h=document.getElementById("headerBg");if(h) h.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;}
-window.previewBg=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){bgTemp=ev.target.result;const im=document.getElementById("previewBgImg");im.src=bgTemp;im.style.display="block";};r.readAsDataURL(f);};
-window.mudarFundo=async function(){const link=document.getElementById("bgLink").value.trim();const novo=bgTemp||link;if(!novo) return alert("Escolhe foto ou link!");await setDoc(doc(db,"config","fundo"),{url:novo});document.getElementById("msgBg").textContent=" Foto mudada na nuvem!";document.getElementById("bgLink").value="";bgTemp="";document.getElementById("previewBgImg").style.display="none";};
-window.restaurarFundo=async function(){await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO});};
 window.abrirMenu=function(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");};
 window.fecharMenu=function(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");};
-window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll();};
+window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll(); if(id==='pPerfil') renderPerfil();};
 window.previewFoto=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);};
 window.publicarPost=async function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");await addDoc(collection(db,"posts"),{titulo:t||"Novidade ",texto:txt,foto,data:Date.now()});document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado ");};
 window.removerPost=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"posts",id));}};
-window.adicionarPergunta=async function(){const p=document.getElementById("qPergunta").value.trim();const a=document.getElementById("qA").value.trim();const b=document.getElementById("qB").value.trim();const c=document.getElementById("qC").value.trim();const d=document.getElementById("qD").value.trim();const correta=Number(document.getElementById("qCorreta").value);if(!p||!a||!b||!c||!d) return alert("Preenche pergunta e as 4 opções!");await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()});document.getElementById("qPergunta").value="";document.getElementById("qA").value="";document.getElementById("qB").value="";document.getElementById("qC").value="";document.getElementById("qD").value="";alert("Pergunta adicionada!");};
+window.adicionarPergunta=async function(){ if(perguntas.length>=MAX_PERGUNTAS) return alert("Já tens 20 perguntas! Apaga uma para adicionar outra."); const p=document.getElementById("qPergunta").value.trim();const a=document.getElementById("qA").value.trim();const b=document.getElementById("qB").value.trim();const c=document.getElementById("qC").value.trim();const d=document.getElementById("qD").value.trim();const correta=Number(document.getElementById("qCorreta").value);if(!p||!a||!b||!c||!d) return alert("Preenche pergunta e as 4 opções!");await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()});document.getElementById("qPergunta").value="";document.getElementById("qA").value="";document.getElementById("qB").value="";document.getElementById("qC").value="";document.getElementById("qD").value="";alert("Pergunta adicionada!");};
 window.removerPergunta=async function(id){if(confirm("Apagar pergunta?")){await deleteDoc(doc(db,"perguntas",id));}};
 window.publicarAula=async function(){const t=document.getElementById("aulaTitulo").value.trim();const txt=document.getElementById("aulaTexto").value.trim();const pdfLink=document.getElementById("aulaPdf").value.trim();const file=document.getElementById("aulaPdfFile").files[0];if(!t) return alert("Escreve o título da aula!");if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete link / PDF!");let pdfData=pdfLink;if(file){ pdfData=await new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);}); }await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,data:Date.now()});document.getElementById("aulaTitulo").value="";document.getElementById("aulaTexto").value="";document.getElementById("aulaPdf").value="";document.getElementById("aulaPdfFile").value="";alert("Aula publicada!");};
 window.removerAula=async function(id){if(confirm("Apagar aula?")){await deleteDoc(doc(db,"aulas",id));}};
@@ -240,27 +297,36 @@ function renderAulas(){
   const bloqueioTeste=document.getElementById("bloqueioTeste"); const conteudoTeste=document.getElementById("conteudoTeste");
   const bloqueioAula=document.getElementById("bloqueioAula"); const conteudoAula=document.getElementById("conteudoAula");
   if(bloqueioTeste){
-    if(aprovado){ bloqueioTeste.style.display="none"; conteudoTeste.style.display="block"; } else { bloqueioTeste.style.display="block"; conteudoTeste.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioTeste").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação do Admin. Não podes fazer o teste ainda.` : "Tens que te inscrever e ser APROVADO para fazer o teste. Inscreve-te primeiro!"; }
+    if(aprovado){ bloqueioTeste.style.display="none"; conteudoTeste.style.display="block"; } else { bloqueioTeste.style.display="block"; conteudoTeste.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioTeste").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação.` : "Tens que criar conta e ser APROVADO para fazer o teste."; }
   }
   if(bloqueioAula){
-    if(aprovado){ bloqueioAula.style.display="none"; conteudoAula.style.display="block"; } else { bloqueioAula.style.display="block"; conteudoAula.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioAula").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação do Admin. Não podes ver as aulas ainda.` : "Tens que te inscrever e ser APROVADO para ver as aulas. Inscreve-te primeiro!"; }
+    if(aprovado){ bloqueioAula.style.display="none"; conteudoAula.style.display="block"; } else { bloqueioAula.style.display="block"; conteudoAula.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioAula").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação.` : "Tens que criar conta e ser APROVADO para ver as aulas."; }
   }
   if(!aprovado) return;
-  const html=aulas.map(a=>{ let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){ pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`; } else{ pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF</a>`; } } return `<div class="aula-card"><h3 style="color:#38bdf8">${a.titulo}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}</div>`; }).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
+  const favs=contaAtual?.favoritos||[]; const hist=contaAtual?.historico||[];
+  const html=aulas.map(a=>{ let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){ pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`; } else{ pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF</a>`; } }
+  const isFav=favs.includes(a.id); const isLida=hist.includes(a.id);
+  return `<div class="aula-card"><h3 style="color:#38bdf8">${isLida?"✅ ":""}${a.titulo} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada - Desfavoritar":"🤍 Favoritar"}</button></div></div>`; }).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
   document.getElementById("aulasLista").innerHTML=html;
   document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">${a.pdf?"📄 Tem PDF":"📝 Só escrita"}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 function atualizarBotoesInscrever(){
   const a=meuAluno(); const aprovado=estouAprovado(); const pendente=estouPendente();
-  const jaSeInscreveu=!!a;
+  const jaTemConta=!!a;
   const btnTopo=document.getElementById("btnTopoInscrever"); const btnMenu=document.getElementById("btnMenuInscrever"); const btnHero=document.getElementById("btnHeroInscrever"); const btnP9=document.getElementById("btnP9Inscrever");
-  [btnTopo,btnMenu,btnHero,btnP9].forEach(b=>{ if(b) b.style.display = jaSeInscreveu ? "none" : ""; });
+  const btnMenuSair=document.getElementById("btnMenuSair");
+  if(btnTopo) btnTopo.textContent = jaTemConta ? "👤 "+a.nome.split(" ")[0] : "Login";
+  if(btnTopo) btnTopo.onclick = jaTemConta ? ()=>abrirPerfil() : ()=>openModal('loginAlunoModal');
+  if(btnMenu) btnMenu.style.display = jaTemConta ? "none" : "";
+  if(btnMenuSair) btnMenuSair.style.display = jaTemConta ? "" : "none";
+  if(btnHero) btnHero.style.display = jaTemConta ? "none" : "";
+  if(btnP9) btnP9.style.display = jaTemConta ? "none" : "";
   const topoA=document.getElementById("msgAlunoAprovadoTopo"); const topoP=document.getElementById("msgAlunoPendenteTopo");
   const menuMsg=document.getElementById("msgMenuAluno"); const p9Msg=document.getElementById("msgP9Aluno");
   if(aprovado){
-    if(topoA){topoA.style.display="block";topoA.textContent="Bem-vindo, "+a.nome+"! Você está aprovado.";} if(topoP) topoP.style.display="none";
+    if(topoA){topoA.style.display="block";topoA.textContent="Bem-vindo, "+a.nome+"! Aprovado ✅";} if(topoP) topoP.style.display="none";
     if(menuMsg){menuMsg.style.display="block";menuMsg.style.background="#22c55e";menuMsg.style.color="#fff";menuMsg.textContent="✅ "+a.nome+" - APROVADO";}
-    if(p9Msg){p9Msg.style.display="block";p9Msg.style.background="#22c55e";p9Msg.textContent="✅ "+a.nome+" - Já estás aprovado, podes aprender!";}
+    if(p9Msg){p9Msg.style.display="block";p9Msg.style.background="#22c55e";p9Msg.textContent="✅ "+a.nome+" - Já estás aprovado!";}
   } else if(pendente){
     if(topoA) topoA.style.display="none"; if(topoP){topoP.style.display="block";topoP.textContent="⏳ "+a.nome+", aguardando aprovação...";}
     if(menuMsg){menuMsg.style.display="block";menuMsg.style.background="#f59e0b";menuMsg.style.color="#000";menuMsg.textContent="⏳ "+a.nome+" - PENDENTE";}
@@ -273,54 +339,34 @@ function atualizarBotoesInscrever(){
   if(mA) mA.style.opacity = aprovado ? "1" : ".55";
 }
 function renderCursos(){
-  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");if(!grid)return;grid.innerHTML="";sel.innerHTML="";
-  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="abrirInscricao('${c.id}')">Inscrever-se</button></div>`;sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
+  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");if(!grid)return;grid.innerHTML="";if(sel) sel.innerHTML="";
+  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="openModal('loginAlunoModal')">Login / Criar Conta</button></div>`;if(sel) sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
   document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
-  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
-  document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste.`;
-  document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 40 perguntas`;
+  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • ${a.tel||''} • ${cursoNome} • 📖 ${a.historico?.length||0} lidas • ❤️ ${a.favoritos?.length||0} fav</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
+  document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste. Máximo 20.`;
+  document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 20 perguntas`;
   document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${q.pergunta}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${q.opcoes[q.correta]}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
   atualizarBotoesInscrever();
 }
-function renderAll(){renderCursos();renderPosts();renderAulas();aplicarFundo();}
-window.openModal=function(id){
-  if(id==='inscreverModal' && meuAluno()){
-    const a=meuAluno();
-    if(a.status==="aprovado") alert("✅ "+a.nome+", já estás aprovado! Não precisas inscrever-te de novo.");
-    else alert("⏳ "+a.nome+", já te inscreveste. Aguarda aprovação do Admin.");
-    return;
-  }
-  document.getElementById(id).classList.add("active");
-};
+function renderAll(){renderCursos();renderPosts();renderAulas();aplicarFundo(); if(document.getElementById("pPerfil")?.classList.contains("active")) renderPerfil();}
+window.openModal=function(id){ document.getElementById(id).classList.add("active"); };
 window.closeModal=function(id){document.getElementById(id).classList.remove("active");};
 window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){window.closeModal('loginModal');window.openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent=" Senha errada";}};
 window.sairAdmin=function(){window.closeModal('adminModal');};
 window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()});document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado ");};
 window.removerCurso=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"cursos",id));}};
-window.aprovarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"aprovado"});alert("Aluno aprovado! Agora ele já pode aprender.");};
-window.rejeitarAluno=async function(id){await updateDoc(doc(db,"alunos",id),{status:"pendente"});};
-window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"alunos",id));}};
-window.abrirInscricao=function(id){ if(meuAluno()){ alert("Já te inscreveste! Aguarda aprovação."); return; } document.getElementById("cursoEscolhido").value=id;window.openModal('inscreverModal');};
-window.inscrever=async function(){
-  const nome=document.getElementById("nomeAluno").value.trim();const email=document.getElementById("emailAluno").value.trim().toLowerCase();const nascimento=document.getElementById("nascimentoAluno").value;const tel=document.getElementById("telAluno").value.trim();const cursoId=document.getElementById("cursoEscolhido").value;
-  if(!nome||!email||!nascimento||!tel) return alert("Preencha tudo!");
-  const btn=document.getElementById("btnEnviarInscricao"); btn.disabled=true; btn.textContent="A enviar...";
-  try{
-    await addDoc(collection(db,"alunos"),{nome,email,nascimento,tel,cursoId,status:"pendente",data:Date.now()});
-    localStorage.setItem("meu_email_aprovado",email);
-    document.getElementById("msgInscricao").textContent="Inscrição enviada! Aguarde aprovação, "+nome;
-    document.getElementById("nomeAluno").value="";document.getElementById("emailAluno").value="";document.getElementById("nascimentoAluno").value="";document.getElementById("telAluno").value="";
-    setTimeout(()=>{ window.closeModal('inscreverModal'); document.getElementById("msgInscricao").textContent=""; btn.disabled=false; btn.textContent="Inscrever-se"; alert("✅ Inscrição enviada, "+nome+"! Agora sai e aguarda aprovação. Não podes aprender antes de seres aprovado."); renderAll(); },900);
-  }catch(e){ btn.disabled=false; btn.textContent="Inscrever-se"; alert("Erro: "+e.message); }
-};
+window.aprovarAluno=async function(id){await updateDoc(doc(db,"contas",id),{status:"aprovado"}); if(contaAtual && contaAtual.id===id) contaAtual.status="aprovado"; alert("Aluno aprovado!"); renderAll();};
+window.rejeitarAluno=async function(id){await updateDoc(doc(db,"contas",id),{status:"pendente"});};
+window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"contas",id));}};
 criarPadroesSeVazio();
-onSnapshot(query(collection(db,"alunos"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()}));document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" alunos.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
+onSnapshot(query(collection(db,"contas"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()})); if(contaAtual){ const atual=alunos.find(a=>a.id===contaAtual.id); if(atual) contaAtual=atual; } document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" contas.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
 onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
 onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
 onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{perguntas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
 onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{aulas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
 onSnapshot(doc(db,"config","fundo"),(snap)=>{if(snap.exists()){fundoAtual=snap.data().url||FUNDO_PADRAO;aplicarFundo();}});
+tentarAutoLogin();
 renderAll();
 </script>
 </body>
