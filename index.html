@@ -363,4 +363,13 @@ window.rejeitarAluno=async function(id){await updateDoc(doc(db,"contas",id),{sta
 window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"contas",id));}};
 criarPadroesSeVazio();
 onSnapshot(query(collection(db,"contas"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()})); if(contaAtual){ const atual=alunos.find(a=>a.id===contaAtual.id); if(atual) contaAtual=atual; } document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" contas.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
-onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map
+onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{perguntas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{aulas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
+onSnapshot(doc(db,"config","fundo"),(snap)=>{if(snap.exists()){fundoAtual=snap.data().url||FUNDO_PADRAO;aplicarFundo();}});
+tentarAutoLogin();
+renderAll();
+</script>
+</body>
+</html>
