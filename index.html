@@ -254,16 +254,24 @@ window.criarConta=async function(){
   closeModal('criarContaModal');
   renderAll();
   alert("✅ Seu pedido de criar conta foi enviado, espera aprovação, "+nome+"! Já estás dentro como Minha Conta.");
-}; 👽👽👽👽
+};
 window.fazerLoginAluno=async function(){
-  const email=document.getElementById("loginEmail").value.trim().toLowerCase(); const senha=document.getElementById("loginSenha").value;
+  const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+  const senha=document.getElementById("loginSenha").value;
   if(!email||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!";
   const snap = await getDocs(query(collection(db,"contas"), where("email","==",email)));
   if(snap.empty) return document.getElementById("msgLoginAluno").textContent="Conta não encontrada. Cria conta primeiro!";
   const d=snap.docs[0]; const c={id:d.id,...d.data()};
   if(c.senha!==senha) return document.getElementById("msgLoginAluno").textContent="Password errada!";
-  contaAtual=c; localStorage.setItem("meu_email_aprovado",email); localStorage.setItem("minha_senha",senha);
-  closeModal('loginAlunoModal'); renderAll(); alert("Bem-vindo, "+c.nome+"!");
+  contaAtual=c;
+  localStorage.setItem("meu_email_aprovado",email);
+  localStorage.setItem("minha_senha",senha);
+  document.getElementById("loginEmail").value="";
+  document.getElementById("loginSenha").value="";
+  document.getElementById("msgLoginAluno").textContent="";
+  closeModal('loginAlunoModal');
+  renderAll();
+  alert("Bem-vindo, "+c.nome+"!");
 };
 window.sairAluno=function(){ contaAtual=null; localStorage.removeItem("meu_email_aprovado"); localStorage.removeItem("minha_senha"); renderAll(); showPage('home'); alert("Sessão terminada. Podes fazer Login de novo."); };
 window.terminarSessao=function(){ window.sairAluno(); };
