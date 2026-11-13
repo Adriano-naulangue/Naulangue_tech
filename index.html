@@ -205,17 +205,56 @@ function meuAluno(){ return contaAtual; }
 function estouAprovado(){ return contaAtual && contaAtual.status==="aprovado"; }
 function estouPendente(){ return contaAtual && contaAtual.status!=="aprovado"; }
 window.criarConta=async function(){
-  const nome=document.getElementById("cadNome").value.trim(); const email=document.getElementById("cadEmail").value.trim().toLowerCase(); const senha=document.getElementById("cadSenha").value; const nasc=document.getElementById("cadNasc").value; const tel=document.getElementById("cadTel").value.trim(); const cursoId=document.getElementById("cursoEscolhido").value;
+  const nome=document.getElementById("cadNome").value.trim();
+  const email=document.getElementById("cadEmail").value.trim().toLowerCase();
+  const senha=document.getElementById("cadSenha").value;
+  const nasc=document.getElementById("cadNasc").value;
+  const tel=document.getElementById("cadTel").value.trim();
+  const cursoId=document.getElementById("cursoEscolhido").value;
   if(!nome||!email||!senha||!nasc||!tel) return alert("Preenche tudo!");
   if(senha.length<4) return alert("Password tem que ter no mínimo 4 caracteres!");
+
+  // Se email já existe, entra logo em vez de dar erro
   const existe = await getDocs(query(collection(db,"contas"), where("email","==",email)));
-  if(!existe.empty) return alert("Esse email já tem conta! Faz Login.");
+  if(!existe.empty){
+    const d=existe.docs[0]; const c={id:d.id,...d.data()};
+    if(c.senha===senha){
+      contaAtual=c;
+      localStorage.setItem("meu_email_aprovado",email);
+      localStorage.setItem("minha_senha",senha);
+      closeModal('criarContaModal');
+      renderAll();
+      alert("✅ Já tens conta! Entraste automaticamente como "+c.nome+". Espera aprovação.");
+      return;
+    } else {
+      // Se password diferente, manda para Login
+      closeModal('criarContaModal');
+      openModal('loginAlunoModal');
+      document.getElementById("loginEmail").value=email;
+      document.getElementById("msgLoginAluno").textContent="Já tens conta, faz Login com a tua password.";
+      return;
+    }
+  }
+
+  // Conta nova - guarda
   const ref = await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[],data:Date.now()});
   contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[]};
-  localStorage.setItem("meu_email_aprovado",email); localStorage.setItem("minha_senha",senha);
-  document.getElementById("msgCriarConta").textContent="Conta criada! Aguarda aprovação.";
-  setTimeout(()=>{ closeModal('criarContaModal'); renderAll(); alert("✅ Conta criada, "+nome+"! Agora faz Login e aguarda aprovação do Admin."); },800);
-};
+  localStorage.setItem("meu_email_aprovado",email);
+  localStorage.setItem("minha_senha",senha);
+
+  // Limpa o formulário
+  document.getElementById("cadNome").value="";
+  document.getElementById("cadEmail").value="";
+  document.getElementById("cadSenha").value="";
+  document.getElementById("cadNasc").value="";
+  document.getElementById("cadTel").value="";
+  document.getElementById("msgCriarConta").textContent="";
+
+  // Sai sozinho + já fica logado
+  closeModal('criarContaModal');
+  renderAll();
+  alert("✅ Seu pedido de criar conta foi enviado, espera aprovação, "+nome+"! Já estás dentro como Minha Conta.");
+}; 👽👽👽👽
 window.fazerLoginAluno=async function(){
   const email=document.getElementById("loginEmail").value.trim().toLowerCase(); const senha=document.getElementById("loginSenha").value;
   if(!email||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!";
