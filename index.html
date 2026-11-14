@@ -61,6 +61,7 @@ input[type=file]{background:#1e293b;padding:10px}
 .admin-tab-btn{border:none;color:#fff;padding:13px 10px;border-radius:12px;cursor:pointer;font-weight:bold;background:#1e293b;border:2px solid #334155;font-size:13px}
 .admin-tab-btn.active{background:#0ea5e9;border-color:#fff}
 .perfil-card{background:linear-gradient(135deg,#0ea5e9,#1e40af);padding:20px;border-radius:16px;text-align:center;margin-bottom:12px}
+.tab-login{display:flex;gap:8px;margin:10px 0}.tab-login button{flex:1;padding:12px;border-radius:12px;border:2px solid #334155;background:#1e293b;color:#fff;font-weight:bold;cursor:pointer}.tab-login button.active{background:#0ea5e9;border-color:#fff}
 </style>
 </head>
 <body>
@@ -94,8 +95,8 @@ input[type=file]{background:#1e293b;padding:10px}
 <div id="msgAlunoAprovadoTopo" style="display:none;background:#22c55e;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
 <div id="msgAlunoPendenteTopo" style="display:none;background:#f59e0b;color:#000;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
 </div>
-</header>
-<div class="page active" id="home">
+  </header>
+  <div class="page active" id="home">
 <div class="hero" id="heroBg">
 <h2>CURSO DE <b>INGLÊS</b><br>DO BÁSICO AO<br>AVANÇADO</h2>
 <p>Speaking, Listening, Reading, Writing, Grammar e Vocabulário. Aprenda a falar inglês de verdade, na prática, sem medo de errar.</p>
@@ -108,7 +109,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <div class="page" id="p1"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que é Inglês?</h3><p>Inglês é a língua mais falada no mundo para trabalho, estudos, negócios e internet. Saber inglês abre portas para empregos, bolsas, viagens e ganhar dinheiro online.</p></div></div>
 <div class="page" id="p2"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que vais aprender</h3><p> 🇬🇧 Alfabeto e Pronúncia<br> 🗣️ Speaking - Conversação<br> 👂 Listening - Ouvir e entender<br> 📖 Reading - Leitura<br> ✍️ Writing - Escrita<br> 📚 Grammar - Verb To Be, Tenses, Phrasal Verbs<br> 💬 Vocabulário do dia a dia</p></div></div>
 <div class="page" id="p3"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que vais ser depois</h3><p> Tradutor / Intérprete<br> Professor de Inglês<br> Atendimento em Call Center<br> Trabalhar em ONG / Turismo / Hotel<br> Freelancer Online - Ganhar em Dólar<br> Trabalhar em Empresas Internacionais</p></div></div>
-<div class="page" id="p4"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Como funciona</h3><p> 1. Cria conta com Email + Password<br> 2. Faz Login<br> 3. Aguarda aprovação do Admin<br> 4. Estuda, marca como lida e favorita aulas<br> Montepuez / Online - Suporte no WhatsApp</p></div></div>
+<div class="page" id="p4"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Como funciona</h3><p> 1. Cria conta com Email ou Número + Password<br> 2. Faz Login com Email ou Número<br> 3. Aguarda aprovação do Admin<br> 4. Estuda, marca como lida e favorita aulas<br> Montepuez / Online - Suporte no WhatsApp</p></div></div>
 <div class="page" id="p5"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Gramática e Conversação</h3><p><b>Verb To Be:</b> I am, You are, He is...<br><b>Present Simple:</b> I speak English every day.<br><b>Past Simple:</b> I studied yesterday.<br><b>Future:</b> I will speak fluently.</p></div></div>
 <div class="page" id="p6"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
 <div class="page" id="p7"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Fotos e Novidades</h3><div id="postsPage"></div></div>
@@ -130,8 +131,10 @@ input[type=file]{background:#1e293b;padding:10px}
 </div>
 <div class="page" id="pPerfil"><button class="btn back" onclick="showPage('home')"> Voltar</button><div id="perfilConteudo"></div></div>
 <footer>© 2026 NAULANGUE TECH | Montepuez - Curso de Inglês</footer>
-<div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Entra com tua conta para aprender.</p>
-<input type="email" id="loginEmail" placeholder="Seu email">
+<div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Escolhe como queres entrar: com Email ou com Número.</p>
+<div class="tab-login"><button id="btnLoginEmail" class="active" onclick="trocarTipoLogin('email')">📧 Email</button><button id="btnLoginTel" onclick="trocarTipoLogin('tel')">📱 Número</button></div>
+<input type="text" id="loginEmail" placeholder="Seu email ex: ana@gmail.com">
+<input type="tel" id="loginTel" placeholder="Seu número ex: 840000000" style="display:none">
 <input type="password" id="loginSenha" placeholder="Sua password">
 <button class="btn" style="width:100%" onclick="fazerLoginAluno()">Entrar</button>
 <p class="small" id="msgLoginAluno" style="color:#f87171;margin-top:8px"></p>
@@ -139,12 +142,12 @@ input[type=file]{background:#1e293b;padding:10px}
 <p style="text-align:center">Ainda não tens conta?</p>
 <button class="btn btn-green" style="width:100%;margin-top:8px" onclick="closeModal('loginAlunoModal');openModal('criarContaModal')">➕ Criar Conta Grátis</button>
 </div></div>
-<div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Cria tua conta dentro do site.</p>
+<div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Cria com Email e Número. Depois podes fazer Login com qualquer um dos dois.</p>
 <input type="text" id="cadNome" placeholder="Nome completo">
 <input type="email" id="cadEmail" placeholder="Seu email">
 <input type="password" id="cadSenha" placeholder="Cria uma password">
 <label class="small">Data de nascimento:</label><input type="date" id="cadNasc">
-<input type="tel" id="cadTel" placeholder="Seu número">
+<input type="tel" id="cadTel" placeholder="Seu número ex: 840000000">
 <label class="small">Escolhe o curso:</label><select id="cursoEscolhido"></select>
 <button class="btn btn-green" style="width:100%" onclick="criarConta()">Criar Minha Conta</button>
 <p class="small" id="msgCriarConta" style="color:#4ade80;margin-top:8px"></p>
@@ -193,123 +196,80 @@ input[type=file]{background:#1e293b;padding:10px}
 <script type="module">
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, getDocs, query, orderBy, where } from "firebase/firestore";
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",
-  authDomain: "naulangue-tech.firebaseapp.com",
-  projectId: "naulangue-tech",
-  storageBucket: "naulangue-tech.firebasestorage.app",
-  messagingSenderId: "249554572949",
-  appId: "1:249554572949:web:b7d7ef8f38b708806e6d9c"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseConfig = { apiKey: "COLA_TEU_FIREBASE_AQUI", authDomain: "COLA_TEU_DOMINIO", projectId: "COLA_TEU_PROJECTID", storageBucket: "COLA_TEU_BUCKET", messagingSenderId: "COLA_TEU_SENDER", appId: "COLA_TEU_APPID" };
 const app = initializeApp(firebaseConfig); const db = getFirestore(app);
 const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
 const MAX_PERGUNTAS=20;
 let fotoTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
 let perguntas=[]; let aulas=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
-let contaAtual=null; let cliquesLogo=0; let tempoLogo=0;
+let contaAtual=null; let cliquesLogo=0; let tempoLogo=0; let tipoLoginAtual="email";
+function normalizarTel(t){ return (t||"").toString().replace(/\D/g,"").replace(/^258/,"").slice(-9); }
+function salvarSessao(c){ localStorage.setItem("naulangue_email", c.email||""); localStorage.setItem("naulangue_tel", c.tel||""); localStorage.setItem("naulangue_senha", c.senha||""); localStorage.setItem("naulangue_id", c.id||""); }
+function limparSessao(){ localStorage.removeItem("naulangue_email"); localStorage.removeItem("naulangue_tel"); localStorage.removeItem("naulangue_senha"); localStorage.removeItem("naulangue_id"); localStorage.removeItem("meu_email_aprovado"); localStorage.removeItem("minha_senha"); }
 window.cliqueLogoSecreto=function(){ const agora=Date.now(); if(agora-tempoLogo>2000) cliquesLogo=0; tempoLogo=agora; cliquesLogo++; if(cliquesLogo>=5){ cliquesLogo=0; const b=document.getElementById("btnAdminSecreto"); if(b.style.display==="none"){ b.style.display="block"; alert("🔐 Modo Admin desbloqueado! Abre o menu ☰"); } else { b.style.display="none"; } } };
 function meuAluno(){ return contaAtual; }
 function estouAprovado(){ return contaAtual && contaAtual.status==="aprovado"; }
 function estouPendente(){ return contaAtual && contaAtual.status!=="aprovado"; }
+window.trocarTipoLogin=function(tipo){ tipoLoginAtual=tipo; document.getElementById("btnLoginEmail").classList.toggle("active", tipo==="email"); document.getElementById("btnLoginTel").classList.toggle("active", tipo==="tel"); document.getElementById("loginEmail").style.display = tipo==="email" ? "block" : "none"; document.getElementById("loginTel").style.display = tipo==="tel" ? "block" : "none"; document.getElementById("msgLoginAluno").textContent=""; };
 window.criarConta=async function(){
-  const nome=document.getElementById("cadNome").value.trim();
-  const email=document.getElementById("cadEmail").value.trim().toLowerCase();
-  const senha=document.getElementById("cadSenha").value;
-  const nasc=document.getElementById("cadNasc").value;
-  const tel=document.getElementById("cadTel").value.trim();
-  const cursoId=document.getElementById("cursoEscolhido").value;
-  if(!nome||!email||!senha||!nasc||!tel) return alert("Preenche tudo!");
+  const nome=document.getElementById("cadNome").value.trim(); const email=document.getElementById("cadEmail").value.trim().toLowerCase(); const senha=document.getElementById("cadSenha").value; const nasc=document.getElementById("cadNasc").value; const telRaw=document.getElementById("cadTel").value.trim(); const tel=normalizarTel(telRaw); const cursoId=document.getElementById("cursoEscolhido").value;
+  if(!nome||!email||!senha||!nasc||!tel) return alert("Preenche tudo! Email e Número são obrigatórios.");
   if(senha.length<4) return alert("Password tem que ter no mínimo 4 caracteres!");
-
-  // Se email já existe, entra logo em vez de dar erro
-  const existe = await getDocs(query(collection(db,"contas"), where("email","==",email)));
-  if(!existe.empty){
-    const d=existe.docs[0]; const c={id:d.id,...d.data()};
-    if(c.senha===senha){
-      contaAtual=c;
-      localStorage.setItem("meu_email_aprovado",email);
-      localStorage.setItem("minha_senha",senha);
-      closeModal('criarContaModal');
-      renderAll();
-      alert("✅ Já tens conta! Entraste automaticamente como "+c.nome+". Espera aprovação.");
-      return;
-    } else {
-      // Se password diferente, manda para Login
-      closeModal('criarContaModal');
-      openModal('loginAlunoModal');
-      document.getElementById("loginEmail").value=email;
-      document.getElementById("msgLoginAluno").textContent="Já tens conta, faz Login com a tua password.";
-      return;
-    }
-  }
-
-  // Conta nova - guarda
-  const ref = await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[],data:Date.now()});
-  contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[]};
-  localStorage.setItem("meu_email_aprovado",email);
-  localStorage.setItem("minha_senha",senha);
-
-  // Limpa o formulário
-  document.getElementById("cadNome").value="";
-  document.getElementById("cadEmail").value="";
-  document.getElementById("cadSenha").value="";
-  document.getElementById("cadNasc").value="";
-  document.getElementById("cadTel").value="";
-  document.getElementById("msgCriarConta").textContent="";
-
-  // Sai sozinho + já fica logado
-  closeModal('criarContaModal');
-  renderAll();
-  alert("✅ Seu pedido de criar conta foi enviado, espera aprovação, "+nome+"! Já estás dentro como Minha Conta.");
+  if(tel.length<9) return alert("Número inválido. Ex: 840000000");
+  try{
+    const qEmail = await getDocs(query(collection(db,"contas"), where("email","==",email)));
+    if(!qEmail.empty){ const c={id:qEmail.docs[0].id,...qEmail.docs[0].data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); closeModal('criarContaModal'); renderAll(); alert("✅ Já tens conta com esse email! Entraste automaticamente, "+c.nome); return; } else { alert("Esse email já tem conta! Faz Login com a password certa."); closeModal('criarContaModal'); openModal('loginAlunoModal'); return; } }
+    const qTel = await getDocs(query(collection(db,"contas"), where("tel","==",tel)));
+    if(!qTel.empty){ alert("Esse número já tem conta! Faz Login com o número."); closeModal('criarContaModal'); openModal('loginAlunoModal'); trocarTipoLogin('tel'); return; }
+    const ref = await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[],data:Date.now()});
+    contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[]};
+    salvarSessao(contaAtual);
+    document.getElementById("msgCriarConta").textContent="Conta criada! Aguarda aprovação.";
+    setTimeout(()=>{ closeModal('criarContaModal'); renderAll(); alert("✅ Conta criada, "+nome+"! Já estás dentro. Podes entrar depois com Email OU Número, sem criar de novo."); },800);
+  }catch(e){ alert("Erro ao criar conta. Verifica net e tenta de novo. "+e.message); }
 };
 window.fazerLoginAluno=async function(){
-  const email=document.getElementById("loginEmail").value.trim().toLowerCase();
   const senha=document.getElementById("loginSenha").value;
-  if(!email||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!";
-  const snap = await getDocs(query(collection(db,"contas"), where("email","==",email)));
-  if(snap.empty) return document.getElementById("msgLoginAluno").textContent="Conta não encontrada. Cria conta primeiro!";
-  const d=snap.docs[0]; const c={id:d.id,...d.data()};
-  if(c.senha!==senha) return document.getElementById("msgLoginAluno").textContent="Password errada!";
-  contaAtual=c;
-  localStorage.setItem("meu_email_aprovado",email);
-  localStorage.setItem("minha_senha",senha);
-  document.getElementById("loginEmail").value="";
-  document.getElementById("loginSenha").value="";
-  document.getElementById("msgLoginAluno").textContent="";
-  closeModal('loginAlunoModal');
-  renderAll();
-  alert("Bem-vindo, "+c.nome+"!");
+  let campo="", valor="";
+  if(tipoLoginAtual==="email"){ valor=document.getElementById("loginEmail").value.trim().toLowerCase(); campo="email"; if(!valor||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!"; }
+  else { valor=normalizarTel(document.getElementById("loginTel").value.trim()); campo="tel"; if(!valor||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve número e password!"; if(valor.length<9) return document.getElementById("msgLoginAluno").textContent="Número inválido!"; }
+  try{
+    const snap = await getDocs(query(collection(db,"contas"), where(campo,"==",valor)));
+    if(snap.empty) return document.getElementById("msgLoginAluno").textContent="Conta não encontrada. Cria conta primeiro!";
+    const d=snap.docs[0]; const c={id:d.id,...d.data()};
+    if(c.senha!==senha) return document.getElementById("msgLoginAluno").textContent="Password errada!";
+    contaAtual=c; salvarSessao(c);
+    closeModal('loginAlunoModal'); renderAll(); alert("Bem-vindo de volta, "+c.nome+"!");
+  }catch(e){ document.getElementById("msgLoginAluno").textContent="Erro de rede. Tenta de novo."; }
 };
-window.sairAluno=function(){ contaAtual=null; localStorage.removeItem("meu_email_aprovado"); localStorage.removeItem("minha_senha"); renderAll(); showPage('home'); alert("Sessão terminada. Podes fazer Login de novo."); };
+window.sairAluno=function(){ contaAtual=null; limparSessao(); renderAll(); showPage('home'); alert("Sessão terminada. Podes fazer Login de novo com Email ou Número."); };
 window.terminarSessao=function(){ window.sairAluno(); };
 async function tentarAutoLogin(){
-  const email=localStorage.getItem("meu_email_aprovado"); const senha=localStorage.getItem("minha_senha");
-  if(!email||!senha) return;
-  const snap=await getDocs(query(collection(db,"contas"), where("email","==",email)));
-  if(!snap.empty){ const d=snap.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha) contaAtual=c; }
-  renderAll();
+  const email=localStorage.getItem("naulangue_email") || localStorage.getItem("meu_email_aprovado");
+  const tel=localStorage.getItem("naulangue_tel");
+  const senha=localStorage.getItem("naulangue_senha") || localStorage.getItem("minha_senha");
+  const idSalvo=localStorage.getItem("naulangue_id");
+  if(!senha) return false;
+  try{
+    if(idSalvo){ const d=await getDoc(doc(db,"contas",idSalvo)); if(d.exists()){ const c={id:d.id,...d.data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); renderAll(); return true; } } }
+    if(email){ const s=await getDocs(query(collection(db,"contas"), where("email","==",email))); if(!s.empty){ const d=s.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); renderAll(); return true; } } }
+    if(tel){ const s2=await getDocs(query(collection(db,"contas"), where("tel","==",normalizarTel(tel)))); if(!s2.empty){ const d=s2.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); renderAll(); return true; } } }
+  }catch(e){ console.log("Auto-login offline, vou tentar quando ligar net", e); }
+  return false;
 }
+window.addEventListener("online", ()=>{ if(!contaAtual) tentarAutoLogin(); });
 window.abrirPerfil=function(){ fecharMenu(); if(!contaAtual){ alert("Faz Login primeiro para ver teu perfil!"); openModal('loginAlunoModal'); return; } showPage('pPerfil'); renderPerfil(); };
 function renderPerfil(){
   if(!contaAtual) return;
   const c=contaAtual; const favs=(c.favoritos||[]); const hist=(c.historico||[]);
   const favAulas=aulas.filter(a=>favs.includes(a.id)); const histAulas=aulas.filter(a=>hist.includes(a.id));
   document.getElementById("perfilConteudo").innerHTML=`
-  <div class="perfil-card"><h2 style="font-size:30px">👤 ${c.nome}</h2><p>${c.email}</p><p>${c.status==="aprovado"?"✅ APROVADO":"⏳ PENDENTE - Aguarda aprovação"}</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
+  <div class="perfil-card"><h2 style="font-size:30px">👤 ${c.nome}</h2><p>${c.email}</p><p>📱 ${c.tel||""}</p><p>${c.status==="aprovado"?"✅ APROVADO":"⏳ PENDENTE - Aguarda aprovação"}</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="info-box" style="text-align:center"><h3>${hist.length}</h3><p>Aulas Lidas</p></div><div class="info-box" style="text-align:center"><h3>❤️ ${favs.length}</h3><p>Favoritas</p></div></div>
   <div class="info-box"><h3>📖 Histórico - Aulas que já leste</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${a.titulo}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula. Vai para Sala de Aula!</p>"}</div>
   <div class="info-box"><h3>❤️ Favoritos - Aulas que gostaste</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${a.titulo}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
   <button class="btn btn-red" style="width:100%" onclick="terminarSessao()">⏻ Terminar Sessão</button>
-  <p class="small" style="text-align:center;margin-top:8px">Depois podes voltar a fazer Login com o mesmo Email e Password.</p>`;
+  <p class="small" style="text-align:center;margin-top:8px">Depois podes voltar a fazer Login com o mesmo Email OU Número e Password.</p>`;
 }
 window.marcarLida=async function(aulaId){
   if(!contaAtual) return alert("Faz Login primeiro!");
@@ -327,7 +287,7 @@ window.tentarAbrirAprendizagem=function(pagina){
   if(estouAprovado()){ window.showPage(pagina); }
   else{ window.showPage(pagina); setTimeout(()=>{ if(estouPendente()){ alert("⏳ "+meuAluno().nome+", a tua inscrição está PENDENTE. Aguarda aprovação."); } else { alert("🔒 Tens que criar conta, fazer Login e ser APROVADO."); openModal('loginAlunoModal'); } },150); }
 };
-async function criarPadroesSeVazio(){
+  async function criarPadroesSeVazio(){
   try{
     const cSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"cursos"), s=>{un();res(s);}); });
     if(cSnap.empty){ await addDoc(collection(db,"cursos"),{titulo:"Inglês - Básico",desc:"Alfabeto, saudações, verb to be, vocabulário do dia a dia.",preco:10,data:Date.now()}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Intermediário",desc:"Tempos verbais, conversação, listening, leitura e escrita.",preco:20,data:Date.now()+1}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Médio",desc:"Gramática avançada, phrasal verbs, conversação fluente.",preco:30,data:Date.now()+2}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Avançado",desc:"Fluência total, debates, negócios, inglês profissional.",preco:50,data:Date.now()+3}); }
@@ -408,7 +368,7 @@ function renderCursos(){
   cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="openModal('loginAlunoModal')">Login / Criar Conta</button></div>`;if(sel) sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
   document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
-  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • ${a.tel||''} • ${cursoNome} • 📖 ${a.historico?.length||0} lidas • ❤️ ${a.favoritos?.length||0} fav</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
+  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • 📱 ${a.tel||''} • ${cursoNome} • 📖 ${a.historico?.length||0} lidas • ❤️ ${a.favoritos?.length||0} fav</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
   document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste. Máximo 20.`;
   document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 20 perguntas`;
   document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${q.pergunta}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${q.opcoes[q.correta]}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
@@ -425,12 +385,38 @@ window.aprovarAluno=async function(id){await updateDoc(doc(db,"contas",id),{stat
 window.rejeitarAluno=async function(id){await updateDoc(doc(db,"contas",id),{status:"pendente"});};
 window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"contas",id));}};
 criarPadroesSeVazio();
-onSnapshot(query(collection(db,"contas"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()})); if(contaAtual){ const atual=alunos.find(a=>a.id===contaAtual.id); if(atual) contaAtual=atual; } document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" contas.";document.getElementById("statusFirebase").style.color="#4ade80";renderAll();});
-onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
-onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
-onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{perguntas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
-onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{aulas=snap.docs.map(d=>({id:d.id,...d.data()}));renderAll();});
-onSnapshot(doc(db,"config","fundo"),(snap)=>{if(snap.exists()){fundoAtual=snap.data().url||FUNDO_PADRAO;aplicarFundo();}});
+onSnapshot(query(collection(db,"contas"),orderBy("data","desc")),(snap)=>{
+  alunos=snap.docs.map(d=>({id:d.id,...d.data()}));
+  if(contaAtual){
+    const atual=alunos.find(a=>a.id===contaAtual.id);
+    if(atual) contaAtual=atual;
+  }
+  document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" contas.";
+  document.getElementById("statusFirebase").style.color="#4ade80";
+  renderAll();
+});
+onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{
+  cursos=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderAll();
+});
+onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{
+  posts=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderAll();
+});
+onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{
+  perguntas=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderAll();
+});
+onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{
+  aulas=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderAll();
+});
+onSnapshot(doc(db,"config","fundo"),(snap)=>{
+  if(snap.exists()){
+    fundoAtual=snap.data().url||FUNDO_PADRAO;
+    aplicarFundo();
+  }
+});
 tentarAutoLogin();
 renderAll();
 </script>
