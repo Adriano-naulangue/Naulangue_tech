@@ -196,7 +196,14 @@ input[type=file]{background:#1e293b;padding:10px}
 <script type="module">
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, getDocs, query, orderBy, where } from "firebase/firestore";
-const firebaseConfig = { apiKey: "COLA_TEU_FIREBASE_AQUI", authDomain: "COLA_TEU_DOMINIO", projectId: "COLA_TEU_PROJECTID", storageBucket: "COLA_TEU_BUCKET", messagingSenderId: "COLA_TEU_SENDER", appId: "COLA_TEU_APPID" };
+const firebaseConfig = {
+  apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",
+  authDomain: "naulangue-tech.firebaseapp.com",
+  projectId: "naulangue-tech",
+  storageBucket: "naulangue-tech.firebasestorage.app",
+  messagingSenderId: "249554572949",
+  appId: "1:249554572949:web:b7d7ef8f38b708806e6d9c"
+};
 const app = initializeApp(firebaseConfig); const db = getFirestore(app);
 const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
 const MAX_PERGUNTAS=20;
