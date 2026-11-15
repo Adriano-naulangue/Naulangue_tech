@@ -130,6 +130,13 @@ input[type=file]{background:#1e293b;padding:10px}
 </div>
 <div class="page" id="pPerfil"><button class="btn back" onclick="showPage('home')"> Voltar</button><div id="perfilConteudo"></div></div>
 <footer>© 2026 NAULANGUE TECH curso de inglês| Montepuez - Curso de Inglês</footer>
+  <!-- ===== CURSOS - NAULANGUE TECH ===== -->
+<div class="page" id="pCursos"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>Escolhe o teu curso</h3><p class="small">Cada curso tem 3 páginas. Na 1ª página tens Prática e Comprar.</p><div id="listaCursos"></div></div></div>
+<div class="page" id="pCursoDetalhe"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="cursoTitulo"></h3><p id="cursoPagInfo" class="small"></p><div id="cursoConteudo"></div><div id="cursoBotoes" style="display:flex;gap:8px;margin-top:10px"></div></div></div>
+<!-- ===== COMENTÁRIO ===== -->
+<div class="page" id="pComent"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 O que deve melhorar no site?</h3><p class="small">O teu comentário vai aparecer na área do Admin.</p><textarea id="comentText" rows="3" placeholder="Ex: O site devia ter mais vídeos..." style="width:100%;padding:12px;border-radius:12px;margin-top:10px"></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="enviarComentario()">Enviar comentário</button><div id="meusComent" style="margin-top:14px"></div></div></div>
+<!-- ===== CONVERSA ===== -->
+<div class="page" id="pChat"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💭 Conversa Aluno ↔ Admin</h3><p class="small">Visível por ti e pelo Admin.</p><div id="chatBox" style="height:220px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatInput" placeholder="Escreve a tua mensagem..." style="width:100%;padding:12px;border-radius:12px"><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChat()">Enviar</button></div></div>
 <div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Escolhe como queres entrar: com Email ou com Número.</p>
 <div class="tab-login"><button id="btnLoginEmail" class="active" onclick="trocarTipoLogin('email')">📧 Email</button><button id="btnLoginTel" onclick="trocarTipoLogin('tel')">📱 Número</button></div>
 <input type="text" id="loginEmail" placeholder="Seu email ex: ana@gmail.com">
@@ -425,6 +432,54 @@ onSnapshot(doc(db,"config","fundo"),(snap)=>{
 });
 tentarAutoLogin();
 renderAll();
+  // ===== CURSOS / COMENTÁRIO / CHAT - NAULANGUE TECH =====
+const SENHAS_CURSO = { basico:'bas2026', intermediario:'vamo1002', medio:'abril2378', avancado:'avan2026' };
+const WHATS_COMPRAR = '258856661893';
+const CURSOS_NAUL = {
+  basico:{nome:'Curso Básico', paginas:[
+    {t:'Página 1 - Começar', c:'Bem-vindo ao Curso Básico! Vais aprender cumprimentos.<br><b>Ex: Hello, My name is Adriano. I am from Mozambique.</b>'},
+    {t:'Página 2 - Aula 1', c:'<b>Verbos To Be:</b> I am, You are, He is, She is<br><b>Vocabulário:</b> Family, School, Food, Colours'},
+    {t:'Página 3 - Prática Final', c:'Faz frases: 1. I am ___ 2. She is ___ 3. They are ___'}
+  ]},
+  intermediario:{nome:'Curso Intermediário', paginas:[
+    {t:'Página 1 - Começar', c:'Bem-vindo ao Intermediário! Vais falar mais e aprender tempos verbais.'},
+    {t:'Página 2 - Aula 1', c:'<b>Present Simple & Continuous:</b> I speak English. I am speaking now.<br><b>Past Simple:</b> I went to school yesterday.'},
+    {t:'Página 3 - Prática Final', c:'Conta a tua rotina em inglês: In the morning I...'}
+  ]},
+  medio:{nome:'Curso Médio', paginas:[
+    {t:'Página 1 - Começar', c:'Bem-vindo ao Curso Médio! Inglês para trabalho e entrevistas.'},
+    {t:'Página 2 - Aula 1', c:'<b>Entrevista:</b> Tell me about yourself. What are your strengths?<br><b>Trabalho:</b> Meeting, Report, Deadline, Teamwork'},
+    {t:'Página 3 - Prática Final', c:'Prepara apresentação de 2 minutos sobre ti em inglês.'}
+  ]},
+  avancado:{nome:'Curso Avançado', paginas:[
+    {t:'Página 1 - Começar', c:'Bem-vindo ao Avançado! Fluência, debates e inglês profissional.'},
+    {t:'Página 2 - Aula 1', c:'<b>Advanced:</b> Conditionals, Passive Voice, Phrasal Verbs<br>Ex: If I had time, I would travel.'},
+    {t:'Página 3 - Prática Final', c:'Debate: Is English important for Mozambique? Escreve 10 linhas.'}
+  ]}
+};
+let cursoAtual=null, paginaAtual=0, desbloqueado={};
+function renderCursosNaul(){ let h=''; for(let k in CURSOS_NAUL){ h+=`<div style="border:1px solid #334155;border-radius:14px;padding:12px;margin:10px 0"><b>${CURSOS_NAUL[k].nome}</b><p class="small">3 páginas</p><button class="btn" onclick="abrirCursoNaul('${k}')">Abrir curso →</button></div>`; } document.getElementById('listaCursos').innerHTML=h; }
+function abrirCursoNaul(k){ cursoAtual=k; paginaAtual=0; mostrarPaginaNaul(); showPage('pCursoDetalhe'); }
+function mostrarPaginaNaul(){
+  let cur=CURSOS_NAUL[cursoAtual];
+  document.getElementById('cursoTitulo').innerText=cur.nome;
+  document.getElementById('cursoPagInfo').innerText=`Página ${paginaAtual+1} de 3`;
+  let p=cur.paginas[paginaAtual];
+  let html=`<h3>${p.t}</h3><p style="margin-top:8px">${p.c}</p>`;
+  if(paginaAtual===0){ html+=`<hr><p><b>Escolhe:</b></p><button class="btn" style="width:100%;margin-top:8px;background:#16a34a" onclick="pedirSenhaNaul()">1. PRÁTICA CURSO 🔒</button><button class="btn" style="width:100%;margin-top:8px;background:#f59e0b" onclick="comprarCursoNaul()">2. COMPRAR CURSO 💳</button>`; }
+  document.getElementById('cursoConteudo').innerHTML=html;
+  let b='';
+  if(paginaAtual>0) b+=`<button class="btn" onclick="paginaAtual--;mostrarPaginaNaul()">← Anterior</button>`;
+  if(paginaAtual<2 && (paginaAtual>0||desbloqueado[cursoAtual])) b+=`<button class="btn" onclick="paginaAtual++;mostrarPaginaNaul()">Próxima →</button>`;
+  if(paginaAtual===0 && !desbloqueado[cursoAtual]) b+=`<button class="btn" style="background:#475569">Bloqueado - Usa Prática com senha</button>`;
+  document.getElementById('cursoBotoes').innerHTML=b;
+}
+function pedirSenhaNaul(){ let s=prompt(`Escreve a senha do ${CURSOS_NAUL[cursoAtual].nome}:`); if(s===SENHAS_CURSO[cursoAtual]){ desbloqueado[cursoAtual]=true; alert('Senha correta!'); mostrarPaginaNaul(); } else alert('Senha errada. Fala com Admin para comprar.'); }
+function comprarCursoNaul(){ let nome=CURSOS_NAUL[cursoAtual].nome; let msg=`Olá quero comprar ${nome}. Mande o valor com esse número 862428838 nome Adriano Naulange depois de mandar valor volta manda screenshot de confirmação daí receba senha`; window.open(`https://wa.me/${WHATS_COMPRAR}?text=${encodeURIComponent(msg)}`,'_blank'); }
+function enviarComentario(){ let t=document.getElementById('comentText').value; if(!t) return alert('Escreve o comentário'); let a=JSON.parse(localStorage.getItem('comentarios_naul')||'[]'); a.push({user:'Aluno', texto:t, data:new Date().toLocaleString()}); localStorage.setItem('comentarios_naul', JSON.stringify(a)); document.getElementById('comentText').value=''; alert('Obrigado! O Admin vai ver.'); }
+function enviarChat(){ let t=document.getElementById('chatInput').value; if(!t) return; let a=JSON.parse(localStorage.getItem('chat_naul')||'[]'); a.push({de:'Aluno', texto:t, data:new Date().toLocaleString()}); localStorage.setItem('chat_naul', JSON.stringify(a)); document.getElementById('chatInput').value=''; mostrarChatNaul(); }
+function mostrarChatNaul(){ let a=JSON.parse(localStorage.getItem('chat_naul')||'[]'); document.getElementById('chatBox').innerHTML=a.map(m=>`<div style="background:#1e293b;padding:8px;border-radius:10px;margin-bottom:8px"><b>${m.de}:</b> ${m.texto}<br><small>${m.data}</small></div>`).join('')||'Sem mensagens.'; }
+renderCursosNaul();
 </script>
 </body>
 </html>
