@@ -20,8 +20,8 @@ header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https:
 #sidebar.open{left:0}
 #sidebar h3{color:#38bdf8;margin-bottom:12px}
 .fechar{float:right;cursor:pointer;font-size:26px}
-.menu-item{display:block;background:#1e293b;padding:13px;border-radius:12px;margin-bottom:9px;color:#fff;text-decoration:none;font-weight:bold;cursor:pointer;border-left:4px solid #0ea5e9}
-.menu-item small{display:block;color:#94a3b8;font-weight:normal;font-size:12px;margin-top:3px}
+.menu-item{display:block;background:#1e293b;padding:10px 11px;border-radius:12px;margin-bottom:8px;color:#fff;text-decoration:none;font-weight:bold;cursor:pointer;border-left:4px solid #0ea5e9;font-size:13px;line-height:1.3}
+.menu-item small{display:block;color:#94a3b8;font-weight:normal;font-size:11px;margin-top:2px}
 .btn-admin-menu{display:block;width:100%;background:#000;color:#facc15;border:2px solid #facc15;padding:14px;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;margin-top:18px;text-align:center}
 .btn-admin-menu small{display:block;color:#a8a29e;font-weight:normal;font-size:11px;margin-top:4px}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998}
@@ -37,7 +37,7 @@ header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https:
 .info-box h3{color:#38bdf8;margin-bottom:8px}
 .post-card{background:#0f172a;border:1px solid #334155;border-radius:16px;overflow:hidden;margin:12px 0}
 .post-card img{width:100%;max-height:320px;object-fit:cover;display:block}
-.post-card div{padding:16px}.post-card h3{color:#38bdf8}.post-card p{color:#cbd5e1;margin-top:6px;line-height:1.5}
+.post-card div{padding:16px}.post-card h3{color:#38bdf8}.post-card p{color:#cbd5e1;margin-top:6px;line-height:1.5;white-space:pre-wrap}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);justify-content:center;align-items:center;z-index:1000;padding:15px}
 .modal.active{display:flex}
 .box{background:#0f172a;width:100%;max-width:520px;padding:25px;border-radius:18px;border:2px solid #0ea5e9;max-height:92vh;overflow:auto}
@@ -60,15 +60,24 @@ input[type=file]{background:#1e293b;padding:10px}
 .chat-msg{background:#1e293b;padding:10px;border-radius:12px;margin:6px 0}
 .chat-msg.me{background:#0ea5e9;text-align:right}
 .chat-msg.admin{background:#334155}
-.frase-card{background:#0f172a;border:1px solid #334155;border-left:4px solid #22c55e;padding:16px;border-radius:14px;margin:10px 0}
+.frase-card{background:#0f172a;border:1px solid #334155;border-left:4px solid #22c55e;padding:16px;border-radius:14px;margin:10px 0;white-space:pre-wrap;word-break:break-word}
+.iniciante-card{background:#0f172a;border:1px solid #334155;border-left:4px solid #22c55e;border-radius:16px;overflow:hidden;margin:12px 0}
+.iniciante-card img{width:100%;max-height:320px;object-fit:cover;display:block}
+.iniciante-card div{padding:16px}.iniciante-card h3{color:#38bdf8}.iniciante-card p{color:#cbd5e1;margin-top:6px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+#welcomeOverlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,.92);z-index:2000;justify-content:center;align-items:center;text-align:center;padding:20px}
+#welcomeOverlay.show{display:flex}
+#welcomeOverlay h2{font-size:32px;color:#22c55e;line-height:1.2}
+#welcomeOverlay p{color:#fff;margin-top:10px;font-size:16px}
 </style>
 </head>
 <body>
+<div id="welcomeOverlay"><div><h2>🎉 Seja bem-vindo<br><span id="welcomeNome"></span>!</h2><p>Bem-vindo à NAULANGUE TECH 🇬🇧</p></div></div>
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 <div id="sidebar">
 <span class="fechar" onclick="fecharMenu()">×</span>
 <h3>MENU</h3>
 <a class="menu-item" onclick="showPage('home')">1. Início<small>Voltar para capa</small></a>
+<a class="menu-item" style="border-left-color:#22c55e" onclick="showPage('pIniciante')">⭐ INICIANTE<small>Para quem está a começar do zero</small></a>
 <a class="menu-item" onclick="showPage('p1')">2. O que é Inglês?<small>O que é, para que serve</small></a>
 <a class="menu-item" onclick="showPage('p2')">3. O que vais aprender<small>Matérias do curso</small></a>
 <a class="menu-item" onclick="showPage('p7')">8. Fotos e Novidades<small>Publicações do Admin</small></a>
@@ -98,6 +107,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <h3 style="margin:10px 0">Últimas Publicações do Admin</h3><div id="postsHome"></div>
 <h3 style="margin:10px 0">💬 Frases do Dia a Dia</h3><div id="frasesHome"></div>
 </div>
+<div class="page" id="pIniciante"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>⭐ INICIANTE - Começa do Zero</h3><p class="small">Fotos, textos, títulos e frases básicas publicadas pelo Admin. O Enter é respeitado.</p></div><div id="inicianteLista"></div></div>
 <div class="page" id="p1"><button class="btn back" onclick="showPage('home')">Voltar</button><div class="info-box"><h3>O que é Inglês?</h3><p>Inglês é a língua mais falada no mundo para trabalho, estudos, negócios e internet.</p></div></div>
 <div class="page" id="p2"><button class="btn back" onclick="showPage('home')">Voltar</button><div class="info-box"><h3>O que vais aprender</h3><p>🇬🇧 Alfabeto e Pronúncia<br>🗣️ Speaking<br>👂 Listening<br>📖 Reading<br>✍️ Writing<br>📚 Grammar<br>💬 Vocabulário do dia a dia</p></div></div>
 <div class="page" id="p7"><button class="btn back" onclick="showPage('home')">Voltar</button><h3>Fotos e Novidades</h3><div id="postsPage"></div></div>
@@ -113,7 +123,6 @@ input[type=file]{background:#1e293b;padding:10px}
 <footer>© 2026 NAULANGUE TECH | Montepuez - Curso de Inglês</footer>
 <div class="page" id="pCursos"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>Escolhe o teu curso</h3><p class="small">Cada curso tem 3 páginas. Na 1ª página tens Prática e Comprar.</p><div id="listaCursos"></div></div></div>
 <div class="page" id="pCursoDetalhe"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="cursoTitulo"></h3><p id="cursoPagInfo" class="small"></p><div id="cursoConteudo"></div><div id="cursoBotoes" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"></div></div></div>
-<!-- PÁGINA DE AULA DEPOIS DA SENHA - SÓ DESSE CURSO -->
 <div class="page" id="pAulaCurso"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="aulaCursoTitulo"></h3><p id="aulaCursoInfo" class="small"></p><p class="small" style="color:#22c55e">✅ Desbloqueado. Não vai pedir senha de novo durante 14 dias neste telefone.</p><div id="aulaCursoLista"></div><button class="btn" style="width:100%;margin-top:12px" onclick="showPage('pCursos')">Voltar aos cursos</button></div></div>
 <div class="page" id="pFrases"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 Frases do Dia a Dia</h3><p class="small">Frases que fazem você soar menos como livro didático.</p><div id="listaFrases"></div><h3 style="margin-top:18px">📸 Publicidade - Fotos e Textos do Admin</h3><div id="frasesPosts"></div></div></div>
 <div class="page" id="pComent"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 O que deve melhorar no site?</h3><p class="small">O teu comentário vai aparecer na área do Admin.</p><textarea id="comentText" rows="3" placeholder="Ex: O site devia ter mais vídeos..." style="width:100%;padding:12px;border-radius:12px;margin-top:10px;background:#1e293b;color:#fff;border:none"></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="enviarComentario()">Enviar comentário</button><div id="meusComent" style="margin-top:14px"></div></div></div>
@@ -137,6 +146,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <button class="admin-tab-btn" onclick="showAdminTab('tabPerguntas',this)">✏️ Perguntas</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabAulas',this)">📚 Aulas</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabFrases',this)">💬 Frases</button>
+<button class="admin-tab-btn" style="background:#22c55e" onclick="showAdminTab('tabIniciante',this)">⭐ INICIANTE</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabComentarios',this)">💬 Comentários</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabChatAdmin',this)">💭 Conversas</button>
 </div>
@@ -146,6 +156,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <div id="tabPerguntas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3>✏️ Criar Pergunta - Máx 20</h3><textarea id="qPergunta" placeholder="Pergunta"></textarea><input type="text" id="qA" placeholder="Opção A"><input type="text" id="qB" placeholder="Opção B"><input type="text" id="qC" placeholder="Opção C"><input type="text" id="qD" placeholder="Opção D"><label class="small">Qual é a correta?</label><select id="qCorreta"><option value="0">A é correta</option><option value="1">B é correta</option><option value="2">C é correta</option><option value="3">D é correta</option></select><button class="btn btn-orange" style="width:100%" onclick="adicionarPergunta()">Adicionar Pergunta</button><p class="small" id="totalPerguntas"></p><div id="listaPerguntas"></div></div></div>
 <div id="tabAulas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>📚 Publicar Aula</h3><input type="text" id="aulaTitulo" placeholder="Título da aula"><textarea id="aulaTexto" placeholder="Escreve a aula aqui..."></textarea><label class="small">Escolhe onde publicar a aula - SÓ 1 CURSO:</label><select id="aulaCurso"><option value="basico">Curso Básico - 10mt</option><option value="intermediario">Curso Intermediário - 20mt</option><option value="medio">Curso Médio - 30mt</option><option value="avancado">Curso Avançado - 40mt</option></select><p class="small">A aula só vai aparecer nesse curso, não no outro.</p><input type="text" id="aulaPdf" placeholder="https://...pdf"><input type="file" id="aulaPdfFile" accept="application/pdf"><button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button><div id="listaAulasAdmin"></div></div></div>
 <div id="tabFrases" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>💬 Publicar Frase do Dia a Dia</h3><input type="text" id="fraseIngles" placeholder="Frase em Inglês ex: NO WORRIES!"><input type="text" id="frasePortugues" placeholder="Tradução ex: Sem problemas!"><textarea id="fraseExemplo" placeholder="Exemplo / Quando usar"></textarea><button class="btn btn-green" style="width:100%" onclick="publicarFrase()">Publicar Frase</button><div id="listaFrasesAdmin" style="margin-top:12px"></div></div></div>
+<div id="tabIniciante" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>⭐ Publicar para INICIANTE</h3><input type="text" id="inicTitulo" placeholder="Título ex: Aula 1 - Saudações"><textarea id="inicTexto" placeholder="Texto / explicação... Podes dar Enter à vontade"></textarea><input type="file" id="inicFotoFile" accept="image/*" onchange="previewFotoInic(event)"><img id="previewImgInic" class="preview"><input type="text" id="inicFotoLink" placeholder="Ou link da foto https://...jpg"><hr><p class="small"><b>Frase (opcional) - respeita Enter:</b></p><textarea id="inicIngles" placeholder="Frase em Inglês - dá Enter&#10;I run&#10;I ran"></textarea><textarea id="inicPortugues" placeholder="Tradução - dá Enter&#10;Eu corro&#10;Eu corri"></textarea><textarea id="inicExemplo" placeholder="Exemplo / Quando usar - dá Enter"></textarea><button class="btn btn-green" style="width:100%" onclick="publicarIniciante()">Publicar em INICIANTE</button><div id="listaInicianteAdmin" style="margin-top:12px"></div></div></div>
 <div id="tabComentarios" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3>💬 Comentários dos Alunos</h3><div id="listaComentariosAdmin"></div></div></div>
 <div id="tabChatAdmin" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#a855f7"><h3>💭 Conversas Aluno ↔ Admin</h3><select id="chatAlunoSelect" onchange="carregarChatAdmin()" style="width:100%;padding:12px;border-radius:10px;background:#0f172a;color:#fff;border:none"></select><div id="chatAdminBox" style="height:220px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatAdminInput" placeholder="Responder ao aluno..."><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChatAdmin()">Enviar como Admin</button></div></div>
 <button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
@@ -158,10 +169,12 @@ const firebaseConfig={apiKey:"AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",authDomai
 const app=initializeApp(firebaseConfig); const db=getFirestore(app);
 const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
 const MAX_PERGUNTAS=20;
-let fotoTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
-let perguntas=[]; let aulas=[]; let frases=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
+let fotoTemp=""; let fotoInicTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
+let perguntas=[]; let aulas=[]; let frases=[]; let iniciantes=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
 let contaAtual=null; let cliquesLogo=0; let tempoLogo=0; let tipoLoginAtual="email";
 let comentarios=[]; let chats=[]; let chatAlunoSelecionado=null;
+function esc(t){return String(t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function mostrarBemVindo(nome){document.getElementById("welcomeNome").textContent=nome||"";const o=document.getElementById("welcomeOverlay");o.classList.add("show");setTimeout(()=>{o.classList.remove("show");},5000);}
 function normalizarTel(t){return (t||"").toString().replace(/\D/g,"").replace(/^258/,"").slice(-9);}
 function salvarSessao(c){localStorage.setItem("naulangue_email",c.email||"");localStorage.setItem("naulangue_tel",c.tel||"");localStorage.setItem("naulangue_senha",c.senha||"");localStorage.setItem("naulangue_id",c.id||"");}
 function limparSessao(){localStorage.removeItem("naulangue_email");localStorage.removeItem("naulangue_tel");localStorage.removeItem("naulangue_senha");localStorage.removeItem("naulangue_id");}
@@ -177,12 +190,12 @@ window.criarConta=async function(){
   if(tel.length<9) return alert("Número inválido. Ex: 840000000");
   try{
     const qEmail=await getDocs(query(collection(db,"contas"),where("email","==",email)));
-    if(!qEmail.empty){const c={id:qEmail.docs[0].id,...qEmail.docs[0].data()}; if(c.senha===senha){contaAtual=c;salvarSessao(c);closeModal('criarContaModal');renderAll();showPage('home');alert("✅ Já tens conta! Entraste logo, "+c.nome);return;}else{alert("Esse email já tem conta! Faz Login.");closeModal('criarContaModal');openModal('loginAlunoModal');return;}}
+    if(!qEmail.empty){const c={id:qEmail.docs[0].id,...qEmail.docs[0].data()}; if(c.senha===senha){contaAtual=c;salvarSessao(c);closeModal('criarContaModal');renderAll();showPage('home');mostrarBemVindo(c.nome);return;}else{alert("Esse email já tem conta! Faz Login.");closeModal('criarContaModal');openModal('loginAlunoModal');return;}}
     const qTel=await getDocs(query(collection(db,"contas"),where("tel","==",tel)));
     if(!qTel.empty){alert("Esse número já tem conta! Faz Login.");closeModal('criarContaModal');openModal('loginAlunoModal');trocarTipoLogin('tel');return;}
     const ref=await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"aprovado",favoritos:[],historico:[],data:Date.now()});
     contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"aprovado",favoritos:[],historico:[]}; salvarSessao(contaAtual);
-    setTimeout(()=>{closeModal('criarContaModal');renderAll();showPage('home');alert("✅ Conta criada, "+nome+"! Já estás dentro.");},600);
+    closeModal('criarContaModal');renderAll();showPage('home');mostrarBemVindo(nome);
   }catch(e){alert("Erro ao criar conta. "+e.message);}
 };
 window.fazerLoginAluno=async function(){
@@ -211,10 +224,10 @@ window.abrirPerfil=function(){fecharMenu(); if(!contaAtual){alert("Faz Login pri
 function renderPerfil(){
   if(!contaAtual) return; const c=contaAtual; const favs=(c.favoritos||[]); const hist=(c.historico||[]);
   const favAulas=aulas.filter(a=>favs.includes(a.id)); const histAulas=aulas.filter(a=>hist.includes(a.id));
-  document.getElementById("perfilConteudo").innerHTML=`<div class="perfil-card"><h2>👤 ${c.nome}</h2><p>${c.email}</p><p>📱 ${c.tel||""}</p><p>✅ Conta ativa</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
+  document.getElementById("perfilConteudo").innerHTML=`<div class="perfil-card"><h2>👤 ${esc(c.nome)}</h2><p>${esc(c.email)}</p><p>📱 ${esc(c.tel||"")}</p><p>✅ Conta ativa</p><p class="small" style="color:#fff">Curso: ${esc(cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso")}</p></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="info-box" style="text-align:center"><h3>${hist.length}</h3><p>Aulas Lidas</p></div><div class="info-box" style="text-align:center"><h3>❤️ ${favs.length}</h3><p>Favoritas</p></div></div>
-  <div class="info-box"><h3>📖 Histórico</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${a.titulo}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula.</p>"}</div>
-  <div class="info-box"><h3>❤️ Favoritos</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${a.titulo}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
+  <div class="info-box"><h3>📖 Histórico</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${esc(a.titulo)}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula.</p>"}</div>
+  <div class="info-box"><h3>❤️ Favoritos</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${esc(a.titulo)}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
   <button class="btn btn-red" style="width:100%" onclick="terminarSessao()">⏻ Terminar Sessão</button>`;
 }
 window.marcarLida=async function(aulaId){ if(!contaAtual) return alert("Faz Login primeiro!"); let hist=contaAtual.historico||[]; if(!hist.includes(aulaId)) hist.push(aulaId); contaAtual.historico=hist; await updateDoc(doc(db,"contas",contaAtual.id),{historico:hist}); renderAll(); alert("✅ Marcada como lida!"); };
@@ -234,13 +247,16 @@ async function criarPadroesSeVazio(){
     if(aSnap.empty){await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"I am, You are, He is, She is.",pdf:"",curso:"basico",data:Date.now()});}
     const frSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"frases"),s=>{un();res(s);});});
     if(frSnap.empty){const fr=[["NO WORRIES!","Sem problemas!","Quando alguém pede desculpa: No worries!"],["I'M DOWN!","Tô dentro!","Quando aceitas um plano"],["WAIT, WHAT?!","Peraí, o quê?!","Quando não entendeste"]]; for(let x of fr){await addDoc(collection(db,"frases"),{ingles:x[0],portugues:x[1],exemplo:x[2],data:Date.now()+Math.random()});}}
+    const inSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"iniciante"),s=>{un();res(s);});});
+    if(inSnap.empty){await addDoc(collection(db,"iniciante"),{titulo:"⭐ Começa Aqui - Saudações",texto:"Hello - Olá\nGood morning - Bom dia\nHow are you? - Como estás?",foto:"",ingles:"Hello\nGood morning",portugues:"Olá\nBom dia",exemplo:"Usa de manhã: Good morning!",data:Date.now()});}
   }catch(e){console.log(e);}
 }
 function aplicarFundo(){const h=document.getElementById("headerBg"); if(h) h.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;}
 window.abrirMenu=function(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");};
 window.fecharMenu=function(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");};
-window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); const el=document.getElementById(id); if(el) el.classList.add('active'); window.fecharMenu(); window.scrollTo({top:0,behavior:'smooth'}); renderAll(); if(id==='pPerfil') renderPerfil(); if(id==='pCursos') renderCursosNaul(); if(id==='pComent') renderMeusComent(); if(id==='pChat') renderChatAluno(); if(id==='pFrases') renderFrases();};
+window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); const el=document.getElementById(id); if(el) el.classList.add('active'); window.fecharMenu(); window.scrollTo({top:0,behavior:'smooth'}); renderAll(); if(id==='pPerfil') renderPerfil(); if(id==='pCursos') renderCursosNaul(); if(id==='pComent') renderMeusComent(); if(id==='pChat') renderChatAluno(); if(id==='pFrases') renderFrases(); if(id==='pIniciante') renderIniciante();};
 window.previewFoto=function(e){const f=e.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=function(ev){fotoTemp=ev.target.result; const im=document.getElementById("previewImg"); im.src=fotoTemp; im.style.display="block";}; r.readAsDataURL(f);};
+window.previewFotoInic=function(e){const f=e.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=function(ev){fotoInicTemp=ev.target.result; const im=document.getElementById("previewImgInic"); im.src=fotoInicTemp; im.style.display="block";}; r.readAsDataURL(f);};
 window.publicarPost=async function(){const t=document.getElementById("postTitulo").value; const txt=document.getElementById("postTexto").value; const link=document.getElementById("postFotoLink").value; const foto=fotoTemp||link||fundoAtual; if(!t&&!txt) return alert("Escreve título ou texto!"); await addDoc(collection(db,"posts"),{titulo:t||"Novidade",texto:txt,foto,data:Date.now()}); document.getElementById("postTitulo").value=""; document.getElementById("postTexto").value=""; document.getElementById("postFotoLink").value=""; fotoTemp=""; document.getElementById("previewImg").style.display="none"; alert("Publicado");};
 window.removerPost=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"posts",id));}};
 window.adicionarPergunta=async function(){ if(perguntas.length>=MAX_PERGUNTAS) return alert("Já tens 20 perguntas!"); const p=document.getElementById("qPergunta").value.trim(); const a=document.getElementById("qA").value.trim(); const b=document.getElementById("qB").value.trim(); const c=document.getElementById("qC").value.trim(); const d=document.getElementById("qD").value.trim(); const correta=Number(document.getElementById("qCorreta").value); if(!p||!a||!b||!c||!d) return alert("Preenche tudo!"); await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()}); document.getElementById("qPergunta").value=""; document.getElementById("qA").value=""; document.getElementById("qB").value=""; document.getElementById("qC").value=""; document.getElementById("qD").value=""; alert("Pergunta adicionada!");};
@@ -249,29 +265,41 @@ window.publicarAula=async function(){const t=document.getElementById("aulaTitulo
 window.removerAula=async function(id){if(confirm("Apagar aula?")){await deleteDoc(doc(db,"aulas",id));}};
 window.publicarFrase=async function(){const ing=document.getElementById("fraseIngles").value.trim(); const pt=document.getElementById("frasePortugues").value.trim(); const ex=document.getElementById("fraseExemplo").value.trim(); if(!ing||!pt) return alert("Escreve a frase em Inglês e em Português!"); await addDoc(collection(db,"frases"),{ingles:ing,portugues:pt,exemplo:ex,data:Date.now()}); document.getElementById("fraseIngles").value=""; document.getElementById("frasePortugues").value=""; document.getElementById("fraseExemplo").value=""; alert("Frase publicada!");};
 window.removerFrase=async function(id){if(confirm("Apagar frase?")) await deleteDoc(doc(db,"frases",id));};
+window.publicarIniciante=async function(){
+  const t=document.getElementById("inicTitulo").value.trim(); const txt=document.getElementById("inicTexto").value; const link=document.getElementById("inicFotoLink").value.trim(); const ingles=document.getElementById("inicIngles").value; const port=document.getElementById("inicPortugues").value; const ex=document.getElementById("inicExemplo").value; const foto=fotoInicTemp||link||"";
+  if(!t && !txt && !ingles) return alert("Escreve título ou texto ou frase!");
+  await addDoc(collection(db,"iniciante"),{titulo:t,texto:txt,foto,ingles,portugues:port,exemplo:ex,data:Date.now()});
+  ["inicTitulo","inicTexto","inicFotoLink","inicIngles","inicPortugues","inicExemplo"].forEach(id=>document.getElementById(id).value=""); fotoInicTemp=""; document.getElementById("previewImgInic").style.display="none"; alert("Publicado em INICIANTE!");
+};
+window.removerIniciante=async function(id){if(confirm("Apagar?")) await deleteDoc(doc(db,"iniciante",id));};
 function nomeCurso(c){return c==='basico'?'Curso Básico - 10mt':c==='intermediario'?'Curso Intermediário - 20mt':c==='medio'?'Curso Médio - 30mt':c==='avancado'?'Curso Avançado - 40mt':'Curso Básico - 10mt';}
 function renderFrases(){
-  const html=frases.map(f=>`<div class="frase-card"><b style="color:#38bdf8">${f.ingles}</b><br><span style="color:#22c55e;font-weight:bold">${f.portugues}</span>${f.exemplo?`<br><span class="small">💡 ${f.exemplo}</span>`:""}</div>`).join("")||"<p class='small'>Ainda não há frases.</p>";
+  const html=frases.map(f=>`<div class="frase-card"><b style="color:#38bdf8">${esc(f.ingles)}</b>\n<span style="color:#22c55e;font-weight:bold">${esc(f.portugues)}</span>${f.exemplo?`\n<span class="small">💡 ${esc(f.exemplo)}</span>`:""}</div>`).join("")||"<p class='small'>Ainda não há frases.</p>";
   const el=document.getElementById("listaFrases"); if(el) el.innerHTML=html;
   const home=document.getElementById("frasesHome"); if(home) home.innerHTML=html;
-  const adm=document.getElementById("listaFrasesAdmin"); if(adm) adm.innerHTML=frases.map(f=>`<div class="list-item"><div><b>${f.ingles}</b><br><span class="small">${f.portugues}</span></div><button onclick="removerFrase('${f.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  const adm=document.getElementById("listaFrasesAdmin"); if(adm) adm.innerHTML=frases.map(f=>`<div class="list-item"><div><b>${esc(f.ingles)}</b><br><span class="small">${esc(f.portugues)}</span></div><button onclick="removerFrase('${f.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+}
+function renderIniciante(){
+  const html=iniciantes.map(p=>`<div class="iniciante-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${esc(p.titulo)}</h3>${p.texto?`<p>${esc(p.texto)}</p>`:""}${p.ingles?`<p style="color:#38bdf8;font-weight:bold">${esc(p.ingles)}</p>`:""}${p.portugues?`<p style="color:#22c55e;font-weight:bold">${esc(p.portugues)}</p>`:""}${p.exemplo?`<p class="small">💡 ${esc(p.exemplo)}</p>`:""}</div></div>`).join("")||"<p class='small'>Nenhum conteúdo de Iniciante ainda.</p>";
+  const el=document.getElementById("inicianteLista"); if(el) el.innerHTML=html;
+  const adm=document.getElementById("listaInicianteAdmin"); if(adm) adm.innerHTML=iniciantes.map(p=>`<div class="list-item"><div><b>${esc(p.titulo)}</b></div><button onclick="removerIniciante('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 window.iniciarTeste=function(){ if(!contaAtual){alert("🔒 Faz Login primeiro!"); openModal('loginAlunoModal'); return;} if(perguntas.length===0) return alert("Ainda não há perguntas."); indiceAtual=0; respostasAluno=[]; escolhaAtual=-1; document.getElementById("resultadoArea").style.display="none"; document.getElementById("testeArea").style.display="block"; mostrarPergunta(); };
-function mostrarPergunta(){const q=perguntas[indiceAtual]; if(!q) return; document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`; document.getElementById("perguntaTexto").textContent=q.pergunta; escolhaAtual=-1; document.getElementById("msgTeste").textContent=""; const letras=["A","B","C","D"]; document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${op}</button>`).join("");}
+function mostrarPergunta(){const q=perguntas[indiceAtual]; if(!q) return; document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`; document.getElementById("perguntaTexto").textContent=q.pergunta; escolhaAtual=-1; document.getElementById("msgTeste").textContent=""; const letras=["A","B","C","D"]; document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${esc(op)}</button>`).join("");}
 window.escolherOpcao=function(i){escolhaAtual=i; document.querySelectorAll(".opt").forEach((b,idx)=>{b.classList.toggle("sel",idx===i);});};
 window.seguirPergunta=function(){ if(escolhaAtual===-1) return document.getElementById("msgTeste").textContent="Escolhe uma opção primeiro!"; respostasAluno[indiceAtual]=escolhaAtual; if(indiceAtual<perguntas.length-1){indiceAtual++; mostrarPergunta();} else{mostrarResultado();} };
-function mostrarResultado(){document.getElementById("testeArea").style.display="none"; let certas=0; let falhasHtml=""; perguntas.forEach((q,i)=>{const acertou=respostasAluno[i]===q.correta; if(acertou) certas++; else{const letras=["A","B","C","D"]; falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${q.pergunta}</b><br><span style="color:#f87171">Tua: ${letras[respostasAluno[i]]||"?"} - ${q.opcoes[respostasAluno[i]]||""}</span><br><span style="color:#4ade80">✅ Correta: ${letras[q.correta]} - ${q.opcoes[q.correta]}</span></div>`;}}); const total=perguntas.length; const perc=Math.round((certas/total)*100); const cor=perc>=50?"#22c55e":"#ef4444"; document.getElementById("resultadoArea").style.display="block"; document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3>Resultado: <span style="color:${cor}">${perc}%</span></h3><p>Acertaste <b>${certas}</b> de <b>${total}</b></p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div>${falhasHtml}`;}
+function mostrarResultado(){document.getElementById("testeArea").style.display="none"; let certas=0; let falhasHtml=""; perguntas.forEach((q,i)=>{const acertou=respostasAluno[i]===q.correta; if(acertou) certas++; else{const letras=["A","B","C","D"]; falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${esc(q.pergunta)}</b><br><span style="color:#f87171">Tua: ${letras[respostasAluno[i]]||"?"} - ${esc(q.opcoes[respostasAluno[i]]||"")}</span><br><span style="color:#4ade80">✅ Correta: ${letras[q.correta]} - ${esc(q.opcoes[q.correta])}</span></div>`;}}); const total=perguntas.length; const perc=Math.round((certas/total)*100); const cor=perc>=50?"#22c55e":"#ef4444"; document.getElementById("resultadoArea").style.display="block"; document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3>Resultado: <span style="color:${cor}">${perc}%</span></h3><p>Acertaste <b>${certas}</b> de <b>${total}</b></p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div>${falhasHtml}`;}
 function renderPosts(){
-  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
+  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
   document.getElementById("postsHome").innerHTML=html; document.getElementById("postsPage").innerHTML=html;
   const fp=document.getElementById("frasesPosts"); if(fp) fp.innerHTML=html;
-  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${esc(p.titulo)}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 function aulaHTML(a){
   const favs=contaAtual?.favoritos||[]; const hist=contaAtual?.historico||[];
   let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`;} else{pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF / Livro</a>`;}}
   const isFav=favs.includes(a.id); const isLida=hist.includes(a.id);
-  return `<div class="aula-card"><span class="small">📚 ${nomeCurso(a.curso)}</span><h3 style="color:#38bdf8">${isLida?"✅ ":""}${a.titulo} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada":"🤍 Favoritar"}</button></div></div>`;
+  return `<div class="aula-card"><span class="small">📚 ${nomeCurso(a.curso)}</span><h3 style="color:#38bdf8">${isLida?"✅ ":""}${esc(a.titulo)} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${esc(a.texto||"")}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada":"🤍 Favoritar"}</button></div></div>`;
 }
 function renderAulas(){
   const temConta=!!contaAtual;
@@ -281,7 +309,7 @@ function renderAulas(){
   if(bloqueioAula){ if(temConta){bloqueioAula.style.display="none"; conteudoAula.style.display="block";} else {bloqueioAula.style.display="block"; conteudoAula.style.display="none";}}
   if(!temConta) return;
   document.getElementById("aulasLista").innerHTML=aulas.map(a=>aulaHTML(a)).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
-  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">📚 ${nomeCurso(a.curso)}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${esc(a.titulo)}</b><br><span class="small">📚 ${nomeCurso(a.curso)}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 function atualizarBotoesInscrever(){
   const a=meuAluno(); const jaTemConta=!!a;
@@ -294,16 +322,16 @@ function atualizarBotoesInscrever(){
 }
 function renderCursos(){
   const grid=document.getElementById("cursosGrid"); const sel=document.getElementById("cursoEscolhido"); if(!grid) return; grid.innerHTML=""; if(sel) sel.innerHTML="";
-  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="openModal('loginAlunoModal')">Login / Criar Conta</button></div>`; if(sel) sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
-  document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${esc(c.titulo)}</h3><p>${esc(c.desc)}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="openModal('loginAlunoModal')">Login / Criar Conta</button></div>`; if(sel) sel.innerHTML+=`<option value="${c.id}">${esc(c.titulo)} - ${c.preco} MZN</option>`;});
+  document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${esc(c.titulo)}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
-  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso"; return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b><br><span class="small">${a.email||''} • 📱 ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px"><button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
+  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso"; return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${esc(a.nome)}</b><br><span class="small">${esc(a.email||'')} • 📱 ${esc(a.tel||'')} • ${esc(cursoNome)}</span></div><div style="display:flex;gap:6px;margin-top:8px"><button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
   document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste. Máximo 20.`;
   document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 20 perguntas`;
-  document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${q.pergunta}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${q.opcoes[q.correta]}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
+  document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${esc(q.pergunta)}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${esc(q.opcoes[q.correta])}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
   atualizarBotoesInscrever();
 }
-function renderAll(){renderCursos(); renderPosts(); renderAulas(); renderFrases(); aplicarFundo(); renderComentariosAdmin(); renderChatAdminSelect(); if(document.getElementById("pPerfil")?.classList.contains("active")) renderPerfil();}
+function renderAll(){renderCursos(); renderPosts(); renderAulas(); renderFrases(); renderIniciante(); aplicarFundo(); renderComentariosAdmin(); renderChatAdminSelect(); if(document.getElementById("pPerfil")?.classList.contains("active")) renderPerfil();}
 window.openModal=function(id){document.getElementById(id).classList.add("active");};
 window.closeModal=function(id){document.getElementById(id).classList.remove("active");};
 window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim(); if(s===SENHA_ADMIN){window.closeModal('loginModal'); window.openModal('adminModal'); document.getElementById("erroLogin").textContent=""; document.getElementById("senhaAdmin").value=""; renderAll();} else{document.getElementById("erroLogin").textContent="Senha errada";}};
@@ -318,15 +346,10 @@ onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=s
 onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{perguntas=snap.docs.map(d=>({id:d.id,...d.data()})); renderAll();});
 onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{aulas=snap.docs.map(d=>({id:d.id,...d.data()})); renderAll();});
 onSnapshot(query(collection(db,"frases"),orderBy("data","desc")),(snap)=>{frases=snap.docs.map(d=>({id:d.id,...d.data()})); renderFrases();});
+onSnapshot(query(collection(db,"iniciante"),orderBy("data","desc")),(snap)=>{iniciantes=snap.docs.map(d=>({id:d.id,...d.data()})); renderIniciante();});
 onSnapshot(query(collection(db,"comentarios"),orderBy("data","desc")),(snap)=>{comentarios=snap.docs.map(d=>({id:d.id,...d.data()})); renderComentariosAdmin(); renderMeusComent();});
 onSnapshot(query(collection(db,"chats"),orderBy("data","asc")),(snap)=>{chats=snap.docs.map(d=>({id:d.id,...d.data()})); renderChatAluno(); renderChatAdminSelect(); carregarChatAdmin();});
-onSnapshot(doc(db,"config","fundo"),(snap)=>{
-  if(snap.exists()){
-    fundoAtual=snap.data().url||FUNDO_PADRAO;
-    aplicarFundo();
-  }
-});
-
+onSnapshot(doc(db,"config","fundo"),(snap)=>{if(snap.exists()){fundoAtual=snap.data().url||FUNDO_PADRAO;aplicarFundo();}});
 tentarAutoLogin();
 renderAll();
 const SENHAS_CURSO={basico:'2006basi',intermediario:'Inter2007',medio:'2008med',avancado:'Avan2009'};
@@ -423,11 +446,11 @@ function renderMeusComent(){
   const el=document.getElementById('meusComent'); if(!el) return;
   if(!contaAtual){el.innerHTML="<p class='small'>Faz Login para veres os teus comentários.</p>"; return;}
   const meus=comentarios.filter(c=>c.email===contaAtual.email);
-  el.innerHTML="<h3>Os teus comentários</h3>"+(meus.length?meus.map(c=>`<div class="chat-msg">💬 ${c.texto}</div>`).join(""):"<p class='small'>Ainda não comentaste.</p>");
+  el.innerHTML="<h3>Os teus comentários</h3>"+(meus.length?meus.map(c=>`<div class="chat-msg">💬 ${esc(c.texto)}</div>`).join(""):"<p class='small'>Ainda não comentaste.</p>");
 }
 function renderComentariosAdmin(){
   const el=document.getElementById('listaComentariosAdmin'); if(!el) return;
-  el.innerHTML=comentarios.length?comentarios.map(c=>`<div class="list-item" style="flex-direction:column;align-items:flex-start"><b>${c.nome||"Aluno"} - ${c.tel||""}</b><span>${c.texto}</span><button onclick="removerComentario('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:6px 10px;border-radius:10px;cursor:pointer;margin-top:6px">Apagar</button></div>`).join(""):"<p class='small'>Nenhum comentário ainda.</p>";
+  el.innerHTML=comentarios.length?comentarios.map(c=>`<div class="list-item" style="flex-direction:column;align-items:flex-start"><b>${esc(c.nome||"Aluno")} - ${esc(c.tel||"")}</b><span>${esc(c.texto)}</span><button onclick="removerComentario('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:6px 10px;border-radius:10px;cursor:pointer;margin-top:6px">Apagar</button></div>`).join(""):"<p class='small'>Nenhum comentário ainda.</p>";
 }
 window.removerComentario=async function(id){if(confirm("Apagar comentário?")) await deleteDoc(doc(db,"comentarios",id));};
 window.enviarChat=async function(){
@@ -440,14 +463,14 @@ function renderChatAluno(){
   const box=document.getElementById('chatBox'); if(!box) return;
   if(!contaAtual){box.innerHTML="<p class='small'>Faz Login para conversares com o Admin.</p>"; return;}
   const meus=chats.filter(c=>c.alunoId===contaAtual.id);
-  box.innerHTML=meus.length?meus.map(c=>`<div class="chat-msg ${c.de==='aluno'?'me':'admin'}"><b>${c.de==='aluno'?'Tu':'Admin'}:</b> ${c.texto}</div>`).join(""):"<p class='small'>Nenhuma mensagem ainda.</p>";
+  box.innerHTML=meus.length?meus.map(c=>`<div class="chat-msg ${c.de==='aluno'?'me':'admin'}"><b>${c.de==='aluno'?'Tu':'Admin'}:</b> ${esc(c.texto)}</div>`).join(""):"<p class='small'>Nenhuma mensagem ainda.</p>";
   box.scrollTop=box.scrollHeight;
 }
 function renderChatAdminSelect(){
   const sel=document.getElementById('chatAlunoSelect'); if(!sel) return;
   const ids=[...new Set(chats.map(c=>c.alunoId))];
   alunos.forEach(a=>{if(!ids.includes(a.id)) ids.push(a.id);});
-  sel.innerHTML=`<option value="">Escolhe um aluno...</option>`+ids.map(id=>{const a=alunos.find(x=>x.id===id); return `<option value="${id}" ${chatAlunoSelecionado===id?"selected":""}>${a?a.nome:id} - ${a?a.tel||"":""}</option>`;}).join("");
+  sel.innerHTML=`<option value="">Escolhe um aluno...</option>`+ids.map(id=>{const a=alunos.find(x=>x.id===id); return `<option value="${id}" ${chatAlunoSelecionado===id?"selected":""}>${esc(a?a.nome:id)} - ${esc(a?a.tel||"":"")}</option>`;}).join("");
   if(!chatAlunoSelecionado && ids.length) chatAlunoSelecionado=ids[0];
 }
 window.carregarChatAdmin=function(){
@@ -455,7 +478,7 @@ window.carregarChatAdmin=function(){
   const box=document.getElementById('chatAdminBox'); if(!box) return;
   if(!chatAlunoSelecionado){box.innerHTML="<p class='small'>Escolhe um aluno.</p>"; return;}
   const msgs=chats.filter(c=>c.alunoId===chatAlunoSelecionado);
-  box.innerHTML=msgs.length?msgs.map(c=>`<div class="chat-msg ${c.de==='admin'?'me':'admin'}"><b>${c.de==='admin'?'Admin':'Aluno'}:</b> ${c.texto}</div>`).join(""):"<p class='small'>Nenhuma mensagem.</p>";
+  box.innerHTML=msgs.length?msgs.map(c=>`<div class="chat-msg ${c.de==='admin'?'me':'admin'}"><b>${c.de==='admin'?'Admin':'Aluno'}:</b> ${esc(c.texto)}</div>`).join(""):"<p class='small'>Nenhuma mensagem.</p>";
   box.scrollTop=box.scrollHeight;
 };
 window.enviarChatAdmin=async function(){
