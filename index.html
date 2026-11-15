@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAULANGUE TECH | Curso de Inglês</title>
-<meta name="description" content="NAULANGUE TECH - Curso de Inglês do Básico ao Avançado em Montepuez, Cabo Delgado. Aprende a falar, ler e escrever Inglês.">
-  <style>
+<style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#020617;color:#fff;overflow-x:hidden}
 header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg') center/cover no-repeat;padding:14px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;min-height:78px;border-bottom:3px solid #0ea5e9}
@@ -23,16 +22,13 @@ header{background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('https:
 .fechar{float:right;cursor:pointer;font-size:26px}
 .menu-item{display:block;background:#1e293b;padding:13px;border-radius:12px;margin-bottom:9px;color:#fff;text-decoration:none;font-weight:bold;cursor:pointer;border-left:4px solid #0ea5e9}
 .menu-item small{display:block;color:#94a3b8;font-weight:normal;font-size:12px;margin-top:3px}
-.menu-item.locked{opacity:.55;border-left-color:#f59e0b}
-.btn-admin-menu{display:block;width:100%;background:#000;color:#facc15;border:2px solid #facc15;padding:14px;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;letter-spacing:.5px;margin-top:18px;text-align:center}
-.btn-admin-menu small{display:block;color:#a8a29e;font-weight:normal;font-size:11px;margin-top:4px;letter-spacing:0}
+.btn-admin-menu{display:block;width:100%;background:#000;color:#facc15;border:2px solid #facc15;padding:14px;border-radius:12px;cursor:pointer;font-weight:900;font-size:14px;margin-top:18px;text-align:center}
+.btn-admin-menu small{display:block;color:#a8a29e;font-weight:normal;font-size:11px;margin-top:4px}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998}
 .overlay.show{display:block}
 .page{display:none;padding:18px}.page.active{display:block}
 .hero{min-height:220px;padding:28px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0 0 16px 16px;border-bottom:2px solid #0ea5e9}
 .hero h2{font-size:28px;line-height:1.05;text-transform:uppercase}.hero h2 b{color:#38bdf8}
-.hero p{margin:10px auto;max-width:600px;color:#e2e8f0;line-height:1.4;font-size:14px}
-.hero .btn{padding:10px 18px;font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:15px 0}
 .card{background:#0f172a;border:1px solid #1e293b;padding:20px;border-radius:16px}
 .card h3{color:#38bdf8;margin-bottom:8px}.card p{color:#cbd5e1;font-size:14px;line-height:1.5}
@@ -54,8 +50,6 @@ footer{text-align:center;padding:20px;color:#64748b}
 input[type=file]{background:#1e293b;padding:10px}
 .preview{width:100%;border-radius:12px;margin-top:8px;display:none}
 .admin-section{background:#1e293b;padding:15px;border-radius:14px;margin:12px 0;border:1px dashed #0ea5e9}
-.badge-pendente{background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:bold}
-.badge-aprovado{background:#22c55e;color:#fff;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:bold}
 .opt{display:block;width:100%;text-align:left;background:#1e293b;border:2px solid #334155;color:#fff;padding:14px;border-radius:12px;margin:8px 0;cursor:pointer;font-size:15px}
 .opt.sel{background:#0ea5e9;border-color:#fff;font-weight:bold}
 .aula-card{background:#0f172a;border:1px solid #334155;padding:18px;border-radius:14px;margin:10px 0}
@@ -63,26 +57,28 @@ input[type=file]{background:#1e293b;padding:10px}
 .admin-tab-btn.active{background:#0ea5e9;border-color:#fff}
 .perfil-card{background:linear-gradient(135deg,#0ea5e9,#1e40af);padding:20px;border-radius:16px;text-align:center;margin-bottom:12px}
 .tab-login{display:flex;gap:8px;margin:10px 0}.tab-login button{flex:1;padding:12px;border-radius:12px;border:2px solid #334155;background:#1e293b;color:#fff;font-weight:bold;cursor:pointer}.tab-login button.active{background:#0ea5e9;border-color:#fff}
+.chat-msg{background:#1e293b;padding:10px;border-radius:12px;margin:6px 0}
+.chat-msg.me{background:#0ea5e9;text-align:right}
+.chat-msg.admin{background:#334155}
+.frase-card{background:#0f172a;border:1px solid #334155;border-left:4px solid #22c55e;padding:16px;border-radius:14px;margin:10px 0}
 </style>
 </head>
 <body>
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 <div id="sidebar">
 <span class="fechar" onclick="fecharMenu()">×</span>
-<h3> MENU</h3>
-<a class="menu-item" onclick="showPage('home')"> 1. Início<small>Voltar para capa</small></a>
-<a class="menu-item" onclick="showPage('p1')"> 2. O que é Inglês?<small>O que é, para que serve</small></a>
-<a class="menu-item" onclick="showPage('p2')"> 3. O que vais aprender<small>Matérias do curso</small></a>
-<a class="menu-item" onclick="showPage('p3')"> 4. O que vais ser depois<small>Profissão e futuro</small></a>
-<a class="menu-item" onclick="showPage('p4')"> 5. Como funciona<small>Aulas, duração, certificado</small></a>
-<a class="menu-item" onclick="showPage('p5')"> 6. Gramática e Conversação<small>Verbs, Tenses, Speaking</small></a>
-<a class="menu-item" onclick="showPage('p6')"> 7. Preços e Pacotes<small>Ver cursos e preços</small></a>
-<a class="menu-item" onclick="showPage('p7')"> 8. Fotos e Novidades<small>Publicações do Admin</small></a>
-<a class="menu-item" onclick="showPage('p8')"> 9. Depoimentos<small>O que dizem os alunos</small></a>
-<a class="menu-item" onclick="showPage('p9')"> 10. Contacto<small>Fala connosco</small></a>
-<a class="menu-item locked" id="menuTeste" onclick="tentarAbrirAprendizagem('p10')"> 11. Área de Teste 🔒<small>Só para alunos APROVADOS</small></a>
-<a class="menu-item locked" id="menuAula" onclick="tentarAbrirAprendizagem('p11')"> 12. Sala de Aula 🔒<small>Só para alunos APROVADOS</small></a>
-<a class="menu-item" style="border-left-color:#facc15" onclick="abrirPerfil()"> 👤 Meu Perfil<small>Histórico e Favoritos</small></a>
+<h3>MENU</h3>
+<a class="menu-item" onclick="showPage('home')">1. Início<small>Voltar para capa</small></a>
+<a class="menu-item" onclick="showPage('p1')">2. O que é Inglês?<small>O que é, para que serve</small></a>
+<a class="menu-item" onclick="showPage('p2')">3. O que vais aprender<small>Matérias do curso</small></a>
+<a class="menu-item" onclick="showPage('p7')">8. Fotos e Novidades<small>Publicações do Admin</small></a>
+<a class="menu-item" style="border-left-color:#22c55e" onclick="showPage('pCursos')">📚 Cursos<small>Básico 10mt, Intermediário 20mt, Médio 30mt, Avançado 40mt</small></a>
+<a class="menu-item" style="border-left-color:#22c55e" onclick="showPage('pFrases')">💬 Frases do Dia a Dia<small>Fala como nativo + Publicidade</small></a>
+<a class="menu-item" style="border-left-color:#f59e0b" onclick="showPage('pComent')">💬 Comentário<small>O que deve melhorar no site?</small></a>
+<a class="menu-item" style="border-left-color:#a855f7" onclick="showPage('pChat')">💭 Conversa<small>Falar com Admin</small></a>
+<a class="menu-item" onclick="tentarAbrirAprendizagem('p10')">11. Área de Teste<small>20 perguntas</small></a>
+<a class="menu-item" onclick="tentarAbrirAprendizagem('p11')">12. Sala de Aula<small>Ver aulas</small></a>
+<a class="menu-item" style="border-left-color:#facc15" onclick="abrirPerfil()">👤 Meu Perfil<small>Histórico e Favoritos</small></a>
 <button class="btn" id="btnMenuInscrever" style="width:100%;margin-top:8px" onclick="fecharMenu();openModal('loginAlunoModal')">🔑 Login / Criar Conta</button>
 <button class="btn btn-red" id="btnMenuSair" style="width:100%;margin-top:8px;display:none" onclick="sairAluno()">⏻ Terminar Sessão</button>
 <div id="msgMenuAluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold;font-size:13px;text-align:center"></div>
@@ -90,340 +86,251 @@ input[type=file]{background:#1e293b;padding:10px}
 <button class="btn-admin-menu" id="btnAdminSecreto" style="display:none" onclick="fecharMenu();openModal('loginModal')">🔐 ÁREA ADMIN<small>Só para o dono</small></button>
 </div>
 <header id="headerBg">
-<div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo" id="logoSecreto" onclick="cliqueLogoSecreto()">NAULANGUE<br><span>TECH</span></div></div>
+<div class="left-top"><div class="hamburger" onclick="abrirMenu()">☰</div><div class="logo" onclick="cliqueLogoSecreto()">NAULANGUE<br><span>TECH</span></div></div>
 <div class="top-right">
 <button class="btn-inscrever" id="btnTopoInscrever" onclick="openModal('loginAlunoModal')">Login</button>
 <div id="msgAlunoAprovadoTopo" style="display:none;background:#22c55e;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
-<div id="msgAlunoPendenteTopo" style="display:none;background:#f59e0b;color:#000;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:bold"></div>
 </div>
-  </header>
-  <div class="page active" id="home">
-<div class="hero" id="heroBg">
-<h2>WELCOME TO NAULANGUE TECH <b>ENGLISH COURSE FROM</b><br>BASIC TO<br>ADVANCED</h2>
-<button class="btn" id="btnHeroInscrever" onclick="openModal('loginAlunoModal')">🔑 LOGIN / CRIAR CONTA</button>
+</header>
+<div class="page active" id="home">
+<div class="hero"><h2>WELCOME TO NAULANGUE TECH <b>ENGLISH COURSE FROM</b><br>BASIC TO<br>ADVANCED</h2>
+<button class="btn" id="btnHeroInscrever" onclick="openModal('loginAlunoModal')">🔑 LOGIN / CRIAR CONTA</button></div>
+<h3 style="margin:10px 0">Últimas Publicações do Admin</h3><div id="postsHome"></div>
+<h3 style="margin:10px 0">💬 Frases do Dia a Dia</h3><div id="frasesHome"></div>
 </div>
-<h3 style="margin:10px 0"> Últimas Publicações do Admin</h3>
-<div id="postsHome"></div>
-</div>
-<div class="page" id="p1"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que é Inglês?</h3><p>Inglês é a língua mais falada no mundo para trabalho, estudos, negócios e internet. Saber inglês abre portas para empregos, bolsas, viagens e ganhar dinheiro online.</p></div></div>
-<div class="page" id="p2"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que vais aprender</h3><p> 🇬🇧 Alfabeto e Pronúncia<br> 🗣️ Speaking - Conversação<br> 👂 Listening - Ouvir e entender<br> 📖 Reading - Leitura<br> ✍️ Writing - Escrita<br> 📚 Grammar - Verb To Be, Tenses, Phrasal Verbs<br> 💬 Vocabulário do dia a dia</p></div></div>
-<div class="page" id="p3"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> O que vais ser depois</h3><p> Tradutor / Intérprete<br> Professor de Inglês<br> Atendimento em Call Center<br> Trabalhar em ONG / Turismo / Hotel<br> Freelancer Online - Ganhar em Dólar<br> Trabalhar em Empresas Internacionais</p></div></div>
-<div class="page" id="p4"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Como funciona</h3><p> 1. Cria conta com Email ou Número + Password<br> 2. Faz Login com Email ou Número<br> 3. Aguarda aprovação do Admin<br> 4. Estuda, marca como lida e favorita aulas<br> Montepuez / Online - Suporte no WhatsApp</p></div></div>
-<div class="page" id="p5"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Gramática e Conversação</h3><p><b>Verb To Be:</b> I am, You are, He is...<br><b>Present Simple:</b> I speak English every day.<br><b>Past Simple:</b> I studied yesterday.<br><b>Future:</b> I will speak fluently.</p></div></div>
-<div class="page" id="p6"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
-<div class="page" id="p7"><button class="btn back" onclick="showPage('home')"> Voltar</button><h3> Fotos e Novidades</h3><div id="postsPage"></div></div>
-<div class="page" id="p8"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Depoimentos</h3><p>“Não sabia nada e hoje já falo inglês com confiança.” - Aluno<br>“O melhor curso de inglês de Montepuez.” - Aluna</p></div></div>
-<div class="page" id="p9"><button class="btn back" onclick="showPage('home')"> Voltar</button><div class="info-box"><h3> Contacto</h3><p> Montepuez - Cabo Delgado<br> NAULANGUE TECH - Curso de Inglês</p><button class="btn" id="btnP9Inscrever" onclick="openModal('loginAlunoModal')">🔑 Login / Criar Conta</button><div id="msgP9Aluno" style="display:none;padding:12px;border-radius:12px;margin-top:10px;font-weight:bold"></div></div></div>
-<div class="page" id="p10"><button class="btn back" onclick="showPage('home')"> Voltar</button>
-<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Área Bloqueada</h3><p id="textoBloqueioTeste">Só alunos APROVADOS podem fazer o teste.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
-<div id="conteudoTeste" style="display:none">
-<div class="info-box"><h3> Área de Teste - 20 Perguntas</h3><p id="testeInfo">Carregando perguntas...</p><button class="btn" onclick="iniciarTeste()"> Começar Teste</button></div>
-<div id="testeArea" style="display:none">
-<div class="info-box"><h3 id="perguntaTitulo">Pergunta 1</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div>
-</div>
-<div id="resultadoArea" style="display:none"></div>
-</div>
-</div>
-<div class="page" id="p11"><button class="btn back" onclick="showPage('home')"> Voltar</button>
-<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Sala Bloqueada</h3><p id="textoBloqueioAula">Só alunos APROVADOS podem ver as aulas.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
-<div id="conteudoAula" style="display:none"><h3> Sala de Aula</h3><p class="small">Clica numa aula para marcar como lida. Usa ❤️ para favoritar.</p><div id="aulasLista"></div></div>
-</div>
-<div class="page" id="pPerfil"><button class="btn back" onclick="showPage('home')"> Voltar</button><div id="perfilConteudo"></div></div>
-<footer>© 2026 NAULANGUE TECH curso de inglês| Montepuez - Curso de Inglês</footer>
-  <!-- ===== CURSOS - NAULANGUE TECH ===== -->
+<div class="page" id="p1"><button class="btn back" onclick="showPage('home')">Voltar</button><div class="info-box"><h3>O que é Inglês?</h3><p>Inglês é a língua mais falada no mundo para trabalho, estudos, negócios e internet.</p></div></div>
+<div class="page" id="p2"><button class="btn back" onclick="showPage('home')">Voltar</button><div class="info-box"><h3>O que vais aprender</h3><p>🇬🇧 Alfabeto e Pronúncia<br>🗣️ Speaking<br>👂 Listening<br>📖 Reading<br>✍️ Writing<br>📚 Grammar<br>💬 Vocabulário do dia a dia</p></div></div>
+<div class="page" id="p7"><button class="btn back" onclick="showPage('home')">Voltar</button><h3>Fotos e Novidades</h3><div id="postsPage"></div></div>
+<!-- CONTACTO REMOVIDO -->
+
+<div class="page" id="p10"><button class="btn back" onclick="showPage('home')">Voltar</button>
+<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Faz Login</h3><p id="textoBloqueioTeste">Faz Login para fazer o teste.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
+<div id="conteudoTeste" style="display:none"><div class="info-box"><h3>Área de Teste - 20 Perguntas</h3><p id="testeInfo"></p><button class="btn" onclick="iniciarTeste()">Começar Teste</button></div>
+<div id="testeArea" style="display:none"><div class="info-box"><h3 id="perguntaTitulo">Pergunta 1</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div></div><div id="resultadoArea" style="display:none"></div></div></div>
+
+<div class="page" id="p11"><button class="btn back" onclick="showPage('home')">Voltar</button>
+<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Faz Login</h3><p id="textoBloqueioAula">Faz Login para ver as aulas.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
+<div id="conteudoAula" style="display:none"><h3>Sala de Aula</h3><p class="small">Todas as aulas. Usa ❤️ para favoritar.</p><div id="aulasLista"></div></div></div>
+<div class="page" id="pPerfil"><button class="btn back" onclick="showPage('home')">Voltar</button><div id="perfilConteudo"></div></div>
+<div class="page" id="p6"><button class="btn back" onclick="showPage('home')">Voltar</button><h3>Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
+<footer>© 2026 NAULANGUE TECH | Montepuez - Curso de Inglês</footer>
+
+<!-- CURSOS COM PREÇO -->
 <div class="page" id="pCursos"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>Escolhe o teu curso</h3><p class="small">Cada curso tem 3 páginas. Na 1ª página tens Prática e Comprar.</p><div id="listaCursos"></div></div></div>
-<div class="page" id="pCursoDetalhe"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="cursoTitulo"></h3><p id="cursoPagInfo" class="small"></p><div id="cursoConteudo"></div><div id="cursoBotoes" style="display:flex;gap:8px;margin-top:10px"></div></div></div>
-<!-- ===== COMENTÁRIO ===== -->
-<div class="page" id="pComent"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 O que deve melhorar no site?</h3><p class="small">O teu comentário vai aparecer na área do Admin.</p><textarea id="comentText" rows="3" placeholder="Ex: O site devia ter mais vídeos..." style="width:100%;padding:12px;border-radius:12px;margin-top:10px"></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="enviarComentario()">Enviar comentário</button><div id="meusComent" style="margin-top:14px"></div></div></div>
-<!-- ===== CONVERSA ===== -->
-<div class="page" id="pChat"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💭 Conversa Aluno ↔ Admin</h3><p class="small">Visível por ti e pelo Admin.</p><div id="chatBox" style="height:220px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatInput" placeholder="Escreve a tua mensagem..." style="width:100%;padding:12px;border-radius:12px"><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChat()">Enviar</button></div></div>
-<div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Escolhe como queres entrar: com Email ou com Número.</p>
+<div class="page" id="pCursoDetalhe"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="cursoTitulo"></h3><p id="cursoPagInfo" class="small"></p><div id="cursoConteudo"></div><div id="cursoBotoes" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"></div><div id="cursoAulas" style="margin-top:14px"></div></div></div>
+
+<!-- FRASES - AO CLICAR VAI PARA OUTRA PÁGINA COM FRASES + PUBLICIDADE FOTOS E TEXTOS -->
+<div class="page" id="pFrases"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 Frases do Dia a Dia</h3><p class="small">Frases que fazem você soar menos como livro didático.</p><div id="listaFrases"></div><h3 style="margin-top:18px">📸 Publicidade - Fotos e Textos do Admin</h3><p class="small">Aqui também vês as publicações do Admin.</p><div id="frasesPosts"></div></div></div>
+
+<!-- COMENTÁRIO -->
+<div class="page" id="pComent"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 O que deve melhorar no site?</h3><p class="small">O teu comentário vai aparecer na área do Admin.</p><textarea id="comentText" rows="3" placeholder="Ex: O site devia ter mais vídeos..." style="width:100%;padding:12px;border-radius:12px;margin-top:10px;background:#1e293b;color:#fff;border:none"></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="enviarComentario()">Enviar comentário</button><div id="meusComent" style="margin-top:14px"></div></div></div>
+
+<!-- CONVERSA -->
+<div class="page" id="pChat"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💭 Conversa Aluno ↔ Admin</h3><p class="small">Visível por ti e pelo Admin.</p><div id="chatBox" style="height:260px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatInput" placeholder="Escreve a tua mensagem..." style="width:100%;padding:12px;border-radius:12px;background:#1e293b;color:#fff;border:none"><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChat()">Enviar</button></div></div>
+<div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Entra com Email ou Número. Entras logo, sem aprovação.</p>
 <div class="tab-login"><button id="btnLoginEmail" class="active" onclick="trocarTipoLogin('email')">📧 Email</button><button id="btnLoginTel" onclick="trocarTipoLogin('tel')">📱 Número</button></div>
-<input type="text" id="loginEmail" placeholder="Seu email ex: ana@gmail.com">
-<input type="tel" id="loginTel" placeholder="Seu número ex: 840000000" style="display:none">
-<input type="password" id="loginSenha" placeholder="Sua password">
-<button class="btn" style="width:100%" onclick="fazerLoginAluno()">Entrar</button>
-<p class="small" id="msgLoginAluno" style="color:#f87171;margin-top:8px"></p>
-<hr style="border-color:#334155;margin:16px 0">
-<p style="text-align:center">Ainda não tens conta?</p>
-<button class="btn btn-green" style="width:100%;margin-top:8px" onclick="closeModal('loginAlunoModal');openModal('criarContaModal')">➕ Criar Conta Grátis</button>
-</div></div>
-<div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Cria com Email e Número. Depois podes fazer Login com qualquer um dos dois.</p>
-<input type="text" id="cadNome" placeholder="Nome completo">
-<input type="email" id="cadEmail" placeholder="Seu email">
-<input type="password" id="cadSenha" placeholder="Cria uma password">
-<label class="small">Data de nascimento:</label><input type="date" id="cadNasc">
-<input type="tel" id="cadTel" placeholder="Seu número ex: 840000000">
-<label class="small">Escolhe o curso:</label><select id="cursoEscolhido"></select>
-<button class="btn btn-green" style="width:100%" onclick="criarConta()">Criar Minha Conta</button>
-<p class="small" id="msgCriarConta" style="color:#4ade80;margin-top:8px"></p>
-<p style="text-align:center;margin-top:10px"><a href="#" onclick="closeModal('criarContaModal');openModal('loginAlunoModal');return false" style="color:#38bdf8">Já tenho conta - Fazer Login</a></p>
-</div></div>
-<div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><p class="small">Só o dono entra aqui.</p><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
+<input type="text" id="loginEmail" placeholder="Seu email ex: ana@gmail.com"><input type="tel" id="loginTel" placeholder="Seu número ex: 840000000" style="display:none"><input type="password" id="loginSenha" placeholder="Sua password">
+<button class="btn" style="width:100%" onclick="fazerLoginAluno()">Entrar</button><p class="small" id="msgLoginAluno" style="color:#f87171;margin-top:8px"></p>
+<hr style="border-color:#334155;margin:16px 0"><p style="text-align:center">Ainda não tens conta?</p>
+<button class="btn btn-green" style="width:100%;margin-top:8px" onclick="closeModal('loginAlunoModal');openModal('criarContaModal')">➕ Criar Conta Grátis</button></div></div>
+<div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Crias e entras logo.</p>
+<input type="text" id="cadNome" placeholder="Nome completo"><input type="email" id="cadEmail" placeholder="Seu email"><input type="password" id="cadSenha" placeholder="Cria uma password"><label class="small">Data de nascimento:</label><input type="date" id="cadNasc"><input type="tel" id="cadTel" placeholder="Seu número ex: 840000000"><label class="small">Escolhe o curso:</label><select id="cursoEscolhido"></select>
+<button class="btn btn-green" style="width:100%" onclick="criarConta()">Criar Minha Conta</button><p class="small" id="msgCriarConta" style="color:#4ade80;margin-top:8px"></p></div></div>
+<div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin</button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
+
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
-<span class="close" onclick="closeModal('adminModal')">×</span>
-<h2> Painel Admin - NAULANGUE TECH</h2>
-<p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase...</p>
+<span class="close" onclick="closeModal('adminModal')">×</span><h2>Painel Admin - NAULANGUE TECH</h2><p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase...</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0">
 <button class="admin-tab-btn active" onclick="showAdminTab('tabCursos',this)">📚 Cursos</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabAlunos',this)">🧑‍🎓 Alunos</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabPosts',this)">📸 Publicar</button>
 <button class="admin-tab-btn" onclick="showAdminTab('tabPerguntas',this)">✏️ Perguntas</button>
-<button class="admin-tab-btn" style="grid-column:span 2" onclick="showAdminTab('tabAulas',this)">📚 Aulas</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabAulas',this)">📚 Aulas</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabFrases',this)">💬 Frases</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabComentarios',this)">💬 Comentários</button>
+<button class="admin-tab-btn" onclick="showAdminTab('tabChatAdmin',this)">💭 Conversas</button>
 </div>
-<div id="tabCursos" class="admin-tab"><div class="admin-section"><h3> Adicionar Curso</h3>
-<input type="text" id="novoTitulo" placeholder="Nome do curso"><textarea id="novoDesc" placeholder="Descrição..."></textarea><input type="number" id="novoPreco" placeholder="Preço MZN">
-<button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button><h3 style="margin-top:18px"> Meus Cursos</h3><div id="listaAdmin"></div></div></div>
-<div id="tabAlunos" class="admin-tab" style="display:none"><div class="admin-section"><h3> Alunos / Contas (<span id="totalAlunos">0</span>)</h3><div id="listaAlunos"></div></div></div>
-<div id="tabPosts" class="admin-tab" style="display:none"><div class="admin-section"><h3> + Publicar Foto e Escrever</h3>
-<input type="text" id="postTitulo" placeholder="Título"><textarea id="postTexto" placeholder="Escreve aqui..."></textarea>
-<input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)"><img id="previewImg" class="preview">
-<input type="text" id="postFotoLink" placeholder="https://...jpg">
-<button class="btn btn-green" style="width:100%" onclick="publicarPost()"> Publicar Foto + Texto</button><div id="listaPostsAdmin"></div></div></div>
-<div id="tabPerguntas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3> ✏️ Criar Pergunta do Teste - Máx 20</h3>
-<p class="small">Cria 20 perguntas. Escolhe qual é a correta.</p>
-<textarea id="qPergunta" placeholder="Pergunta ex: How do you say 'Obrigado' in English?"></textarea>
-<input type="text" id="qA" placeholder="Opção A"><input type="text" id="qB" placeholder="Opção B"><input type="text" id="qC" placeholder="Opção C"><input type="text" id="qD" placeholder="Opção D">
-<label class="small">Qual é a correta?</label>
-<select id="qCorreta"><option value="0">A é correta</option><option value="1">B é correta</option><option value="2">C é correta</option><option value="3">D é correta</option></select>
-<button class="btn btn-orange" style="width:100%" onclick="adicionarPergunta()">Adicionar Pergunta</button>
-<p class="small" id="totalPerguntas">Total: 0 / 20 perguntas</p><div id="listaPerguntas"></div></div></div>
-<div id="tabAulas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3> 📚 Publicar Aula</h3>
-<input type="text" id="aulaTitulo" placeholder="Título da aula ex: Aula 1 - Verb To Be">
-<textarea id="aulaTexto" placeholder="Escreve a aula aqui..."></textarea>
-<label class="small">Link do PDF / Livro via link:</label><input type="text" id="aulaPdf" placeholder="https://...pdf">
-<label class="small">Ou enviar PDF:</label><input type="file" id="aulaPdfFile" accept="application/pdf">
-<button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button><div id="listaAulasAdmin"></div></div></div>
+<div id="tabCursos" class="admin-tab"><div class="admin-section"><h3>Adicionar Curso</h3><input type="text" id="novoTitulo" placeholder="Nome do curso"><textarea id="novoDesc" placeholder="Descrição..."></textarea><input type="number" id="novoPreco" placeholder="Preço MZN"><button class="btn" style="width:100%" onclick="adicionarCurso()">Adicionar Curso</button><h3 style="margin-top:18px">Meus Cursos</h3><div id="listaAdmin"></div></div></div>
+<div id="tabAlunos" class="admin-tab" style="display:none"><div class="admin-section"><h3>Alunos / Contas (<span id="totalAlunos">0</span>)</h3><p class="small">Sem aprovação. Quem cria conta entra logo.</p><div id="listaAlunos"></div></div></div>
+<div id="tabPosts" class="admin-tab" style="display:none"><div class="admin-section"><h3>+ Publicar Foto e Escrever</h3><input type="text" id="postTitulo" placeholder="Título"><textarea id="postTexto" placeholder="Escreve aqui..."></textarea><input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)"><img id="previewImg" class="preview"><input type="text" id="postFotoLink" placeholder="https://...jpg"><button class="btn btn-green" style="width:100%" onclick="publicarPost()">Publicar Foto + Texto</button><div id="listaPostsAdmin"></div></div></div>
+<div id="tabPerguntas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3>✏️ Criar Pergunta - Máx 20</h3><textarea id="qPergunta" placeholder="Pergunta"></textarea><input type="text" id="qA" placeholder="Opção A"><input type="text" id="qB" placeholder="Opção B"><input type="text" id="qC" placeholder="Opção C"><input type="text" id="qD" placeholder="Opção D"><label class="small">Qual é a correta?</label><select id="qCorreta"><option value="0">A é correta</option><option value="1">B é correta</option><option value="2">C é correta</option><option value="3">D é correta</option></select><button class="btn btn-orange" style="width:100%" onclick="adicionarPergunta()">Adicionar Pergunta</button><p class="small" id="totalPerguntas"></p><div id="listaPerguntas"></div></div></div>
+<div id="tabAulas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>📚 Publicar Aula</h3><input type="text" id="aulaTitulo" placeholder="Título da aula"><textarea id="aulaTexto" placeholder="Escreve a aula aqui..."></textarea><label class="small">Escolhe onde publicar a aula:</label><select id="aulaCurso"><option value="basico">Curso Básico - 10mt</option><option value="intermediario">Curso Intermediário - 20mt</option><option value="medio">Curso Médio - 30mt</option><option value="avancado">Curso Avançado - 40mt</option><option value="todos">Todos os cursos</option></select><input type="text" id="aulaPdf" placeholder="https://...pdf"><input type="file" id="aulaPdfFile" accept="application/pdf"><button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button><div id="listaAulasAdmin"></div></div></div>
+<div id="tabFrases" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>💬 Publicar Frase do Dia a Dia</h3><input type="text" id="fraseIngles" placeholder="Frase em Inglês ex: NO WORRIES!"><input type="text" id="frasePortugues" placeholder="Tradução ex: Sem problemas!"><textarea id="fraseExemplo" placeholder="Exemplo / Quando usar"></textarea><button class="btn btn-green" style="width:100%" onclick="publicarFrase()">Publicar Frase</button><div id="listaFrasesAdmin" style="margin-top:12px"></div></div></div>
+<div id="tabComentarios" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3>💬 Comentários dos Alunos</h3><div id="listaComentariosAdmin"></div></div></div>
+<div id="tabChatAdmin" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#a855f7"><h3>💭 Conversas Aluno ↔ Admin</h3><select id="chatAlunoSelect" onchange="carregarChatAdmin()" style="width:100%;padding:12px;border-radius:10px;background:#0f172a;color:#fff;border:none"></select><div id="chatAdminBox" style="height:220px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatAdminInput" placeholder="Responder ao aluno..."><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChatAdmin()">Enviar como Admin</button></div></div>
 <button class="btn btn-red" style="width:100%;margin-top:15px" onclick="sairAdmin()">Sair do Admin</button>
 </div></div>
-<script type="importmap">
-{"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"}}
-</script>
+<script type="importmap">{"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"}}</script>
 <script type="module">
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, setDoc, getDoc, getDocs, query, orderBy, where } from "firebase/firestore";
-const firebaseConfig = {
-  apiKey: "AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",
-  authDomain: "naulangue-tech.firebaseapp.com",
-  projectId: "naulangue-tech",
-  storageBucket: "naulangue-tech.firebasestorage.app",
-  messagingSenderId: "249554572949",
-  appId: "1:249554572949:web:b7d7ef8f38b708806e6d9c"
-};
-const app = initializeApp(firebaseConfig); const db = getFirestore(app);
+const firebaseConfig={apiKey:"AIzaSyCnRE9ENOBTN2-t36c42KUsAStnaP1kZ2A",authDomain:"naulangue-tech.firebaseapp.com",projectId:"naulangue-tech",storageBucket:"naulangue-tech.firebasestorage.app",messagingSenderId:"249554572949",appId:"1:249554572949:web:b7d7ef8f38b708806e6d9c"};
+const app=initializeApp(firebaseConfig); const db=getFirestore(app);
 const SENHA_ADMIN="naulangue"; const FUNDO_PADRAO="https://i.postimg.cc/hGTwL7Kv/IMG-20261111-WA0351.jpg";
 const MAX_PERGUNTAS=20;
 let fotoTemp=""; let cursos=[]; let alunos=[]; let posts=[]; let fundoAtual=FUNDO_PADRAO;
-let perguntas=[]; let aulas=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
+let perguntas=[]; let aulas=[]; let frases=[]; let indiceAtual=0; let respostasAluno=[]; let escolhaAtual=-1;
 let contaAtual=null; let cliquesLogo=0; let tempoLogo=0; let tipoLoginAtual="email";
-function normalizarTel(t){ return (t||"").toString().replace(/\D/g,"").replace(/^258/,"").slice(-9); }
-function salvarSessao(c){ localStorage.setItem("naulangue_email", c.email||""); localStorage.setItem("naulangue_tel", c.tel||""); localStorage.setItem("naulangue_senha", c.senha||""); localStorage.setItem("naulangue_id", c.id||""); }
-function limparSessao(){ localStorage.removeItem("naulangue_email"); localStorage.removeItem("naulangue_tel"); localStorage.removeItem("naulangue_senha"); localStorage.removeItem("naulangue_id"); localStorage.removeItem("meu_email_aprovado"); localStorage.removeItem("minha_senha"); }
-window.cliqueLogoSecreto=function(){ const agora=Date.now(); if(agora-tempoLogo>2000) cliquesLogo=0; tempoLogo=agora; cliquesLogo++; if(cliquesLogo>=5){ cliquesLogo=0; const b=document.getElementById("btnAdminSecreto"); if(b.style.display==="none"){ b.style.display="block"; alert("🔐 Modo Admin desbloqueado! Abre o menu ☰"); } else { b.style.display="none"; } } };
-function meuAluno(){ return contaAtual; }
-function estouAprovado(){ return contaAtual && contaAtual.status==="aprovado"; }
-function estouPendente(){ return contaAtual && contaAtual.status!=="aprovado"; }
-window.trocarTipoLogin=function(tipo){ tipoLoginAtual=tipo; document.getElementById("btnLoginEmail").classList.toggle("active", tipo==="email"); document.getElementById("btnLoginTel").classList.toggle("active", tipo==="tel"); document.getElementById("loginEmail").style.display = tipo==="email" ? "block" : "none"; document.getElementById("loginTel").style.display = tipo==="tel" ? "block" : "none"; document.getElementById("msgLoginAluno").textContent=""; };
+let comentarios=[]; let chats=[]; let chatAlunoSelecionado=null;
+function normalizarTel(t){return (t||"").toString().replace(/\D/g,"").replace(/^258/,"").slice(-9);}
+function salvarSessao(c){localStorage.setItem("naulangue_email",c.email||"");localStorage.setItem("naulangue_tel",c.tel||"");localStorage.setItem("naulangue_senha",c.senha||"");localStorage.setItem("naulangue_id",c.id||"");}
+function limparSessao(){localStorage.removeItem("naulangue_email");localStorage.removeItem("naulangue_tel");localStorage.removeItem("naulangue_senha");localStorage.removeItem("naulangue_id");}
+window.cliqueLogoSecreto=function(){const agora=Date.now();if(agora-tempoLogo>2000)cliquesLogo=0;tempoLogo=agora;cliquesLogo++;if(cliquesLogo>=5){cliquesLogo=0;const b=document.getElementById("btnAdminSecreto");if(b.style.display==="none"){b.style.display="block";alert("🔐 Modo Admin desbloqueado! Abre o menu ☰");}else{b.style.display="none";}}};
+function meuAluno(){return contaAtual;}
+function estouAprovado(){return !!contaAtual;}
+function estouPendente(){return false;}
+window.trocarTipoLogin=function(tipo){tipoLoginAtual=tipo;document.getElementById("btnLoginEmail").classList.toggle("active",tipo==="email");document.getElementById("btnLoginTel").classList.toggle("active",tipo==="tel");document.getElementById("loginEmail").style.display=tipo==="email"?"block":"none";document.getElementById("loginTel").style.display=tipo==="tel"?"block":"none";document.getElementById("msgLoginAluno").textContent="";};
 window.criarConta=async function(){
   const nome=document.getElementById("cadNome").value.trim(); const email=document.getElementById("cadEmail").value.trim().toLowerCase(); const senha=document.getElementById("cadSenha").value; const nasc=document.getElementById("cadNasc").value; const telRaw=document.getElementById("cadTel").value.trim(); const tel=normalizarTel(telRaw); const cursoId=document.getElementById("cursoEscolhido").value;
-  if(!nome||!email||!senha||!nasc||!tel) return alert("Preenche tudo! Email e Número são obrigatórios.");
+  if(!nome||!email||!senha||!nasc||!tel) return alert("Preenche tudo!");
   if(senha.length<4) return alert("Password tem que ter no mínimo 4 caracteres!");
   if(tel.length<9) return alert("Número inválido. Ex: 840000000");
   try{
-    const qEmail = await getDocs(query(collection(db,"contas"), where("email","==",email)));
-    if(!qEmail.empty){ const c={id:qEmail.docs[0].id,...qEmail.docs[0].data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); closeModal('criarContaModal'); renderAll(); alert("✅ Já tens conta com esse email! Entraste automaticamente, "+c.nome); return; } else { alert("Esse email já tem conta! Faz Login com a password certa."); closeModal('criarContaModal'); openModal('loginAlunoModal'); return; } }
-    const qTel = await getDocs(query(collection(db,"contas"), where("tel","==",tel)));
-    if(!qTel.empty){ alert("Esse número já tem conta! Faz Login com o número."); closeModal('criarContaModal'); openModal('loginAlunoModal'); trocarTipoLogin('tel'); return; }
-    const ref = await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[],data:Date.now()});
-    contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"pendente",favoritos:[],historico:[]};
-    salvarSessao(contaAtual);
-    document.getElementById("msgCriarConta").textContent="Conta criada! Aguarda aprovação.";
-    setTimeout(()=>{ closeModal('criarContaModal'); renderAll(); alert("✅ Conta criada, "+nome+"! Já estás dentro. Podes entrar depois com Email OU Número, sem criar de novo."); },800);
-  }catch(e){ alert("Erro ao criar conta. Verifica net e tenta de novo. "+e.message); }
+    const qEmail=await getDocs(query(collection(db,"contas"),where("email","==",email)));
+    if(!qEmail.empty){const c={id:qEmail.docs[0].id,...qEmail.docs[0].data()}; if(c.senha===senha){contaAtual=c;salvarSessao(c);closeModal('criarContaModal');renderAll();showPage('home');alert("✅ Já tens conta! Entraste logo, "+c.nome);return;}else{alert("Esse email já tem conta! Faz Login.");closeModal('criarContaModal');openModal('loginAlunoModal');return;}}
+    const qTel=await getDocs(query(collection(db,"contas"),where("tel","==",tel)));
+    if(!qTel.empty){alert("Esse número já tem conta! Faz Login.");closeModal('criarContaModal');openModal('loginAlunoModal');trocarTipoLogin('tel');return;}
+    const ref=await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"aprovado",favoritos:[],historico:[],data:Date.now()});
+    contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"aprovado",favoritos:[],historico:[]}; salvarSessao(contaAtual);
+    document.getElementById("msgCriarConta").textContent="Conta criada! Entras logo.";
+    setTimeout(()=>{closeModal('criarContaModal');renderAll();showPage('home');alert("✅ Conta criada, "+nome+"! Já estás dentro.");},600);
+  }catch(e){alert("Erro ao criar conta. "+e.message);}
 };
 window.fazerLoginAluno=async function(){
-  const senha=document.getElementById("loginSenha").value;
-  let campo="", valor="";
-  if(tipoLoginAtual==="email"){ valor=document.getElementById("loginEmail").value.trim().toLowerCase(); campo="email"; if(!valor||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!"; }
-  else { valor=normalizarTel(document.getElementById("loginTel").value.trim()); campo="tel"; if(!valor||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve número e password!"; if(valor.length<9) return document.getElementById("msgLoginAluno").textContent="Número inválido!"; }
+  const senha=document.getElementById("loginSenha").value; let campo="",valor="";
+  if(tipoLoginAtual==="email"){valor=document.getElementById("loginEmail").value.trim().toLowerCase();campo="email"; if(!valor||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve email e password!";}
+  else{valor=normalizarTel(document.getElementById("loginTel").value.trim());campo="tel"; if(!valor||!senha) return document.getElementById("msgLoginAluno").textContent="Escreve número e password!";}
   try{
-    const snap = await getDocs(query(collection(db,"contas"), where(campo,"==",valor)));
+    const snap=await getDocs(query(collection(db,"contas"),where(campo,"==",valor)));
     if(snap.empty) return document.getElementById("msgLoginAluno").textContent="Conta não encontrada. Cria conta primeiro!";
-    const d=snap.docs[0]; const c={id:d.id,...d.data()};
-    if(c.senha!==senha) return document.getElementById("msgLoginAluno").textContent="Password errada!";
-    contaAtual=c; salvarSessao(c);
-    closeModal('loginAlunoModal'); renderAll(); alert("Bem-vindo de volta, "+c.nome+"!");
-  }catch(e){ document.getElementById("msgLoginAluno").textContent="Erro de rede. Tenta de novo."; }
+    const d=snap.docs[0]; const c={id:d.id,...d.data()}; if(c.senha!==senha) return document.getElementById("msgLoginAluno").textContent="Password errada!";
+    contaAtual=c; salvarSessao(c); closeModal('loginAlunoModal'); renderAll(); showPage('home'); alert("Bem-vindo de volta, "+c.nome+"!");
+  }catch(e){document.getElementById("msgLoginAluno").textContent="Erro de rede. Tenta de novo.";}
 };
-window.sairAluno=function(){ contaAtual=null; limparSessao(); renderAll(); showPage('home'); alert("Sessão terminada. Podes fazer Login de novo com Email ou Número."); };
-window.terminarSessao=function(){ window.sairAluno(); };
+window.sairAluno=function(){contaAtual=null;limparSessao();renderAll();showPage('home');alert("Sessão terminada.");};
+window.terminarSessao=function(){window.sairAluno();};
 async function tentarAutoLogin(){
-  const email=localStorage.getItem("naulangue_email") || localStorage.getItem("meu_email_aprovado");
-  const tel=localStorage.getItem("naulangue_tel");
-  const senha=localStorage.getItem("naulangue_senha") || localStorage.getItem("minha_senha");
-  const idSalvo=localStorage.getItem("naulangue_id");
+  const email=localStorage.getItem("naulangue_email"); const tel=localStorage.getItem("naulangue_tel"); const senha=localStorage.getItem("naulangue_senha"); const idSalvo=localStorage.getItem("naulangue_id");
   if(!senha) return false;
   try{
-    if(idSalvo){ const d=await getDoc(doc(db,"contas",idSalvo)); if(d.exists()){ const c={id:d.id,...d.data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); renderAll(); return true; } } }
-    if(email){ const s=await getDocs(query(collection(db,"contas"), where("email","==",email))); if(!s.empty){ const d=s.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); renderAll(); return true; } } }
-    if(tel){ const s2=await getDocs(query(collection(db,"contas"), where("tel","==",normalizarTel(tel)))); if(!s2.empty){ const d=s2.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha){ contaAtual=c; salvarSessao(c); renderAll(); return true; } } }
-  }catch(e){ console.log("Auto-login offline, vou tentar quando ligar net", e); }
-  return false;
+    if(idSalvo){const d=await getDoc(doc(db,"contas",idSalvo)); if(d.exists()){const c={id:d.id,...d.data()}; if(c.senha===senha){contaAtual=c;salvarSessao(c);renderAll();return true;}}}
+    if(email){const s=await getDocs(query(collection(db,"contas"),where("email","==",email))); if(!s.empty){const d=s.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha){contaAtual=c;salvarSessao(c);renderAll();return true;}}}
+    if(tel){const s2=await getDocs(query(collection(db,"contas"),where("tel","==",normalizarTel(tel)))); if(!s2.empty){const d=s2.docs[0]; const c={id:d.id,...d.data()}; if(c.senha===senha){contaAtual=c;salvarSessao(c);renderAll();return true;}}}
+  }catch(e){console.log(e);} return false;
 }
-window.addEventListener("online", ()=>{ if(!contaAtual) tentarAutoLogin(); });
-window.abrirPerfil=function(){ fecharMenu(); if(!contaAtual){ alert("Faz Login primeiro para ver teu perfil!"); openModal('loginAlunoModal'); return; } showPage('pPerfil'); renderPerfil(); };
+window.abrirPerfil=function(){fecharMenu(); if(!contaAtual){alert("Faz Login primeiro!");openModal('loginAlunoModal');return;} showPage('pPerfil'); renderPerfil();};
 function renderPerfil(){
-  if(!contaAtual) return;
-  const c=contaAtual; const favs=(c.favoritos||[]); const hist=(c.historico||[]);
+  if(!contaAtual) return; const c=contaAtual; const favs=(c.favoritos||[]); const hist=(c.historico||[]);
   const favAulas=aulas.filter(a=>favs.includes(a.id)); const histAulas=aulas.filter(a=>hist.includes(a.id));
-  document.getElementById("perfilConteudo").innerHTML=`
-  <div class="perfil-card"><h2 style="font-size:30px">👤 ${c.nome}</h2><p>${c.email}</p><p>📱 ${c.tel||""}</p><p>${c.status==="aprovado"?"✅ APROVADO":"⏳ PENDENTE - Aguarda aprovação"}</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
+  document.getElementById("perfilConteudo").innerHTML=`<div class="perfil-card"><h2>👤 ${c.nome}</h2><p>${c.email}</p><p>📱 ${c.tel||""}</p><p>✅ Conta ativa - Entras logo</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="info-box" style="text-align:center"><h3>${hist.length}</h3><p>Aulas Lidas</p></div><div class="info-box" style="text-align:center"><h3>❤️ ${favs.length}</h3><p>Favoritas</p></div></div>
-  <div class="info-box"><h3>📖 Histórico - Aulas que já leste</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${a.titulo}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula. Vai para Sala de Aula!</p>"}</div>
-  <div class="info-box"><h3>❤️ Favoritos - Aulas que gostaste</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${a.titulo}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
-  <button class="btn btn-red" style="width:100%" onclick="terminarSessao()">⏻ Terminar Sessão</button>
-  <p class="small" style="text-align:center;margin-top:8px">Depois podes voltar a fazer Login com o mesmo Email OU Número e Password.</p>`;
+  <div class="info-box"><h3>📖 Histórico</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${a.titulo}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula.</p>"}</div>
+  <div class="info-box"><h3>❤️ Favoritos</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${a.titulo}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
+  <button class="btn btn-red" style="width:100%" onclick="terminarSessao()">⏻ Terminar Sessão</button>`;
 }
-window.marcarLida=async function(aulaId){
-  if(!contaAtual) return alert("Faz Login primeiro!");
-  let hist=contaAtual.historico||[]; if(!hist.includes(aulaId)) hist.push(aulaId);
-  contaAtual.historico=hist; await updateDoc(doc(db,"contas",contaAtual.id),{historico:hist}); renderAll(); alert("✅ Marcada como lida!");
-};
-window.toggleFavorito=async function(aulaId){
-  if(!contaAtual) return alert("Faz Login primeiro!");
-  let favs=contaAtual.favoritos||[]; if(favs.includes(aulaId)) favs=favs.filter(x=>x!==aulaId); else favs.push(aulaId);
-  contaAtual.favoritos=favs; await updateDoc(doc(db,"contas",contaAtual.id),{favoritos:favs}); renderAll();
-};
-window.showAdminTab=function(id,btn){ document.querySelectorAll('.admin-tab').forEach(t=>t.style.display='none'); document.getElementById(id).style.display='block'; document.querySelectorAll('.admin-tab-btn').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); };
-window.tentarAbrirAprendizagem=function(pagina){
-  window.fecharMenu();
-  if(estouAprovado()){ window.showPage(pagina); }
-  else{ window.showPage(pagina); setTimeout(()=>{ if(estouPendente()){ alert("⏳ "+meuAluno().nome+", a tua inscrição está PENDENTE. Aguarda aprovação."); } else { alert("🔒 Tens que criar conta, fazer Login e ser APROVADO."); openModal('loginAlunoModal'); } },150); }
-};
-  async function criarPadroesSeVazio(){
+window.marcarLida=async function(aulaId){ if(!contaAtual) return alert("Faz Login primeiro!"); let hist=contaAtual.historico||[]; if(!hist.includes(aulaId)) hist.push(aulaId); contaAtual.historico=hist; await updateDoc(doc(db,"contas",contaAtual.id),{historico:hist}); renderAll(); alert("✅ Marcada como lida!"); };
+window.toggleFavorito=async function(aulaId){ if(!contaAtual) return alert("Faz Login primeiro!"); let favs=contaAtual.favoritos||[]; if(favs.includes(aulaId)) favs=favs.filter(x=>x!==aulaId); else favs.push(aulaId); contaAtual.favoritos=favs; await updateDoc(doc(db,"contas",contaAtual.id),{favoritos:favs}); renderAll(); };
+window.showAdminTab=function(id,btn){document.querySelectorAll('.admin-tab').forEach(t=>t.style.display='none'); document.getElementById(id).style.display='block'; document.querySelectorAll('.admin-tab-btn').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active');};
+window.tentarAbrirAprendizagem=function(pagina){ window.fecharMenu(); if(contaAtual){window.showPage(pagina);} else{window.showPage(pagina); setTimeout(()=>{alert("🔑 Faz Login ou Cria Conta para entrar. Entras logo."); openModal('loginAlunoModal');},150);} };
+async function criarPadroesSeVazio(){
   try{
-    const cSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"cursos"), s=>{un();res(s);}); });
-    if(cSnap.empty){ await addDoc(collection(db,"cursos"),{titulo:"Inglês - Básico",desc:"Alfabeto, saudações, verb to be, vocabulário do dia a dia.",preco:10,data:Date.now()}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Intermediário",desc:"Tempos verbais, conversação, listening, leitura e escrita.",preco:20,data:Date.now()+1}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Médio",desc:"Gramática avançada, phrasal verbs, conversação fluente.",preco:30,data:Date.now()+2}); await addDoc(collection(db,"cursos"),{titulo:"Inglês - Avançado",desc:"Fluência total, debates, negócios, inglês profissional.",preco:50,data:Date.now()+3}); }
-    const pSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"posts"), s=>{un();res(s);}); });
+    const cSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"cursos"),s=>{un();res(s);});});
+    if(cSnap.empty){ await addDoc(collection(db,"cursos"),{titulo:"Curso Básico - 10mt",desc:"Alfabeto, saudações, verb to be.",preco:10,data:Date.now()}); await addDoc(collection(db,"cursos"),{titulo:"Curso Intermediário - 20mt",desc:"Tempos verbais, conversação.",preco:20,data:Date.now()+1}); await addDoc(collection(db,"cursos"),{titulo:"Curso Médio - 30mt",desc:"Gramática avançada.",preco:30,data:Date.now()+2}); await addDoc(collection(db,"cursos"),{titulo:"Curso Avançado - 40mt",desc:"Fluência total.",preco:40,data:Date.now()+3}); }
+    const pSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"posts"),s=>{un();res(s);});});
     if(pSnap.empty){ await addDoc(collection(db,"posts"),{titulo:"Bem-vindo à NAULANGUE TECH 🇬🇧",texto:"Aqui vais aprender Inglês do básico ao avançado!",foto:FUNDO_PADRAO,data:Date.now()}); }
-    const fSnap = await getDoc(doc(db,"config","fundo")); if(!fSnap.exists()){ await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO}); }
-    const qSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"perguntas"), s=>{un();res(s);}); });
-    if(qSnap.empty){ const exemplos=[ ["How do you say 'Obrigado' in English?","Thank you","Please","Hello","Goodbye",0], ["What is 'I am' in Portuguese?","Eu sou / Eu estou","Eu vou","Eu tenho","Eu quero",0], ["Complete: She ___ a teacher.","is","are","am","be",0], ["What is the opposite of 'Good'?","Bad","Big","Fast","Happy",0], ["How do you say 'Bom dia' in English?","Good morning","Good night","Good bye","Good luck",0] ]; for(let e of exemplos){ await addDoc(collection(db,"perguntas"),{pergunta:e[0],opcoes:[e[1],e[2],e[3],e[4]],correta:e[5],data:Date.now()+Math.random()}); } }
-    const aSnap = await new Promise(res=>{ const un=onSnapshot(collection(db,"aulas"), s=>{un();res(s);}); });
-    if(aSnap.empty){ await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"Verb To Be: I am, You are, He is, She is, It is, We are, They are. Exemplo: I am a student.",pdf:"",data:Date.now()}); }
+    const fSnap=await getDoc(doc(db,"config","fundo")); if(!fSnap.exists()){await setDoc(doc(db,"config","fundo"),{url:FUNDO_PADRAO});}
+    const qSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"perguntas"),s=>{un();res(s);});});
+    if(qSnap.empty){await addDoc(collection(db,"perguntas"),{pergunta:"How do you say 'Obrigado' in English?",opcoes:["Thank you","Please","Hello","Goodbye"],correta:0,data:Date.now()});}
+    const aSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"aulas"),s=>{un();res(s);});});
+    if(aSnap.empty){await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"I am, You are, He is, She is.",pdf:"",curso:"todos",data:Date.now()});}
+    const frSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"frases"),s=>{un();res(s);});});
+    if(frSnap.empty){const fr=[["NO WORRIES!","Sem problemas!","Quando alguém pede desculpa: No worries!"],["I'M DOWN!","Tô dentro!","Quando aceitas um plano"],["WAIT, WHAT?!","Peraí, o quê?!","Quando não entendeste"]]; for(let x of fr){await addDoc(collection(db,"frases"),{ingles:x[0],portugues:x[1],exemplo:x[2],data:Date.now()+Math.random()});}}
   }catch(e){console.log(e);}
 }
-function aplicarFundo(){const h=document.getElementById("headerBg");if(h) h.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;}
+function aplicarFundo(){const h=document.getElementById("headerBg"); if(h) h.style.background=`linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.82)),url('${fundoAtual}') center/cover no-repeat`;}
 window.abrirMenu=function(){document.getElementById("sidebar").classList.add("open");document.getElementById("overlay").classList.add("show");};
 window.fecharMenu=function(){document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");};
-window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.fecharMenu();window.scrollTo({top:0,behavior:'smooth'});renderAll(); if(id==='pPerfil') renderPerfil();};
-window.previewFoto=function(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){fotoTemp=ev.target.result;const im=document.getElementById("previewImg");im.src=fotoTemp;im.style.display="block";};r.readAsDataURL(f);};
-window.publicarPost=async function(){const t=document.getElementById("postTitulo").value;const txt=document.getElementById("postTexto").value;const link=document.getElementById("postFotoLink").value;const foto=fotoTemp||link||fundoAtual;if(!t&&!txt)return alert("Escreve título ou texto!");await addDoc(collection(db,"posts"),{titulo:t||"Novidade ",texto:txt,foto,data:Date.now()});document.getElementById("postTitulo").value="";document.getElementById("postTexto").value="";document.getElementById("postFotoLink").value="";fotoTemp="";document.getElementById("previewImg").style.display="none";alert("Publicado ");};
+window.showPage=function(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); const el=document.getElementById(id); if(el) el.classList.add('active'); window.fecharMenu(); window.scrollTo({top:0,behavior:'smooth'}); renderAll(); if(id==='pPerfil') renderPerfil(); if(id==='pCursos') renderCursosNaul(); if(id==='pComent') renderMeusComent(); if(id==='pChat') renderChatAluno(); if(id==='pFrases') renderFrases();};
+window.previewFoto=function(e){const f=e.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=function(ev){fotoTemp=ev.target.result; const im=document.getElementById("previewImg"); im.src=fotoTemp; im.style.display="block";}; r.readAsDataURL(f);};
+window.publicarPost=async function(){const t=document.getElementById("postTitulo").value; const txt=document.getElementById("postTexto").value; const link=document.getElementById("postFotoLink").value; const foto=fotoTemp||link||fundoAtual; if(!t&&!txt) return alert("Escreve título ou texto!"); await addDoc(collection(db,"posts"),{titulo:t||"Novidade",texto:txt,foto,data:Date.now()}); document.getElementById("postTitulo").value=""; document.getElementById("postTexto").value=""; document.getElementById("postFotoLink").value=""; fotoTemp=""; document.getElementById("previewImg").style.display="none"; alert("Publicado");};
 window.removerPost=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"posts",id));}};
-window.adicionarPergunta=async function(){ if(perguntas.length>=MAX_PERGUNTAS) return alert("Já tens 20 perguntas! Apaga uma para adicionar outra."); const p=document.getElementById("qPergunta").value.trim();const a=document.getElementById("qA").value.trim();const b=document.getElementById("qB").value.trim();const c=document.getElementById("qC").value.trim();const d=document.getElementById("qD").value.trim();const correta=Number(document.getElementById("qCorreta").value);if(!p||!a||!b||!c||!d) return alert("Preenche pergunta e as 4 opções!");await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()});document.getElementById("qPergunta").value="";document.getElementById("qA").value="";document.getElementById("qB").value="";document.getElementById("qC").value="";document.getElementById("qD").value="";alert("Pergunta adicionada!");};
+window.adicionarPergunta=async function(){ if(perguntas.length>=MAX_PERGUNTAS) return alert("Já tens 20 perguntas!"); const p=document.getElementById("qPergunta").value.trim(); const a=document.getElementById("qA").value.trim(); const b=document.getElementById("qB").value.trim(); const c=document.getElementById("qC").value.trim(); const d=document.getElementById("qD").value.trim(); const correta=Number(document.getElementById("qCorreta").value); if(!p||!a||!b||!c||!d) return alert("Preenche tudo!"); await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()}); document.getElementById("qPergunta").value=""; document.getElementById("qA").value=""; document.getElementById("qB").value=""; document.getElementById("qC").value=""; document.getElementById("qD").value=""; alert("Pergunta adicionada!");};
 window.removerPergunta=async function(id){if(confirm("Apagar pergunta?")){await deleteDoc(doc(db,"perguntas",id));}};
-window.publicarAula=async function(){const t=document.getElementById("aulaTitulo").value.trim();const txt=document.getElementById("aulaTexto").value.trim();const pdfLink=document.getElementById("aulaPdf").value.trim();const file=document.getElementById("aulaPdfFile").files[0];if(!t) return alert("Escreve o título da aula!");if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete link / PDF!");let pdfData=pdfLink;if(file){ pdfData=await new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);}); }await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,data:Date.now()});document.getElementById("aulaTitulo").value="";document.getElementById("aulaTexto").value="";document.getElementById("aulaPdf").value="";document.getElementById("aulaPdfFile").value="";alert("Aula publicada!");};
+window.publicarAula=async function(){const t=document.getElementById("aulaTitulo").value.trim(); const txt=document.getElementById("aulaTexto").value.trim(); const curso=document.getElementById("aulaCurso").value; const pdfLink=document.getElementById("aulaPdf").value.trim(); const file=document.getElementById("aulaPdfFile").files[0]; if(!t) return alert("Escreve o título!"); if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete PDF!"); let pdfData=pdfLink; if(file){pdfData=await new Promise(res=>{const r=new FileReader(); r.onload=e=>res(e.target.result); r.readAsDataURL(file);});} await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,curso:curso,data:Date.now()}); document.getElementById("aulaTitulo").value=""; document.getElementById("aulaTexto").value=""; document.getElementById("aulaPdf").value=""; document.getElementById("aulaPdfFile").value=""; alert("Aula publicada para: "+curso+"!");};
 window.removerAula=async function(id){if(confirm("Apagar aula?")){await deleteDoc(doc(db,"aulas",id));}};
-window.iniciarTeste=function(){ if(!estouAprovado()){ alert("🔒 Só alunos APROVADOS podem fazer o teste."); return; } if(perguntas.length===0) return alert("Ainda não há perguntas."); indiceAtual=0; respostasAluno=[]; escolhaAtual=-1; document.getElementById("resultadoArea").style.display="none"; document.getElementById("testeArea").style.display="block"; mostrarPergunta(); };
-function mostrarPergunta(){ const q=perguntas[indiceAtual]; if(!q) return; document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`; document.getElementById("perguntaTexto").textContent=q.pergunta; escolhaAtual=-1; document.getElementById("msgTeste").textContent=""; const letras=["A","B","C","D"]; document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${op}</button>`).join(""); window.scrollTo({top:0,behavior:'smooth'}); }
-window.escolherOpcao=function(i){ escolhaAtual=i; document.querySelectorAll(".opt").forEach((b,idx)=>{b.classList.toggle("sel",idx===i);}); };
-window.seguirPergunta=function(){ if(escolhaAtual===-1) return document.getElementById("msgTeste").textContent=" Escolhe uma opção primeiro!"; respostasAluno[indiceAtual]=escolhaAtual; if(indiceAtual < perguntas.length-1){ indiceAtual++; mostrarPergunta(); } else{ mostrarResultado(); } };
-function mostrarResultado(){ document.getElementById("testeArea").style.display="none"; let certas=0; let falhasHtml=""; perguntas.forEach((q,i)=>{ const acertou=respostasAluno[i]===q.correta; if(acertou) certas++; else{ const letras=["A","B","C","D"]; falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${q.pergunta}</b><br><span style="color:#f87171">A tua resposta: ${letras[respostasAluno[i]]||"?"} - ${q.opcoes[respostasAluno[i]]||"Não respondeu"}</span><br><span style="color:#4ade80">✅ Resposta correta: ${letras[q.correta]} - ${q.opcoes[q.correta]}</span></div>`; } }); const total=perguntas.length; const perc=Math.round((certas/total)*100); const cor=perc>=50?"#22c55e":"#ef4444"; document.getElementById("resultadoArea").style.display="block"; document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3 style="font-size:28px">Resultado: <span style="color:${cor}">${perc}%</span></h3><p style="font-size:18px">Acertaste <b>${certas}</b> de <b>${total}</b> perguntas</p><p>${perc>=50?"🎉 Parabéns! Passaste!":"📚 Continua a estudar na Sala de Aula e tenta de novo."}</p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div><h3 style="margin:12px 0">Perguntas que falhaste:</h3>${falhasHtml||"<p style='color:#4ade80'>🎉 Não falhaste nenhuma! Perfeito!</p>"}`; }
-function renderPosts(){ const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>"; document.getElementById("postsHome").innerHTML=html; document.getElementById("postsPage").innerHTML=html; document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join(""); }
+window.publicarFrase=async function(){const ing=document.getElementById("fraseIngles").value.trim(); const pt=document.getElementById("frasePortugues").value.trim(); const ex=document.getElementById("fraseExemplo").value.trim(); if(!ing||!pt) return alert("Escreve a frase em Inglês e em Português!"); await addDoc(collection(db,"frases"),{ingles:ing,portugues:pt,exemplo:ex,data:Date.now()}); document.getElementById("fraseIngles").value=""; document.getElementById("frasePortugues").value=""; document.getElementById("fraseExemplo").value=""; alert("Frase publicada!");};
+window.removerFrase=async function(id){if(confirm("Apagar frase?")) await deleteDoc(doc(db,"frases",id));};
+function nomeCurso(c){return c==='basico'?'Curso Básico - 10mt':c==='intermediario'?'Curso Intermediário - 20mt':c==='medio'?'Curso Médio - 30mt':c==='avancado'?'Curso Avançado - 40mt':'Todos os cursos';}
+function renderFrases(){
+  const html=frases.map(f=>`<div class="frase-card"><b style="color:#38bdf8">${f.ingles}</b><br><span style="color:#22c55e;font-weight:bold">${f.portugues}</span>${f.exemplo?`<br><span class="small">💡 ${f.exemplo}</span>`:""}</div>`).join("")||"<p class='small'>Ainda não há frases.</p>";
+  const el=document.getElementById("listaFrases"); if(el) el.innerHTML=html;
+  const home=document.getElementById("frasesHome"); if(home) home.innerHTML=html;
+  const adm=document.getElementById("listaFrasesAdmin"); if(adm) adm.innerHTML=frases.map(f=>`<div class="list-item"><div><b>${f.ingles}</b><br><span class="small">${f.portugues}</span></div><button onclick="removerFrase('${f.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+}
+window.iniciarTeste=function(){ if(!contaAtual){alert("🔒 Faz Login primeiro!"); openModal('loginAlunoModal'); return;} if(perguntas.length===0) return alert("Ainda não há perguntas."); indiceAtual=0; respostasAluno=[]; escolhaAtual=-1; document.getElementById("resultadoArea").style.display="none"; document.getElementById("testeArea").style.display="block"; mostrarPergunta(); };
+function mostrarPergunta(){const q=perguntas[indiceAtual]; if(!q) return; document.getElementById("perguntaTitulo").textContent=`Pergunta ${indiceAtual+1} de ${perguntas.length}`; document.getElementById("perguntaTexto").textContent=q.pergunta; escolhaAtual=-1; document.getElementById("msgTeste").textContent=""; const letras=["A","B","C","D"]; document.getElementById("opcoesArea").innerHTML=q.opcoes.map((op,i)=>`<button class="opt" onclick="escolherOpcao(${i})"><b>${letras[i]}.</b> ${op}</button>`).join("");}
+window.escolherOpcao=function(i){escolhaAtual=i; document.querySelectorAll(".opt").forEach((b,idx)=>{b.classList.toggle("sel",idx===i);});};
+window.seguirPergunta=function(){ if(escolhaAtual===-1) return document.getElementById("msgTeste").textContent="Escolhe uma opção primeiro!"; respostasAluno[indiceAtual]=escolhaAtual; if(indiceAtual<perguntas.length-1){indiceAtual++; mostrarPergunta();} else{mostrarResultado();} };
+function mostrarResultado(){document.getElementById("testeArea").style.display="none"; let certas=0; let falhasHtml=""; perguntas.forEach((q,i)=>{const acertou=respostasAluno[i]===q.correta; if(acertou) certas++; else{const letras=["A","B","C","D"]; falhasHtml+=`<div class="aula-card" style="border-color:#ef4444"><b>❌ Pergunta ${i+1}: ${q.pergunta}</b><br><span style="color:#f87171">Tua: ${letras[respostasAluno[i]]||"?"} - ${q.opcoes[respostasAluno[i]]||""}</span><br><span style="color:#4ade80">✅ Correta: ${letras[q.correta]} - ${q.opcoes[q.correta]}</span></div>`;}}); const total=perguntas.length; const perc=Math.round((certas/total)*100); const cor=perc>=50?"#22c55e":"#ef4444"; document.getElementById("resultadoArea").style.display="block"; document.getElementById("resultadoArea").innerHTML=`<div class="info-box" style="text-align:center;border-color:${cor}"><h3>Resultado: <span style="color:${cor}">${perc}%</span></h3><p>Acertaste <b>${certas}</b> de <b>${total}</b></p><button class="btn" onclick="iniciarTeste()">Tentar Novamente</button></div>${falhasHtml}`;}
+function renderPosts(){
+  const html=posts.map((p)=>`<div class="post-card">${p.foto?`<img src="${p.foto}">`:""}<div><h3>${p.titulo}</h3><p>${p.texto}</p></div></div>`).join("")||"<p class='small'>Nenhuma publicação.</p>";
+  document.getElementById("postsHome").innerHTML=html; document.getElementById("postsPage").innerHTML=html;
+  const fp=document.getElementById("frasesPosts"); if(fp) fp.innerHTML=html;
+  document.getElementById("listaPostsAdmin").innerHTML=posts.map((p)=>`<div class="list-item"><div><b>${p.titulo}</b></div><button onclick="removerPost('${p.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+}
+function aulaHTML(a){
+  const favs=contaAtual?.favoritos||[]; const hist=contaAtual?.historico||[];
+  let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`;} else{pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF / Livro</a>`;}}
+  const isFav=favs.includes(a.id); const isLida=hist.includes(a.id);
+  return `<div class="aula-card"><span class="small">📚 ${nomeCurso(a.curso||'todos')}</span><h3 style="color:#38bdf8">${isLida?"✅ ":""}${a.titulo} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada":"🤍 Favoritar"}</button></div></div>`;
+}
 function renderAulas(){
-  const aprovado=estouAprovado();
+  const temConta=!!contaAtual;
   const bloqueioTeste=document.getElementById("bloqueioTeste"); const conteudoTeste=document.getElementById("conteudoTeste");
   const bloqueioAula=document.getElementById("bloqueioAula"); const conteudoAula=document.getElementById("conteudoAula");
-  if(bloqueioTeste){
-    if(aprovado){ bloqueioTeste.style.display="none"; conteudoTeste.style.display="block"; } else { bloqueioTeste.style.display="block"; conteudoTeste.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioTeste").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação.` : "Tens que criar conta e ser APROVADO para fazer o teste."; }
-  }
-  if(bloqueioAula){
-    if(aprovado){ bloqueioAula.style.display="none"; conteudoAula.style.display="block"; } else { bloqueioAula.style.display="block"; conteudoAula.style.display="none"; const a=meuAluno(); document.getElementById("textoBloqueioAula").textContent = a ? `Olá ${a.nome}, a tua inscrição está PENDENTE. Aguarda aprovação.` : "Tens que criar conta e ser APROVADO para ver as aulas."; }
-  }
-  if(!aprovado) return;
-  const favs=contaAtual?.favoritos||[]; const hist=contaAtual?.historico||[];
-  const html=aulas.map(a=>{ let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){ pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`; } else{ pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF / Livro</a>`; } }
-  const isFav=favs.includes(a.id); const isLida=hist.includes(a.id);
-  return `<div class="aula-card"><h3 style="color:#38bdf8">${isLida?"✅ ":""}${a.titulo} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada - Desfavoritar":"🤍 Favoritar"}</button></div></div>`; }).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
-  document.getElementById("aulasLista").innerHTML=html;
-  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">${a.pdf?"📄 Tem PDF / Livro":"📝 Só escrita"}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  if(bloqueioTeste){ if(temConta){bloqueioTeste.style.display="none"; conteudoTeste.style.display="block";} else {bloqueioTeste.style.display="block"; conteudoTeste.style.display="none";}}
+  if(bloqueioAula){ if(temConta){bloqueioAula.style.display="none"; conteudoAula.style.display="block";} else {bloqueioAula.style.display="block"; conteudoAula.style.display="none";}}
+  if(!temConta) return;
+  document.getElementById("aulasLista").innerHTML=aulas.map(a=>aulaHTML(a)).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
+  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">📚 ${nomeCurso(a.curso||'todos')}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 function atualizarBotoesInscrever(){
-  const a=meuAluno(); const aprovado=estouAprovado(); const pendente=estouPendente();
-  const jaTemConta=!!a;
-  const btnTopo=document.getElementById("btnTopoInscrever"); const btnMenu=document.getElementById("btnMenuInscrever"); const btnHero=document.getElementById("btnHeroInscrever"); const btnP9=document.getElementById("btnP9Inscrever");
-  const btnMenuSair=document.getElementById("btnMenuSair");
-  if(btnTopo) btnTopo.textContent = jaTemConta ? "👤 Minha Conta" : "Login";
-  if(btnTopo) btnTopo.onclick = jaTemConta ? ()=>abrirPerfil() : ()=>openModal('loginAlunoModal');
-  if(btnMenu) btnMenu.style.display = jaTemConta ? "none" : "";
-  if(btnMenuSair) btnMenuSair.style.display = jaTemConta ? "" : "none";
-  if(btnHero) btnHero.style.display = jaTemConta ? "none" : "";
-  if(btnP9) btnP9.style.display = jaTemConta ? "none" : "";
-  const topoA=document.getElementById("msgAlunoAprovadoTopo"); const topoP=document.getElementById("msgAlunoPendenteTopo");
-  const menuMsg=document.getElementById("msgMenuAluno"); const p9Msg=document.getElementById("msgP9Aluno");
-  if(aprovado){
-    if(topoA){topoA.style.display="block";topoA.textContent="Bem-vindo, "+a.nome+"! Aprovado ✅";} if(topoP) topoP.style.display="none";
-    if(menuMsg){menuMsg.style.display="block";menuMsg.style.background="#22c55e";menuMsg.style.color="#fff";menuMsg.textContent="✅ "+a.nome+" - APROVADO";}
-    if(p9Msg){p9Msg.style.display="block";p9Msg.style.background="#22c55e";p9Msg.textContent="✅ "+a.nome+" - Já estás aprovado!";}
-  } else if(pendente){
-    if(topoA) topoA.style.display="none"; if(topoP){topoP.style.display="block";topoP.textContent="⏳ "+a.nome+", aguardando aprovação...";}
-    if(menuMsg){menuMsg.style.display="block";menuMsg.style.background="#f59e0b";menuMsg.style.color="#000";menuMsg.textContent="⏳ "+a.nome+" - PENDENTE";}
-    if(p9Msg){p9Msg.style.display="block";p9Msg.style.background="#f59e0b";p9Msg.style.color="#000";p9Msg.textContent="⏳ "+a.nome+" - Aguardando aprovação...";}
-  } else {
-    if(topoA) topoA.style.display="none"; if(topoP) topoP.style.display="none"; if(menuMsg) menuMsg.style.display="none"; if(p9Msg) p9Msg.style.display="none";
-  }
-  const mT=document.getElementById("menuTeste"); const mA=document.getElementById("menuAula");
-  if(mT) mT.style.opacity = aprovado ? "1" : ".55";
-  if(mA) mA.style.opacity = aprovado ? "1" : ".55";
+  const a=meuAluno(); const jaTemConta=!!a;
+  const btnTopo=document.getElementById("btnTopoInscrever"); const btnMenu=document.getElementById("btnMenuInscrever"); const btnHero=document.getElementById("btnHeroInscrever"); const btnMenuSair=document.getElementById("btnMenuSair");
+  if(btnTopo) btnTopo.textContent=jaTemConta?"👤 Minha Conta":"Login"; if(btnTopo) btnTopo.onclick=jaTemConta?()=>abrirPerfil():()=>openModal('loginAlunoModal');
+  if(btnMenu) btnMenu.style.display=jaTemConta?"none":""; if(btnMenuSair) btnMenuSair.style.display=jaTemConta?"":"none"; if(btnHero) btnHero.style.display=jaTemConta?"none":"";
+  const topoA=document.getElementById("msgAlunoAprovadoTopo"); const menuMsg=document.getElementById("msgMenuAluno");
+  if(jaTemConta){ if(topoA){topoA.style.display="block"; topoA.textContent="Bem-vindo, "+a.nome+"! ✅";} if(menuMsg){menuMsg.style.display="block"; menuMsg.style.background="#22c55e"; menuMsg.style.color="#fff"; menuMsg.textContent="✅ "+a.nome+" - Conta ativa";} }
+  else { if(topoA) topoA.style.display="none"; if(menuMsg) menuMsg.style.display="none"; }
 }
 function renderCursos(){
-  const grid=document.getElementById("cursosGrid");const sel=document.getElementById("cursoEscolhido");if(!grid)return;grid.innerHTML="";if(sel) sel.innerHTML="";
-  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="openModal('loginAlunoModal')">Login / Criar Conta</button></div>`;if(sel) sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
+  const grid=document.getElementById("cursosGrid"); const sel=document.getElementById("cursoEscolhido"); if(!grid) return; grid.innerHTML=""; if(sel) sel.innerHTML="";
+  cursos.forEach((c)=>{grid.innerHTML+=`<div class="card"><h3>${c.titulo}</h3><p>${c.desc}</p><div class="price">${c.preco} MZN</div><button class="btn" style="width:100%" onclick="openModal('loginAlunoModal')">Login / Criar Conta</button></div>`; if(sel) sel.innerHTML+=`<option value="${c.id}">${c.titulo} - ${c.preco} MZN</option>`;});
   document.getElementById("listaAdmin").innerHTML=cursos.map((c)=>`<div class="list-item"><div><b>${c.titulo}</b><br><span class="small">${c.preco} MZN</span></div><button onclick="removerCurso('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
   document.getElementById("totalAlunos").textContent=alunos.length;
-  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const status=a.status||"pendente";const badge=status==="aprovado"?`<span class="badge-aprovado">APROVADO</span>`:`<span class="badge-pendente">PENDENTE</span>`;const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso";const btnAprovar=status==="pendente"?`<button onclick="aprovarAluno('${a.id}')" style="background:#22c55e;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:bold">Aprovar</button>`:"";const btnRejeitar=status==="pendente"?`<button onclick="rejeitarAluno('${a.id}')" style="background:#f59e0b;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Rejeitar</button>`:"";return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b> ${badge}<br><span class="small">${a.email||''} • 📱 ${a.tel||''} • ${cursoNome} • 📖 ${a.historico?.length||0} lidas • ❤️ ${a.favoritos?.length||0} fav</span></div><div style="display:flex;gap:6px;margin-top:8px">${btnAprovar}${btnRejeitar}<button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
+  document.getElementById("listaAlunos").innerHTML=alunos.map((a)=>{const cursoNome=cursos.find(c=>c.id===a.cursoId)?.titulo||"Curso"; return `<div class="list-item" style="flex-direction:column;align-items:flex-start"><div><b>${a.nome}</b><br><span class="small">${a.email||''} • 📱 ${a.tel||''} • ${cursoNome}</span></div><div style="display:flex;gap:6px;margin-top:8px"><button onclick="removerAluno('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X Apagar</button></div></div>`;}).join("")||"<p class='small'>Nenhum aluno.</p>";
   document.getElementById("testeInfo").textContent=`Já tens ${perguntas.length} perguntas no teste. Máximo 20.`;
   document.getElementById("totalPerguntas").textContent=`Total: ${perguntas.length} / 20 perguntas`;
   document.getElementById("listaPerguntas").innerHTML=perguntas.map((q,i)=>`<div class="list-item"><div><b>${i+1}. ${q.pergunta}</b><br><span class="small">Correta: ${["A","B","C","D"][q.correta]} - ${q.opcoes[q.correta]}</span></div><button onclick="removerPergunta('${q.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">X</button></div>`).join("");
   atualizarBotoesInscrever();
 }
-function renderAll(){renderCursos();renderPosts();renderAulas();aplicarFundo(); if(document.getElementById("pPerfil")?.classList.contains("active")) renderPerfil();}
-window.openModal=function(id){ document.getElementById(id).classList.add("active"); };
+function renderAll(){renderCursos(); renderPosts(); renderAulas(); renderFrases(); aplicarFundo(); renderComentariosAdmin(); renderChatAdminSelect(); if(document.getElementById("pPerfil")?.classList.contains("active")) renderPerfil();}
+window.openModal=function(id){document.getElementById(id).classList.add("active");};
 window.closeModal=function(id){document.getElementById(id).classList.remove("active");};
-window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim();if(s===SENHA_ADMIN){window.closeModal('loginModal');window.openModal('adminModal');document.getElementById("erroLogin").textContent="";document.getElementById("senhaAdmin").value="";renderAll();}else{document.getElementById("erroLogin").textContent=" Senha errada";}};
+window.fazerLogin=function(){const s=document.getElementById("senhaAdmin").value.trim(); if(s===SENHA_ADMIN){window.closeModal('loginModal'); window.openModal('adminModal'); document.getElementById("erroLogin").textContent=""; document.getElementById("senhaAdmin").value=""; renderAll();} else{document.getElementById("erroLogin").textContent="Senha errada";}};
 window.sairAdmin=function(){window.closeModal('adminModal');};
-window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value;const d=document.getElementById("novoDesc").value;const p=document.getElementById("novoPreco").value;if(!t||!p)return alert("Preencha título e preço!");await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()});document.getElementById("novoTitulo").value="";document.getElementById("novoDesc").value="";document.getElementById("novoPreco").value="";alert("Curso adicionado ");};
+window.adicionarCurso=async function(){const t=document.getElementById("novoTitulo").value; const d=document.getElementById("novoDesc").value; const p=document.getElementById("novoPreco").value; if(!t||!p) return alert("Preencha título e preço!"); await addDoc(collection(db,"cursos"),{titulo:t,desc:d||"Curso",preco:Number(p),data:Date.now()}); document.getElementById("novoTitulo").value=""; document.getElementById("novoDesc").value=""; document.getElementById("novoPreco").value=""; alert("Curso adicionado");};
 window.removerCurso=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"cursos",id));}};
-window.aprovarAluno=async function(id){await updateDoc(doc(db,"contas",id),{status:"aprovado"}); if(contaAtual && contaAtual.id===id) contaAtual.status="aprovado"; alert("Aluno aprovado!"); renderAll();};
-window.rejeitarAluno=async function(id){await updateDoc(doc(db,"contas",id),{status:"pendente"});};
 window.removerAluno=async function(id){if(confirm("Apagar aluno?")){await deleteDoc(doc(db,"contas",id));}};
 criarPadroesSeVazio();
-onSnapshot(query(collection(db,"contas"),orderBy("data","desc")),(snap)=>{
-  alunos=snap.docs.map(d=>({id:d.id,...d.data()}));
-  if(contaAtual){
-    const atual=alunos.find(a=>a.id===contaAtual.id);
-    if(atual) contaAtual=atual;
-  }
-  document.getElementById("statusFirebase").textContent="Firebase ligado! Tudo na nuvem ☁️ - "+alunos.length+" contas.";
-  document.getElementById("statusFirebase").style.color="#4ade80";
-  renderAll();
-});
-onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{
-  cursos=snap.docs.map(d=>({id:d.id,...d.data()}));
-  renderAll();
-});
-onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{
-  posts=snap.docs.map(d=>({id:d.id,...d.data()}));
-  renderAll();
-});
-onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{
-  perguntas=snap.docs.map(d=>({id:d.id,...d.data()}));
-  renderAll();
-});
-onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{
-  aulas=snap.docs.map(d=>({id:d.id,...d.data()}));
-  renderAll();
-});
+onSnapshot(query(collection(db,"contas"),orderBy("data","desc")),(snap)=>{alunos=snap.docs.map(d=>({id:d.id,...d.data()})); if(contaAtual){const atual=alunos.find(a=>a.id===contaAtual.id); if(atual) contaAtual=atual;} document.getElementById("statusFirebase").textContent="Firebase ligado! "+alunos.length+" contas."; document.getElementById("statusFirebase").style.color="#4ade80"; renderAll();});
+onSnapshot(query(collection(db,"cursos"),orderBy("data","asc")),(snap)=>{cursos=snap.docs.map(d=>({id:d.id,...d.data()})); renderAll();});
+onSnapshot(query(collection(db,"posts"),orderBy("data","desc")),(snap)=>{posts=snap.docs.map(d=>({id:d.id,...d.data()})); renderAll();});
+onSnapshot(query(collection(db,"perguntas"),orderBy("data","asc")),(snap)=>{perguntas=snap.docs.map(d=>({id:d.id,...d.data()})); renderAll();});
+onSnapshot(query(collection(db,"aulas"),orderBy("data","desc")),(snap)=>{aulas=snap.docs.map(d=>({id:d.id,...d.data()})); renderAll();});
+onSnapshot(query(collection(db,"frases"),orderBy("data","desc")),(snap)=>{frases=snap.docs.map(d=>({id:d.id,...d.data()})); renderFrases();});
+onSnapshot(query(collection(db,"comentarios"),orderBy("data","desc")),(snap)=>{comentarios=snap.docs.map(d=>({id:d.id,...d.data()})); renderComentariosAdmin(); renderMeusComent();});
+onSnapshot(query(collection(db,"chats"),orderBy("data","asc")),(snap)=>{chats=snap.docs.map(d=>({id:d.id,...d.data()})); renderChatAluno(); renderChatAdminSelect(); carregarChatAdmin();});
 onSnapshot(doc(db,"config","fundo"),(snap)=>{
   if(snap.exists()){
     fundoAtual=snap.data().url||FUNDO_PADRAO;
@@ -432,97 +339,122 @@ onSnapshot(doc(db,"config","fundo"),(snap)=>{
 });
 tentarAutoLogin();
 renderAll();
-  // ===== CURSOS / COMENTÁRIO / CHAT - NAULANGUE TECH =====
-const SENHAS_CURSO = { basico:'bas2026', intermediario:'vamo1002', medio:'abril2378', avancado:'avan2026' };
-const WHATS_COMPRAR = '258856661893';
-const CURSOS_NAUL = {
-  basico:{nome:'Curso Básico', paginas:[
-    {t:'Página 1 - Começar', c:'Bem-vindo ao Curso Básico! Vais aprender cumprimentos.<br><b>Ex: Hello, My name is Adriano. I am from Mozambique.</b>'},
-    {t:'Página 2 - Aula 1', c:'<b>Verbos To Be:</b> I am, You are, He is, She is<br><b>Vocabulário:</b> Family, School, Food, Colours'},
-    {t:'Página 3 - Prática Final', c:'Faz frases: 1. I am ___ 2. She is ___ 3. They are ___'}
+const SENHAS_CURSO={basico:'bas2026',intermediario:'vamo1002',medio:'abril2378',avancado:'avan2026'};
+const WHATS_COMPRAR='258856661893';
+const CURSOS_NAUL={
+  basico:{nome:'Curso Básico - 10mt',preco:'10mt',paginas:[
+    {t:'Página 1 - Começar',c:'Bem-vindo ao Curso Básico - 10mt! Vais aprender cumprimentos.<br><b>Ex: Hello, My name is Adriano. I am from Mozambique.</b>'},
+    {t:'Página 2 - Aula 1',c:'<b>Verbos To Be:</b> I am, You are, He is, She is<br><b>Vocabulário:</b> Family, School, Food, Colours'},
+    {t:'Página 3 - Prática Final',c:'Faz frases: 1. I am ___ 2. She is ___ 3. They are ___'}
   ]},
-  intermediario:{nome:'Curso Intermediário', paginas:[
-    {t:'Página 1 - Começar', c:'Bem-vindo ao Intermediário! Vais falar mais e aprender tempos verbais.'},
-    {t:'Página 2 - Aula 1', c:'<b>Present Simple & Continuous:</b> I speak English. I am speaking now.<br><b>Past Simple:</b> I went to school yesterday.'},
-    {t:'Página 3 - Prática Final', c:'Conta a tua rotina em inglês: In the morning I...'}
+  intermediario:{nome:'Curso Intermediário - 20mt',preco:'20mt',paginas:[
+    {t:'Página 1 - Começar',c:'Bem-vindo ao Intermediário - 20mt! Vais falar mais e aprender tempos verbais.'},
+    {t:'Página 2 - Aula 1',c:'<b>Present Simple & Continuous:</b> I speak English. I am speaking now.<br><b>Past Simple:</b> I went to school yesterday.'},
+    {t:'Página 3 - Prática Final',c:'Conta a tua rotina em inglês: In the morning I...'}
   ]},
-  medio:{nome:'Curso Médio', paginas:[
-    {t:'Página 1 - Começar', c:'Bem-vindo ao Curso Médio! Inglês para trabalho e entrevistas.'},
-    {t:'Página 2 - Aula 1', c:'<b>Entrevista:</b> Tell me about yourself. What are your strengths?<br><b>Trabalho:</b> Meeting, Report, Deadline, Teamwork'},
-    {t:'Página 3 - Prática Final', c:'Prepara apresentação de 2 minutos sobre ti em inglês.'}
+  medio:{nome:'Curso Médio - 30mt',preco:'30mt',paginas:[
+    {t:'Página 1 - Começar',c:'Bem-vindo ao Curso Médio - 30mt! Inglês para trabalho e entrevistas.'},
+    {t:'Página 2 - Aula 1',c:'<b>Entrevista:</b> Tell me about yourself. What are your strengths?<br><b>Trabalho:</b> Meeting, Report, Deadline, Teamwork'},
+    {t:'Página 3 - Prática Final',c:'Prepara apresentação de 2 minutos sobre ti em inglês.'}
   ]},
-  avancado:{nome:'Curso Avançado', paginas:[
-    {t:'Página 1 - Começar', c:'Bem-vindo ao Avançado! Fluência, debates e inglês profissional.'},
-    {t:'Página 2 - Aula 1', c:'<b>Advanced:</b> Conditionals, Passive Voice, Phrasal Verbs<br>Ex: If I had time, I would travel.'},
-    {t:'Página 3 - Prática Final', c:'Debate: Is English important for Mozambique? Escreve 10 linhas.'}
+  avancado:{nome:'Curso Avançado - 40mt',preco:'40mt',paginas:[
+    {t:'Página 1 - Começar',c:'Bem-vindo ao Avançado - 40mt! Fluência, debates e inglês profissional.'},
+    {t:'Página 2 - Aula 1',c:'<b>Advanced:</b> Conditionals, Passive Voice, Phrasal Verbs<br>Ex: If I had time, I would travel.'},
+    {t:'Página 3 - Prática Final',c:'Debate: Is English important for Mozambique? Escreve 10 linhas.'}
   ]}
 };
 let cursoAtual=null, paginaAtual=0, desbloqueado={};
-function renderCursosNaul(){ let h=''; for(let k in CURSOS_NAUL){ h+=`<div style="border:1px solid #334155;border-radius:14px;padding:12px;margin:10px 0"><b>${CURSOS_NAUL[k].nome}</b><p class="small">3 páginas</p><button class="btn" onclick="abrirCursoNaul('${k}')">Abrir curso →</button></div>`; } document.getElementById('listaCursos').innerHTML=h; }
-function abrirCursoNaul(k){ cursoAtual=k; paginaAtual=0; mostrarPaginaNaul(); showPage('pCursoDetalhe'); }
+function renderCursosNaul(){let h=''; for(let k in CURSOS_NAUL){h+=`<div style="border:1px solid #334155;border-radius:14px;padding:12px;margin:10px 0"><b>${CURSOS_NAUL[k].nome}</b><p class="small">3 páginas - ${CURSOS_NAUL[k].preco}</p><button class="btn" onclick="abrirCursoNaul('${k}')">Abrir curso →</button></div>`;} const el=document.getElementById('listaCursos'); if(el) el.innerHTML=h;}
+function abrirCursoNaul(k){cursoAtual=k; paginaAtual=0; mostrarPaginaNaul(); showPage('pCursoDetalhe');}
 function mostrarPaginaNaul(){
   let cur=CURSOS_NAUL[cursoAtual];
   document.getElementById('cursoTitulo').innerText=cur.nome;
-  document.getElementById('cursoPagInfo').innerText=`Página ${paginaAtual+1} de 3`;
+  document.getElementById('cursoPagInfo').innerText=`Página ${paginaAtual+1} de 3 - ${cur.preco}`;
   let p=cur.paginas[paginaAtual];
   let html=`<h3>${p.t}</h3><p style="margin-top:8px">${p.c}</p>`;
-  if(paginaAtual===0){ html+=`<hr><p><b>Escolhe:</b></p><button class="btn" style="width:100%;margin-top:8px;background:#16a34a" onclick="pedirSenhaNaul()">1. PRÁTICA CURSO 🔒</button><button class="btn" style="width:100%;margin-top:8px;background:#f59e0b" onclick="comprarCursoNaul()">2. COMPRAR CURSO 💳</button>`; }
+  if(paginaAtual===0){
+    html+=`<hr><p><b>Escolhe:</b></p>
+    <button class="btn" style="width:100%;margin-top:8px;background:#16a34a" onclick="pedirSenhaNaul()">1. PRÁTICA CURSO 🔒</button>
+    <button class="btn" style="width:100%;margin-top:8px;background:#f59e0b" onclick="comprarCursoNaul()">2. COMPRAR CURSO 💳 - ${cur.preco}</button>
+    <p class="small" style="margin-top:8px">Comprar: manda valor para 862428838 nome Adriano Naulange, depois manda screenshot, daí recebes a senha.</p>`;
+  }
   document.getElementById('cursoConteudo').innerHTML=html;
   let b='';
   if(paginaAtual>0) b+=`<button class="btn" onclick="paginaAtual--;mostrarPaginaNaul()">← Anterior</button>`;
   if(paginaAtual<2 && (paginaAtual>0||desbloqueado[cursoAtual])) b+=`<button class="btn" onclick="paginaAtual++;mostrarPaginaNaul()">Próxima →</button>`;
   if(paginaAtual===0 && !desbloqueado[cursoAtual]) b+=`<button class="btn" style="background:#475569">Bloqueado - Usa Prática com senha</button>`;
   document.getElementById('cursoBotoes').innerHTML=b;
+  // AULAS PUBLICADAS PARA ESTE CURSO
+  const minhas=aulas.filter(a=>(a.curso||'todos')===cursoAtual || (a.curso||'todos')==='todos');
+  document.getElementById('cursoAulas').innerHTML=minhas.length?`<h3 style="margin-top:10px">📚 Aulas deste curso</h3>`+minhas.map(a=>aulaHTML(a)).join(""):`<p class="small">Ainda não há aulas publicadas para este curso.</p>`;
 }
-function mostrarSenhaConta(c){
-  document.getElementById('novaSenha').type = c.checked ? 'text' : 'password';
-  document.getElementById('confSenha').type = c.checked ? 'text' : 'password';
+window.abrirCursoNaul=abrirCursoNaul;
+window.pedirSenhaNaul=function(){
+  const senha=prompt("Digite a senha da PRÁTICA do "+CURSOS_NAUL[cursoAtual].nome+":");
+  if(senha===null) return;
+  if(senha.trim()===SENHAS_CURSO[cursoAtual]){ desbloqueado[cursoAtual]=true; alert("✅ Senha correta! Prática desbloqueada."); mostrarPaginaNaul(); }
+  else alert("❌ Senha errada! Compra o curso para receber a senha.");
+};
+window.comprarCursoNaul=function(){
+  const nome=CURSOS_NAUL[cursoAtual].nome.toLowerCase();
+  const msg=`Olá quero comprar ${nome}\n\nJá vou mandar o valor com esse número 862428838 nome Adriano Naulange, depois de mandar valor volto a mandar screenshot de confirmação daí receba senha`;
+  window.open("https://wa.me/"+WHATS_COMPRAR+"?text="+encodeURIComponent(msg),"_blank");
+  alert("Vais para WhatsApp 856661893.\n\n1. Manda valor para 862428838 - Adriano Naulange\n2. Manda screenshot de confirmação\n3. Recebes a senha");
+};
+window.enviarComentario=async function(){
+  const txt=document.getElementById('comentText').value.trim();
+  if(!txt) return alert("Escreve o teu comentário primeiro!");
+  if(!contaAtual) return alert("Faz Login primeiro para comentar!");
+  await addDoc(collection(db,"comentarios"),{texto:txt,nome:contaAtual.nome||"Aluno",email:contaAtual.email||"",tel:contaAtual.tel||"",data:Date.now()});
+  document.getElementById('comentText').value=""; alert("✅ Comentário enviado! O Admin vai ver.");
+};
+function renderMeusComent(){
+  const el=document.getElementById('meusComent'); if(!el) return;
+  if(!contaAtual){el.innerHTML="<p class='small'>Faz Login para veres os teus comentários.</p>"; return;}
+  const meus=comentarios.filter(c=>c.email===contaAtual.email);
+  el.innerHTML="<h3>Os teus comentários</h3>"+(meus.length?meus.map(c=>`<div class="chat-msg">💬 ${c.texto}</div>`).join(""):"<p class='small'>Ainda não comentaste.</p>");
 }
-function verForcaSenha(){
-  let s = document.getElementById('novaSenha').value;
-  let t = document.getElementById('txtForca');
-  let b1 = document.getElementById('barra1');
-  let b2 = document.getElementById('barra2');
-  let b3 = document.getElementById('barra3');
-  b1.style.background='#ddd'; b2.style.background='#ddd'; b3.style.background='#ddd';
-  if(s.length < 6){ t.innerText='Fraca'; t.style.color='red'; b1.style.background='#e00'; }
-  else if(s.length < 9){ t.innerText='Média'; t.style.color='orange'; b1.style.background='orange'; b2.style.background='orange'; }
-  else { t.innerText='Forte'; t.style.color='green'; b1.style.background='green'; b2.style.background='green'; b3.style.background='green'; }
+function renderComentariosAdmin(){
+  const el=document.getElementById('listaComentariosAdmin'); if(!el) return;
+  el.innerHTML=comentarios.length?comentarios.map(c=>`<div class="list-item" style="flex-direction:column;align-items:flex-start"><b>${c.nome||"Aluno"} - ${c.tel||""}</b><span>${c.texto}</span><button onclick="removerComentario('${c.id}')" style="background:#ef4444;border:none;color:#fff;padding:6px 10px;border-radius:10px;cursor:pointer;margin-top:6px">Apagar</button></div>`).join(""):"<p class='small'>Nenhum comentário ainda.</p>";
 }
-function criarContaNova(){
-  let n = document.getElementById('novoNome').value.trim();
-  let tel = document.getElementById('novoTel').value.trim();
-  let s = document.getElementById('novaSenha').value;
-  let c = document.getElementById('confSenha').value;
-  if(!n || !tel || !s){ alert('Preenche tudo!'); return; }
-  if(s.length < 6){ alert('Senha tem que ter pelo menos 6 caracteres!'); return; }
-  if(s !== c){ alert('As senhas não são iguais!'); return; }
-  // Guarda a conta
-  localStorage.setItem('naul_conta', JSON.stringify({nome:n, tel:tel, senha:s}));
-  jaTemConta = true; contaAtualId = tel;
-  alert('Conta criada com sucesso, ' + n + '! Agora já podes entrar nos cursos.');
-  closeModal('loginAlunoModal');
-  }
-// CORRIGIR - Lembrar qual curso clicou
-let cursoPendente = null;
-
-function clicarCurso(idCurso, nomeCurso) {
-  cursoPendente = idCurso;
-  let user = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
-  
-  if (!user) {
-    // Não está logado - abre login
-    abrirLogin();
-  } else {
-    // Já está logado - abre o curso direto
-    abrirCurso(idCurso, nomeCurso);
-  }
+window.removerComentario=async function(id){if(confirm("Apagar comentário?")) await deleteDoc(doc(db,"comentarios",id));};
+window.enviarChat=async function(){
+  const txt=document.getElementById('chatInput').value.trim(); if(!txt) return;
+  if(!contaAtual) return alert("Faz Login primeiro!");
+  await addDoc(collection(db,"chats"),{alunoId:contaAtual.id,alunoNome:contaAtual.nome||"Aluno",de:"aluno",texto:txt,data:Date.now()});
+  document.getElementById('chatInput').value="";
+};
+function renderChatAluno(){
+  const box=document.getElementById('chatBox'); if(!box) return;
+  if(!contaAtual){box.innerHTML="<p class='small'>Faz Login para conversares com o Admin.</p>"; return;}
+  const meus=chats.filter(c=>c.alunoId===contaAtual.id);
+  box.innerHTML=meus.length?meus.map(c=>`<div class="chat-msg ${c.de==='aluno'?'me':'admin'}"><b>${c.de==='aluno'?'Tu':'Admin'}:</b> ${c.texto}</div>`).join(""):"<p class='small'>Nenhuma mensagem ainda.</p>";
+  box.scrollTop=box.scrollHeight;
 }
-
-function abrirCurso(idCurso, nomeCurso) {
-  alert('A entrar no curso: ' + nomeCurso + '\n\nAqui vai aparecer o apontamento e as aulas.');
-  // Depois aqui vamos pôr a página do curso com os apontamentos
+function renderChatAdminSelect(){
+  const sel=document.getElementById('chatAlunoSelect'); if(!sel) return;
+  const ids=[...new Set(chats.map(c=>c.alunoId))];
+  alunos.forEach(a=>{if(!ids.includes(a.id)) ids.push(a.id);});
+  sel.innerHTML=`<option value="">Escolhe um aluno...</option>`+ids.map(id=>{const a=alunos.find(x=>x.id===id); return `<option value="${id}" ${chatAlunoSelecionado===id?"selected":""}>${a?a.nome:id} - ${a?a.tel||"":""}</option>`;}).join("");
+  if(!chatAlunoSelecionado && ids.length) chatAlunoSelecionado=ids[0];
 }
+window.carregarChatAdmin=function(){
+  const sel=document.getElementById('chatAlunoSelect'); if(sel && sel.value) chatAlunoSelecionado=sel.value;
+  const box=document.getElementById('chatAdminBox'); if(!box) return;
+  if(!chatAlunoSelecionado){box.innerHTML="<p class='small'>Escolhe um aluno.</p>"; return;}
+  const msgs=chats.filter(c=>c.alunoId===chatAlunoSelecionado);
+  box.innerHTML=msgs.length?msgs.map(c=>`<div class="chat-msg ${c.de==='admin'?'me':'admin'}"><b>${c.de==='admin'?'Admin':'Aluno'}:</b> ${c.texto}</div>`).join(""):"<p class='small'>Nenhuma mensagem.</p>";
+  box.scrollTop=box.scrollHeight;
+};
+window.enviarChatAdmin=async function(){
+  const txt=document.getElementById('chatAdminInput').value.trim(); if(!txt) return;
+  if(!chatAlunoSelecionado) return alert("Escolhe um aluno primeiro!");
+  const a=alunos.find(x=>x.id===chatAlunoSelecionado);
+  await addDoc(collection(db,"chats"),{alunoId:chatAlunoSelecionado,alunoNome:a?a.nome:"Aluno",de:"admin",texto:txt,data:Date.now()});
+  document.getElementById('chatAdminInput').value="";
+};
+renderCursosNaul();
 </script>
 </body>
 </html>
