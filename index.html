@@ -149,7 +149,36 @@ input[type=file]{background:#1e293b;padding:10px}
 <button class="btn btn-green" style="width:100%;margin-top:8px" onclick="closeModal('loginAlunoModal');openModal('criarContaModal')">➕ Criar Conta Grátis</button>
 </div></div>
 <div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Cria com Email e Número. Depois podes fazer Login com qualquer um dos dois.</p>
-<div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2 style="text-align:center;color:#1e2a8a">Criar Conta</h2><p style="text-align:center;font-size:13px">Preencha os dados para criar a sua conta</p><label>Nome</label><input type="text" id="cadNome" placeholder="Digite o seu nome completo" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:10px"><label>Telefone</label><input type="tel" id="cadTel" placeholder="+258 84 123 4567" value="+258 " style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:10px"><label>Senha</label><input type="password" id="cadSenha" placeholder="••••••••" oninput="verForcaSenha()" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc"><label style="font-size:13px"><input type="checkbox" onclick="mostrarSenhaConta(this)"> Mostrar senha</label><p style="font-size:13px">Força da senha: <b id="txtForca">Fraca</b></p><div style="display:flex;gap:5px"><div id="barra1" style="height:8px;flex:1;background:#e00;border-radius:10px"></div><div id="barra2" style="height:8px;flex:1;background:#ddd;border-radius:10px"></div><div id="barra3" style="height:8px;flex:1;background:#ddd;border-radius:10px"></div></div><p style="font-size:12px;color:#666">ⓘ A senha deve ter pelo menos 6 caracteres</p><label>Confirmar Senha</label><input type="password" id="cadConfSenha" placeholder="••••••••" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:12px"><button class="btn btn-green" style="width:100%" onclick="criarContaNova()">Criar Minha Conta</button><p style="text-align:center;font-size:13px;margin-top:10px">Já tens conta? <a href="#" onclick="closeModal('criarContaModal');openModal('loginAlunoModal')">Entrar</a></p></div></div>
+  <div class="box">
+<span class="close" onclick="closeModal('loginAlunoModal')">×</span>
+<h2 style="text-align:center;color:#1e2a8a">Criar Conta</h2>
+<p style="text-align:center;font-size:13px">Preencha os dados para criar a sua conta</p>
+
+<label>Nome</label>
+<input type="text" id="novoNome" placeholder="Digite o seu nome completo" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:10px">
+
+<label>Telefone</label>
+<input type="tel" id="novoTel" placeholder="+258 84 123 4567" value="+258 " style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:10px">
+
+<label>Senha</label>
+<input type="password" id="novaSenha" placeholder="••••••••" oninput="verForcaSenha()" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc">
+
+<label style="font-size:13px"><input type="checkbox" onclick="mostrarSenhaConta(this)"> Mostrar senha</label>
+
+<p style="font-size:13px;margin:5px 0">Força da senha: <b id="txtForca">Fraca</b></p>
+<div style="display:flex;gap:5px;margin-bottom:5px">
+<div id="barra1" style="height:8px;flex:1;background:#e00;border-radius:10px"></div>
+<div id="barra2" style="height:8px;flex:1;background:#ddd;border-radius:10px"></div>
+<div id="barra3" style="height:8px;flex:1;background:#ddd;border-radius:10px"></div>
+</div>
+<p style="font-size:12px;color:#666">ⓘ A senha deve ter pelo menos 6 caracteres</p>
+
+<label>Confirmar Senha</label>
+<input type="password" id="confSenha" placeholder="••••••••" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:12px">
+
+<button onclick="criarContaNova()" style="width:100%;padding:14px;background:#3b4bff;color:#fff;border:none;border-radius:12px;font-weight:bold;font-size:16px">Criar Conta</button>
+<p style="text-align:center;font-size:13px;margin-top:10px">Já tens conta? <a href="#" onclick="closeModal('loginAlunoModal');openModal('loginAlunoModal')">Entrar</a></p>
+  </div>
 <div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><p class="small">Só o dono entra aqui.</p><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
 <span class="close" onclick="closeModal('adminModal')">×</span>
@@ -465,15 +494,35 @@ function mostrarPaginaNaul(){
   if(paginaAtual===0 && !desbloqueado[cursoAtual]) b+=`<button class="btn" style="background:#475569">Bloqueado - Usa Prática com senha</button>`;
   document.getElementById('cursoBotoes').innerHTML=b;
 }
-function pedirSenhaNaul(){ let s=prompt(`Escreve a senha do ${CURSOS_NAUL[cursoAtual].nome}:`); if(s===SENHAS_CURSO[cursoAtual]){ desbloqueado[cursoAtual]=true; alert('Senha correta!'); mostrarPaginaNaul(); } else alert('Senha errada. Fala com Admin para comprar.'); }
-function comprarCursoNaul(){ let nome=CURSOS_NAUL[cursoAtual].nome; let msg=`Olá quero comprar ${nome}. Mande o valor com esse número 862428838 nome Adriano Naulange depois de mandar valor volta manda screenshot de confirmação daí receba senha`; window.open(`https://wa.me/${WHATS_COMPRAR}?text=${encodeURIComponent(msg)}`,'_blank'); }
-function enviarComentario(){ let t=document.getElementById('comentText').value; if(!t) return alert('Escreve o comentário'); let a=JSON.parse(localStorage.getItem('comentarios_naul')||'[]'); a.push({user:'Aluno', texto:t, data:new Date().toLocaleString()}); localStorage.setItem('comentarios_naul', JSON.stringify(a)); document.getElementById('comentText').value=''; alert('Obrigado! O Admin vai ver.'); }
-function enviarChat(){ let t=document.getElementById('chatInput').value; if(!t) return; let a=JSON.parse(localStorage.getItem('chat_naul')||'[]'); a.push({de:'Aluno', texto:t, data:new Date().toLocaleString()}); localStorage.setItem('chat_naul', JSON.stringify(a)); document.getElementById('chatInput').value=''; mostrarChatNaul(); }
-function mostrarChatNaul(){ let a=JSON.parse(localStorage.getItem('chat_naul')||'[]'); document.getElementById('chatBox').innerHTML=a.map(m=>`<div style="background:#1e293b;padding:8px;border-radius:10px;margin-bottom:8px"><b>${m.de}:</b> ${m.texto}<br><small>${m.data}</small></div>`).join('')||'Sem mensagens.'; }
-renderCursosNaul();
-  window.mostrarSenhaConta=function(c){document.getElementById('cadSenha').type=c.checked?'text':'password';document.getElementById('cadConfSenha').type=c.checked?'text':'password';}
-window.verForcaSenha=function(){let s=document.getElementById('cadSenha').value;let t=document.getElementById('txtForca');let b1=document.getElementById('barra1'),b2=document.getElementById('barra2'),b3=document.getElementById('barra3');b1.style.background='#ddd';b2.style.background='#ddd';b3.style.background='#ddd';if(s.length<6){t.innerText='Fraca';t.style.color='red';b1.style.background='#e00';}else if(s.length<9){t.innerText='Média';t.style.color='orange';b1.style.background='orange';b2.style.background='orange';}else{t.innerText='Forte';t.style.color='green';b1.style.background='green';b2.style.background='green';b3.style.background='green';}}
-window.criarContaNova=function(){let n=document.getElementById('cadNome').value.trim();let tel=document.getElementById('cadTel').value.trim();let s=document.getElementById('cadSenha').value;let c=document.getElementById('cadConfSenha').value;if(!n||!tel||!s){alert('Preenche tudo!');return;}if(s.length<6){alert('Senha tem que ter pelo menos 6 caracteres!');return;}if(s!==c){alert('As senhas não são iguais!');return;}let e=document.getElementById('cadEmail');if(!e){e=document.createElement('input');e.id='cadEmail';e.style.display='none';document.body.appendChild(e);}e.value=tel.replace(/[^0-9]/g,'')+'@naul.com';if(window.criarConta){window.criarConta();}else{alert('Conta criada!');}}
+function mostrarSenhaConta(c){
+  document.getElementById('novaSenha').type = c.checked ? 'text' : 'password';
+  document.getElementById('confSenha').type = c.checked ? 'text' : 'password';
+}
+function verForcaSenha(){
+  let s = document.getElementById('novaSenha').value;
+  let t = document.getElementById('txtForca');
+  let b1 = document.getElementById('barra1');
+  let b2 = document.getElementById('barra2');
+  let b3 = document.getElementById('barra3');
+  b1.style.background='#ddd'; b2.style.background='#ddd'; b3.style.background='#ddd';
+  if(s.length < 6){ t.innerText='Fraca'; t.style.color='red'; b1.style.background='#e00'; }
+  else if(s.length < 9){ t.innerText='Média'; t.style.color='orange'; b1.style.background='orange'; b2.style.background='orange'; }
+  else { t.innerText='Forte'; t.style.color='green'; b1.style.background='green'; b2.style.background='green'; b3.style.background='green'; }
+}
+function criarContaNova(){
+  let n = document.getElementById('novoNome').value.trim();
+  let tel = document.getElementById('novoTel').value.trim();
+  let s = document.getElementById('novaSenha').value;
+  let c = document.getElementById('confSenha').value;
+  if(!n || !tel || !s){ alert('Preenche tudo!'); return; }
+  if(s.length < 6){ alert('Senha tem que ter pelo menos 6 caracteres!'); return; }
+  if(s !== c){ alert('As senhas não são iguais!'); return; }
+  // Guarda a conta
+  localStorage.setItem('naul_conta', JSON.stringify({nome:n, tel:tel, senha:s}));
+  jaTemConta = true; contaAtualId = tel;
+  alert('Conta criada com sucesso, ' + n + '! Agora já podes entrar nos cursos.');
+  closeModal('loginAlunoModal');
+  }
 </script>
 </body>
 </html>
