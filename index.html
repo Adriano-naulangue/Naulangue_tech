@@ -503,6 +503,26 @@ function criarContaNova(){
   alert('Conta criada com sucesso, ' + n + '! Agora já podes entrar nos cursos.');
   closeModal('loginAlunoModal');
   }
+// CORRIGIR - Lembrar qual curso clicou
+let cursoPendente = null;
+
+function clicarCurso(idCurso, nomeCurso) {
+  cursoPendente = idCurso;
+  let user = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
+  
+  if (!user) {
+    // Não está logado - abre login
+    abrirLogin();
+  } else {
+    // Já está logado - abre o curso direto
+    abrirCurso(idCurso, nomeCurso);
+  }
+}
+
+function abrirCurso(idCurso, nomeCurso) {
+  alert('A entrar no curso: ' + nomeCurso + '\n\nAqui vai aparecer o apontamento e as aulas.');
+  // Depois aqui vamos pôr a página do curso com os apontamentos
+}
 </script>
 </body>
 </html>
