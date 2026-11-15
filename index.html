@@ -101,31 +101,22 @@ input[type=file]{background:#1e293b;padding:10px}
 <div class="page" id="p1"><button class="btn back" onclick="showPage('home')">Voltar</button><div class="info-box"><h3>O que é Inglês?</h3><p>Inglês é a língua mais falada no mundo para trabalho, estudos, negócios e internet.</p></div></div>
 <div class="page" id="p2"><button class="btn back" onclick="showPage('home')">Voltar</button><div class="info-box"><h3>O que vais aprender</h3><p>🇬🇧 Alfabeto e Pronúncia<br>🗣️ Speaking<br>👂 Listening<br>📖 Reading<br>✍️ Writing<br>📚 Grammar<br>💬 Vocabulário do dia a dia</p></div></div>
 <div class="page" id="p7"><button class="btn back" onclick="showPage('home')">Voltar</button><h3>Fotos e Novidades</h3><div id="postsPage"></div></div>
-<!-- CONTACTO REMOVIDO -->
-
 <div class="page" id="p10"><button class="btn back" onclick="showPage('home')">Voltar</button>
-<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Faz Login</h3><p id="textoBloqueioTeste">Faz Login para fazer o teste.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
+<div id="bloqueioTeste" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Faz Login</h3><p>Faz Login para fazer o teste.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
 <div id="conteudoTeste" style="display:none"><div class="info-box"><h3>Área de Teste - 20 Perguntas</h3><p id="testeInfo"></p><button class="btn" onclick="iniciarTeste()">Começar Teste</button></div>
 <div id="testeArea" style="display:none"><div class="info-box"><h3 id="perguntaTitulo">Pergunta 1</h3><p id="perguntaTexto" style="font-size:18px;font-weight:bold;margin:12px 0"></p><div id="opcoesArea"></div><button class="btn" style="width:100%;margin-top:12px" onclick="seguirPergunta()">Seguir ➡️ Próxima</button><p class="small" id="msgTeste" style="color:#facc15;margin-top:8px"></p></div></div><div id="resultadoArea" style="display:none"></div></div></div>
-
 <div class="page" id="p11"><button class="btn back" onclick="showPage('home')">Voltar</button>
-<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Faz Login</h3><p id="textoBloqueioAula">Faz Login para ver as aulas.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
+<div id="bloqueioAula" class="info-box" style="display:none;text-align:center;border-color:#f59e0b"><h3>🔒 Faz Login</h3><p>Faz Login para ver as aulas.</p><button class="btn" onclick="openModal('loginAlunoModal')">Login</button></div>
 <div id="conteudoAula" style="display:none"><h3>Sala de Aula</h3><p class="small">Todas as aulas. Usa ❤️ para favoritar.</p><div id="aulasLista"></div></div></div>
 <div class="page" id="pPerfil"><button class="btn back" onclick="showPage('home')">Voltar</button><div id="perfilConteudo"></div></div>
 <div class="page" id="p6"><button class="btn back" onclick="showPage('home')">Voltar</button><h3>Preços e Pacotes</h3><div class="grid" id="cursosGrid"></div></div>
 <footer>© 2026 NAULANGUE TECH | Montepuez - Curso de Inglês</footer>
-
-<!-- CURSOS COM PREÇO -->
 <div class="page" id="pCursos"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>Escolhe o teu curso</h3><p class="small">Cada curso tem 3 páginas. Na 1ª página tens Prática e Comprar.</p><div id="listaCursos"></div></div></div>
-<div class="page" id="pCursoDetalhe"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="cursoTitulo"></h3><p id="cursoPagInfo" class="small"></p><div id="cursoConteudo"></div><div id="cursoBotoes" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"></div><div id="cursoAulas" style="margin-top:14px"></div></div></div>
-
-<!-- FRASES - AO CLICAR VAI PARA OUTRA PÁGINA COM FRASES + PUBLICIDADE FOTOS E TEXTOS -->
-<div class="page" id="pFrases"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 Frases do Dia a Dia</h3><p class="small">Frases que fazem você soar menos como livro didático.</p><div id="listaFrases"></div><h3 style="margin-top:18px">📸 Publicidade - Fotos e Textos do Admin</h3><p class="small">Aqui também vês as publicações do Admin.</p><div id="frasesPosts"></div></div></div>
-
-<!-- COMENTÁRIO -->
+<div class="page" id="pCursoDetalhe"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="cursoTitulo"></h3><p id="cursoPagInfo" class="small"></p><div id="cursoConteudo"></div><div id="cursoBotoes" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"></div></div></div>
+<!-- PÁGINA DE AULA DEPOIS DA SENHA - SÓ DESSE CURSO -->
+<div class="page" id="pAulaCurso"><button class="btn back" onclick="showPage('pCursos')">← Todos os cursos</button><div class="info-box"><h3 id="aulaCursoTitulo"></h3><p id="aulaCursoInfo" class="small"></p><p class="small" style="color:#22c55e">✅ Desbloqueado. Não vai pedir senha de novo durante 14 dias neste telefone.</p><div id="aulaCursoLista"></div><button class="btn" style="width:100%;margin-top:12px" onclick="showPage('pCursos')">Voltar aos cursos</button></div></div>
+<div class="page" id="pFrases"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 Frases do Dia a Dia</h3><p class="small">Frases que fazem você soar menos como livro didático.</p><div id="listaFrases"></div><h3 style="margin-top:18px">📸 Publicidade - Fotos e Textos do Admin</h3><div id="frasesPosts"></div></div></div>
 <div class="page" id="pComent"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💬 O que deve melhorar no site?</h3><p class="small">O teu comentário vai aparecer na área do Admin.</p><textarea id="comentText" rows="3" placeholder="Ex: O site devia ter mais vídeos..." style="width:100%;padding:12px;border-radius:12px;margin-top:10px;background:#1e293b;color:#fff;border:none"></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="enviarComentario()">Enviar comentário</button><div id="meusComent" style="margin-top:14px"></div></div></div>
-
-<!-- CONVERSA -->
 <div class="page" id="pChat"><button class="btn back" onclick="showPage('home')">← Voltar</button><div class="info-box"><h3>💭 Conversa Aluno ↔ Admin</h3><p class="small">Visível por ti e pelo Admin.</p><div id="chatBox" style="height:260px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatInput" placeholder="Escreve a tua mensagem..." style="width:100%;padding:12px;border-radius:12px;background:#1e293b;color:#fff;border:none"><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChat()">Enviar</button></div></div>
 <div class="modal" id="loginAlunoModal"><div class="box"><span class="close" onclick="closeModal('loginAlunoModal')">×</span><h2>🔑 Login</h2><p class="small">Entra com Email ou Número. Entras logo, sem aprovação.</p>
 <div class="tab-login"><button id="btnLoginEmail" class="active" onclick="trocarTipoLogin('email')">📧 Email</button><button id="btnLoginTel" onclick="trocarTipoLogin('tel')">📱 Número</button></div>
@@ -137,7 +128,6 @@ input[type=file]{background:#1e293b;padding:10px}
 <input type="text" id="cadNome" placeholder="Nome completo"><input type="email" id="cadEmail" placeholder="Seu email"><input type="password" id="cadSenha" placeholder="Cria uma password"><label class="small">Data de nascimento:</label><input type="date" id="cadNasc"><input type="tel" id="cadTel" placeholder="Seu número ex: 840000000"><label class="small">Escolhe o curso:</label><select id="cursoEscolhido"></select>
 <button class="btn btn-green" style="width:100%" onclick="criarConta()">Criar Minha Conta</button><p class="small" id="msgCriarConta" style="color:#4ade80;margin-top:8px"></p></div></div>
 <div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin</button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
-
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
 <span class="close" onclick="closeModal('adminModal')">×</span><h2>Painel Admin - NAULANGUE TECH</h2><p class="small" id="statusFirebase" style="color:#facc15">A ligar ao Firebase...</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0">
@@ -154,7 +144,7 @@ input[type=file]{background:#1e293b;padding:10px}
 <div id="tabAlunos" class="admin-tab" style="display:none"><div class="admin-section"><h3>Alunos / Contas (<span id="totalAlunos">0</span>)</h3><p class="small">Sem aprovação. Quem cria conta entra logo.</p><div id="listaAlunos"></div></div></div>
 <div id="tabPosts" class="admin-tab" style="display:none"><div class="admin-section"><h3>+ Publicar Foto e Escrever</h3><input type="text" id="postTitulo" placeholder="Título"><textarea id="postTexto" placeholder="Escreve aqui..."></textarea><input type="file" id="postFotoFile" accept="image/*" onchange="previewFoto(event)"><img id="previewImg" class="preview"><input type="text" id="postFotoLink" placeholder="https://...jpg"><button class="btn btn-green" style="width:100%" onclick="publicarPost()">Publicar Foto + Texto</button><div id="listaPostsAdmin"></div></div></div>
 <div id="tabPerguntas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3>✏️ Criar Pergunta - Máx 20</h3><textarea id="qPergunta" placeholder="Pergunta"></textarea><input type="text" id="qA" placeholder="Opção A"><input type="text" id="qB" placeholder="Opção B"><input type="text" id="qC" placeholder="Opção C"><input type="text" id="qD" placeholder="Opção D"><label class="small">Qual é a correta?</label><select id="qCorreta"><option value="0">A é correta</option><option value="1">B é correta</option><option value="2">C é correta</option><option value="3">D é correta</option></select><button class="btn btn-orange" style="width:100%" onclick="adicionarPergunta()">Adicionar Pergunta</button><p class="small" id="totalPerguntas"></p><div id="listaPerguntas"></div></div></div>
-<div id="tabAulas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>📚 Publicar Aula</h3><input type="text" id="aulaTitulo" placeholder="Título da aula"><textarea id="aulaTexto" placeholder="Escreve a aula aqui..."></textarea><label class="small">Escolhe onde publicar a aula:</label><select id="aulaCurso"><option value="basico">Curso Básico - 10mt</option><option value="intermediario">Curso Intermediário - 20mt</option><option value="medio">Curso Médio - 30mt</option><option value="avancado">Curso Avançado - 40mt</option><option value="todos">Todos os cursos</option></select><input type="text" id="aulaPdf" placeholder="https://...pdf"><input type="file" id="aulaPdfFile" accept="application/pdf"><button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button><div id="listaAulasAdmin"></div></div></div>
+<div id="tabAulas" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>📚 Publicar Aula</h3><input type="text" id="aulaTitulo" placeholder="Título da aula"><textarea id="aulaTexto" placeholder="Escreve a aula aqui..."></textarea><label class="small">Escolhe onde publicar a aula - SÓ 1 CURSO:</label><select id="aulaCurso"><option value="basico">Curso Básico - 10mt</option><option value="intermediario">Curso Intermediário - 20mt</option><option value="medio">Curso Médio - 30mt</option><option value="avancado">Curso Avançado - 40mt</option></select><p class="small">A aula só vai aparecer nesse curso, não no outro.</p><input type="text" id="aulaPdf" placeholder="https://...pdf"><input type="file" id="aulaPdfFile" accept="application/pdf"><button class="btn btn-green" style="width:100%" onclick="publicarAula()">Publicar Aula</button><div id="listaAulasAdmin"></div></div></div>
 <div id="tabFrases" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#22c55e"><h3>💬 Publicar Frase do Dia a Dia</h3><input type="text" id="fraseIngles" placeholder="Frase em Inglês ex: NO WORRIES!"><input type="text" id="frasePortugues" placeholder="Tradução ex: Sem problemas!"><textarea id="fraseExemplo" placeholder="Exemplo / Quando usar"></textarea><button class="btn btn-green" style="width:100%" onclick="publicarFrase()">Publicar Frase</button><div id="listaFrasesAdmin" style="margin-top:12px"></div></div></div>
 <div id="tabComentarios" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#f59e0b"><h3>💬 Comentários dos Alunos</h3><div id="listaComentariosAdmin"></div></div></div>
 <div id="tabChatAdmin" class="admin-tab" style="display:none"><div class="admin-section" style="border-color:#a855f7"><h3>💭 Conversas Aluno ↔ Admin</h3><select id="chatAlunoSelect" onchange="carregarChatAdmin()" style="width:100%;padding:12px;border-radius:10px;background:#0f172a;color:#fff;border:none"></select><div id="chatAdminBox" style="height:220px;overflow:auto;background:#020617;border-radius:12px;padding:10px;margin:10px 0"></div><input id="chatAdminInput" placeholder="Responder ao aluno..."><button class="btn" style="width:100%;margin-top:8px" onclick="enviarChatAdmin()">Enviar como Admin</button></div></div>
@@ -192,7 +182,6 @@ window.criarConta=async function(){
     if(!qTel.empty){alert("Esse número já tem conta! Faz Login.");closeModal('criarContaModal');openModal('loginAlunoModal');trocarTipoLogin('tel');return;}
     const ref=await addDoc(collection(db,"contas"),{nome,email,senha,nascimento:nasc,tel,cursoId,status:"aprovado",favoritos:[],historico:[],data:Date.now()});
     contaAtual={id:ref.id,nome,email,senha,nascimento:nasc,tel,cursoId,status:"aprovado",favoritos:[],historico:[]}; salvarSessao(contaAtual);
-    document.getElementById("msgCriarConta").textContent="Conta criada! Entras logo.";
     setTimeout(()=>{closeModal('criarContaModal');renderAll();showPage('home');alert("✅ Conta criada, "+nome+"! Já estás dentro.");},600);
   }catch(e){alert("Erro ao criar conta. "+e.message);}
 };
@@ -222,7 +211,7 @@ window.abrirPerfil=function(){fecharMenu(); if(!contaAtual){alert("Faz Login pri
 function renderPerfil(){
   if(!contaAtual) return; const c=contaAtual; const favs=(c.favoritos||[]); const hist=(c.historico||[]);
   const favAulas=aulas.filter(a=>favs.includes(a.id)); const histAulas=aulas.filter(a=>hist.includes(a.id));
-  document.getElementById("perfilConteudo").innerHTML=`<div class="perfil-card"><h2>👤 ${c.nome}</h2><p>${c.email}</p><p>📱 ${c.tel||""}</p><p>✅ Conta ativa - Entras logo</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
+  document.getElementById("perfilConteudo").innerHTML=`<div class="perfil-card"><h2>👤 ${c.nome}</h2><p>${c.email}</p><p>📱 ${c.tel||""}</p><p>✅ Conta ativa</p><p class="small" style="color:#fff">Curso: ${cursos.find(x=>x.id===c.cursoId)?.titulo||"Curso"}</p></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="info-box" style="text-align:center"><h3>${hist.length}</h3><p>Aulas Lidas</p></div><div class="info-box" style="text-align:center"><h3>❤️ ${favs.length}</h3><p>Favoritas</p></div></div>
   <div class="info-box"><h3>📖 Histórico</h3>${histAulas.length?histAulas.map(a=>`<div class="list-item"><b>✅ ${a.titulo}</b><button class="btn btn-green" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não leste nenhuma aula.</p>"}</div>
   <div class="info-box"><h3>❤️ Favoritos</h3>${favAulas.length?favAulas.map(a=>`<div class="list-item"><b>❤️ ${a.titulo}</b><button class="btn" style="padding:8px 12px" onclick="showPage('p11')">Ver</button></div>`).join(""):"<p class='small'>Ainda não favoritaste nenhuma aula.</p>"}</div>
@@ -242,7 +231,7 @@ async function criarPadroesSeVazio(){
     const qSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"perguntas"),s=>{un();res(s);});});
     if(qSnap.empty){await addDoc(collection(db,"perguntas"),{pergunta:"How do you say 'Obrigado' in English?",opcoes:["Thank you","Please","Hello","Goodbye"],correta:0,data:Date.now()});}
     const aSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"aulas"),s=>{un();res(s);});});
-    if(aSnap.empty){await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"I am, You are, He is, She is.",pdf:"",curso:"todos",data:Date.now()});}
+    if(aSnap.empty){await addDoc(collection(db,"aulas"),{titulo:"Aula 1 - Verb To Be",texto:"I am, You are, He is, She is.",pdf:"",curso:"basico",data:Date.now()});}
     const frSnap=await new Promise(res=>{const un=onSnapshot(collection(db,"frases"),s=>{un();res(s);});});
     if(frSnap.empty){const fr=[["NO WORRIES!","Sem problemas!","Quando alguém pede desculpa: No worries!"],["I'M DOWN!","Tô dentro!","Quando aceitas um plano"],["WAIT, WHAT?!","Peraí, o quê?!","Quando não entendeste"]]; for(let x of fr){await addDoc(collection(db,"frases"),{ingles:x[0],portugues:x[1],exemplo:x[2],data:Date.now()+Math.random()});}}
   }catch(e){console.log(e);}
@@ -256,11 +245,11 @@ window.publicarPost=async function(){const t=document.getElementById("postTitulo
 window.removerPost=async function(id){if(confirm("Apagar?")){await deleteDoc(doc(db,"posts",id));}};
 window.adicionarPergunta=async function(){ if(perguntas.length>=MAX_PERGUNTAS) return alert("Já tens 20 perguntas!"); const p=document.getElementById("qPergunta").value.trim(); const a=document.getElementById("qA").value.trim(); const b=document.getElementById("qB").value.trim(); const c=document.getElementById("qC").value.trim(); const d=document.getElementById("qD").value.trim(); const correta=Number(document.getElementById("qCorreta").value); if(!p||!a||!b||!c||!d) return alert("Preenche tudo!"); await addDoc(collection(db,"perguntas"),{pergunta:p,opcoes:[a,b,c,d],correta,data:Date.now()}); document.getElementById("qPergunta").value=""; document.getElementById("qA").value=""; document.getElementById("qB").value=""; document.getElementById("qC").value=""; document.getElementById("qD").value=""; alert("Pergunta adicionada!");};
 window.removerPergunta=async function(id){if(confirm("Apagar pergunta?")){await deleteDoc(doc(db,"perguntas",id));}};
-window.publicarAula=async function(){const t=document.getElementById("aulaTitulo").value.trim(); const txt=document.getElementById("aulaTexto").value.trim(); const curso=document.getElementById("aulaCurso").value; const pdfLink=document.getElementById("aulaPdf").value.trim(); const file=document.getElementById("aulaPdfFile").files[0]; if(!t) return alert("Escreve o título!"); if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete PDF!"); let pdfData=pdfLink; if(file){pdfData=await new Promise(res=>{const r=new FileReader(); r.onload=e=>res(e.target.result); r.readAsDataURL(file);});} await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,curso:curso,data:Date.now()}); document.getElementById("aulaTitulo").value=""; document.getElementById("aulaTexto").value=""; document.getElementById("aulaPdf").value=""; document.getElementById("aulaPdfFile").value=""; alert("Aula publicada para: "+curso+"!");};
+window.publicarAula=async function(){const t=document.getElementById("aulaTitulo").value.trim(); const txt=document.getElementById("aulaTexto").value.trim(); const curso=document.getElementById("aulaCurso").value; const pdfLink=document.getElementById("aulaPdf").value.trim(); const file=document.getElementById("aulaPdfFile").files[0]; if(!t) return alert("Escreve o título!"); if(!txt && !pdfLink && !file) return alert("Escreve a aula ou mete PDF!"); let pdfData=pdfLink; if(file){pdfData=await new Promise(res=>{const r=new FileReader(); r.onload=e=>res(e.target.result); r.readAsDataURL(file);});} await addDoc(collection(db,"aulas"),{titulo:t,texto:txt,pdf:pdfData,curso:curso,data:Date.now()}); document.getElementById("aulaTitulo").value=""; document.getElementById("aulaTexto").value=""; document.getElementById("aulaPdf").value=""; document.getElementById("aulaPdfFile").value=""; alert("Aula publicada só para: "+nomeCurso(curso)+"!");};
 window.removerAula=async function(id){if(confirm("Apagar aula?")){await deleteDoc(doc(db,"aulas",id));}};
 window.publicarFrase=async function(){const ing=document.getElementById("fraseIngles").value.trim(); const pt=document.getElementById("frasePortugues").value.trim(); const ex=document.getElementById("fraseExemplo").value.trim(); if(!ing||!pt) return alert("Escreve a frase em Inglês e em Português!"); await addDoc(collection(db,"frases"),{ingles:ing,portugues:pt,exemplo:ex,data:Date.now()}); document.getElementById("fraseIngles").value=""; document.getElementById("frasePortugues").value=""; document.getElementById("fraseExemplo").value=""; alert("Frase publicada!");};
 window.removerFrase=async function(id){if(confirm("Apagar frase?")) await deleteDoc(doc(db,"frases",id));};
-function nomeCurso(c){return c==='basico'?'Curso Básico - 10mt':c==='intermediario'?'Curso Intermediário - 20mt':c==='medio'?'Curso Médio - 30mt':c==='avancado'?'Curso Avançado - 40mt':'Todos os cursos';}
+function nomeCurso(c){return c==='basico'?'Curso Básico - 10mt':c==='intermediario'?'Curso Intermediário - 20mt':c==='medio'?'Curso Médio - 30mt':c==='avancado'?'Curso Avançado - 40mt':'Curso Básico - 10mt';}
 function renderFrases(){
   const html=frases.map(f=>`<div class="frase-card"><b style="color:#38bdf8">${f.ingles}</b><br><span style="color:#22c55e;font-weight:bold">${f.portugues}</span>${f.exemplo?`<br><span class="small">💡 ${f.exemplo}</span>`:""}</div>`).join("")||"<p class='small'>Ainda não há frases.</p>";
   const el=document.getElementById("listaFrases"); if(el) el.innerHTML=html;
@@ -282,7 +271,7 @@ function aulaHTML(a){
   const favs=contaAtual?.favoritos||[]; const hist=contaAtual?.historico||[];
   let pdfBtn=""; if(a.pdf){ if(a.pdf.startsWith("data:")){pdfBtn=`<a href="${a.pdf}" download="aula.pdf" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir / Baixar PDF</a>`;} else{pdfBtn=`<a href="${a.pdf}" target="_blank" style="display:inline-block;background:#ef4444;color:#fff;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px">📄 Abrir PDF / Livro</a>`;}}
   const isFav=favs.includes(a.id); const isLida=hist.includes(a.id);
-  return `<div class="aula-card"><span class="small">📚 ${nomeCurso(a.curso||'todos')}</span><h3 style="color:#38bdf8">${isLida?"✅ ":""}${a.titulo} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada":"🤍 Favoritar"}</button></div></div>`;
+  return `<div class="aula-card"><span class="small">📚 ${nomeCurso(a.curso)}</span><h3 style="color:#38bdf8">${isLida?"✅ ":""}${a.titulo} ${isFav?"❤️":""}</h3><p style="white-space:pre-wrap;margin:8px 0;line-height:1.6">${a.texto||""}</p>${pdfBtn}<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn btn-green" style="padding:9px 14px;font-size:13px" onclick="marcarLida('${a.id}')">${isLida?"✅ Já Lida":"✔️ Marcar como Lida"}</button><button class="btn" style="padding:9px 14px;font-size:13px;background:${isFav?"#ef4444":"#1e293b"};border:1px solid #f87171" onclick="toggleFavorito('${a.id}')">${isFav?"❤️ Favoritada":"🤍 Favoritar"}</button></div></div>`;
 }
 function renderAulas(){
   const temConta=!!contaAtual;
@@ -292,7 +281,7 @@ function renderAulas(){
   if(bloqueioAula){ if(temConta){bloqueioAula.style.display="none"; conteudoAula.style.display="block";} else {bloqueioAula.style.display="block"; conteudoAula.style.display="none";}}
   if(!temConta) return;
   document.getElementById("aulasLista").innerHTML=aulas.map(a=>aulaHTML(a)).join("")||"<p class='small'>Nenhuma aula ainda.</p>";
-  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">📚 ${nomeCurso(a.curso||'todos')}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
+  document.getElementById("listaAulasAdmin").innerHTML=aulas.map(a=>`<div class="list-item"><div><b>${a.titulo}</b><br><span class="small">📚 ${nomeCurso(a.curso)}</span></div><button onclick="removerAula('${a.id}')" style="background:#ef4444;border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer">Apagar</button></div>`).join("");
 }
 function atualizarBotoesInscrever(){
   const a=meuAluno(); const jaTemConta=!!a;
@@ -337,10 +326,14 @@ onSnapshot(doc(db,"config","fundo"),(snap)=>{
     aplicarFundo();
   }
 });
+
 tentarAutoLogin();
 renderAll();
-const SENHAS_CURSO={basico:'bas2026',intermediario:'vamo1002',medio:'abril2378',avancado:'avan2026'};
+const SENHAS_CURSO={basico:'2006basi',intermediario:'Inter2007',medio:'2008med',avancado:'Avan2009'};
 const WHATS_COMPRAR='258856661893';
+const DIAS_SENHA=14*24*60*60*1000;
+function senhaAindaValida(curso){try{const s=localStorage.getItem("naul_senha_"+curso); if(!s) return false; return Date.now()-Number(s)<DIAS_SENHA;}catch(e){return false;}}
+function guardarSenha(curso){localStorage.setItem("naul_senha_"+curso,String(Date.now()));}
 const CURSOS_NAUL={
   basico:{nome:'Curso Básico - 10mt',preco:'10mt',paginas:[
     {t:'Página 1 - Começar',c:'Bem-vindo ao Curso Básico - 10mt! Vais aprender cumprimentos.<br><b>Ex: Hello, My name is Adriano. I am from Mozambique.</b>'},
@@ -365,7 +358,11 @@ const CURSOS_NAUL={
 };
 let cursoAtual=null, paginaAtual=0, desbloqueado={};
 function renderCursosNaul(){let h=''; for(let k in CURSOS_NAUL){h+=`<div style="border:1px solid #334155;border-radius:14px;padding:12px;margin:10px 0"><b>${CURSOS_NAUL[k].nome}</b><p class="small">3 páginas - ${CURSOS_NAUL[k].preco}</p><button class="btn" onclick="abrirCursoNaul('${k}')">Abrir curso →</button></div>`;} const el=document.getElementById('listaCursos'); if(el) el.innerHTML=h;}
-function abrirCursoNaul(k){cursoAtual=k; paginaAtual=0; mostrarPaginaNaul(); showPage('pCursoDetalhe');}
+function abrirCursoNaul(k){
+  cursoAtual=k; paginaAtual=0;
+  if(senhaAindaValida(k)){desbloqueado[k]=true; abrirPaginaAulaCurso(); return;}
+  mostrarPaginaNaul(); showPage('pCursoDetalhe');
+}
 function mostrarPaginaNaul(){
   let cur=CURSOS_NAUL[cursoAtual];
   document.getElementById('cursoTitulo').innerText=cur.nome;
@@ -384,15 +381,29 @@ function mostrarPaginaNaul(){
   if(paginaAtual<2 && (paginaAtual>0||desbloqueado[cursoAtual])) b+=`<button class="btn" onclick="paginaAtual++;mostrarPaginaNaul()">Próxima →</button>`;
   if(paginaAtual===0 && !desbloqueado[cursoAtual]) b+=`<button class="btn" style="background:#475569">Bloqueado - Usa Prática com senha</button>`;
   document.getElementById('cursoBotoes').innerHTML=b;
-  // AULAS PUBLICADAS PARA ESTE CURSO
-  const minhas=aulas.filter(a=>(a.curso||'todos')===cursoAtual || (a.curso||'todos')==='todos');
-  document.getElementById('cursoAulas').innerHTML=minhas.length?`<h3 style="margin-top:10px">📚 Aulas deste curso</h3>`+minhas.map(a=>aulaHTML(a)).join(""):`<p class="small">Ainda não há aulas publicadas para este curso.</p>`;
+}
+function abrirPaginaAulaCurso(){
+  const cur=CURSOS_NAUL[cursoAtual];
+  document.getElementById('aulaCursoTitulo').innerText=cur.nome+" - Aulas";
+  document.getElementById('aulaCursoInfo').innerText="Só aulas deste curso. Não mostra aula de outro curso.";
+  const minhas=aulas.filter(a=>a.curso===cursoAtual);
+  if(minhas.length===0){
+    document.getElementById('aulaCursoLista').innerHTML=`<p class="small">Ainda não há aulas publicadas para ${cur.nome}. O Admin ainda vai publicar.</p>`+cur.paginas.map((p,i)=>`<div class="aula-card"><h3>${p.t}</h3><p>${p.c}</p></div>`).join("");
+  } else {
+    document.getElementById('aulaCursoLista').innerHTML=minhas.map(a=>aulaHTML(a)).join("");
+  }
+  showPage('pAulaCurso');
 }
 window.abrirCursoNaul=abrirCursoNaul;
 window.pedirSenhaNaul=function(){
+  if(senhaAindaValida(cursoAtual) || desbloqueado[cursoAtual]){ abrirPaginaAulaCurso(); return; }
   const senha=prompt("Digite a senha da PRÁTICA do "+CURSOS_NAUL[cursoAtual].nome+":");
   if(senha===null) return;
-  if(senha.trim()===SENHAS_CURSO[cursoAtual]){ desbloqueado[cursoAtual]=true; alert("✅ Senha correta! Prática desbloqueada."); mostrarPaginaNaul(); }
+  if(senha.trim()===SENHAS_CURSO[cursoAtual]){
+    desbloqueado[cursoAtual]=true; guardarSenha(cursoAtual);
+    alert("✅ Senha correta! A abrir as aulas do "+CURSOS_NAUL[cursoAtual].nome);
+    abrirPaginaAulaCurso();
+  }
   else alert("❌ Senha errada! Compra o curso para receber a senha.");
 };
 window.comprarCursoNaul=function(){
