@@ -149,36 +149,16 @@ input[type=file]{background:#1e293b;padding:10px}
 <button class="btn btn-green" style="width:100%;margin-top:8px" onclick="closeModal('loginAlunoModal');openModal('criarContaModal')">➕ Criar Conta Grátis</button>
 </div></div>
 <div class="modal" id="criarContaModal"><div class="box"><span class="close" onclick="closeModal('criarContaModal')">×</span><h2>➕ Criar Conta</h2><p class="small">Cria com Email e Número. Depois podes fazer Login com qualquer um dos dois.</p>
-  <div class="box">
-<span class="close" onclick="closeModal('loginAlunoModal')">×</span>
-<h2 style="text-align:center;color:#1e2a8a">Criar Conta</h2>
-<p style="text-align:center;font-size:13px">Preencha os dados para criar a sua conta</p>
-
-<label>Nome</label>
-<input type="text" id="novoNome" placeholder="Digite o seu nome completo" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:10px">
-
-<label>Telefone</label>
-<input type="tel" id="novoTel" placeholder="+258 84 123 4567" value="+258 " style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:10px">
-
-<label>Senha</label>
-<input type="password" id="novaSenha" placeholder="••••••••" oninput="verForcaSenha()" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc">
-
-<label style="font-size:13px"><input type="checkbox" onclick="mostrarSenhaConta(this)"> Mostrar senha</label>
-
-<p style="font-size:13px;margin:5px 0">Força da senha: <b id="txtForca">Fraca</b></p>
-<div style="display:flex;gap:5px;margin-bottom:5px">
-<div id="barra1" style="height:8px;flex:1;background:#e00;border-radius:10px"></div>
-<div id="barra2" style="height:8px;flex:1;background:#ddd;border-radius:10px"></div>
-<div id="barra3" style="height:8px;flex:1;background:#ddd;border-radius:10px"></div>
-</div>
-<p style="font-size:12px;color:#666">ⓘ A senha deve ter pelo menos 6 caracteres</p>
-
-<label>Confirmar Senha</label>
-<input type="password" id="confSenha" placeholder="••••••••" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ccc;margin-bottom:12px">
-
-<button onclick="criarContaNova()" style="width:100%;padding:14px;background:#3b4bff;color:#fff;border:none;border-radius:12px;font-weight:bold;font-size:16px">Criar Conta</button>
-<p style="text-align:center;font-size:13px;margin-top:10px">Já tens conta? <a href="#" onclick="closeModal('loginAlunoModal');openModal('loginAlunoModal')">Entrar</a></p>
-  </div>
+<input type="text" id="cadNome" placeholder="Nome completo">
+<input type="email" id="cadEmail" placeholder="Seu email">
+<input type="password" id="cadSenha" placeholder="Cria uma password">
+<label class="small">Data de nascimento:</label><input type="date" id="cadNasc">
+<input type="tel" id="cadTel" placeholder="Seu número ex: 840000000">
+<label class="small">Escolhe o curso:</label><select id="cursoEscolhido"></select>
+<button class="btn btn-green" style="width:100%" onclick="criarConta()">Criar Minha Conta</button>
+<p class="small" id="msgCriarConta" style="color:#4ade80;margin-top:8px"></p>
+<p style="text-align:center;margin-top:10px"><a href="#" onclick="closeModal('criarContaModal');openModal('loginAlunoModal');return false" style="color:#38bdf8">Já tenho conta - Fazer Login</a></p>
+</div></div>
 <div class="modal" id="loginModal"><div class="box"><span class="close" onclick="closeModal('loginModal')">×</span><h2>🔐 Admin Login</h2><p class="small">Só o dono entra aqui.</p><input type="password" id="senhaAdmin" placeholder="Senha de Admin"><button class="btn" style="width:100%;background:#000;border:2px solid #facc15;color:#facc15" onclick="fazerLogin()">Entrar como Admin </button><p class="small" id="erroLogin" style="color:#f87171;margin-top:8px"></p></div></div>
 <div class="modal" id="adminModal"><div class="box" style="max-width:640px">
 <span class="close" onclick="closeModal('adminModal')">×</span>
