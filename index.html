@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAULANGUE TECH - Learn English. Build Your Future.</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 :root{--blue:#0A1931;--gold:#FFC107;--light:#F4F6FB}
@@ -79,16 +80,11 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;border:none}
 <section style="padding:0 14px 22px"><div class="card" style="background:linear-gradient(135deg,#0A1931,#142F5A);color:#fff"><h2>👤 Área do Estudante</h2><p style="font-size:13px;opacity:.9;margin:6px 0">Teu painel, teus cursos, tuas notas e teu progresso.</p><button class="btn btn-gold" style="width:100%" onclick="openStudent()">Abrir Meu Painel →</button></div></section>
 <footer style="text-align:center;padding:16px;font-size:12px;color:#888">© 2026 NAULANGUE TECH • M-Pesa 856 661 893 • e-Mola 862 428 830<br><br><button onclick="openModal('adminLoginModal')" style="background:#111;color:#fff;padding:10px 18px;border-radius:20px;font-weight:700;font-size:13px">🛡️ Administração</button></footer>
 </main>
-<!-- PÁGINA DE SECÇÃO -->
 <div id="sectionPage">
   <div style="background:#0A1931;color:#fff;padding:12px 14px;display:flex;gap:10px;align-items:center;position:sticky;top:56px;z-index:50"><button onclick="closeSectionPage()" style="background:#FFC107;padding:8px 12px;border-radius:20px;font-weight:800">← Voltar</button><b style="font-size:14px" id="sectionTopTitle">NAULANGUE TECH</b></div>
   <div style="padding:16px"><span id="sectionBadge" style="font-size:11px;background:#FFF8E1;padding:4px 10px;border-radius:10px;font-weight:700"></span><h2 id="sectionTitle" style="font-size:24px;margin:10px 0;line-height:1.2"></h2><p id="sectionDesc" style="font-size:14px;color:#666;line-height:1.6"></p><div id="sectionContent" style="margin-top:16px"></div><hr style="margin:22px 0;border:none;border-top:1px solid #eee"><h3 id="sectionMoreTitle" style="font-size:17px">📚 Outras matérias relacionadas por baixo 👇</h3><div id="sectionMore" style="margin-top:12px"></div><button onclick="closeSectionPage()" style="width:100%;padding:12px;border-radius:12px;background:#0A1931;color:#fff;font-weight:700;margin-top:16px">← Voltar à Página Inicial</button></div>
 </div>
-
-<!-- PÁGINA DA MATÉRIA -->
 <div id="postPage"><div style="background:#0A1931;color:#fff;padding:12px 14px;display:flex;gap:10px;align-items:center;position:sticky;top:56px;z-index:50"><button onclick="closePostPage()" style="background:#FFC107;padding:8px 12px;border-radius:20px;font-weight:800">← Voltar</button><b style="font-size:14px">NAULANGUE TECH</b></div><img id="postPageImg" class="post-hero-img"><div style="padding:16px"><span id="postPageSec" style="font-size:11px;background:#FFF8E1;padding:4px 10px;border-radius:10px;font-weight:700"></span><h2 id="postPageTitle" style="font-size:22px;margin:10px 0;line-height:1.3"></h2><p id="postPageBody" style="font-size:15px;line-height:1.7;color:#333"></p><div id="postPagePdf" style="margin-top:12px"></div><div id="postPageGallery" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"></div><hr style="margin:20px 0;border:none;border-top:1px solid #eee"><h3>📚 Outras matérias relacionadas por baixo 👇</h3><div id="postPageMore" style="margin-top:12px"></div><button onclick="closePostPage()" style="width:100%;padding:12px;border-radius:12px;background:#0A1931;color:#fff;font-weight:700;margin-top:16px">← Voltar</button></div></div>
-
-<!-- ÁREA DO ESTUDANTE - PRONTA -->
 <div id="studentPage">
   <div style="background:#0A1931;color:#fff;padding:12px 14px;display:flex;gap:10px;align-items:center;position:sticky;top:56px;z-index:50"><button onclick="closeStudent()" style="background:#FFC107;padding:8px 12px;border-radius:20px;font-weight:800">← Voltar</button><b style="font-size:14px">👤 Área do Estudante</b></div>
   <div style="padding:16px">
@@ -107,11 +103,12 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;border:none}
     <div id="stu-cursos" class="stu-tab"><div id="stuCursosList" style="margin-top:12px"></div></div>
     <div id="stu-notas" class="stu-tab"><div class="card" style="margin-top:12px"><h3>📊 Minhas Notas</h3><div id="stuNotasList" style="font-size:14px;line-height:2;margin-top:8px">Teste 1 - Alfabeto: <b>16/20 ✅</b><br>Teste 2 - Números: <b>18/20 ✅</b><br>Teste 3 - Verbos: <b>14/20</b><br>Teste 4 - Diálogo: <b>20/20 🏆</b><br>Teste 5 - Frases: <b>17/20 ✅</b><br><b>Média: 17/20</b></div></div></div>
     <div id="stu-tarefas" class="stu-tab"><div class="card" style="margin-top:12px"><h3>✍️ Minhas Tarefas</h3><div id="stuTarefasList" style="font-size:14px;line-height:2;margin-top:8px">✅ Traduzir 5 frases - Feito<br>⏳ Escrever diálogo - Pendente<br>⏳ Ler PDF do Básico - Pendente</div><button class="btn btn-gold" style="width:100%;margin-top:10px" onclick="openSection('tarefas')">Fazer Tarefa Agora →</button></div></div>
-    <div id="stu-perfil" class="stu-tab"><div class="card" style="margin-top:12px"><h3>⚙️ Meu Perfil</h3><input class="inp" id="stuNameInput" value="Maria José" placeholder="Nome completo"><input class="inp" value="856661893" placeholder="Número"><input class="inp" value="maria@email.com" placeholder="E-mail"><input class="inp" type="password" placeholder="Nova palavra-passe (opcional)"><button class="btn-full" style="background:#FFC107" onclick="saveProfile()">Guardar Perfil</button><button class="btn-full" style="background:#EF4444;color:#fff" onclick="logoutStudent()">Sair da Conta</button></div></div>
+    <div id="stu-perfil" class="stu-tab"><div class="card" style="margin-top:12px"><h3>⚙️ Meu Perfil</h3><input class="inp" id="stuNameInput" value="Maria José" placeholder="Nome completo"><input class="inp" id="stuPhoneInput" value="856661893" placeholder="Número"><input class="inp" id="stuEmailInput" value="maria@email.com" placeholder="E-mail"><input class="inp" type="password" id="stuPassInput" placeholder="Nova palavra-passe (opcional)"><button class="btn-full" style="background:#FFC107" onclick="saveProfile()">Guardar Perfil</button><button class="btn-full" style="background:#EF4444;color:#fff" onclick="logoutStudent()">Sair da Conta</button></div></div>
   </div>
 </div>
-<div class="modal" id="loginModal"><div class="modal-box"><h2>Bem-vindo 👋</h2><p>Entra para abrir a tua Área do Estudante.</p><button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="doLogin()">G Continuar com Google</button><button class="btn-full" style="background:#1877F2;color:#fff" onclick="doLogin()">f Continuar com Facebook</button><input class="inp" id="loginEmail" placeholder="E-mail"><input class="inp" type="password" id="loginPass" placeholder="Palavra-passe"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="doLogin()">Entrar</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
-<div class="modal" id="registerModal"><div class="modal-box"><h2>Criar Conta Grátis ✨</h2><p>🟢 Público - Abre logo a tua Área do Estudante.</p><button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="doLogin()">G Google</button><button class="btn-full" style="background:#1877F2;color:#fff" onclick="doLogin()">f Facebook</button><button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="doLogin()">📸 Instagram</button><input class="inp" id="regName" placeholder="Nome completo"><input class="inp" placeholder="Número - ex: 856661893"><input class="inp" placeholder="E-mail"><input class="inp" type="password" placeholder="Criar palavra-passe"><button class="btn-full" style="background:#FFC107" onclick="doLogin()">Criar Conta e Entrar</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
+<div class="modal" id="loginModal"><div class="modal-box"><h2>Bem-vindo 👋</h2><p>Entra para abrir a tua Área do Estudante em qualquer telefone.</p><input class="inp" id="loginEmail" placeholder="E-mail - ex: maria@gmail.com"><input class="inp" type="password" id="loginPass" placeholder="Palavra-passe"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="doLogin()">Entrar</button><p style="font-size:12px;text-align:center;margin-top:10px;color:#666">Ainda não tens conta? <b style="color:#0A1931;cursor:pointer" onclick="closeAll();openModal('registerModal')">Criar Conta Grátis</b></p><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
+<div class="modal" id="registerModal"><div class="modal-box"><h2>Criar Conta Grátis ✨</h2><p>🟢 Fica guardada na nuvem - podes entrar noutro telefone.</p><input class="inp" id="regName" placeholder="Nome completo *"><input class="inp" id="regEmail" placeholder="E-mail * - ex: maria@gmail.com"><input class="inp" id="regPhone" placeholder="Número * - ex: 856661893"><label style="font-size:12px;color:#666;display:block;margin-top:10px">📅 Data de nascimento *</label><input class="inp" id="regBirth" type="date" style="margin-top:4px"><input class="inp" id="regPass" type="password" placeholder="Criar palavra-passe * - mínimo 6 letras"><label style="font-size:12px;color:#666;display:flex;gap:6px;margin-top:10px"><input type="checkbox" id="regTerms" checked> Aceito os termos da NAULANGUE TECH</label><button class="btn-full" style="background:#FFC107" onclick="doRegister()">Criar Conta →</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
+<div class="modal" id="welcomeModal"><div class="modal-box" style="text-align:center"><div style="font-size:60px">🎉</div><h2 id="welcomeTitle">Bem-vindo!</h2><p id="welcomeText" style="margin-top:8px;line-height:1.6">Conta criada com sucesso!<br>Agora podes estudar em qualquer telefone.</p><button class="btn-full" style="background:#FFC107" onclick="closeAll();openStudent()">Entrar na Minha Área →</button></div></div>
 <div class="modal" id="payModal"><div class="modal-box"><h2 id="payTitle">Comprar Curso</h2><p>Beneficiário: <b>Adriano Naulange</b></p><div class="pay-opt active" id="optMpesa" onclick="selectPay('mpesa')"><span><b>📱 M-Pesa</b><br><small>856 661 893</small></span><span>✔</span></div><div class="pay-opt" id="optEmola" onclick="selectPay('emola')"><span><b>📱 e-Mola</b><br><small>862 428 830</small></span><span></span></div><input class="inp" id="payPhone" placeholder="O teu número"><button class="btn-full" style="background:#25D366;color:#fff" onclick="confirmPay()">Pagar Agora</button><button class="btn-full" style="background:#0A1931;color:#fff" onclick="closeAll();openModal('coursePassModal')">Já tenho a senha →</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Cancelar</button></div></div>
 <div class="modal" id="coursePassModal"><div class="modal-box"><h2 id="coursePassTitle">🔒 Senha do Curso</h2><input class="inp" type="password" id="coursePassInput" placeholder="Senha do curso"><button class="btn-full" style="background:#FFC107" onclick="unlockCourse()">Desbloquear</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Cancelar</button></div></div>
 <div class="modal" id="commentModal"><div class="modal-box"><h2>💬 Comentários 🔒</h2><div id="commentList"></div><textarea class="inp" id="commentInput" placeholder="Escreve..."></textarea><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addComment()">Enviar</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
@@ -132,13 +129,18 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;border:none}
   <div id="tab-frase" class="admin-tab"><div class="admin-box"><h3>💬 Publicar Frase do Dia</h3><input class="admin-field" id="newEn" placeholder="Frase em Inglês ex: NO WORRIES!"><input class="admin-field" id="newPt" placeholder="Tradução ex: Sem problemas!"><textarea class="admin-field" id="newEx" rows="2" placeholder="Exemplo / Quando usar"></textarea><button class="admin-publish" onclick="addFrase()">Publicar Frase</button></div></div>
   <div id="tab-iniciante" class="admin-tab"><div class="admin-box"><h3>⭐ Publicar em INICIANTE</h3><label>Opção:</label><select class="admin-select" id="iniCat"><option>🔤 Alfabeto</option><option>🔢 Números</option><option>💬 Diálogo</option><option>📖 Verbos</option></select><input class="admin-field" id="iniTitulo" placeholder="Título - ex: Letras A-Z"><textarea class="admin-field" id="iniTexto" rows="3" placeholder="Conteúdo..."></textarea><label>🖼️ Imagem - Link</label><input class="admin-field" id="iniImgLink" placeholder="https://...jpg"><input type="file" id="iniImgFile" accept="image/*" style="margin-top:10px;width:100%"><label>📕 PDF - Link</label><input class="admin-field" id="iniPdfLink" placeholder="https://...pdf"><input type="file" id="iniPdfFile" accept=".pdf" style="margin-top:10px;width:100%"><button class="admin-publish" onclick="addIniciante()">+ Publicar em Iniciante</button></div></div>
   <div id="tab-pergunta" class="admin-tab"><div class="admin-box"><h3>✏️ Criar Pergunta / Teste</h3><input class="admin-field" id="qEn" placeholder="Pergunta em inglês"><input class="admin-field" id="qPt" placeholder="Resposta correta em português"><input class="admin-field" id="qOpt" placeholder="Outras opções erradas"><button class="admin-publish" onclick="addPergunta()">+ Publicar Pergunta</button></div></div>
-  <div id="tab-gestao" class="admin-tab"><div class="admin-box"><h3>💰 Pagamentos</h3><div id="pagList" style="margin-top:10px;font-size:13px"></div><h3 style="margin-top:18px">🧑‍🎓 Alunos</h3><div style="font-size:13px;line-height:1.9;margin-top:8px">Maria José - Básico - 350 pts<br>João Pedro - Intermediário - 280 pts<br>Ana Paula - Básico - 410 pts</div><h3 style="margin-top:18px">💬 Comentários / Conversas</h3><div id="adminComments" style="font-size:13px;margin-top:8px"></div><h3 style="margin-top:18px">🗂️ Apagar Publicações</h3><div id="manageList" style="font-size:13px;margin-top:8px"></div></div></div>
+  <div id="tab-gestao" class="admin-tab"><div class="admin-box"><h3>💰 Pagamentos</h3><div id="pagList" style="margin-top:10px;font-size:13px"></div><h3 style="margin-top:18px">🧑‍🎓 Alunos</h3><div id="adminAlunos" style="font-size:13px;line-height:1.9;margin-top:8px">A carregar alunos...</div><h3 style="margin-top:18px">💬 Comentários / Conversas</h3><div id="adminComments" style="font-size:13px;margin-top:8px"></div><h3 style="margin-top:18px">🗂️ Apagar Publicações</h3><div id="manageList" style="font-size:13px;margin-top:8px"></div></div></div>
   <button class="admin-exit" onclick="closeAll()">Sair do Admin</button>
 </div></div>
 <script>
+// ===== SUPABASE - CONTA NA NUVEM =====
+const SUPABASE_URL = 'https://rfyyvyxcuxacfmcdqswv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_nlntzKkarNDNXt3fQcelrQ_yhH73A57';
+let supabaseClient = null;
+try{ supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); }catch(e){ console.log('Supabase erro', e); }
 const ADMIN_EMAIL='bigduckbmmiranda@gmail.com'; const ADMIN_PASS='naulangue95';
 const COURSE_PASS={'Básico':'naula2580','Intermediário':'naula2428','Médio':'naula3825','Avançado':'spiwa8484'};
-let isLogged=false; let unlocked={}; let currentCourse=null; let clicks=0; let currentSection=''; let studentName='Maria José'; let studentEmail='maria@email.com'; let studentPoints=350;
+let isLogged=false; let unlocked={}; let currentCourse=null; let clicks=0; let currentSection=''; let studentName='Maria José'; let studentEmail='maria@email.com'; let studentPhone='856661893'; let studentPoints=350;
 const SECTIONS={
  alfabeto:{title:'🔤 Alfabeto',badge:'⭐ INICIANTE • PÚBLICO',desc:'Aprende as letras A a Z, como se escreve e pronuncia.',key:'alfabeto'},
  numeros:{title:'🔢 Números',badge:'⭐ INICIANTE • PÚBLICO',desc:'Aprende a contar de 1 a 100 em inglês.',key:'numeros'},
@@ -172,12 +174,70 @@ function studentTab(id,btn){document.querySelectorAll('.stu-tab').forEach(t=>t.c
 document.getElementById('adminEmail').addEventListener('input',checkBtn); document.getElementById('adminPass').addEventListener('input',checkBtn);
 function checkBtn(){let e=document.getElementById('adminEmail').value;let p=document.getElementById('adminPass').value;document.getElementById('adminEnterBtn').classList.toggle('active',e&&p)}
 function checkAdmin(){let e=document.getElementById('adminEmail').value.trim().toLowerCase();let p=document.getElementById('adminPass').value.trim(); if(e===ADMIN_EMAIL && p===ADMIN_PASS){closeAll();openModal('adminModal');renderAdmin();alert('Bem-vindo, Admin!')} else alert('❌ E-mail ou senha errados. Usa: bigduckbmmiranda@gmail.com / naulangue95')}
-function doLogin(){let n=document.getElementById('regName')?document.getElementById('regName').value:''; if(n) studentName=n; isLogged=true; document.getElementById('userStatus').innerText='✅ Logado - '+studentName; document.getElementById('myPanelBtn').style.display='inline-block'; document.getElementById('sideProgress').innerText='Aulas: 12 • Pontos: '+studentPoints; document.getElementById('stuName').innerText=studentName; document.getElementById('stuAvatar').innerText=studentName.charAt(0).toUpperCase(); document.getElementById('stuNameInput').value=studentName; closeAll(); openStudent();}
+async function doRegister(){
+  let name=document.getElementById('regName').value.trim();
+  let email=document.getElementById('regEmail').value.trim().toLowerCase();
+  let phone=document.getElementById('regPhone').value.trim();
+  let birth=document.getElementById('regBirth').value;
+  let pass=document.getElementById('regPass').value;
+  if(!name||!email||!phone||!birth) return alert('❌ Preenche: Nome, E-mail, Número e Data de nascimento.');
+  if(pass.length<6) return alert('❌ Palavra-passe tem que ter mínimo 6 letras.');
+  if(!email.includes('@')) return alert('❌ E-mail inválido. Ex: maria@gmail.com');
+  if(!supabaseClient){ studentName=name; studentEmail=email; studentPhone=phone; isLogged=true; localStorage.setItem('naulangue_user', JSON.stringify({name,email,phone,birth,points:0})); updateStudentUI(); closeAll(); showWelcome(name); return; }
+  let {data, error} = await supabaseClient.auth.signUp({email:email, password:pass});
+  if(error) return alert('❌ '+error.message);
+  let userId = data.user ? data.user.id : null;
+  if(userId){ let r = await supabaseClient.from('profiles').insert([{id:userId, name:name, phone:phone, birthdate:birth, points:0, courses:''}]); if(r.error) console.log('profiles error', r.error); }
+  studentName=name; studentEmail=email; studentPhone=phone; isLogged=true;
+  localStorage.setItem('naulangue_user', JSON.stringify({name,email,phone,birth,points:0}));
+  updateStudentUI(); closeAll(); showWelcome(name);
+}
+async function doLogin(){
+  let email=document.getElementById('loginEmail').value.trim().toLowerCase();
+  let pass=document.getElementById('loginPass').value;
+  if(!email||!pass) return alert('❌ Escreve e-mail e palavra-passe.');
+  if(!email.includes('@')) return alert('❌ Entra com e-mail. Ex: maria@gmail.com');
+  if(!supabaseClient){ let saved=JSON.parse(localStorage.getItem('naulangue_user')||'{}'); if(saved.email===email){ studentName=saved.name||'Estudante'; studentEmail=email; isLogged=true; updateStudentUI(); closeAll(); openStudent(); } else alert('❌ Conta não encontrada. Cria conta primeiro.'); return; }
+  let {data, error} = await supabaseClient.auth.signInWithPassword({email:email, password:pass});
+  if(error) return alert('❌ E-mail ou palavra-passe errados. Se acabaste de criar, vai ao teu e-mail e confirma a conta.');
+  let {data:prof} = await supabaseClient.from('profiles').select('*').eq('id', data.user.id).single();
+  if(prof){ studentName=prof.name; studentPoints=prof.points||0; studentPhone=prof.phone||''; } else { studentName=email.split('@')[0]; }
+  studentEmail=email; isLogged=true;
+  localStorage.setItem('naulangue_user', JSON.stringify({name:studentName,email,points:studentPoints}));
+  updateStudentUI(); closeAll(); openStudent();
+}
+function updateStudentUI(){
+  document.getElementById('userStatus').innerText='✅ Logado - '+studentName;
+  document.getElementById('myPanelBtn').style.display='inline-block';
+  document.getElementById('sideProgress').innerText='Aulas: 12 • Pontos: '+studentPoints;
+  document.getElementById('stuName').innerText=studentName;
+  document.getElementById('stuEmail').innerText=studentEmail;
+  document.getElementById('stuAvatar').innerText=studentName.charAt(0).toUpperCase();
+  document.getElementById('stuNameInput').value=studentName;
+  document.getElementById('stuPhoneInput').value=studentPhone;
+  document.getElementById('stuEmailInput').value=studentEmail;
+  document.getElementById('stuPoints').innerText=studentPoints;
+}
+function showWelcome(name){
+  document.getElementById('welcomeTitle').innerText='Bem-vindo, '+name+'! 🎉';
+  document.getElementById('welcomeText').innerHTML='Conta criada com sucesso!<br>E-mail: <b>'+studentEmail+'</b><br>Agora podes estudar em qualquer telefone.<br>Basta entrar com o teu e-mail e palavra-passe.';
+  openModal('welcomeModal');
+}
+async function checkSession(){
+  if(!supabaseClient) return;
+  let {data} = await supabaseClient.auth.getSession();
+  if(data.session && data.session.user){
+    let email=data.session.user.email;
+    let {data:prof} = await supabaseClient.from('profiles').select('*').eq('id', data.session.user.id).single();
+    studentName=prof?prof.name:email.split('@')[0]; studentEmail=email; studentPoints=prof?prof.points||0:0; studentPhone=prof?prof.phone||'':''; isLogged=true; updateStudentUI();
+  }
+}
+checkSession();
 function openStudent(){toggleMenu(); if(!isLogged){alert('🔒 Cria conta / Entra para abrir a tua Área do Estudante.'); openModal('loginModal'); return;} document.getElementById('main').style.display='none'; document.getElementById('sectionPage').classList.remove('show'); document.getElementById('postPage').classList.remove('show'); document.getElementById('studentPage').classList.add('show'); renderStuCursos(); window.scrollTo({top:0,behavior:'smooth'});}
 function openStudentTab(tab){toggleMenu(); if(!isLogged){alert('🔒 Faz login primeiro.'); openModal('loginModal'); return;} openStudent(); setTimeout(()=>{let btn=document.querySelector(`[onclick="studentTab('${tab}',this)"]`); if(btn) studentTab(tab,btn);},100);}
 function closeStudent(){document.getElementById('studentPage').classList.remove('show'); document.getElementById('main').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});}
-function saveProfile(){let v=document.getElementById('stuNameInput').value; if(v){studentName=v; document.getElementById('stuName').innerText=v; document.getElementById('userStatus').innerText='✅ Logado - '+v; document.getElementById('stuAvatar').innerText=v.charAt(0).toUpperCase();} alert('✅ Perfil guardado!');}
-function logoutStudent(){isLogged=false; unlocked={}; document.getElementById('userStatus').innerText='👤 Visitante - Público'; document.getElementById('myPanelBtn').style.display='none'; closeStudent(); alert('Saíste da conta.');}
+async function saveProfile(){let v=document.getElementById('stuNameInput').value; if(v){studentName=v; document.getElementById('stuName').innerText=v; document.getElementById('userStatus').innerText='✅ Logado - '+v; document.getElementById('stuAvatar').innerText=v.charAt(0).toUpperCase();} if(supabaseClient){ let {data} = await supabaseClient.auth.getUser(); if(data.user){ await supabaseClient.from('profiles').update({name:studentName}).eq('id', data.user.id); } } alert('✅ Perfil guardado na nuvem!');}
+async function logoutStudent(){ if(supabaseClient) await supabaseClient.auth.signOut(); localStorage.removeItem('naulangue_user'); isLogged=false; unlocked={}; document.getElementById('userStatus').innerText='👤 Visitante - Público'; document.getElementById('myPanelBtn').style.display='none'; closeStudent(); alert('Saíste da conta. Podes entrar noutro telefone com e-mail + senha.');}
 function needLogin(sec){if(isLogged){if(sec==='pratica')goPratica(); if(sec==='progresso')openStudent(); if(sec==='coment')openModal('commentModal');}else{alert('🔒 Precisas de conta.');openModal('loginModal')}}
 function goPratica(){toggleMenu();document.getElementById('pratica').scrollIntoView({behavior:'smooth'})}
 function goFrases(){openSection('frases')}
@@ -214,7 +274,12 @@ function addFrase(){let en=document.getElementById('newEn').value;let pt=documen
 function addPergunta(){let en=document.getElementById('qEn').value;let pt=document.getElementById('qPt').value;if(!en||!pt)return alert('Preenche');frases.unshift({en,pt,cat:'frases'});renderQuiz();renderAdmin();alert('✅ Pergunta publicada!')}
 function addAula(){let mat=document.getElementById('aulaMateria').value;let cur=document.getElementById('aulaCurso').value;let t=document.getElementById('aulaTitulo').value;let tx=document.getElementById('aulaTexto').value;if(!t)return alert('Título');let link=document.getElementById('aulaImgLink').value.trim();let file=document.getElementById('aulaImgFile').files[0];let img=link||(file?URL.createObjectURL(file):"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600");let pdfLink=document.getElementById('aulaPdfLink').value.trim();let pdfFile=document.getElementById('aulaPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");let cat='basico'; if(cur.includes('Intermediário'))cat='intermediario'; if(cur.includes('Médio'))cat='medio'; if(cur.includes('Avançado'))cat='avancado'; if(cur.includes('Iniciante')){if(mat.includes('Alfabeto'))cat='alfabeto'; if(mat.includes('Números'))cat='numeros'; if(mat.includes('Diálogo'))cat='dialogo'; if(mat.includes('Verbos'))cat='verbos';} posts.unshift({t:t+' ['+mat+' - '+cur+']',d:tx,img,sec:cur,cat,fotos:1,pdf});renderPosts();renderAdmin();alert('✅ Aula publicada em '+mat+' + '+cur)}
 function addIniciante(){let catSel=document.getElementById('iniCat').value;let t=document.getElementById('iniTitulo').value;let tx=document.getElementById('iniTexto').value;if(!t)return alert('Título');let link=document.getElementById('iniImgLink').value.trim();let file=document.getElementById('iniImgFile').files[0];let img=link||(file?URL.createObjectURL(file):"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600");let pdfLink=document.getElementById('iniPdfLink').value.trim();let pdfFile=document.getElementById('iniPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");let cat='alfabeto'; if(catSel.includes('Números'))cat='numeros'; if(catSel.includes('Diálogo'))cat='dialogo'; if(catSel.includes('Verbos'))cat='verbos'; posts.unshift({t:t+' ['+catSel+']',d:tx,img,sec:catSel,cat,fotos:1,pdf});renderPosts();renderAdmin();alert('✅ Publicado em Iniciante - '+catSel)}
-function renderAdmin(){document.getElementById('pagList').innerHTML=pagamentos.map((p,i)=>`<div style="background:#1E293B;padding:10px;border-radius:10px;margin-top:8px"><b>${p.nome}</b> - ${p.curso} - ${p.valor} - ${p.metodo}<br>Status: <b>${p.status}</b> <button onclick="confirmPag(${i})" style="background:#22C55E;color:#fff;padding:5px 10px;border-radius:8px">Confirmar + Enviar Senha</button></div>`).join('');document.getElementById('adminComments').innerHTML=comentarios.map(c=>`<div style="background:#1E293B;padding:8px;border-radius:8px;margin-top:6px"><b>${c.nome}:</b> ${c.txt}</div>`).join('');document.getElementById('manageList').innerHTML=posts.map(p=>`• ${p.t} <button onclick="delPost('${p.t}')" style="color:#F87171;background:none;font-weight:700">Apagar</button>`).join('<br>');}
+async function renderAdmin(){
+  document.getElementById('pagList').innerHTML=pagamentos.map((p,i)=>`<div style="background:#1E293B;padding:10px;border-radius:10px;margin-top:8px"><b>${p.nome}</b> - ${p.curso} - ${p.valor} - ${p.metodo}<br>Status: <b>${p.status}</b> <button onclick="confirmPag(${i})" style="background:#22C55E;color:#fff;padding:5px 10px;border-radius:8px">Confirmar + Enviar Senha</button></div>`).join('');
+  document.getElementById('adminComments').innerHTML=comentarios.map(c=>`<div style="background:#1E293B;padding:8px;border-radius:8px;margin-top:6px"><b>${c.nome}:</b> ${c.txt}</div>`).join('');
+  document.getElementById('manageList').innerHTML=posts.map(p=>`• ${p.t} <button onclick="delPost('${p.t}')" style="color:#F87171;background:none;font-weight:700">Apagar</button>`).join('<br>');
+  let alunosEl=document.getElementById('adminAlunos'); if(alunosEl && supabaseClient){ let {data} = await supabaseClient.from('profiles').select('*').order('name'); if(data && data.length){ alunosEl.innerHTML=data.map(a=>`${a.name} - ${a.phone||''} - ${a.points||0} pts - ${a.birthdate||''}<br>`).join(''); } else { alunosEl.innerHTML='Ainda nenhum aluno registado na nuvem.'; } }
+}
 function delPost(t){posts=posts.filter(p=>p.t!==t);renderPosts();renderAdmin()}
 function confirmPag(i){let c=pagamentos[i].curso;pagamentos[i].status='Confirmado ✅ Senha: '+COURSE_PASS[c];renderAdmin();alert('Envia esta senha ao aluno: '+COURSE_PASS[c])}
 renderFrases();renderPosts();renderQuiz();renderComments();renderAdmin();
