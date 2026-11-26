@@ -7,39 +7,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-:root{--blue:#0A1931;--blue2:#142F5A;--gold:#FFC107;--light:#F4F6FB}
+:root{--blue:#0A1931;--gold:#FFC107;--light:#F4F6FB}
 body{background:var(--light);color:#222;overflow-x:hidden}
 a{text-decoration:none;color:inherit}button{cursor:pointer;border:none}
 .topbar{position:fixed;top:0;left:0;right:0;height:56px;background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:100;color:#fff}
-.left{display:flex;align-items:center;gap:8px;min-width:0}.menu-btn{font-size:22px;background:none;color:#fff;padding:4px}
+.left{display:flex;align-items:center;gap:8px}.menu-btn{font-size:22px;background:none;color:#fff}
 .logo-top{height:28px!important;width:28px!important;object-fit:cover;border-radius:50%;border:1.5px solid var(--gold);background:#fff}
-.brand b{font-size:13px;white-space:nowrap}.brand span{font-size:8px;color:var(--gold)}
+.brand b{font-size:13px}.brand span{font-size:8px;color:var(--gold)}
 .btn{padding:7px 10px;border-radius:18px;font-weight:700;font-size:12px}.btn-gold{background:var(--gold);color:#111}.btn-white{background:#fff;color:var(--blue)}.btn-outline{background:transparent;color:#fff;border:1px solid #fff}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:150}.overlay.show{display:block}
 .sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#fff;z-index:200;transition:.3s;overflow-y:auto;padding-bottom:30px}.sidebar.open{left:0}
 .side-head{background:var(--blue);padding:16px;text-align:center;color:#fff;position:relative}.side-head img{width:56px!important;height:56px!important;border-radius:50%;border:2px solid var(--gold);object-fit:cover;background:#fff}.side-head p{font-size:11px;color:var(--gold)}.close-btn{position:absolute;right:10px;top:10px;background:var(--gold);width:28px;height:28px;border-radius:50%;font-weight:800}
 .group{border-bottom:1px solid #eee}.group-head{padding:13px 16px;display:flex;justify-content:space-between;font-weight:700;font-size:14px;cursor:pointer}.group-body{display:none;padding:0 0 10px 16px}.group.open .group-body{display:block}.group-body a{display:block;padding:9px 10px;font-size:13.5px;border-radius:8px;margin:3px 8px 3px 0}.lock{font-size:11px;background:#eee;padding:2px 6px;border-radius:8px}
-.progress-box{margin:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:14px;border-radius:14px}.bar{height:8px;background:rgba(255,255,255,.3);border-radius:10px;margin:10px 0;overflow:hidden}.bar i{display:block;height:100%;width:35%;background:var(--gold)}
-.card{background:#fff;border-radius:16px;padding:14px}.inp{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:12px;margin-top:10px;font-size:14px}textarea.inp{min-height:90px}select.inp{width:100%}
+.progress-box{margin:14px;background:linear-gradient(135deg,var(--blue),#142F5A);color:#fff;padding:14px;border-radius:14px}.bar{height:8px;background:rgba(255,255,255,.3);border-radius:10px;margin:10px 0;overflow:hidden}.bar i{display:block;height:100%;width:35%;background:var(--gold)}
+.card{background:#fff;border-radius:16px;padding:14px}.inp{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:12px;margin-top:10px;font-size:14px}textarea.inp{min-height:90px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:10px}.modal.show{display:flex}.modal-box{background:#fff;width:100%;max-width:440px;border-radius:18px;padding:20px;max-height:92vh;overflow-y:auto}
 .btn-full{width:100%;padding:12px;border-radius:12px;font-weight:700;margin-top:12px}
 .admin-dark{background:#1A1A1A!important;color:#fff!important;border-radius:20px!important;padding:24px!important}.admin-dark p{color:#ccc!important}.admin-inp{width:100%;padding:15px 18px;border-radius:30px;border:1.5px solid #444;background:#222;color:#fff;margin-top:12px;font-size:15px;outline:none}.admin-enter{width:100%;padding:15px;border-radius:30px;background:#333;color:#999;font-weight:700;margin-top:14px}.admin-enter.active{background:var(--gold);color:#111}
 .pay-opt{border:2px solid #eee;border-radius:12px;padding:12px;margin-top:10px;cursor:pointer;display:flex;justify-content:space-between}.pay-opt.active{border-color:var(--gold);background:#FFF8E1}
-/* ADMIN GRANDE - IGUAL À TUA FOTO */
+/* ADMIN PROFISSIONAL - SEM DUPLICAÇÃO */
 .admin-big{max-width:520px!important;background:#0F172A!important;border:2px solid #38BDF8!important;border-radius:20px!important;padding:16px!important;color:#fff!important}
 .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.admin-grid-btn{background:#1E293B;border:2px solid #334155;color:#fff;padding:16px 8px;border-radius:14px;font-weight:700;font-size:15px;text-align:center}
-.admin-grid-btn.active{background:#0EA5E9;border-color:#fff}
-.admin-grid-btn.green{background:#22C55E;border-color:#16A34A}
+.admin-grid-btn{background:#1E293B;border:2px solid #334155;color:#fff;padding:16px 8px;border-radius:14px;font-weight:700;font-size:15px}.admin-grid-btn.active{background:#0EA5E9;border-color:#fff}.admin-grid-btn.green{background:#22C55E;border-color:#16A34A}
 .admin-box{border:2px dashed #22C55E;border-radius:16px;padding:16px;margin-top:10px;background:#1E293B}
-.admin-box h3{font-size:18px;line-height:1.3}.admin-box label{font-size:14px;color:#94A3B8;display:block;margin-top:14px;font-weight:600}
-.admin-field{width:100%;background:transparent;border:none;border-bottom:1px solid #334155;padding:14px 4px;color:#fff;font-size:15px;outline:none;margin-top:4px}
-.admin-field::placeholder{color:#64748B}.admin-select{width:100%;background:#0F172A;border:2px solid #22C55E;border-radius:12px;color:#fff;padding:14px;font-size:16px;font-weight:700;margin-top:8px;outline:none}
-.admin-file{background:#fff;color:#111;padding:8px 12px;border-radius:6px;margin-top:10px;display:inline-block;font-weight:600}
+.admin-box label{font-size:14px;color:#94A3B8;display:block;margin-top:14px;font-weight:600}
+.admin-field{width:100%;background:transparent;border:none;border-bottom:1px solid #334155;padding:14px 4px;color:#fff;font-size:15px;outline:none}.admin-field::placeholder{color:#64748B}.admin-select{width:100%;background:#0F172A;border:2px solid #22C55E;border-radius:12px;color:#fff;padding:14px;font-size:16px;font-weight:700;margin-top:8px;outline:none}
 .admin-publish{width:100%;background:#22C55E;color:#fff;padding:16px;border-radius:30px;font-weight:800;font-size:17px;margin-top:16px}
 .admin-exit{width:100%;background:#EF4444;color:#fff;padding:16px;border-radius:30px;font-weight:800;font-size:17px;margin-top:12px}
 .chip{display:inline-block;background:#FFF8E1;border:1px solid #FFE082;padding:6px 10px;border-radius:20px;font-size:12px;margin:3px;cursor:pointer;color:#111}.chip.on{background:var(--gold);font-weight:700}
 #postPage{display:none;background:#fff;min-height:100vh}#postPage.show{display:block}.post-hero-img{width:100%;height:220px;object-fit:cover}
+/* ESTA LINHA FALTAVA - ERA ELA QUE FAZIA PARECER DUPLICADO */
+.admin-tab{display:none}.admin-tab.active{display:block}
 </style>
 </head>
 <body>
@@ -86,74 +84,77 @@ a{text-decoration:none;color:inherit}button{cursor:pointer;border:none}
 
 <div class="modal" id="adminModal"><div class="modal-box admin-big">
   <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:20px">⚙️ Painel Admin</h2><span style="font-size:12px;background:#22C55E;padding:4px 10px;border-radius:20px">● Online</span></div>
-  <p style="font-size:12px;color:#94A3B8;margin-top:4px">bigduckbmmiranda@gmail.com • Senhas: Básico naula2580 • Interm naula2428 • Médio naula3825 • Avançado spiwa8484</p>
+  <p style="font-size:12px;color:#94A3B8;margin-top:6px">bigduckbmmiranda@gmail.com</p>
+  <p style="font-size:12px;color:#FBBF24;margin-top:4px">🔑 Senhas: Básico naula2580 • Interm naula2428 • Médio naula3825 • Avançado spiwa8484</p>
 
-  <!-- BOTÕES GRANDES IGUAL À FOTO -->
+  <!-- SÓ 6 BOTÕES - ANTES ERAM 10 DUPLICADOS -->
   <div class="admin-grid">
-    <button class="admin-grid-btn" id="btn-cursos" onclick="adminTab('cursos',this)">📚 Cursos</button>
-    <button class="admin-grid-btn" id="btn-alunos" onclick="adminTab('alunos',this)">🧑‍🎓 Alunos</button>
-    <button class="admin-grid-btn" id="btn-pub" onclick="adminTab('pub',this)">📸 Publicar</button>
-    <button class="admin-grid-btn" id="btn-perg" onclick="adminTab('pergunta',this)">✏️ Perguntas</button>
-    <button class="admin-grid-btn" id="btn-aulas" onclick="adminTab('aula',this)">📚 Aulas</button>
-    <button class="admin-grid-btn" id="btn-frase" onclick="adminTab('frase',this)">💬 Frases</button>
-    <button class="admin-grid-btn green" id="btn-iniciante" onclick="adminTab('iniciante',this)">⭐ INICIANTE</button>
-    <button class="admin-grid-btn" id="btn-coment" onclick="adminTab('coment',this)">💬 Comentários</button>
-    <button class="admin-grid-btn" id="btn-conv" onclick="adminTab('conv',this)">💭 Conversas</button>
-    <button class="admin-grid-btn" id="btn-pag" onclick="adminTab('pag',this)">💰 Pagamentos</button>
+    <button class="admin-grid-btn active" onclick="adminTab('pub',this)">📸 Publicar</button>
+    <button class="admin-grid-btn" onclick="adminTab('aula',this)">📚 Aulas</button>
+    <button class="admin-grid-btn" onclick="adminTab('frase',this)">💬 Frases</button>
+    <button class="admin-grid-btn green" onclick="adminTab('iniciante',this)">⭐ INICIANTE</button>
+    <button class="admin-grid-btn" onclick="adminTab('pergunta',this)">✏️ Perguntas</button>
+    <button class="admin-grid-btn" onclick="adminTab('gestao',this)">⚙️ Gestão</button>
   </div>
 
-  <!-- CURSOS -->
-  <div id="tab-cursos" class="admin-tab"><div class="admin-box"><h3>📚 Gerir Cursos</h3><p style="font-size:13px;color:#94A3B8">Muda preços e senhas aqui.</p><div id="cursosList" style="margin-top:10px;font-size:14px;line-height:2"></div></div></div>
-  <!-- ALUNOS -->
-  <div id="tab-alunos" class="admin-tab"><div class="admin-box"><h3>🧑‍🎓 Alunos</h3><div id="alunosList" style="margin-top:10px;font-size:14px;line-height:1.9">Maria José - Básico - 350 pts<br>João Pedro - Intermediário - 280 pts<br>Ana Paula - Básico - 410 pts</div></div></div>
-
-  <!-- PUBLICAR - TEXTO + IMAGEM LINK/GALERIA + PDF/LIVRO -->
+  <!-- 1. PUBLICAR - SÓ FORMULÁRIO, SEM LISTA POR BAIXO -->
   <div id="tab-pub" class="admin-tab active"><div class="admin-box">
-    <h3>📸 Publicar Matéria / Novidade</h3>
-    <label>✍️ Título</label><input class="admin-field" id="pubTitulo" placeholder="Ex: Como cumprimentar em inglês">
-    <label>📝 Texto da publicação</label><textarea class="admin-field" id="pubTexto" rows="4" placeholder="Escreve a matéria aqui..."></textarea>
-    <label>🖼️ IMAGEM - Via Link (cola o link)</label><input class="admin-field" id="pubImgLink" placeholder="https://...jpg">
-    <label>🖼️ IMAGEM - Via Galeria (escolhe do telemóvel - podes escolher várias)</label><input type="file" id="pubFotos" accept="image/*" multiple onchange="previewFotos(this)" style="margin-top:10px;width:100%"><div id="fotosPreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
-    <label>📕 PDF / LIVRO - Via Link</label><input class="admin-field" id="pubPdfLink" placeholder="https://...pdf">
-    <label>📕 PDF / LIVRO - Via Ficheiro</label><input type="file" id="pubPdfFile" accept=".pdf,.doc,.docx,.epub" style="margin-top:10px;width:100%">
-    <label>📍 Onde vai aparecer? (podes escolher várias)</label><div id="secChecks" style="margin-top:8px"><span class="chip on" onclick="toggleChip(this)">Painel geral</span><span class="chip" onclick="toggleChip(this)">Iniciante - Alfabeto</span><span class="chip" onclick="toggleChip(this)">Iniciante - Números</span><span class="chip" onclick="toggleChip(this)">Iniciante - Diálogo</span><span class="chip" onclick="toggleChip(this)">Iniciante - Verbos</span><span class="chip" onclick="toggleChip(this)">Cursos - Básico</span><span class="chip" onclick="toggleChip(this)">Cursos - Intermediário</span><span class="chip" onclick="toggleChip(this)">Cursos - Médio</span><span class="chip" onclick="toggleChip(this)">Cursos - Avançado</span><span class="chip" onclick="toggleChip(this)">Frases do dia a dia</span><span class="chip" onclick="toggleChip(this)">Novidades / Fotos</span><span class="chip" onclick="toggleChip(this)">Área de tarefas</span></div>
+    <h3>📸 Publicar Matéria</h3>
+    <label>Título</label><input class="admin-field" id="pubTitulo" placeholder="Ex: Como cumprimentar em inglês">
+    <label>Texto</label><textarea class="admin-field" id="pubTexto" rows="4" placeholder="Escreve a matéria..."></textarea>
+    <label>🖼️ Imagem - Link</label><input class="admin-field" id="pubImgLink" placeholder="https://...jpg">
+    <label>🖼️ Imagem - Galeria</label><input type="file" id="pubFotos" accept="image/*" multiple onchange="previewFotos(this)" style="margin-top:10px;width:100%"><div id="fotosPreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
+    <label>📕 PDF / Livro - Link</label><input class="admin-field" id="pubPdfLink" placeholder="https://...pdf">
+    <label>📕 PDF / Livro - Ficheiro</label><input type="file" id="pubPdfFile" accept=".pdf,.doc,.docx,.epub" style="margin-top:10px;width:100%">
+    <label>Onde aparece?</label><div id="secChecks" style="margin-top:8px"><span class="chip on" onclick="toggleChip(this)">Painel geral</span><span class="chip" onclick="toggleChip(this)">Iniciante - Alfabeto</span><span class="chip" onclick="toggleChip(this)">Iniciante - Números</span><span class="chip" onclick="toggleChip(this)">Iniciante - Diálogo</span><span class="chip" onclick="toggleChip(this)">Iniciante - Verbos</span><span class="chip" onclick="toggleChip(this)">Cursos - Básico</span><span class="chip" onclick="toggleChip(this)">Cursos - Intermediário</span><span class="chip" onclick="toggleChip(this)">Cursos - Médio</span><span class="chip" onclick="toggleChip(this)">Cursos - Avançado</span><span class="chip" onclick="toggleChip(this)">Frases do dia a dia</span><span class="chip" onclick="toggleChip(this)">Novidades / Fotos</span></div>
     <button class="admin-publish" onclick="publishPost()">📤 Publicar Agora</button>
-    <div id="adminPostsList" style="margin-top:14px;font-size:13px"></div>
   </div></div>
 
-  <!-- PERGUNTAS -->
-  <div id="tab-pergunta" class="admin-tab"><div class="admin-box"><h3>✏️ Criar Pergunta / Teste</h3><input class="admin-field" id="qEn" placeholder="Pergunta em inglês"><input class="admin-field" id="qPt" placeholder="Resposta correta em português"><input class="admin-field" id="qOpt" placeholder="Outras opções erradas - ex: bom dia, boa tarde"><button class="admin-publish" onclick="addPergunta()">+ Publicar Pergunta</button><div id="adminPerguntasList" style="margin-top:10px;font-size:13px"></div></div></div>
-
-  <!-- AULAS - IGUAL À TUA 2ª FOTO -->
+  <!-- 2. AULAS - SÓ FORMULÁRIO -->
   <div id="tab-aula" class="admin-tab"><div class="admin-box">
-    <h3>📚 Publicar Aula - Escolhe Matéria + Curso</h3>
-    <label>👉 1. ESCOLHE A MATÉRIA:</label><select class="admin-select" id="aulaMateria"><option>🔤 Alfabeto</option><option>🔢 Números</option><option>💬 Diálogo</option><option>📖 Verbos</option><option>📝 Gramática</option><option>🗣️ Conversação</option></select>
-    <label>👉 2. ESCOLHE O CURSO - SÓ 1 CURSO:</label><select class="admin-select" id="aulaCurso"><option>📖 Curso Básico - 10mt</option><option>📘 Curso Intermediário - 20mt</option><option>📙 Curso Médio - 30mt</option><option>📕 Curso Avançado - 40mt</option><option>⭐ Iniciante - Grátis / Público</option></select>
+    <h3>📚 Publicar Aula</h3>
+    <label>1. Matéria:</label><select class="admin-select" id="aulaMateria"><option>🔤 Alfabeto</option><option>🔢 Números</option><option>💬 Diálogo</option><option>📖 Verbos</option><option>📝 Gramática</option><option>🗣️ Conversação</option></select>
+    <label>2. Curso - SÓ 1:</label><select class="admin-select" id="aulaCurso"><option>📖 Curso Básico - 10mt</option><option>📘 Curso Intermediário - 20mt</option><option>📙 Curso Médio - 30mt</option><option>📕 Curso Avançado - 40mt</option><option>⭐ Iniciante - Grátis / Público</option></select>
     <input class="admin-field" id="aulaTitulo" placeholder="Título da aula">
-    <textarea class="admin-field" id="aulaTexto" rows="4" placeholder="Escreve a aula aqui..."></textarea>
-    <label>🖼️ Imagem da aula - Link</label><input class="admin-field" id="aulaImgLink" placeholder="https://...jpg">
-    <label>🖼️ Imagem da aula - Galeria</label><input type="file" id="aulaImgFile" accept="image/*" style="margin-top:10px;width:100%">
-    <label>📕 PDF / Livro - Link</label><input class="admin-field" id="aulaPdfLink" placeholder="https://...pdf">
-    <label>📕 PDF / Livro - Ficheiro</label><input type="file" id="aulaPdfFile" accept=".pdf,.doc,.docx" style="margin-top:10px;width:100%">
-    <button class="admin-publish" onclick="addAula()">📤 Publicar Aula</button><div id="adminAulasList" style="margin-top:10px;font-size:13px"></div>
+    <textarea class="admin-field" id="aulaTexto" rows="4" placeholder="Escreve a aula..."></textarea>
+    <label>🖼️ Imagem - Link</label><input class="admin-field" id="aulaImgLink" placeholder="https://...jpg">
+    <label>🖼️ Imagem - Galeria</label><input type="file" id="aulaImgFile" accept="image/*" style="margin-top:10px;width:100%">
+    <label>📕 PDF - Link</label><input class="admin-field" id="aulaPdfLink" placeholder="https://...pdf">
+    <label>📕 PDF - Ficheiro</label><input type="file" id="aulaPdfFile" accept=".pdf,.doc,.docx" style="margin-top:10px;width:100%">
+    <button class="admin-publish" onclick="addAula()">📤 Publicar Aula</button>
   </div></div>
 
-  <!-- FRASES - IGUAL À TUA 1ª FOTO -->
+  <!-- 3. FRASES - SÓ FORMULÁRIO -->
   <div id="tab-frase" class="admin-tab"><div class="admin-box">
-    <h3>💬 Publicar Frase do Dia a Dia</h3>
+    <h3>💬 Publicar Frase do Dia</h3>
     <input class="admin-field" id="newEn" placeholder="Frase em Inglês ex: NO WORRIES!">
     <input class="admin-field" id="newPt" placeholder="Tradução ex: Sem problemas!">
     <textarea class="admin-field" id="newEx" rows="2" placeholder="Exemplo / Quando usar"></textarea>
-    <button class="admin-publish" onclick="addFrase()">Publicar Frase</button><div id="adminFrasesList" style="margin-top:10px;font-size:13px"></div>
+    <button class="admin-publish" onclick="addFrase()">Publicar Frase</button>
   </div></div>
 
-  <!-- INICIANTE -->
-  <div id="tab-iniciante" class="admin-tab"><div class="admin-box"><h3>⭐ Gerir INICIANTE</h3><label>Escolhe a opção de Iniciante:</label><select class="admin-select" id="iniCat"><option>🔤 Alfabeto</option><option>🔢 Números</option><option>💬 Diálogo</option><option>📖 Verbos</option></select><input class="admin-field" id="iniTitulo" placeholder="Título - ex: Letras A-Z"><textarea class="admin-field" id="iniTexto" rows="3" placeholder="Conteúdo..."></textarea><label>🖼️ Imagem - Link ou Galeria</label><input class="admin-field" id="iniImgLink" placeholder="https://...jpg"><input type="file" id="iniImgFile" accept="image/*" style="margin-top:10px;width:100%"><label>📕 PDF - Link ou Ficheiro</label><input class="admin-field" id="iniPdfLink" placeholder="https://...pdf"><input type="file" id="iniPdfFile" accept=".pdf" style="margin-top:10px;width:100%"><button class="admin-publish" onclick="addIniciante()">+ Publicar em Iniciante</button><div id="adminIniList" style="margin-top:10px;font-size:13px"></div></div></div>
+  <!-- 4. INICIANTE - SÓ FORMULÁRIO -->
+  <div id="tab-iniciante" class="admin-tab"><div class="admin-box"><h3>⭐ Publicar em INICIANTE</h3>
+    <label>Opção:</label><select class="admin-select" id="iniCat"><option>🔤 Alfabeto</option><option>🔢 Números</option><option>💬 Diálogo</option><option>📖 Verbos</option></select>
+    <input class="admin-field" id="iniTitulo" placeholder="Título - ex: Letras A-Z"><textarea class="admin-field" id="iniTexto" rows="3" placeholder="Conteúdo..."></textarea>
+    <label>🖼️ Imagem - Link</label><input class="admin-field" id="iniImgLink" placeholder="https://...jpg"><input type="file" id="iniImgFile" accept="image/*" style="margin-top:10px;width:100%">
+    <label>📕 PDF - Link</label><input class="admin-field" id="iniPdfLink" placeholder="https://...pdf"><input type="file" id="iniPdfFile" accept=".pdf" style="margin-top:10px;width:100%">
+    <button class="admin-publish" onclick="addIniciante()">+ Publicar em Iniciante</button>
+  </div></div>
 
-  <!-- COMENTÁRIOS / CONVERSAS / PAGAMENTOS -->
-  <div id="tab-coment" class="admin-tab"><div class="admin-box"><h3>💬 Comentários</h3><div id="adminComments" style="font-size:13px;margin-top:8px"></div></div></div>
-  <div id="tab-conv" class="admin-tab"><div class="admin-box"><h3>💭 Conversas</h3><div id="convList" style="font-size:13px;margin-top:8px">Maria: Professora, quando sai aula nova?<br><button style="background:#0EA5E9;color:#fff;padding:8px 14px;border-radius:20px;margin-top:8px" onclick="alert('Responder - ligar WhatsApp / Supabase')">Responder</button></div></div></div>
-  <div id="tab-pag" class="admin-tab"><div class="admin-box"><h3>💰 Pagamentos</h3><div id="pagList" style="margin-top:10px;font-size:13px"></div><p style="font-size:12px;color:#94A3B8">M-Pesa 856 661 893 • e-Mola 862 428 830 • Adriano Naulange</p></div></div>
+  <!-- 5. PERGUNTAS - SÓ FORMULÁRIO -->
+  <div id="tab-pergunta" class="admin-tab"><div class="admin-box"><h3>✏️ Criar Pergunta / Teste</h3>
+    <input class="admin-field" id="qEn" placeholder="Pergunta em inglês"><input class="admin-field" id="qPt" placeholder="Resposta correta em português"><input class="admin-field" id="qOpt" placeholder="Outras opções erradas">
+    <button class="admin-publish" onclick="addPergunta()">+ Publicar Pergunta</button>
+  </div></div>
+
+  <!-- 6. GESTÃO - ÚNICO LUGAR COM LISTAS. ANTES ESTAVA EM 5 LUGARES, AGORA SÓ AQUI -->
+  <div id="tab-gestao" class="admin-tab"><div class="admin-box">
+    <h3>💰 Pagamentos</h3><div id="pagList" style="margin-top:10px;font-size:13px"></div>
+    <h3 style="margin-top:18px">🧑‍🎓 Alunos</h3><div style="font-size:13px;line-height:1.9;margin-top:8px">Maria José - Básico - 350 pts<br>João Pedro - Intermediário - 280 pts<br>Ana Paula - Básico - 410 pts</div>
+    <h3 style="margin-top:18px">💬 Comentários / Conversas</h3><div id="adminComments" style="font-size:13px;margin-top:8px"></div>
+    <h3 style="margin-top:18px">🗂️ Apagar Publicações</h3><div id="manageList" style="font-size:13px;margin-top:8px"></div>
+  </div></div>
 
   <button class="admin-exit" onclick="closeAll()">Sair do Admin</button>
 </div></div>
@@ -168,10 +169,10 @@ function toggleGroup(el){el.parentElement.classList.toggle('open')}
 function openModal(id){closeAll();document.getElementById(id).classList.add('show')}
 function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show'))}
 function toggleChip(el){el.classList.toggle('on')}
-function adminTab(id,btn){document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));let tab=document.getElementById('tab-'+id);if(tab)tab.classList.add('active');document.querySelectorAll('.admin-grid-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderAdmin()}
+function adminTab(id,btn){document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');document.querySelectorAll('.admin-grid-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
 document.getElementById('adminEmail').addEventListener('input',checkBtn); document.getElementById('adminPass').addEventListener('input',checkBtn);
 function checkBtn(){let e=document.getElementById('adminEmail').value;let p=document.getElementById('adminPass').value;document.getElementById('adminEnterBtn').classList.toggle('active',e&&p)}
-function checkAdmin(){let e=document.getElementById('adminEmail').value.trim().toLowerCase();let p=document.getElementById('adminPass').value.trim(); if(e===ADMIN_EMAIL && p===ADMIN_PASS){closeAll();openModal('adminModal');renderAdmin();alert('Bem-vindo, Admin!')} else alert('❌ E-mail ou senha errados. bigduckbmmiranda@gmail.com / naulangue95')}
+function checkAdmin(){let e=document.getElementById('adminEmail').value.trim().toLowerCase();let p=document.getElementById('adminPass').value.trim(); if(e===ADMIN_EMAIL && p===ADMIN_PASS){closeAll();openModal('adminModal');renderAdmin();alert('Bem-vindo, Admin!')} else alert('❌ E-mail ou senha errados.')}
 function doLogin(){isLogged=true;document.getElementById('userStatus').innerText='✅ Logado';document.getElementById('progressoBox').innerHTML='• Aulas: <b>12</b><br>• Testes: <b>5</b><br>• Notas: <b>16, 18, 14, 20, 17</b><br>• Pontos: <b>350</b>';closeAll();alert('Bem-vindo!')}
 function needLogin(sec){if(isLogged){if(sec==='pratica')goPratica(); if(sec==='progresso')goProgresso(); if(sec==='coment')openModal('commentModal');}else{alert('🔒 Precisas de conta.');openModal('loginModal')}}
 function goPratica(){toggleMenu();document.getElementById('pratica').scrollIntoView({behavior:'smooth'})}
@@ -179,14 +180,14 @@ function goProgresso(){toggleMenu();document.getElementById('progressoSec').scro
 function goFrases(){toggleMenu();window.scrollTo({top:600,behavior:'smooth'})}
 function showInfo(t){toggleMenu();alert(t==='oque'?'Inglês é a língua mais falada.':'Vais aprender alfabeto, números, frases, verbos e diálogo.')}
 function previewFotos(inp){let box=document.getElementById('fotosPreview');box.innerHTML='';[...inp.files].forEach(f=>{let r=new FileReader();r.onload=e=>{let im=document.createElement('img');im.src=e.target.result;im.style.cssText='width:70px;height:70px;object-fit:cover;border-radius:10px';box.appendChild(im)};r.readAsDataURL(f)})}
-let frases=[{en:"Thank you",pt:"obrigado",ex:"Quando alguém te ajuda"},{en:"Good night",pt:"boa noite",ex:"Antes de dormir"},{en:"I love English",pt:"eu amo inglês",ex:""},{en:"Where are you from?",pt:"de onde és?",ex:""},{en:"See you tomorrow",pt:"até amanhã",ex:""},{en:"Welcome to school",pt:"bem-vindo à escola",ex:""}];
-let posts=[{t:"Como cumprimentar em inglês",d:"Aprende Good morning, Good afternoon, Good evening. Pratica todos os dias.",img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600",sec:"Painel geral",fotos:1,pdf:""},{t:"5 Verbos que tens de saber",d:"To be, To have, To go, To do, To speak. Exemplo: I am a student.",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",sec:"Iniciante - Verbos",fotos:1,pdf:""},{t:"Frases para o dia a dia",d:"Thank you, Please, Excuse me, Sorry.",img:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600",sec:"Frases do dia a dia",fotos:1,pdf:""}];
+let frases=[{en:"Thank you",pt:"obrigado",ex:"Quando alguém te ajuda"},{en:"Good night",pt:"boa noite",ex:"Antes de dormir"},{en:"I love English",pt:"eu amo inglês",ex:""},{en:"Where are you from?",pt:"de onde és?",ex:""}];
+let posts=[{t:"Como cumprimentar em inglês",d:"Aprende Good morning, Good afternoon, Good evening. Pratica todos os dias.",img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600",sec:"Painel geral",fotos:1,pdf:""},{t:"5 Verbos que tens de saber",d:"To be, To have, To go, To do, To speak.",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",sec:"Iniciante - Verbos",fotos:1,pdf:""}];
 let pagamentos=[{nome:"Maria José",curso:"Básico",valor:"10 MT",metodo:"M-Pesa",tel:"84***123",status:"Pendente"}];
 let comentarios=[{nome:"Maria",txt:"Adorei! 👏"}];
 let filterSec='all';
 function renderFrases(){document.getElementById('frasesList').innerHTML=frases.slice(0,4).map(f=>`<div style="background:#fff;padding:12px;border-radius:12px;margin-top:8px;display:flex;justify-content:space-between"><span><b>${f.en}</b><br><small style="color:#666">${f.pt}</small>${f.ex?`<br><small style="color:#888">💡 ${f.ex}</small>`:''}</span><button onclick="alert('${f.en}')" style="background:#FFF8E1;border-radius:50%;width:36px;height:36px">🔊</button></div>`).join('')}
 function renderPosts(){let list=filterSec==='all'?posts:posts.filter(p=>p.sec.toLowerCase().includes(filterSec.toLowerCase()));if(!list.length)list=posts;document.getElementById('posts').innerHTML=list.map((p,i)=>`<div style="background:#fff;border-radius:14px;overflow:hidden;margin-top:12px" onclick="openPost(${posts.indexOf(p)})"><img src="${p.img}" style="width:100%;height:180px;object-fit:cover"><div style="padding:12px"><span style="font-size:11px;background:#FFF8E1;padding:3px 8px;border-radius:10px">${p.sec} • ${p.fotos} foto(s) ${p.pdf?'• 📕 PDF':''}</span><br><b style="display:block;margin-top:6px">${p.t}</b><p style="font-size:13px;color:#666">${p.d.substring(0,80)}...</p><span style="color:#142F5A;font-weight:700;font-size:13px">Ler matéria →</span></div></div>`).join('')}
-function openPost(i){let p=posts[i];document.getElementById('main').style.display='none';let pg=document.getElementById('postPage');pg.classList.add('show');document.getElementById('postPageImg').src=p.img;document.getElementById('postPageSec').innerText=p.sec+' • '+p.fotos+' foto(s)';document.getElementById('postPageTitle').innerText=p.t;document.getElementById('postPageBody').innerText=p.d;document.getElementById('postPagePdf').innerHTML=p.pdf?`<a href="${p.pdf}" target="_blank" style="display:block;background:#EF4444;color:#fff;padding:12px;border-radius:12px;text-align:center;font-weight:700">📕 Abrir / Baixar PDF / Livro</a>`:'<p style="font-size:13px;color:#888">Sem PDF nesta matéria.</p>';document.getElementById('postPageGallery').innerHTML=`<img src="${p.img}" style="width:100px;height:100px;object-fit:cover;border-radius:10px">`;let others=posts.filter((_,j)=>j!==i);document.getElementById('postPageMore').innerHTML=others.map(o=>`<div style="background:#F4F6FB;border-radius:14px;overflow:hidden;margin-top:12px" onclick="openPost(${posts.indexOf(o)})"><img src="${o.img}" style="width:100%;height:150px;object-fit:cover"><div style="padding:12px"><b>${o.t}</b><p style="font-size:13px;color:#666">${o.d.substring(0,70)}...</p><span style="color:#142F5A;font-weight:700;font-size:13px">Ler esta matéria →</span></div></div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+function openPost(i){let p=posts[i];document.getElementById('main').style.display='none';let pg=document.getElementById('postPage');pg.classList.add('show');document.getElementById('postPageImg').src=p.img;document.getElementById('postPageSec').innerText=p.sec;document.getElementById('postPageTitle').innerText=p.t;document.getElementById('postPageBody').innerText=p.d;document.getElementById('postPagePdf').innerHTML=p.pdf?`<a href="${p.pdf}" target="_blank" style="display:block;background:#EF4444;color:#fff;padding:12px;border-radius:12px;text-align:center;font-weight:700">📕 Abrir / Baixar PDF / Livro</a>`:'<p style="font-size:13px;color:#888">Sem PDF.</p>';document.getElementById('postPageGallery').innerHTML=`<img src="${p.img}" style="width:100px;height:100px;object-fit:cover;border-radius:10px">`;let others=posts.filter((_,j)=>j!==i);document.getElementById('postPageMore').innerHTML=others.map(o=>`<div style="background:#F4F6FB;border-radius:14px;overflow:hidden;margin-top:12px" onclick="openPost(${posts.indexOf(o)})"><img src="${o.img}" style="width:100%;height:150px;object-fit:cover"><div style="padding:12px"><b>${o.t}</b><p style="font-size:13px;color:#666">${o.d.substring(0,70)}...</p><span style="color:#142F5A;font-weight:700;font-size:13px">Ler esta matéria →</span></div></div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
 function closePostPage(){document.getElementById('postPage').classList.remove('show');document.getElementById('main').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
 function filterBy(sec){toggleMenu();filterSec=sec==='novidades'?'Painel geral':sec;renderPosts();window.scrollTo({top:400,behavior:'smooth'})}
 function resetFilter(){filterSec='all';renderPosts()}
@@ -199,21 +200,16 @@ function checkCourse(nome,preco){toggleMenu();currentCourse={nome,preco};if(!isL
 function selectPay(m){metodo=m;document.getElementById('optMpesa').classList.toggle('active',m==='mpesa');document.getElementById('optEmola').classList.toggle('active',m==='emola')}
 function unlockCourse(){let v=document.getElementById('coursePassInput').value.trim();let nome=currentCourse?currentCourse.nome:'Básico';if(v===COURSE_PASS[nome]){unlocked[nome]=true;closeAll();alert('✅ Curso '+nome+' desbloqueado.')}else alert('❌ Senha errada.')}
 function confirmPay(){let tel=document.getElementById('payPhone').value;if(!tel){alert('Escreve o número');return}pagamentos.unshift({nome:"Novo aluno",curso:cursoAtual.nome,valor:cursoAtual.preco+' MT',metodo:metodo==='mpesa'?'M-Pesa':'e-Mola',tel:tel,status:"Pendente"});alert('Pedido enviado! Aguarda senha.');closeAll();renderAdmin()}
-// PUBLICAÇÃO COM IMAGEM LINK/GALERIA + PDF LINK/FICHEIRO
-function publishPost(){let t=document.getElementById('pubTitulo').value;let d=document.getElementById('pubTexto').value;if(!t||!d)return alert('Título e texto');let secs=[...document.querySelectorAll('#secChecks .chip.on')].map(c=>c.innerText);let sec=secs[0]||'Painel geral';let link=document.getElementById('pubImgLink').value.trim();let files=document.getElementById('pubFotos').files;let img=link||(files.length>0?URL.createObjectURL(files[0]):"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600");let pdfLink=document.getElementById('pubPdfLink').value.trim();let pdfFile=document.getElementById('pubPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");posts.unshift({t,d,img,sec,fotos:files.length||1,pdf});renderPosts();renderAdmin();alert('✅ Publicado em: '+secs.join(', ')+(pdf?' + com PDF/Livro':' '))}
+function publishPost(){let t=document.getElementById('pubTitulo').value;let d=document.getElementById('pubTexto').value;if(!t||!d)return alert('Título e texto');let secs=[...document.querySelectorAll('#secChecks .chip.on')].map(c=>c.innerText);let sec=secs[0]||'Painel geral';let link=document.getElementById('pubImgLink').value.trim();let files=document.getElementById('pubFotos').files;let img=link||(files.length>0?URL.createObjectURL(files[0]):"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600");let pdfLink=document.getElementById('pubPdfLink').value.trim();let pdfFile=document.getElementById('pubPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");posts.unshift({t,d,img,sec,fotos:files.length||1,pdf});renderPosts();renderAdmin();alert('✅ Publicado em: '+secs.join(', '))}
 function addFrase(){let en=document.getElementById('newEn').value;let pt=document.getElementById('newPt').value;let ex=document.getElementById('newEx').value;if(!en||!pt)return alert('Preenche frase e tradução');frases.unshift({en,pt,ex});renderFrases();renderQuiz();renderAdmin();alert('✅ Frase publicada!')}
 function addPergunta(){let en=document.getElementById('qEn').value;let pt=document.getElementById('qPt').value;if(!en||!pt)return alert('Preenche');frases.unshift({en,pt});renderQuiz();renderAdmin();alert('✅ Pergunta publicada!')}
-function addAula(){let mat=document.getElementById('aulaMateria').value;let cur=document.getElementById('aulaCurso').value;let t=document.getElementById('aulaTitulo').value;let tx=document.getElementById('aulaTexto').value;if(!t)return alert('Título da aula');let link=document.getElementById('aulaImgLink').value.trim();let file=document.getElementById('aulaImgFile').files[0];let img=link||(file?URL.createObjectURL(file):"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600");let pdfLink=document.getElementById('aulaPdfLink').value.trim();let pdfFile=document.getElementById('aulaPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");posts.unshift({t:t+' ['+mat+' - '+cur+']',d:tx,img,sec:cur,fotos:1,pdf});renderPosts();renderAdmin();alert('✅ Aula publicada em '+mat+' + '+cur)}
+function addAula(){let mat=document.getElementById('aulaMateria').value;let cur=document.getElementById('aulaCurso').value;let t=document.getElementById('aulaTitulo').value;let tx=document.getElementById('aulaTexto').value;if(!t)return alert('Título');let link=document.getElementById('aulaImgLink').value.trim();let file=document.getElementById('aulaImgFile').files[0];let img=link||(file?URL.createObjectURL(file):"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600");let pdfLink=document.getElementById('aulaPdfLink').value.trim();let pdfFile=document.getElementById('aulaPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");posts.unshift({t:t+' ['+mat+' - '+cur+']',d:tx,img,sec:cur,fotos:1,pdf});renderPosts();renderAdmin();alert('✅ Aula publicada em '+mat+' + '+cur)}
 function addIniciante(){let cat=document.getElementById('iniCat').value;let t=document.getElementById('iniTitulo').value;let tx=document.getElementById('iniTexto').value;if(!t)return alert('Título');let link=document.getElementById('iniImgLink').value.trim();let file=document.getElementById('iniImgFile').files[0];let img=link||(file?URL.createObjectURL(file):"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600");let pdfLink=document.getElementById('iniPdfLink').value.trim();let pdfFile=document.getElementById('iniPdfFile').files[0];let pdf=pdfLink||(pdfFile?URL.createObjectURL(pdfFile):"");posts.unshift({t:t+' ['+cat+']',d:tx,img,sec:cat,fotos:1,pdf});renderPosts();renderAdmin();alert('✅ Publicado em Iniciante - '+cat)}
+/* renderAdmin AGORA SÓ ATUALIZA GESTÃO - NADA MAIS DUPLICADO */
 function renderAdmin(){
-  document.getElementById('cursosList').innerHTML='📗 Básico - 10 MT - Senha: naula2580<br>📘 Intermediário - 20 MT - Senha: naula2428<br>📙 Médio - 30 MT - Senha: naula3825<br>📕 Avançado - 40 MT - Senha: spiwa8484';
-  document.getElementById('adminPostsList').innerHTML='<b style="color:#fff">Publicações:</b><br>'+posts.slice(0,5).map(p=>`• ${p.t} <button onclick="delPost('${p.t}')" style="color:#F87171;background:none;font-weight:700">Apagar</button>`).join('<br>');
-  document.getElementById('adminFrasesList').innerHTML='<b>Frases:</b><br>'+frases.slice(0,6).map(f=>`• ${f.en} = ${f.pt}`).join('<br>');
-  document.getElementById('adminPerguntasList').innerHTML='<b>Perguntas:</b><br>'+frases.slice(0,5).map(f=>`• ${f.en} → ${f.pt}`).join('<br>');
-  document.getElementById('adminAulasList').innerHTML='<b>Aulas:</b><br>'+posts.slice(0,5).map(p=>`• ${p.t}`).join('<br>');
-  document.getElementById('adminIniList').innerHTML='<b>Iniciante:</b><br>'+posts.slice(0,5).map(p=>`• ${p.t}`).join('<br>');
   document.getElementById('pagList').innerHTML=pagamentos.map((p,i)=>`<div style="background:#1E293B;padding:10px;border-radius:10px;margin-top:8px"><b>${p.nome}</b> - ${p.curso} - ${p.valor} - ${p.metodo}<br>Status: <b>${p.status}</b> <button onclick="confirmPag(${i})" style="background:#22C55E;color:#fff;padding:5px 10px;border-radius:8px">Confirmar + Enviar Senha</button></div>`).join('');
   document.getElementById('adminComments').innerHTML=comentarios.map(c=>`<div style="background:#1E293B;padding:8px;border-radius:8px;margin-top:6px"><b>${c.nome}:</b> ${c.txt}</div>`).join('');
+  document.getElementById('manageList').innerHTML=posts.map(p=>`• ${p.t} <button onclick="delPost('${p.t}')" style="color:#F87171;background:none;font-weight:700">Apagar</button>`).join('<br>');
 }
 function delPost(t){posts=posts.filter(p=>p.t!==t);renderPosts();renderAdmin()}
 function confirmPag(i){let c=pagamentos[i].curso;pagamentos[i].status='Confirmado ✅ Senha: '+COURSE_PASS[c];renderAdmin();alert('Envia esta senha ao aluno: '+COURSE_PASS[c])}
