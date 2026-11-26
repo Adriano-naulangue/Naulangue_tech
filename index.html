@@ -3,263 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAULANGUE TECH - Learn English. Build Your Future.</title>
+<title>NAULANGUE TECH .</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-:root{--blue:#0A1931;--blue2:#142F5A;--gold:#FFC107;--light:#F4F6FB;--green:#25D366;--red:#F44336}
+:root{--blue:#0A1931;--blue2:#142F5A;--gold:#FFC107;--light:#F4F6FB}
 body{background:var(--light);color:#222;overflow-x:hidden}
 a{text-decoration:none;color:inherit}button{cursor:pointer;border:none}
-.topbar{position:fixed;top:0;left:0;right:0;height:64px;background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 12px;z-index:100;color:#fff}
-.left{display:flex;align-items:center;gap:10px}
-.menu-btn{font-size:26px;background:none;color:#fff}
-.logo-top{height:42px;width:42px;object-fit:cover;border-radius:50%;border:2px solid var(--gold);background:#fff}
-.brand b{font-size:16px;display:block;line-height:1}.brand span{font-size:9.5px;color:var(--gold);letter-spacing:.5px}
-.btn{padding:9px 14px;border-radius:20px;font-weight:700;font-size:13px}
-.btn-gold{background:var(--gold);color:#111}.btn-white{background:#fff;color:var(--blue)}.btn-outline{background:transparent;color:#fff;border:1px solid #fff}
+/* TOPO CORRIGIDO - PEQUENO */
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:100;color:#fff}
+.left{display:flex;align-items:center;gap:8px;min-width:0}
+.menu-btn{font-size:22px;background:none;color:#fff;padding:4px}
+.logo-top{height:28px!important;width:28px!important;object-fit:cover;border-radius:50%;border:1.5px solid var(--gold);background:#fff;flex-shrink:0}
+.brand{line-height:1;min-width:0}.brand b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand span{font-size:8px;color:var(--gold);letter-spacing:.3px;white-space:nowrap}
+.top-actions{display:flex;gap:6px;flex-shrink:0}
+.btn{padding:7px 10px;border-radius:18px;font-weight:700;font-size:12px}.btn-gold{background:var(--gold);color:#111}.btn-white{background:#fff;color:var(--blue)}.btn-outline{background:transparent;color:#fff;border:1px solid #fff}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:150}.overlay.show{display:block}
-.sidebar{position:fixed;top:0;left:-300px;width:285px;height:100%;background:#fff;z-index:200;transition:.3s;overflow-y:auto;padding-bottom:30px}
-.sidebar.open{left:0}
-.side-head{background:var(--blue);padding:18px;text-align:center;color:#fff;position:relative}
-.side-head img{width:88px;height:88px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;background:#fff}
-.side-head h3{margin-top:8px}.side-head p{font-size:11px;color:var(--gold)}
-.close-btn{position:absolute;right:10px;top:10px;background:var(--gold);width:30px;height:30px;border-radius:50%;font-weight:800}
-.group{border-bottom:1px solid #eee}.group-head{padding:14px 16px;display:flex;justify-content:space-between;font-weight:700;font-size:14px;cursor:pointer}.group-body{display:none;padding:0 0 10px 16px}.group.open .group-body{display:block}
-.group-body a{display:block;padding:9px 10px;font-size:13.5px;border-radius:8px;margin:3px 8px 3px 0}.group-body a:hover{background:var(--light)}
+.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#fff;z-index:200;transition:.3s;overflow-y:auto;padding-bottom:30px}.sidebar.open{left:0}
+.side-head{background:var(--blue);padding:16px;text-align:center;color:#fff;position:relative}.side-head img{width:56px!important;height:56px!important;border-radius:50%;border:2px solid var(--gold);object-fit:cover;background:#fff}.side-head p{font-size:11px;color:var(--gold)}
+.close-btn{position:absolute;right:10px;top:10px;background:var(--gold);width:28px;height:28px;border-radius:50%;font-weight:800}
+.group{border-bottom:1px solid #eee}.group-head{padding:13px 16px;display:flex;justify-content:space-between;font-weight:700;font-size:14px;cursor:pointer}.group-body{display:none;padding:0 0 10px 16px}.group.open .group-body{display:block}.group-body a{display:block;padding:9px 10px;font-size:13.5px;border-radius:8px;margin:3px 8px 3px 0}.lock{font-size:11px;background:#eee;padding:2px 6px;border-radius:8px}
 .progress-box{margin:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:14px;border-radius:14px}.bar{height:8px;background:rgba(255,255,255,.3);border-radius:10px;margin:10px 0;overflow:hidden}.bar i{display:block;height:100%;width:35%;background:var(--gold)}
-.card{background:#fff;border-radius:16px;padding:14px}.inp{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:12px;margin-top:10px;font-size:14px}
-select.inp,textarea.inp{width:100%}textarea.inp{min-height:90px;resize:vertical}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:14px}.modal.show{display:flex}
-.modal-box{background:#fff;width:100%;max-width:440px;border-radius:18px;padding:20px;max-height:92vh;overflow-y:auto}
+.card{background:#fff;border-radius:16px;padding:14px}.inp{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:12px;margin-top:10px;font-size:14px}textarea.inp{min-height:90px}select.inp{width:100%}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:14px}.modal.show{display:flex}.modal-box{background:#fff;width:100%;max-width:440px;border-radius:18px;padding:20px;max-height:92vh;overflow-y:auto}
 .btn-full{width:100%;padding:12px;border-radius:12px;font-weight:700;margin-top:12px}
+.admin-dark{background:#1A1A1A!important;color:#fff!important;border-radius:20px!important;padding:24px!important}.admin-dark p{color:#ccc!important}.admin-inp{width:100%;padding:15px 18px;border-radius:30px;border:1.5px solid #444;background:#222;color:#fff;margin-top:12px;font-size:15px;outline:none}.admin-enter{width:100%;padding:15px;border-radius:30px;background:#333;color:#999;font-weight:700;margin-top:14px}.admin-enter.active{background:var(--gold);color:#111}
 .pay-opt{border:2px solid #eee;border-radius:12px;padding:12px;margin-top:10px;cursor:pointer;display:flex;justify-content:space-between}.pay-opt.active{border-color:var(--gold);background:#FFF8E1}
-.admin-tab{display:none}.admin-tab.active{display:block}
-.admin-btn{padding:10px 12px;border-radius:10px;background:#eee;font-weight:700;font-size:12.5px;margin:4px 4px 0 0}.admin-btn.active{background:var(--blue);color:#fff}
+.admin-tab{display:none}.admin-tab.active{display:block}.admin-btn{padding:10px 12px;border-radius:10px;background:#eee;font-weight:700;font-size:12.5px;margin:4px 4px 0 0}.admin-btn.active{background:var(--blue);color:#fff}
 .chip{display:inline-block;background:#FFF8E1;border:1px solid #FFE082;padding:6px 10px;border-radius:20px;font-size:12px;margin:3px;cursor:pointer}.chip.on{background:var(--gold);font-weight:700}
+/* PÁGINA DA MATÉRIA - PÁGINA CHEIA, NÃO POP-UP */
+#postPage{display:none;padding:0 0 20px;background:#fff;min-height:100vh}
+#postPage.show{display:block}
+.post-hero-img{width:100%;height:220px;object-fit:cover}
 </style>
 </head>
 <body>
 <header class="topbar">
-  <div class="left">
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <img src="logo.jpg" class="logo-top" id="logoTop" alt="Naulangue Tech">
-    <div class="brand"><b>NAULANGUE TECH</b><span>LEARN ENGLISH. BUILD YOUR FUTURE.</span></div>
-  </div>
-  <div style="display:flex;gap:8px">
-    <button class="btn btn-gold" onclick="openModal('loginModal')">Entrar</button>
-    <button class="btn btn-white" onclick="openModal('registerModal')">Criar Conta</button>
-  </div>
+  <div class="left"><button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <img src="logo.jpg" class="logo-top" id="logoTop" onerror="this.style.display='none'"><div class="brand"><b>NAULANGUE TECH</b><span>LEARN ENGLISH. BUILD YOUR FUTURE.</span></div></div>
+  <div class="top-actions"><button class="btn btn-gold" onclick="openModal('loginModal')">Entrar</button><button class="btn btn-white" onclick="openModal('registerModal')">Criar Conta</button></div>
 </header>
-<div style="height:64px"></div>
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
+<div style="height:56px"></div><div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <aside class="sidebar" id="sidebar">
-  <div class="side-head">
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
-    <img src="logo.jpg" alt="Logo">
-    <h3>NAULANGUE TECH</h3><p>LEARN ENGLISH. BUILD YOUR FUTURE.</p>
-  </div>
-  <div class="group open"><div class="group-head" onclick="toggleGroup(this)">⭐ INICIANTE <span>▼</span></div>
-    <div class="group-body">
-      <a href="#" onclick="filterBy('iniciante-alfabeto')">🔤 Alfabeto</a>
-      <a href="#" onclick="filterBy('iniciante-numeros')">🔢 Números</a>
-      <a href="#" onclick="filterBy('iniciante-dialogo')">💬 Diálogo</a>
-      <a href="#" onclick="filterBy('iniciante-verbos')">📖 Verbos</a>
-    </div></div>
-  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📚 CURSOS <span>▼</span></div>
-    <div class="group-body">
-      <a href="#" onclick="openPay('Básico',10)">📗 Básico — 10 MT</a>
-      <a href="#" onclick="openPay('Intermediário',20)">📘 Intermediário — 20 MT</a>
-      <a href="#" onclick="openPay('Médio',30)">📙 Médio — 30 MT</a>
-      <a href="#" onclick="openPay('Avançado',40)">📕 Avançado — 40 MT</a>
-    </div></div>
-  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📝 ÁREA DE TAREFAS <span>▼</span></div>
-    <div class="group-body"><a href="#" onclick="goPratica()">✍️ Aula Prática</a><a href="#" onclick="goPratica()">📝 Testes</a><a href="#" onclick="goProgresso()">🏆 Resultados</a></div></div>
-  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📢 PUBLICIDADE <span>▼</span></div>
-    <div class="group-body"><a href="#" onclick="filterBy('novidades')">📰 Novidades / Fotos</a><a href="#" onclick="filterBy('frases')">💬 Frases do dia a dia</a></div></div>
-  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📖 APRENDER <span>▼</span></div>
-    <div class="group-body"><a href="#" onclick="showInfo('oque')">❓ O que é inglês?</a><a href="#" onclick="showInfo('aprender')">🎯 O que vais aprender?</a></div></div>
-  <div class="group"><div class="group-head" onclick="toggleGroup(this)">💬 AJUDA <span>▼</span></div>
-    <div class="group-body"><a href="#" onclick="openModal('commentModal')">💬 Comentários</a><a href="#" onclick="openModal('commentModal')">💭 Conversas</a><a href="#" onclick="openModal('registerModal')">👤 Meu Perfil</a></div></div>
-  <div class="progress-box"><h4>📊 MEU PROGRESSO</h4><p style="font-size:12px;margin-top:6px" id="progressText">Aulas: 12 • Testes: 5 • Pontos: 350 🔥 3 dias seguidos</p><div class="bar"><i id="progressBar"></i></div><button class="btn btn-gold" style="width:100%" onclick="goProgresso()">Ver Painel de Progresso</button></div>
+  <div class="side-head"><button class="close-btn" onclick="toggleMenu()">✕</button><img src="logo.jpg" onerror="this.style.display='none'"><h3>NAULANGUE TECH</h3><p>LEARN ENGLISH. BUILD YOUR FUTURE.</p><p id="userStatus" style="color:#fff;margin-top:6px;font-size:12px">👤 Visitante - Público</p></div>
+  <p style="padding:10px 16px 0;font-size:11px;color:#888;font-weight:700">🟢 PÚBLICO - SEM CONTA</p>
+  <div class="group open"><div class="group-head" onclick="toggleGroup(this)">⭐ INICIANTE <span>▼</span></div><div class="group-body">
+    <a href="#" onclick="filterBy('iniciante-alfabeto')">🔤 Alfabeto</a><a href="#" onclick="filterBy('iniciante-numeros')">🔢 Números</a><a href="#" onclick="filterBy('iniciante-dialogo')">💬 Diálogo</a><a href="#" onclick="filterBy('iniciante-verbos')">📖 Verbos</a></div></div>
+  <div class="group"><div class="group-head" onclick="toggleGroup(this)">💬 FRASES DO DIA <span>▼</span></div><div class="group-body"><a href="#" onclick="goFrases()">💬 Frases do dia a dia</a><a href="#" onclick="filterBy('novidades')">📰 Novidades / Fotos</a></div></div>
+  <p style="padding:10px 16px 0;font-size:11px;color:#888;font-weight:700">🔒 PRECISA CONTA</p>
+  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📚 CURSOS <span>▼</span></div><div class="group-body">
+    <a href="#" onclick="checkCourse('Básico',10)">📗 Básico — 10 MT <span class="lock">🔒 Senha</span></a>
+    <a href="#" onclick="checkCourse('Intermediário',20)">📘 Intermediário — 20 MT <span class="lock">🔒 Senha</span></a>
+    <a href="#" onclick="checkCourse('Médio',30)">📙 Médio — 30 MT <span class="lock">🔒 Senha</span></a>
+    <a href="#" onclick="checkCourse('Avançado',40)">📕 Avançado — 40 MT <span class="lock">🔒 Senha</span></a></div></div>
+  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📝 ÁREA DE TAREFAS <span>▼</span></div><div class="group-body"><a href="#" onclick="needLogin('pratica')">✍️ Aula Prática 🔒</a><a href="#" onclick="needLogin('pratica')">📝 Testes 🔒</a><a href="#" onclick="needLogin('progresso')">🏆 Resultados 🔒</a></div></div>
+  <div class="group"><div class="group-head" onclick="toggleGroup(this)">📖 APRENDER <span>▼</span></div><div class="group-body"><a href="#" onclick="showInfo('oque')">❓ O que é inglês?</a><a href="#" onclick="showInfo('aprender')">🎯 O que vais aprender?</a></div></div>
+  <div class="group"><div class="group-head" onclick="toggleGroup(this)">💬 AJUDA <span>▼</span></div><div class="group-body"><a href="#" onclick="needLogin('coment')">💬 Comentários 🔒</a><a href="#" onclick="needLogin('coment')">💭 Conversas 🔒</a><a href="#" onclick="openModal('registerModal')">👤 Meu Perfil</a></div></div>
+  <div class="progress-box"><h4>📊 MEU PROGRESSO 🔒</h4><p style="font-size:12px;margin-top:6px">Faz login para ver</p><div class="bar"><i></i></div><button class="btn btn-gold" style="width:100%" onclick="needLogin('progresso')">Entrar para Ver</button></div>
+  <!-- ADMIN VISÍVEL AQUI TAMBÉM -->
+  <div style="padding:10px 14px"><button onclick="openModal('adminLoginModal');toggleMenu()" style="width:100%;padding:12px;border-radius:12px;background:#111;color:#fff;font-weight:700">🛡️ Administração</button><p style="font-size:11px;color:#888;text-align:center;margin-top:6px">Só para o dono do site</p></div>
 </aside>
 <main id="main">
-  <section style="background:linear-gradient(135deg,#0A1931,#142F5A);color:#fff;padding:28px 16px;text-align:center">
-    <img src="logo.jpg" style="width:110px;height:110px;border-radius:50%;border:4px solid #FFC107;object-fit:cover;background:#fff">
-    <h1 style="font-size:26px;margin:14px 0 6px;line-height:1.2">Learn English.<br><span style="color:#FFC107">Build Your Future.</span></h1>
-    <p style="font-size:14px;opacity:.9">Plataforma digital para ensinar inglês, disponibilizar cursos, realizar exercícios, acompanhar estudantes e gerir conteúdos.</p>
-    <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-gold" onclick="openModal('registerModal')">Criar Conta Grátis →</button>
-      <button class="btn btn-outline" onclick="openModal('loginModal')">Iniciar Sessão</button>
-    </div>
-    <p style="margin-top:12px;font-size:12px">⭐ 3 aulas grátis do Básico • Sem compromisso</p>
+  <section style="background:linear-gradient(135deg,#0A1931,#142F5A);color:#fff;padding:22px 16px;text-align:center">
+    <!-- LOGO PEQUENA NO HERO - 60px, NÃO GIGANTE -->
+    <img src="logo.jpg" onerror="this.style.display='none'" style="width:60px;height:60px;border-radius:50%;border:3px solid #FFC107;object-fit:cover;background:#fff">
+    <h1 style="font-size:24px;margin:12px 0 6px;line-height:1.2">Learn English.<br><span style="color:#FFC107">Build Your Future.</span></h1>
+    <p style="font-size:13.5px;opacity:.9">Plataforma digital para ensinar inglês, cursos, exercícios e acompanhar estudantes.</p>
+    <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="openModal('registerModal')">Criar Conta Grátis →</button><button class="btn btn-outline" onclick="openModal('loginModal')">Iniciar Sessão</button></div>
+    <p style="margin-top:10px;font-size:12px">🟢 Público: Iniciante + Frases • 🔒 Cursos com senha</p>
   </section>
-
   <section style="padding:18px 14px"><h2 style="font-size:18px">📚 Cursos Disponíveis</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-      <div class="card" style="border-top:4px solid #4CAF50"><b>📗 Básico</b><p style="font-size:12px;color:#666;margin:6px 0">Alfabeto, números, saudações</p><b>10 MT</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="openPay('Básico',10)">Comprar</button></div>
-      <div class="card" style="border-top:4px solid #2196F3"><b>📘 Intermediário</b><p style="font-size:12px;color:#666;margin:6px 0">Frases, verbos, diálogo</p><b>20 MT</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="openPay('Intermediário',20)">Comprar</button></div>
-      <div class="card" style="border-top:4px solid #FF9800"><b>📙 Médio</b><p style="font-size:12px;color:#666;margin:6px 0">Conversação, gramática</p><b>30 MT</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="openPay('Médio',30)">Comprar</button></div>
-      <div class="card" style="border-top:4px solid #F44336"><b>📕 Avançado</b><p style="font-size:12px;color:#666;margin:6px 0">Fluência, debates, escrita</p><b>40 MT</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="openPay('Avançado',40)">Comprar</button></div>
-    </div>
-  </section>
-
-  <section style="padding:0 14px 18px"><h2 style="font-size:18px">💬 Frases do Dia a Dia</h2><div id="frasesList"></div></section>
-  <section style="padding:0 14px 18px">
-    <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:18px">📰 Publicações Recentes</h2><button onclick="resetFilter()" style="background:#fff;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700">Ver Tudo</button></div>
-    <div id="posts"></div>
-  </section>
-  <section id="pratica" style="padding:0 14px 20px"><div class="card"><h2>✍️ Aula Prática - Tradução</h2><p style="font-size:13px;color:#666;margin:6px 0">Traduz para português. O sistema corrige automaticamente.</p><div id="quiz"></div><button class="btn btn-gold" style="width:100%;margin-top:10px" onclick="corrigir()">Corrigir e Ver Nota</button><div id="resultado" style="margin-top:12px;font-weight:700"></div></div></section>
-  <section id="progressoSec" style="padding:0 14px 22px"><div class="card"><h2>📊 MEU PROGRESSO</h2><p style="font-size:13px;color:#666;margin:6px 0">Aulas concluídas, testes, notas, cursos em andamento.</p><div id="progressoBox" style="font-size:14px;line-height:1.8">• Aulas concluídas: <b>12</b><br>• Testes realizados: <b>5</b><br>• Notas obtidas: <b>16, 18, 14, 20, 17</b><br>• Cursos em andamento: <b>Básico (65%)</b><br>• Pontos: <b>350</b> • 🔥 Streak: <b>3 dias</b></div></div></section>
-  <footer style="text-align:center;padding:16px;font-size:12px;color:#888">© 2026 NAULANGUE TECH • Milange, Zambézia • M-Pesa 856 661 893 • e-Mola 862 428 830</footer>
+      <div class="card" style="border-top:4px solid #4CAF50"><b>📗 Básico</b><p style="font-size:12px;color:#666;margin:6px 0">Alfabeto, números</p><b>10 MT • 🔒</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="checkCourse('Básico',10)">Entrar / Comprar</button></div>
+      <div class="card" style="border-top:4px solid #2196F3"><b>📘 Intermediário</b><p style="font-size:12px;color:#666;margin:6px 0">Frases, verbos</p><b>20 MT • 🔒</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="checkCourse('Intermediário',20)">Entrar / Comprar</button></div>
+      <div class="card" style="border-top:4px solid #FF9800"><b>📙 Médio</b><p style="font-size:12px;color:#666;margin:6px 0">Conversação</p><b>30 MT • 🔒</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="checkCourse('Médio',30)">Entrar / Comprar</button></div>
+      <div class="card" style="border-top:4px solid #F44336"><b>📕 Avançado</b><p style="font-size:12px;color:#666;margin:6px 0">Fluência</p><b>40 MT • 🔒</b><br><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="checkCourse('Avançado',40)">Entrar / Comprar</button></div>
+    </div></section>
+  <section style="padding:0 14px 18px"><h2>💬 Frases do Dia a Dia <span style="font-size:12px;color:green">🟢 Público</span></h2><div id="frasesList"></div></section>
+  <section style="padding:0 14px 18px"><div style="display:flex;justify-content:space-between"><h2>📰 Publicações</h2><button onclick="resetFilter()" style="background:#fff;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700">Ver Tudo</button></div><div id="posts"></div></section>
+  <section id="pratica" style="padding:0 14px 20px"><div class="card"><h2>✍️ Aula Prática 🔒</h2><div id="quiz"></div><button class="btn btn-gold" style="width:100%;margin-top:10px" onclick="corrigir()">Corrigir e Ver Nota</button><div id="resultado" style="margin-top:12px;font-weight:700"></div></div></section>
+  <section id="progressoSec" style="padding:0 14px 22px"><div class="card"><h2>📊 MEU PROGRESSO 🔒</h2><div id="progressoBox" style="font-size:14px;line-height:1.8">Faz login para ver.</div></div></section>
+  <footer style="text-align:center;padding:16px;font-size:12px;color:#888">© 2026 NAULANGUE TECH • M-Pesa 856 661 893 • e-Mola 862 428 830<br><br><button onclick="openModal('adminLoginModal')" style="background:#111;color:#fff;padding:10px 18px;border-radius:20px;font-weight:700;font-size:13px">🛡️ Administração</button><p style="margin-top:8px">Clica aqui para entrar como Admin</p></footer>
 </main>
-<div class="modal" id="loginModal"><div class="modal-box"><h2>Bem-vindo de volta 👋</h2><p>Entra para continuar.</p>
-<button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="alert('Google - ligar Supabase Auth')">G Continuar com Google</button>
-<button class="btn-full" style="background:#1877F2;color:#fff" onclick="alert('Facebook - ligar Supabase Auth')">f Continuar com Facebook</button>
-<input class="inp" placeholder="E-mail"><input class="inp" type="password" placeholder="Palavra-passe">
-<button class="btn-full" style="background:#0A1931;color:#fff">Entrar</button>
-<p style="text-align:center;margin-top:12px;font-size:13px"><a href="#" style="color:#142F5A;font-weight:700">Recuperar palavra-passe</a></p>
-<button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
 
-<div class="modal" id="registerModal"><div class="modal-box"><h2>Criar Conta Grátis ✨</h2><p>Nome, número, e-mail e palavra-passe.</p>
-<button class="btn-full" style="background:#fff;border:1.5px solid #ddd">G Continuar com Google</button>
-<button class="btn-full" style="background:#1877F2;color:#fff">f Continuar com Facebook</button>
-<button class="btn-full" style="background:#fff;border:1.5px solid #ddd">📸 Instagram (opcional)</button>
-<input class="inp" placeholder="Nome completo"><input class="inp" placeholder="Número - ex: 856661893"><input class="inp" placeholder="E-mail"><input class="inp" type="password" placeholder="Criar palavra-passe">
-<button class="btn-full" style="background:#FFC107">Criar Conta</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
-
+<!-- PÁGINA DA MATÉRIA - ABRE COMO PÁGINA CHEIA -->
+<div id="postPage">
+  <div style="background:#0A1931;color:#fff;padding:12px 14px;display:flex;gap:10px;align-items:center;position:sticky;top:56px;z-index:50"><button onclick="closePostPage()" style="background:#FFC107;padding:8px 12px;border-radius:20px;font-weight:800">← Voltar</button><b style="font-size:14px">NAULANGUE TECH</b></div>
+  <img id="postPageImg" class="post-hero-img">
+  <div style="padding:16px">
+    <span id="postPageSec" style="font-size:11px;background:#FFF8E1;padding:4px 10px;border-radius:10px;font-weight:700"></span>
+    <h2 id="postPageTitle" style="font-size:22px;margin:10px 0;line-height:1.3"></h2>
+    <p id="postPageBody" style="font-size:15px;line-height:1.7;color:#333"></p>
+    <div id="postPageGallery" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"></div>
+    <hr style="margin:20px 0;border:none;border-top:1px solid #eee">
+    <h3 style="font-size:17px">📚 Outras matérias por baixo 👇</h3>
+    <p style="font-size:13px;color:#666">Continua a aprender:</p>
+    <div id="postPageMore" style="margin-top:12px"></div>
+    <button onclick="closePostPage()" style="width:100%;padding:12px;border-radius:12px;background:#0A1931;color:#fff;font-weight:700;margin-top:16px">← Voltar à Página Inicial</button>
+  </div>
+</div>
+<div class="modal" id="loginModal"><div class="modal-box"><h2>Bem-vindo 👋</h2><p>Entra para desbloquear cursos e progresso.</p>
+<button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="doLogin()">G Continuar com Google</button><button class="btn-full" style="background:#1877F2;color:#fff" onclick="doLogin()">f Continuar com Facebook</button>
+<input class="inp" placeholder="E-mail"><input class="inp" type="password" placeholder="Palavra-passe"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="doLogin()">Entrar</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
+<div class="modal" id="registerModal"><div class="modal-box"><h2>Criar Conta Grátis ✨</h2><p>🟢 Público</p>
+<button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="doLogin()">G Google</button><button class="btn-full" style="background:#1877F2;color:#fff" onclick="doLogin()">f Facebook</button><button class="btn-full" style="background:#fff;border:1.5px solid #ddd" onclick="doLogin()">📸 Instagram</button>
+<input class="inp" placeholder="Nome completo"><input class="inp" placeholder="Número"><input class="inp" placeholder="E-mail"><input class="inp" type="password" placeholder="Palavra-passe"><button class="btn-full" style="background:#FFC107" onclick="doLogin()">Criar Conta</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
 <div class="modal" id="payModal"><div class="modal-box"><h2 id="payTitle">Comprar Curso</h2><p>Beneficiário: <b>Adriano Naulange</b></p>
 <div class="pay-opt active" id="optMpesa" onclick="selectPay('mpesa')"><span><b>📱 M-Pesa</b><br><small>856 661 893</small></span><span>✔</span></div>
 <div class="pay-opt" id="optEmola" onclick="selectPay('emola')"><span><b>📱 e-Mola</b><br><small>862 428 830</small></span><span></span></div>
-<input class="inp" id="payPhone" placeholder="O teu número - ex: 84xxxxxxx">
-<p style="margin-top:10px;font-size:13px">1. Escolhes o curso<br>2. Escolhes M-Pesa ou e-Mola<br>3. Recebes solicitação<br>4. Curso desbloqueado*</p><p style="font-size:11px;color:#999">*Integração oficial pendente. Por agora o Admin confirma manualmente.</p>
-<button class="btn-full" style="background:#25D366;color:#fff" onclick="confirmPay()">Pagar Agora</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Cancelar</button></div></div>
-
-<div class="modal" id="commentModal"><div class="modal-box"><h2>💬 Comentários / Conversas</h2><div id="commentList" style="margin-top:10px;font-size:13px"></div><textarea class="inp" id="commentInput" placeholder="Escreve o teu comentário..."></textarea><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addComment()">Enviar Comentário</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
-
-<div class="modal" id="postModal"><div class="modal-box"><img id="postImg" style="width:100%;border-radius:12px;display:none"><h2 id="postTitle" style="margin-top:10px"></h2><p id="postBody" style="margin-top:8px;font-size:14px;line-height:1.6"></p><div id="postMore" style="margin-top:12px"></div><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
-<!-- ADMIN LOGIN INVISÍVEL -->
-<div class="modal" id="adminLoginModal"><div class="modal-box" style="text-align:center"><h2>🔐 Admin Naulangue</h2><p>Acesso restrito</p><input class="inp" type="password" id="adminCode" placeholder="Código Admin"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="checkAdmin()">Entrar no Painel</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Cancelar</button><p style="font-size:11px;margin-top:8px">Dica: código inicial NAULA2026 - muda depois</p></div></div>
-
-<!-- PAINEL ADMIN -->
+<input class="inp" id="payPhone" placeholder="O teu número"><button class="btn-full" style="background:#25D366;color:#fff" onclick="confirmPay()">Pagar Agora</button><button class="btn-full" style="background:#0A1931;color:#fff" onclick="closeAll();openModal('coursePassModal')">Já tenho a senha →</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Cancelar</button></div></div>
+<div class="modal" id="coursePassModal"><div class="modal-box"><h2 id="coursePassTitle">🔒 Senha do Curso</h2><input class="inp" type="password" id="coursePassInput" placeholder="Senha do curso"><button class="btn-full" style="background:#FFC107" onclick="unlockCourse()">Desbloquear</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Cancelar</button></div></div>
+<div class="modal" id="commentModal"><div class="modal-box"><h2>💬 Comentários 🔒</h2><div id="commentList"></div><textarea class="inp" id="commentInput" placeholder="Escreve..."></textarea><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addComment()">Enviar</button><button class="btn-full" style="background:#eee" onclick="closeAll()">Fechar</button></div></div>
+<div class="modal" id="adminLoginModal"><div class="modal-box admin-dark">
+  <h2>🛡️ Administração</h2><p>Acesso reservado - Só o dono</p>
+  <input class="admin-inp" id="adminEmail" placeholder="E-mail administrativo" value="">
+  <input class="admin-inp" type="password" id="adminPass" placeholder="Palavra-passe">
+  <button class="admin-enter" id="adminEnterBtn" onclick="checkAdmin()">Entrar no painel</button>
+  <button class="admin-enter" style="background:#222;color:#ccc" onclick="closeAll()">Cancelar</button>
+  <p style="font-size:12px;text-align:center">Se não consegues, verifica o e-mail e senha com atenção</p>
+</div></div>
 <div class="modal" id="adminModal"><div class="modal-box" style="max-width:680px">
-  <div style="display:flex;justify-content:space-between;align-items:center"><h2>⚙️ Painel Administrativo</h2><button onclick="closeAll()" style="background:#eee;padding:8px 12px;border-radius:10px;font-weight:800">✕ Sair</button></div>
-  <p style="font-size:13px">Olá, Adriano Naulange • Publicar, gerir aulas, frases, pagamentos e progresso.</p>
-  <div style="margin-top:12px">
-    <button class="admin-btn active" onclick="adminTab('pub',this)">📝 Publicar</button>
-    <button class="admin-btn" onclick="adminTab('frase',this)">💬 Frases</button>
-    <button class="admin-btn" onclick="adminTab('pergunta',this)">❓ Perguntas / Testes</button>
-    <button class="admin-btn" onclick="adminTab('aula',this)">📖 Aulas / Iniciante</button>
-    <button class="admin-btn" onclick="adminTab('pag',this)">💰 Pagamentos</button>
-    <button class="admin-btn" onclick="adminTab('prog',this)">📊 Progresso / Comentários</button>
-  </div>
-
-  <!-- PUBLICAR -->
-  <div id="tab-pub" class="admin-tab active">
-    <input class="inp" id="pubTitulo" placeholder="Título da publicação">
-    <textarea class="inp" id="pubTexto" placeholder="Conteúdo da matéria / novidade..."></textarea>
-    <label style="font-size:13px;font-weight:700">Fotos (podes escolher várias):</label>
-    <input class="inp" type="file" id="pubFotos" accept="image/*" multiple onchange="previewFotos(this)">
-    <div id="fotosPreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
-    <label style="font-size:13px;font-weight:700">Onde vai aparecer? (podes escolher várias):</label>
-    <div id="secChecks" style="margin-top:8px">
-      <span class="chip on" onclick="toggleChip(this)">Painel geral</span>
-      <span class="chip" onclick="toggleChip(this)">Iniciante - Alfabeto</span>
-      <span class="chip" onclick="toggleChip(this)">Iniciante - Números</span>
-      <span class="chip" onclick="toggleChip(this)">Iniciante - Diálogo</span>
-      <span class="chip" onclick="toggleChip(this)">Iniciante - Verbos</span>
-      <span class="chip" onclick="toggleChip(this)">Cursos - Básico</span>
-      <span class="chip" onclick="toggleChip(this)">Cursos - Intermediário</span>
-      <span class="chip" onclick="toggleChip(this)">Cursos - Médio</span>
-      <span class="chip" onclick="toggleChip(this)">Cursos - Avançado</span>
-      <span class="chip" onclick="toggleChip(this)">Frases do dia a dia</span>
-      <span class="chip" onclick="toggleChip(this)">Novidades / Fotos</span>
-      <span class="chip" onclick="toggleChip(this)">Área de tarefas</span>
-    </div>
-    <button class="btn-full" style="background:#FFC107" onclick="publishPost()">📤 Publicar Agora</button>
-    <div id="adminPostsList" style="margin-top:14px"></div>
-  </div>
-
-  <!-- FRASES -->
-  <div id="tab-frase" class="admin-tab"><input class="inp" id="newEn" placeholder="Frase em inglês - ex: Good morning"><input class="inp" id="newPt" placeholder="Tradução - ex: Bom dia"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addFrase()">+ Adicionar Frase</button><div id="adminFrasesList" style="margin-top:10px;font-size:13px"></div></div>
-
-  <!-- PERGUNTAS -->
-  <div id="tab-pergunta" class="admin-tab"><input class="inp" id="qEn" placeholder="Pergunta / Frase em inglês"><input class="inp" id="qPt" placeholder="Resposta correta em português"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addPergunta()">+ Adicionar Pergunta ao Teste</button><p style="font-size:12px;color:#666;margin-top:8px">Estas perguntas aparecem na Aula Prática e nos Testes, e corrigem automaticamente.</p><div id="adminPerguntasList" style="margin-top:10px;font-size:13px"></div></div>
-
-  <!-- AULAS -->
-  <div id="tab-aula" class="admin-tab"><input class="inp" id="aulaTitulo" placeholder="Título da aula - ex: Alfabeto A-Z"><select class="inp" id="aulaCat"><option>Iniciante - Alfabeto</option><option>Iniciante - Números</option><option>Iniciante - Diálogo</option><option>Iniciante - Verbos</option><option>Curso Básico</option><option>Curso Intermediário</option><option>Curso Médio</option><option>Curso Avançado</option></select><textarea class="inp" id="aulaTexto" placeholder="Conteúdo da aula..."></textarea><button class="btn-full" style="background:#FFC107" onclick="addAula()">+ Publicar Aula</button><div id="adminAulasList" style="margin-top:10px;font-size:13px"></div></div>
-
-  <!-- PAGAMENTOS -->
-  <div id="tab-pag" class="admin-tab"><div id="pagList" style="margin-top:10px;font-size:13px"></div><p style="font-size:12px;color:#666;margin-top:8px">M-Pesa: 856 661 893 • e-Mola: 862 428 830 • Beneficiário: Adriano Naulange</p></div>
-
-  <!-- PROGRESSO -->
-  <div id="tab-prog" class="admin-tab"><div style="font-size:14px;line-height:1.9">👥 Alunos registados: <b id="totalAlunos">128</b><br>📚 Aulas publicadas: <b id="totalAulas">24</b><br>💰 Pagamentos este mês: <b>12 • 240 MT</b><br>⭐ Média de notas: <b>15.5/20</b></div><h3 style="margin-top:12px;font-size:15px">💬 Comentários recentes</h3><div id="adminComments" style="font-size:13px;margin-top:8px"></div></div>
+  <div style="display:flex;justify-content:space-between"><h2>⚙️ Painel Administrativo</h2><button onclick="closeAll()" style="background:#eee;padding:8px 12px;border-radius:10px;font-weight:800">✕ Sair</button></div>
+  <p style="font-size:13px">Admin: bigduckbmmiranda@gmail.com</p>
+  <div style="background:#FFF8E1;padding:12px;border-radius:12px;font-size:13px;margin-top:10px"><b>🔑 Senhas:</b> Básico: <b>naula2580</b> • Interm: <b>naula2428</b> • Médio: <b>naula3825</b> • Avançado: <b>spiwa8484</b></div>
+  <div style="margin-top:12px"><button class="admin-btn active" onclick="adminTab('pub',this)">📝 Publicar</button><button class="admin-btn" onclick="adminTab('frase',this)">💬 Frases</button><button class="admin-btn" onclick="adminTab('pergunta',this)">❓ Perguntas</button><button class="admin-btn" onclick="adminTab('aula',this)">📖 Aulas</button><button class="admin-btn" onclick="adminTab('pag',this)">💰 Pagamentos</button><button class="admin-btn" onclick="adminTab('prog',this)">📊 Progresso</button></div>
+  <div id="tab-pub" class="admin-tab active"><input class="inp" id="pubTitulo" placeholder="Título"><textarea class="inp" id="pubTexto" placeholder="Conteúdo..."></textarea><label style="font-size:13px;font-weight:700">Fotos (várias):</label><input class="inp" type="file" id="pubFotos" accept="image/*" multiple onchange="previewFotos(this)"><div id="fotosPreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div><label style="font-size:13px;font-weight:700">Onde aparece?</label><div id="secChecks" style="margin-top:8px"><span class="chip on" onclick="toggleChip(this)">Painel geral</span><span class="chip" onclick="toggleChip(this)">Iniciante - Alfabeto</span><span class="chip" onclick="toggleChip(this)">Iniciante - Números</span><span class="chip" onclick="toggleChip(this)">Iniciante - Diálogo</span><span class="chip" onclick="toggleChip(this)">Iniciante - Verbos</span><span class="chip" onclick="toggleChip(this)">Cursos - Básico</span><span class="chip" onclick="toggleChip(this)">Cursos - Intermediário</span><span class="chip" onclick="toggleChip(this)">Cursos - Médio</span><span class="chip" onclick="toggleChip(this)">Cursos - Avançado</span><span class="chip" onclick="toggleChip(this)">Frases do dia a dia</span><span class="chip" onclick="toggleChip(this)">Novidades / Fotos</span><span class="chip" onclick="toggleChip(this)">Área de tarefas</span></div><button class="btn-full" style="background:#FFC107" onclick="publishPost()">📤 Publicar Agora</button><div id="adminPostsList" style="margin-top:14px"></div></div>
+  <div id="tab-frase" class="admin-tab"><input class="inp" id="newEn" placeholder="Frase em inglês"><input class="inp" id="newPt" placeholder="Tradução"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addFrase()">+ Adicionar Frase</button><div id="adminFrasesList" style="margin-top:10px;font-size:13px"></div></div>
+  <div id="tab-pergunta" class="admin-tab"><input class="inp" id="qEn" placeholder="Pergunta em inglês"><input class="inp" id="qPt" placeholder="Resposta"><button class="btn-full" style="background:#0A1931;color:#fff" onclick="addPergunta()">+ Adicionar Pergunta</button><div id="adminPerguntasList" style="margin-top:10px;font-size:13px"></div></div>
+  <div id="tab-aula" class="admin-tab"><input class="inp" id="aulaTitulo" placeholder="Título"><select class="inp" id="aulaCat"><option>Iniciante - Alfabeto</option><option>Iniciante - Números</option><option>Iniciante - Diálogo</option><option>Iniciante - Verbos</option><option>Curso Básico</option><option>Curso Intermediário</option><option>Curso Médio</option><option>Curso Avançado</option></select><textarea class="inp" id="aulaTexto" placeholder="Conteúdo..."></textarea><button class="btn-full" style="background:#FFC107" onclick="addAula()">+ Publicar Aula</button><div id="adminAulasList" style="margin-top:10px;font-size:13px"></div></div>
+  <div id="tab-pag" class="admin-tab"><div id="pagList" style="margin-top:10px;font-size:13px"></div></div>
+  <div id="tab-prog" class="admin-tab"><div style="font-size:14px;line-height:1.9">👥 Alunos: <b>128</b><br>📚 Aulas: <b>24</b><br>💰 Pagamentos: <b>12 • 240 MT</b></div><h3 style="margin-top:12px">💬 Comentários</h3><div id="adminComments" style="font-size:13px"></div></div>
 </div></div>
 <script>
-let clicks=0;
-document.getElementById('logoTop').addEventListener('click',()=>{clicks++; if(clicks>=5){clicks=0;openModal('adminLoginModal')}});
-if(location.hash==='#admin'){setTimeout(()=>openModal('adminLoginModal'),500)}
+const ADMIN_EMAIL='bigduckbmmiranda@gmail.com'; const ADMIN_PASS='naulangue95';
+const COURSE_PASS={'Básico':'naula2580','Intermediário':'naula2428','Médio':'naula3825','Avançado':'spiwa8484'};
+let isLogged=false; let unlocked={}; let currentCourse=null; let clicks=0;
+let logo=document.getElementById('logoTop'); if(logo) logo.addEventListener('click',()=>{clicks++; if(clicks>=5){clicks=0;openModal('adminLoginModal')}});
+if(location.hash==='#admin') setTimeout(()=>openModal('adminLoginModal'),600);
 function toggleMenu(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
 function toggleGroup(el){el.parentElement.classList.toggle('open')}
 function openModal(id){closeAll();document.getElementById(id).classList.add('show')}
 function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show'))}
 function toggleChip(el){el.classList.toggle('on')}
 function adminTab(id,btn){document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');document.querySelectorAll('.admin-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAdmin()}
-function checkAdmin(){let c=document.getElementById('adminCode').value; if(c==='NAULA2026'){closeAll();openModal('adminModal');renderAdmin()} else alert('Código errado')}
+document.getElementById('adminEmail').addEventListener('input',()=>{let e=document.getElementById('adminEmail').value;let p=document.getElementById('adminPass').value;document.getElementById('adminEnterBtn').classList.toggle('active',e&&p)}); document.getElementById('adminPass').addEventListener('input',()=>{let e=document.getElementById('adminEmail').value;let p=document.getElementById('adminPass').value;document.getElementById('adminEnterBtn').classList.toggle('active',e&&p)});
+function checkAdmin(){let e=document.getElementById('adminEmail').value.trim().toLowerCase();let p=document.getElementById('adminPass').value.trim(); console.log('Tentativa admin:',e); if(e===ADMIN_EMAIL && p===ADMIN_PASS){closeAll();openModal('adminModal');renderAdmin();alert('Bem-vindo, Admin!')} else alert('❌ E-mail ou senha errados.\nVerifica: bigduckbmmiranda@gmail.com\nSenha: naulangue95\nSem espaços no fim.')}
+function doLogin(){isLogged=true;document.getElementById('userStatus').innerText='✅ Logado';document.getElementById('progressoBox').innerHTML='• Aulas: <b>12</b><br>• Testes: <b>5</b><br>• Notas: <b>16, 18, 14, 20, 17</b><br>• Pontos: <b>350</b>';closeAll();alert('Bem-vindo!')}
+function needLogin(sec){if(isLogged){if(sec==='pratica')goPratica(); if(sec==='progresso')goProgresso(); if(sec==='coment')openModal('commentModal');}else{alert('🔒 Precisas de conta. Iniciante e Frases são públicas.');openModal('loginModal')}}
 function goPratica(){toggleMenu();document.getElementById('pratica').scrollIntoView({behavior:'smooth'})}
 function goProgresso(){toggleMenu();document.getElementById('progressoSec').scrollIntoView({behavior:'smooth'})}
-function showInfo(t){toggleMenu();alert(t==='oque'?'Inglês é a língua mais falada no mundo para negócios, escola e internet.':'Vais aprender alfabeto, números, frases, verbos, diálogo, testes e conversação.')}
+function goFrases(){toggleMenu();window.scrollTo({top:600,behavior:'smooth'})}
+function showInfo(t){toggleMenu();alert(t==='oque'?'Inglês é a língua mais falada no mundo.':'Vais aprender alfabeto, números, frases, verbos e diálogo.')}
 function previewFotos(inp){let box=document.getElementById('fotosPreview');box.innerHTML='';[...inp.files].forEach(f=>{let r=new FileReader();r.onload=e=>{let im=document.createElement('img');im.src=e.target.result;im.style.cssText='width:70px;height:70px;object-fit:cover;border-radius:10px';box.appendChild(im)};r.readAsDataURL(f)})}
-
-// DADOS
-let frases=[
- {en:"Thank you",pt:"obrigado",sec:"frases"},{en:"Good night",pt:"boa noite",sec:"frases"},
- {en:"I love English",pt:"eu amo inglês",sec:"frases"},{en:"Where are you from?",pt:"de onde és?",sec:"frases"},
- {en:"See you tomorrow",pt:"até amanhã",sec:"frases"},{en:"Welcome to school",pt:"bem-vindo à escola",sec:"frases"},
- {en:"Good morning",pt:"bom dia",sec:"frases"},{en:"How are you?",pt:"como estás?",sec:"frases"}
-];
-let posts=[
- {t:"Como cumprimentar em inglês",d:"Aprende Good morning, Good afternoon, Good evening...",img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600",sec:"Painel geral",fotos:1},
- {t:"5 Verbos que tens de saber",d:"To be, To have, To go, To do, To speak...",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",sec:"Iniciante - Verbos",fotos:1},
- {t:"Frases para o dia a dia",d:"Thank you, Please, Excuse me...",img:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600",sec:"Frases do dia a dia",fotos:1}
-];
-let pagamentos=[{nome:"Maria José",curso:"Básico",valor:"10 MT",metodo:"M-Pesa",tel:"84***123",status:"Pendente"},{nome:"João Pedro",curso:"Intermediário",valor:"20 MT",metodo:"e-Mola",tel:"86***456",status:"Confirmado"}];
-let comentarios=[{nome:"Maria",txt:"Adorei a aula de hoje! 👏"},{nome:"João",txt:"Quando sai o curso Avançado?"}];
+let frases=[{en:"Thank you",pt:"obrigado"},{en:"Good night",pt:"boa noite"},{en:"I love English",pt:"eu amo inglês"},{en:"Where are you from?",pt:"de onde és?"},{en:"See you tomorrow",pt:"até amanhã"},{en:"Welcome to school",pt:"bem-vindo à escola"},{en:"Good morning",pt:"bom dia"},{en:"How are you?",pt:"como estás?"}];
+let posts=[{t:"Como cumprimentar em inglês",d:"Aprende Good morning, Good afternoon, Good evening. Quando chegas à escola dizes Good morning. À tarde Good afternoon. À noite Good evening. Pratica todos os dias com os teus amigos e professores.",img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600",sec:"Painel geral",fotos:1},{t:"5 Verbos que tens de saber",d:"To be - ser/estar, To have - ter, To go - ir, To do - fazer, To speak - falar. Exemplo: I am a student. I have a book.",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",sec:"Iniciante - Verbos",fotos:1},{t:"Frases para o dia a dia",d:"Thank you - Obrigado, Please - Por favor, Excuse me - Com licença, Sorry - Desculpa.",img:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600",sec:"Frases do dia a dia",fotos:1}];
+let pagamentos=[{nome:"Maria José",curso:"Básico",valor:"10 MT",metodo:"M-Pesa",tel:"84***123",status:"Pendente"}];
+let comentarios=[{nome:"Maria",txt:"Adorei! 👏"}];
 let filterSec='all';
-
 function renderFrases(){document.getElementById('frasesList').innerHTML=frases.slice(0,4).map(f=>`<div style="background:#fff;padding:12px;border-radius:12px;margin-top:8px;display:flex;justify-content:space-between"><span><b>${f.en}</b><br><small style="color:#666">${f.pt}</small></span><button onclick="alert('${f.en}')" style="background:#FFF8E1;border-radius:50%;width:36px;height:36px">🔊</button></div>`).join('')}
-function renderPosts(){
-  let list = filterSec==='all'?posts:posts.filter(p=>p.sec.toLowerCase().includes(filterSec.toLowerCase())||filterSec==='Painel geral');
-  if(list.length===0) list=posts;
-  document.getElementById('posts').innerHTML=list.map((p,i)=>`<div style="background:#fff;border-radius:14px;overflow:hidden;margin-top:12px" onclick="openPost(${posts.indexOf(p)})"><img src="${p.img}" style="width:100%;height:180px;object-fit:cover"><div style="padding:12px"><span style="font-size:11px;background:#FFF8E1;padding:3px 8px;border-radius:10px">${p.sec} • ${p.fotos} foto(s)</span><br><b style="display:block;margin-top:6px">${p.t}</b><p style="font-size:13px;color:#666">${p.d}</p><span style="color:#142F5A;font-weight:700;font-size:13px">Ler matéria →</span></div></div>`).join('');
-}
-function openPost(i){let p=posts[i];document.getElementById('postImg').src=p.img;document.getElementById('postImg').style.display='block';document.getElementById('postTitle').innerText=p.t;document.getElementById('postBody').innerText=p.d+'\n\nEsta matéria faz parte da secção: '+p.sec+'. Continua a estudar e pratica com as frases do dia a dia.';document.getElementById('postMore').innerHTML='<b>Outra matéria:</b><br>'+posts.filter((_,j)=>j!==i).map(x=>`<span style="color:#142F5A;font-weight:700;font-size:13px" onclick="openPost(${posts.indexOf(x)})">• ${x.t}</span><br>`).join('');openModal('postModal')}
-function filterBy(sec){toggleMenu(); if(sec==='novidades') filterSec='Painel geral'; else if(sec==='frases') filterSec='frases'; else filterSec=sec; renderPosts(); window.scrollTo({top:400,behavior:'smooth'})}
+function renderPosts(){let list=filterSec==='all'?posts:posts.filter(p=>p.sec.toLowerCase().includes(filterSec.toLowerCase()));if(!list.length)list=posts;document.getElementById('posts').innerHTML=list.map((p,i)=>`<div style="background:#fff;border-radius:14px;overflow:hidden;margin-top:12px" onclick="openPost(${posts.indexOf(p)})"><img src="${p.img}" style="width:100%;height:180px;object-fit:cover"><div style="padding:12px"><span style="font-size:11px;background:#FFF8E1;padding:3px 8px;border-radius:10px">${p.sec} • ${p.fotos} foto(s)</span><br><b style="display:block;margin-top:6px">${p.t}</b><p style="font-size:13px;color:#666">${p.d.substring(0,80)}...</p><span style="color:#142F5A;font-weight:700;font-size:13px">Ler matéria →</span></div></div>`).join('')}
+/* NOVA PÁGINA DA MATÉRIA - PÁGINA CHEIA */
+function openPost(i){let p=posts[i];document.getElementById('main').style.display='none';let pg=document.getElementById('postPage');pg.classList.add('show');document.getElementById('postPageImg').src=p.img;document.getElementById('postPageSec').innerText=p.sec+' • '+p.fotos+' foto(s)';document.getElementById('postPageTitle').innerText=p.t;document.getElementById('postPageBody').innerText=p.d;document.getElementById('postPageGallery').innerHTML=`<img src="${p.img}" style="width:100px;height:100px;object-fit:cover;border-radius:10px">`;let others=posts.filter((_,j)=>j!==i);document.getElementById('postPageMore').innerHTML=others.map(o=>`<div style="background:#F4F6FB;border-radius:14px;overflow:hidden;margin-top:12px" onclick="openPost(${posts.indexOf(o)})"><img src="${o.img}" style="width:100%;height:150px;object-fit:cover"><div style="padding:12px"><b>${o.t}</b><p style="font-size:13px;color:#666">${o.d.substring(0,70)}...</p><span style="color:#142F5A;font-weight:700;font-size:13px">Ler esta matéria →</span></div></div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+function closePostPage(){document.getElementById('postPage').classList.remove('show');document.getElementById('main').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+function filterBy(sec){toggleMenu();filterSec=sec==='novidades'?'Painel geral':sec;renderPosts();window.scrollTo({top:400,behavior:'smooth'})}
 function resetFilter(){filterSec='all';renderPosts()}
-function renderQuiz(){let q=frases.slice(0,5);document.getElementById('quiz').innerHTML=q.map((f,i)=>`<div style="margin-top:12px"><b>${i+1}. ${f.en}</b><input class="inp" id="ans${i}" placeholder="Tradução em português..."></div>`).join('')}
-function corrigir(){let q=frases.slice(0,5);let certas=0;let html='';q.forEach((f,i)=>{let v=document.getElementById('ans'+i).value.trim().toLowerCase();let ok=v && (f.pt.includes(v)||v.includes(f.pt.split(' ')[0]));if(ok)certas++;html+=`<div style="margin-top:6px;font-size:13px">${ok?'✅':'❌'} ${f.en} → <b>${f.pt}</b></div>`});let nota=Math.round((certas/q.length)*20);document.getElementById('resultado').innerHTML=`Nota: ${nota}/20 - Certas: ${certas}/${q.length}<br>${html}<p style="font-size:12px;font-weight:400">Guardado no teu perfil. Pontos +${certas*10}</p>`}
+function renderQuiz(){let q=frases.slice(0,5);document.getElementById('quiz').innerHTML=q.map((f,i)=>`<div style="margin-top:12px"><b>${i+1}. ${f.en}</b><input class="inp" id="ans${i}" placeholder="Tradução..."></div>`).join('')}
+function corrigir(){if(!isLogged){alert('🔒 Faz login para testes.');openModal('loginModal');return}let q=frases.slice(0,5);let certas=0;let html='';q.forEach((f,i)=>{let v=document.getElementById('ans'+i).value.trim().toLowerCase();let ok=v&&(f.pt.includes(v)||v.includes(f.pt.split(' ')[0]));if(ok)certas++;html+=`<div style="margin-top:6px;font-size:13px">${ok?'✅':'❌'} ${f.en} → <b>${f.pt}</b></div>`});let nota=Math.round((certas/q.length)*20);document.getElementById('resultado').innerHTML=`Nota: ${nota}/20 - Certas: ${certas}/${q.length}<br>${html}`}
 function renderComments(){document.getElementById('commentList').innerHTML=comentarios.map(c=>`<div style="background:#F4F6FB;padding:10px;border-radius:10px;margin-top:8px"><b>${c.nome}</b><br>${c.txt}</div>`).join('')}
 function addComment(){let v=document.getElementById('commentInput').value;if(!v)return;comentarios.unshift({nome:"Tu",txt:v});document.getElementById('commentInput').value='';renderComments();renderAdmin()}
 let cursoAtual={nome:'Básico',preco:10};let metodo='mpesa';
-function openPay(nome,preco){cursoAtual={nome,preco};document.getElementById('payTitle').innerText=`Comprar ${nome} - ${preco} MT`;openModal('payModal')}
+function checkCourse(nome,preco){toggleMenu();currentCourse={nome,preco};if(!isLogged){alert('🔒 Precisas de conta para o curso '+nome);openModal('loginModal');return}if(unlocked[nome]){alert('✅ Curso '+nome+' desbloqueado!');return}document.getElementById('coursePassTitle').innerText='🔒 Senha do Curso '+nome+' - '+preco+' MT';openModal('coursePassModal')}
 function selectPay(m){metodo=m;document.getElementById('optMpesa').classList.toggle('active',m==='mpesa');document.getElementById('optEmola').classList.toggle('active',m==='emola')}
-function confirmPay(){let tel=document.getElementById('payPhone').value;if(!tel){alert('Escreve o teu número');return}pagamentos.unshift({nome:"Novo aluno",curso:cursoAtual.nome,valor:cursoAtual.preco+' MT',metodo:metodo==='mpesa'?'M-Pesa':'e-Mola',tel:tel,status:"Pendente"});alert(`Pedido enviado! ${cursoAtual.nome} - ${cursoAtual.preco} MT via ${metodo==='mpesa'?'M-Pesa 856 661 893':'e-Mola 862 428 830'}\nNúmero: ${tel}\nBeneficiário: Adriano Naulange`);closeAll();renderAdmin()}
-
-// ADMIN FUNÇÕES
-function publishPost(){let t=document.getElementById('pubTitulo').value;let d=document.getElementById('pubTexto').value;if(!t||!d){alert('Escreve título e conteúdo');return}let secs=[...document.querySelectorAll('#secChecks .chip.on')].map(c=>c.innerText);let sec=secs[0]||'Painel geral';let files=document.getElementById('pubFotos').files;let img=files.length>0?URL.createObjectURL(files[0]):"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600";posts.unshift({t,d,img,sec,fotos:files.length||1});document.getElementById('pubTitulo').value='';document.getElementById('pubTexto').value='';renderPosts();renderAdmin();alert('Publicado em: '+secs.join(', '))}
-function addFrase(){let en=document.getElementById('newEn').value;let pt=document.getElementById('newPt').value;if(!en||!pt)return alert('Preenche os dois');frases.unshift({en,pt,sec:"frases"});renderFrases();renderQuiz();renderAdmin();alert('Frase adicionada')}
-function addPergunta(){let en=document.getElementById('qEn').value;let pt=document.getElementById('qPt').value;if(!en||!pt)return alert('Preenche');frases.unshift({en,pt,sec:"teste"});renderQuiz();renderAdmin();alert('Pergunta adicionada ao teste')}
-function addAula(){let t=document.getElementById('aulaTitulo').value;let c=document.getElementById('aulaCat').value;let tx=document.getElementById('aulaTexto').value;if(!t)return alert('Título');posts.unshift({t:t+' ['+c+']',d:tx,img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",sec:c,fotos:1});renderPosts();renderAdmin();alert('Aula publicada em '+c)}
-function renderAdmin(){
-  document.getElementById('adminPostsList').innerHTML='<b>Publicações ('+posts.length+'):</b><br>'+posts.slice(0,5).map(p=>`• ${p.t} — <small>${p.sec}</small> <button onclick="delPost('${p.t}')" style="color:red;background:none;font-weight:700">Apagar</button>`).join('<br>');
-  document.getElementById('adminFrasesList').innerHTML='<b>Frases:</b><br>'+frases.slice(0,6).map(f=>`• ${f.en} = ${f.pt}`).join('<br>');
-  document.getElementById('adminPerguntasList').innerHTML='<b>Perguntas de teste:</b><br>'+frases.slice(0,5).map(f=>`• ${f.en} → ${f.pt}`).join('<br>');
-  document.getElementById('adminAulasList').innerHTML='<b>Aulas / Matérias:</b><br>'+posts.slice(0,5).map(p=>`• ${p.t}`).join('<br>');
-  document.getElementById('pagList').innerHTML=pagamentos.map((p,i)=>`<div style="background:#F4F6FB;padding:10px;border-radius:10px;margin-top:8px"><b>${p.nome}</b> - ${p.curso} - ${p.valor} - ${p.metodo} - ${p.tel}<br>Status: <b>${p.status}</b> <button onclick="confirmPag(${i})" style="background:#25D366;color:#fff;padding:5px 10px;border-radius:8px;margin-left:6px">Confirmar</button></div>`).join('');
-  document.getElementById('adminComments').innerHTML=comentarios.map(c=>`<div style="background:#F4F6FB;padding:8px;border-radius:8px;margin-top:6px"><b>${c.nome}:</b> ${c.txt}</div>`).join('');
-}
+function unlockCourse(){let v=document.getElementById('coursePassInput').value.trim();let nome=currentCourse?currentCourse.nome:'Básico';if(v===COURSE_PASS[nome]){unlocked[nome]=true;closeAll();alert('✅ Correto! Curso '+nome+' desbloqueado.')}else{alert('❌ Senha errada.');}}
+function confirmPay(){let tel=document.getElementById('payPhone').value;if(!tel){alert('Escreve o número');return}pagamentos.unshift({nome:"Novo aluno",curso:cursoAtual.nome,valor:cursoAtual.preco+' MT',metodo:metodo==='mpesa'?'M-Pesa':'e-Mola',tel:tel,status:"Pendente"});alert('Pedido enviado! Aguarda a senha do Admin.');closeAll();renderAdmin()}
+function publishPost(){let t=document.getElementById('pubTitulo').value;let d=document.getElementById('pubTexto').value;if(!t||!d)return alert('Título e conteúdo');let secs=[...document.querySelectorAll('#secChecks .chip.on')].map(c=>c.innerText);let sec=secs[0]||'Painel geral';let files=document.getElementById('pubFotos').files;let img=files.length>0?URL.createObjectURL(files[0]):"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600";posts.unshift({t,d,img,sec,fotos:files.length||1});renderPosts();renderAdmin();alert('Publicado em: '+secs.join(', '))}
+function addFrase(){let en=document.getElementById('newEn').value;let pt=document.getElementById('newPt').value;if(!en||!pt)return alert('Preenche');frases.unshift({en,pt});renderFrases();renderQuiz();renderAdmin();alert('Frase adicionada')}
+function addPergunta(){let en=document.getElementById('qEn').value;let pt=document.getElementById('qPt').value;if(!en||!pt)return alert('Preenche');frases.unshift({en,pt});renderQuiz();renderAdmin();alert('Pergunta adicionada')}
+function addAula(){let t=document.getElementById('aulaTitulo').value;let c=document.getElementById('aulaCat').value;let tx=document.getElementById('aulaTexto').value;if(!t)return alert('Título');posts.unshift({t:t+' ['+c+']',d:tx,img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600",sec:c,fotos:1});renderPosts();renderAdmin();alert('Aula publicada')}
+function renderAdmin(){document.getElementById('adminPostsList').innerHTML='<b>Publicações:</b><br>'+posts.slice(0,5).map(p=>`• ${p.t} — <small>${p.sec}</small> <button onclick="delPost('${p.t}')" style="color:red;background:none;font-weight:700">Apagar</button>`).join('<br>');document.getElementById('adminFrasesList').innerHTML='<b>Frases:</b><br>'+frases.slice(0,6).map(f=>`• ${f.en} = ${f.pt}`).join('<br>');document.getElementById('adminPerguntasList').innerHTML='<b>Perguntas:</b><br>'+frases.slice(0,5).map(f=>`• ${f.en} → ${f.pt}`).join('<br>');document.getElementById('adminAulasList').innerHTML='<b>Aulas:</b><br>'+posts.slice(0,5).map(p=>`• ${p.t}`).join('<br>');document.getElementById('pagList').innerHTML=pagamentos.map((p,i)=>`<div style="background:#F4F6FB;padding:10px;border-radius:10px;margin-top:8px"><b>${p.nome}</b> - ${p.curso} - ${p.valor} - ${p.metodo}<br>Status: <b>${p.status}</b> <button onclick="confirmPag(${i})" style="background:#25D366;color:#fff;padding:5px 10px;border-radius:8px">Confirmar + Enviar Senha</button></div>`).join('');document.getElementById('adminComments').innerHTML=comentarios.map(c=>`<div style="background:#F4F6FB;padding:8px;border-radius:8px;margin-top:6px"><b>${c.nome}:</b> ${c.txt}</div>`).join('')}
 function delPost(t){posts=posts.filter(p=>p.t!==t);renderPosts();renderAdmin()}
-function confirmPag(i){pagamentos[i].status='Confirmado - Curso desbloqueado ✅';renderAdmin();alert('Pagamento confirmado! Curso desbloqueado para o aluno.')}
+function confirmPag(i){let c=pagamentos[i].curso;pagamentos[i].status='Confirmado ✅ Senha: '+COURSE_PASS[c];renderAdmin();alert('Envia esta senha ao aluno: '+COURSE_PASS[c])}
 renderFrases();renderPosts();renderQuiz();renderComments();renderAdmin();
 </script>
 </body>
